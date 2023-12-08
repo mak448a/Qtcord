@@ -11,7 +11,7 @@ Then do the standard Python procedure:
 
 Afterwards, just run main.py.
 ```shell
-python3 main.py
+python3 src/main.py
 ```
 
 ## Notes for developers

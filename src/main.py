@@ -15,14 +15,8 @@ from PySide6.QtCore import QTimer
 from PySide6.QtWidgets import QPushButton
 import discord_integration
 from PySide6.QtCore import QRunnable, Slot, QThreadPool
-import time
 from discord_worker import Worker
 
-
-
-
-# Use worker thread
-# https://www.pythonguis.com/tutorials/multithreading-pyside-applications-qthreadpool/
 
 
 class Window(QMainWindow, Ui_MainWindow):
@@ -41,6 +35,8 @@ class Window(QMainWindow, Ui_MainWindow):
         self.threadpool = QThreadPool()
         # Refresh interval used in setup function
         self.refresh_message_interval = 600
+        
+        self.setWindowIcon(QIcon("smiley.svg"))
 
         self.setup()
 
