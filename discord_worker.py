@@ -16,4 +16,4 @@ class Worker(QRunnable):
 
     @Slot()  # QtCore.Slot
     def run(self):
-        self.signals.update.emit(get_messages(self.channel)[0])
+        self.signals.update.emit(get_messages(self.channel))

@@ -4,7 +4,7 @@ import json
 people = set()
 
 
-def get_messages(channel_id, beforemessage=None):
+def get_messages(channel_id):
     """Returns messages and then last message id"""
     with open("discordauth.txt") as f:
         auth = f.read()
@@ -12,11 +12,7 @@ def get_messages(channel_id, beforemessage=None):
     headers = {
         "authorization": f"{auth}"
     }
-    if beforemessage:
-        r = requests.get(f"https://discord.com/api/v9/channels/{channel_id}/messages?before={beforemessage}&limit=10",
-                         headers=headers)
-    else:
-        r = requests.get(f"https://discord.com/api/v9/channels/{channel_id}/messages?limit=10", headers=headers)
+    r = requests.get(f"https://discord.com/api/v9/channels/{channel_id}/messages?limit=100", headers=headers)
     jsonn = json.loads(r.text)
     new_list = []
     for value in jsonn:
@@ -37,7 +33,7 @@ def get_messages(channel_id, beforemessage=None):
     new_list.reverse()
     last_message = new_list[0]["id"]
     # print(new_list)
-    return new_list, last_message
+    return new_list
 
 
 def send_message(msg, channel):
