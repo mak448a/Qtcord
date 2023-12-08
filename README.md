@@ -13,3 +13,6 @@ Afterwards, just run main.py.
 ```shell
 python3 main.py
 ```
+
+## Notes for developers
+The code is a mess, since I'm still working on it. Have fun!
