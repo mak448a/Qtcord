@@ -15,6 +15,8 @@ from PySide6.QtWidgets import QPushButton
 import discord_integration
 from PySide6.QtCore import QRunnable, Slot, QThreadPool
 import time
+from discord_worker import Worker
+
 
 
 
@@ -34,6 +36,10 @@ class Window(QMainWindow, Ui_MainWindow):
 
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
+
+        self.threadpool = QThreadPool()
+        # Refresh interval used in setup function
+        self.refresh_message_interval = 600
 
         self.setup()
 
@@ -72,37 +78,44 @@ class Window(QMainWindow, Ui_MainWindow):
 
             discord_integration.send_message(text, self.channel)
             
-            self.update_text()
+            self.update_messages()
     
-    def update_text(self):
+    def update_messages(self):
+        # If we're not in a channel, stop immediately.
         if not self.channel:
             return
         
-        
-        # Get messages
-        # if messages aresame, dont update
-        messages = ""
-
-        for message in discord_integration.get_messages(self.channel)[0]:
-            messages += message["username"] + ": " + message["content"] + "\n"
-        if self.messages == messages:
+        worker = Worker(self.channel)
+        worker.signals.update.connect(self._update_text)
+        self.threadpool.start(worker)
+    
+    def _update_text(self, messages):
+        if not self.channel:
             return
         
-        self.messages = messages
-        self.ui.textBrowser.setText(self.messages)
+        # Get messages
+        new_messages = ""
 
-        # Scroll to bottom
-        self.ui.textBrowser.verticalScrollBar().setValue(self.ui.textBrowser.verticalScrollBar().maximum())
+        for message in messages:
+            new_messages += message["username"] + ": " + message["content"] + "\n"
+        
+        if self.messages != new_messages:
+            self.messages = new_messages
+            self.ui.textBrowser.setText(self.messages)
+
+            # Scroll to bottom
+            self.ui.textBrowser.verticalScrollBar().setValue(self.ui.textBrowser.verticalScrollBar().maximum())
     
     def setup(self):
         self.connect_signal_slots()
+        
 
         self.ui.lineEdit.setFocus()
 
-        # Set timer to run every 4000 ms to update the chat (8 seconds as we don't want banning)
+        # Set timer to run every few ms to update the chat (8 seconds as we don't want banning)
         self.timer = QTimer()
-        self.timer.setInterval(4000)
-        self.timer.timeout.connect(self.update_text)
+        self.timer.setInterval(self.refresh_message_interval)
+        self.timer.timeout.connect(self.update_messages)
         self.timer.start()
 
         # Get friends
@@ -129,7 +142,7 @@ class Window(QMainWindow, Ui_MainWindow):
     def switch_channel(self, _id):
         # print("We were passed in", _id)
         self.channel = _id
-        self.update_text()
+        # self.update_text()
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
