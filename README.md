@@ -1,6 +1,8 @@
 # QTCord
 QTCord is a Discord client aiming to bring a native look and feel chat experience. I am not responsible if you get your account banned from this project.
 
+![Screenshot of QTCord](demo.png)
+
 ## Setup
 Throw [your token](https://www.androidauthority.com/get-discord-token-3149920/) into `discordauth.txt`.
 
