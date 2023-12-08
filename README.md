@@ -2,4 +2,14 @@
 QTCord is a Discord client aiming to bring a native look-and-feel chat experience.
 
 ## Setup
-Throw your token into `discordauth.txt` and copy any discord channel id (enable developer mode, right click, copy id) and throw that into `discord_channel.txt`
+Throw your token into `discordauth.txt` and copy any discord channel id (enable developer mode, right click, copy id) and throw that into `discord_channel.txt`.
+
+Then do the standard Python procedure:
+`python3 -m venv venv`
+`source venv/bin/activate`
+`pip install -r requirements.txt`
+
+Afterwards, just run main.py.
+```shell
+python3 main.py
+```
