@@ -1,5 +1,6 @@
 #! /usr/bin/env python3
 import os
+# Regenerate ui from ui file
 os.system("pyside6-uic main.ui -o main_ui.py")  # NOQA (basically tells pycharm to shut up)
 
 import sys
