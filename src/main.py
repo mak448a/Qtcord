@@ -142,24 +142,36 @@ class Window(QMainWindow, Ui_MainWindow):
         self.channel = _id
 
     def get_servers(self):
-        # for guild in discord_integration.get_guilds():
-        #     info = {
-        #         "icon": guild["icon"],
-        #         "id": guild["id"],
-        #         "name": guild["name"],
-        #         "id": guild["id"],
-        #     }
         self.guilds = discord_integration.get_guilds()
         
         buttons = {}
+        channel_buttons = {}
+
         for i, guild in enumerate(self.guilds):
             buttons[i] = QPushButton(text=guild["name"])
             self.ui.servers.layout().addWidget(buttons[i])
+
+            # TODO: Get real stuff from discord_integration.get_guild_channels()
+            # TODO: Only call this when you click on a channel, and switch the active tab too
+            channel_buttons[i] = QPushButton(text=guild["name"])
+            self.ui.channels.layout().addWidget(channel_buttons[i])
 
             # Oh my headache do not touch this code.
             # But if you do: https://stackoverflow.com/questions/19837486/lambda-in-a-loop
             # buttons[i].clicked.connect((lambda channel=channel: lambda: self.switch_channel(channel))(channel))
 
+
+    def get_channels(self, guild_id: int):
+        channels = discord_integration.get_guild_channels(guild_id)
+        
+        buttons = {}
+        for i, guild_id in enumerate(channels):
+            buttons[i] = QPushButton(text=guild_id["name"])
+            self.ui.servers.layout().addWidget(buttons[i])
+
+            # Oh my headache do not touch this code.
+            # But if you do: https://stackoverflow.com/questions/19837486/lambda-in-a-loop
+            # buttons[i].clicked.connect((lambda channel=channel: lambda: self.switch_channel(channel))(channel))
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
