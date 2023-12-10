@@ -3,11 +3,19 @@ import json
 
 people = set()
 
+with open("discordauth.txt") as f:
+    auth = f.read()
 
-def get_messages(channel_id):
-    """Returns messages and then last message id"""
-    with open("discordauth.txt") as f:
-        auth = f.read()
+
+
+def get_messages(channel_id: int, limit: int=100):
+    """Returns messages from a given channel
+    Parameters:
+    channel_id (int): Channel ID
+
+    Returns:
+
+    """
 
     headers = {
         "authorization": f"{auth}"
@@ -19,26 +27,18 @@ def get_messages(channel_id):
         if not value["content"]:
             people.add(value["author"]["global_name"])
             new_list.append(
-                {"username": value["author"]["global_name"], "content": "[NOT A TEXT (call/image)]", "id": value["id"]})
+                {"username": value["author"]["global_name"], "content": "[(call/image/other)]", "id": value["id"]})
         else:
-            # people.add(value["author"]["username"])
             people.add(value["author"]["global_name"])
-            # new_list.append({"username": value["author"]["username"], "content": value["content"], "id": value["id"]})
             new_list.append(
                 {"username": value["author"]["global_name"], "content": value["content"], "id": value["id"]})
-            # print(value, "\n")
 
-    newnewlist = new_list.copy()
-    # Reversed list!
+    # Reverse the list of messages
     new_list.reverse()
-    last_message = new_list[0]["id"]
-    # print(new_list)
     return new_list
 
 
 def send_message(msg, channel):
-    with open("discordauth.txt") as f:
-        auth = f.read()
     headers = {
         "authorization": f"{auth}"
     }
@@ -49,8 +49,6 @@ def send_message(msg, channel):
 
 
 def get_friends():
-    with open("discordauth.txt") as f:
-        auth = f.read()
     headers = {
         "authorization": f"{auth}"
     }
@@ -65,11 +63,23 @@ def get_friends():
 
 
 def get_channel_from_id(user_id):
-    with open("discordauth.txt") as f:
-        auth = f.read()
     headers = {
         "authorization": f"{auth}"
     }
     r = requests.post(f"https://discord.com/api/v9/users/@me/channels",
                       headers=headers, json={"recipient_id": user_id})
     return r.json()["id"]
+
+
+def get_guilds():
+    """ Returns all guilds (aka servers) that the user is in. """
+
+    headers = {
+        "authorization": f"{auth}"
+    }
+    r = requests.get(f"https://discord.com/api/v9/users/@me/guilds",
+                    headers=headers)
+    
+    # You can get the icon of the server by: https://cdn.discordapp.com/icons/{id}/{icon_name}.
+    # You get the rest of the info from this function.
+    return r.json()

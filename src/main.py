@@ -24,6 +24,7 @@ class Window(QMainWindow, Ui_MainWindow):
     response, prev_response = "", ""
     messages = ""
     friends = []
+    guilds = []
     channel = 0
 
     def __init__(self, parent=None):
@@ -62,7 +63,7 @@ class Window(QMainWindow, Ui_MainWindow):
             "<p>This app uses the following</p>"
             "<p>- PySide6</p>"
             "<p>- Qt Designer</p>"
-            "<p style='color:blue; background: rgb(30,30,30)'>- <strong>Python</strong></p>"
+            "<p>- <strong>Python</strong></p>"
             "<p>PySide is licensed under LGPL.</p>",
         )
 
@@ -115,8 +116,9 @@ class Window(QMainWindow, Ui_MainWindow):
         self.timer.timeout.connect(self.update_messages)
         self.timer.start()
 
-        # Get friends
+        # Add friends to the UI
         self.get_friends()
+        self.get_servers()
 
     def get_friends(self):
         for friend in discord_integration.get_friends():
@@ -137,9 +139,27 @@ class Window(QMainWindow, Ui_MainWindow):
             buttons[i].clicked.connect((lambda channel=channel: lambda: self.switch_channel(channel))(channel))
     
     def switch_channel(self, _id):
-        # print("We were passed in", _id)
         self.channel = _id
-        # self.update_text()
+
+    def get_servers(self):
+        # for guild in discord_integration.get_guilds():
+        #     info = {
+        #         "icon": guild["icon"],
+        #         "id": guild["id"],
+        #         "name": guild["name"],
+        #         "id": guild["id"],
+        #     }
+        self.guilds = discord_integration.get_guilds()
+        
+        buttons = {}
+        for i, guild in enumerate(self.guilds):
+            buttons[i] = QPushButton(text=guild["name"])
+            self.ui.server_layout.layout().addWidget(buttons[i])
+
+            # Oh my headache do not touch this code.
+            # But if you do: https://stackoverflow.com/questions/19837486/lambda-in-a-loop
+            # buttons[i].clicked.connect((lambda channel=channel: lambda: self.switch_channel(channel))(channel))
+
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
