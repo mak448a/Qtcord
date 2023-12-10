@@ -10,3 +10,4 @@ https://www.youtube.com/channel/UC8PPJFudLUM1eJlM4BiJ40A
 # Todo: Implement differnet indicator for calling vs images
 # Todo: Make app icon instead of my placeholder one
 # Todo: Add login
+# Todo: Put friends into scrollbox

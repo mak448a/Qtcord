@@ -36,7 +36,7 @@
           <rect>
            <x>0</x>
            <y>0</y>
-           <width>504</width>
+           <width>618</width>
            <height>409</height>
           </rect>
          </property>
@@ -138,7 +138,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <item>
       <widget class="QTabWidget" name="tabWidget">
        <property name="currentIndex">
-        <number>0</number>
+        <number>1</number>
        </property>
        <widget class="QWidget" name="friends_tab">
         <attribute name="title">
@@ -152,84 +152,21 @@ li.checked::marker { content: &quot;\2612&quot;; }
         </attribute>
         <layout class="QHBoxLayout" name="horizontalLayout_5">
          <item>
-          <widget class="QScrollArea" name="scrollArea_2">
-           <property name="widgetResizable">
-            <bool>true</bool>
+          <widget class="QTabWidget" name="servers_notebook">
+           <property name="currentIndex">
+            <number>0</number>
            </property>
-           <widget class="QWidget" name="server_layout">
-            <property name="geometry">
-             <rect>
-              <x>0</x>
-              <y>0</y>
-              <width>130</width>
-              <height>387</height>
-             </rect>
-            </property>
-            <layout class="QVBoxLayout" name="verticalLayout_2">
-             <property name="spacing">
-              <number>0</number>
-             </property>
-             <property name="leftMargin">
-              <number>2</number>
-             </property>
-             <property name="topMargin">
-              <number>0</number>
-             </property>
-             <property name="rightMargin">
-              <number>2</number>
-             </property>
-             <property name="bottomMargin">
-              <number>0</number>
-             </property>
-             <item>
-              <widget class="QPushButton" name="pushButton_2">
-               <property name="text">
-                <string>Server</string>
-               </property>
-              </widget>
-             </item>
-            </layout>
+           <widget class="QWidget" name="servers">
+            <attribute name="title">
+             <string>Servers</string>
+            </attribute>
+            <layout class="QVBoxLayout" name="verticalLayout_6"/>
            </widget>
-          </widget>
-         </item>
-         <item>
-          <widget class="QScrollArea" name="scrollArea_3">
-           <property name="widgetResizable">
-            <bool>true</bool>
-           </property>
-           <widget class="QWidget" name="channel_layout">
-            <property name="geometry">
-             <rect>
-              <x>0</x>
-              <y>0</y>
-              <width>130</width>
-              <height>387</height>
-             </rect>
-            </property>
-            <layout class="QVBoxLayout" name="verticalLayout_5">
-             <property name="spacing">
-              <number>0</number>
-             </property>
-             <property name="leftMargin">
-              <number>2</number>
-             </property>
-             <property name="topMargin">
-              <number>0</number>
-             </property>
-             <property name="rightMargin">
-              <number>2</number>
-             </property>
-             <property name="bottomMargin">
-              <number>0</number>
-             </property>
-             <item>
-              <widget class="QPushButton" name="pushButton_3">
-               <property name="text">
-                <string>Channel</string>
-               </property>
-              </widget>
-             </item>
-            </layout>
+           <widget class="QWidget" name="channels">
+            <attribute name="title">
+             <string>Channels</string>
+            </attribute>
+            <layout class="QVBoxLayout" name="verticalLayout_7"/>
            </widget>
           </widget>
          </item>

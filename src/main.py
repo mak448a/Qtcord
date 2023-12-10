@@ -154,7 +154,7 @@ class Window(QMainWindow, Ui_MainWindow):
         buttons = {}
         for i, guild in enumerate(self.guilds):
             buttons[i] = QPushButton(text=guild["name"])
-            self.ui.server_layout.layout().addWidget(buttons[i])
+            self.ui.servers.layout().addWidget(buttons[i])
 
             # Oh my headache do not touch this code.
             # But if you do: https://stackoverflow.com/questions/19837486/lambda-in-a-loop

@@ -44,7 +44,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents_2 = QWidget()
         self.scrollAreaWidgetContents_2.setObjectName(u"scrollAreaWidgetContents_2")
-        self.scrollAreaWidgetContents_2.setGeometry(QRect(0, 0, 504, 409))
+        self.scrollAreaWidgetContents_2.setGeometry(QRect(0, 0, 618, 409))
         self.gridLayout = QGridLayout(self.scrollAreaWidgetContents_2)
         self.gridLayout.setObjectName(u"gridLayout")
         self.gridLayout.setContentsMargins(0, 0, 0, 0)
@@ -104,43 +104,20 @@ class Ui_MainWindow(object):
         self.servers_tab.setObjectName(u"servers_tab")
         self.horizontalLayout_5 = QHBoxLayout(self.servers_tab)
         self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
-        self.scrollArea_2 = QScrollArea(self.servers_tab)
-        self.scrollArea_2.setObjectName(u"scrollArea_2")
-        self.scrollArea_2.setWidgetResizable(True)
-        self.server_layout = QWidget()
-        self.server_layout.setObjectName(u"server_layout")
-        self.server_layout.setGeometry(QRect(0, 0, 130, 387))
-        self.verticalLayout_2 = QVBoxLayout(self.server_layout)
-        self.verticalLayout_2.setSpacing(0)
-        self.verticalLayout_2.setObjectName(u"verticalLayout_2")
-        self.verticalLayout_2.setContentsMargins(2, 0, 2, 0)
-        self.pushButton_2 = QPushButton(self.server_layout)
-        self.pushButton_2.setObjectName(u"pushButton_2")
+        self.servers_notebook = QTabWidget(self.servers_tab)
+        self.servers_notebook.setObjectName(u"servers_notebook")
+        self.servers = QWidget()
+        self.servers.setObjectName(u"servers")
+        self.verticalLayout_6 = QVBoxLayout(self.servers)
+        self.verticalLayout_6.setObjectName(u"verticalLayout_6")
+        self.servers_notebook.addTab(self.servers, "")
+        self.channels = QWidget()
+        self.channels.setObjectName(u"channels")
+        self.verticalLayout_7 = QVBoxLayout(self.channels)
+        self.verticalLayout_7.setObjectName(u"verticalLayout_7")
+        self.servers_notebook.addTab(self.channels, "")
 
-        self.verticalLayout_2.addWidget(self.pushButton_2)
-
-        self.scrollArea_2.setWidget(self.server_layout)
-
-        self.horizontalLayout_5.addWidget(self.scrollArea_2)
-
-        self.scrollArea_3 = QScrollArea(self.servers_tab)
-        self.scrollArea_3.setObjectName(u"scrollArea_3")
-        self.scrollArea_3.setWidgetResizable(True)
-        self.channel_layout = QWidget()
-        self.channel_layout.setObjectName(u"channel_layout")
-        self.channel_layout.setGeometry(QRect(0, 0, 130, 387))
-        self.verticalLayout_5 = QVBoxLayout(self.channel_layout)
-        self.verticalLayout_5.setSpacing(0)
-        self.verticalLayout_5.setObjectName(u"verticalLayout_5")
-        self.verticalLayout_5.setContentsMargins(2, 0, 2, 0)
-        self.pushButton_3 = QPushButton(self.channel_layout)
-        self.pushButton_3.setObjectName(u"pushButton_3")
-
-        self.verticalLayout_5.addWidget(self.pushButton_3)
-
-        self.scrollArea_3.setWidget(self.channel_layout)
-
-        self.horizontalLayout_5.addWidget(self.scrollArea_3)
+        self.horizontalLayout_5.addWidget(self.servers_notebook)
 
         self.tabWidget.addTab(self.servers_tab, "")
 
@@ -157,6 +134,7 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
 
         self.tabWidget.setCurrentIndex(1)
+        self.servers_notebook.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -178,8 +156,8 @@ class Ui_MainWindow(object):
         self.menuFile.setTitle(QCoreApplication.translate("MainWindow", u"&File", None))
         self.menuHelp.setTitle(QCoreApplication.translate("MainWindow", u"&Help", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.friends_tab), QCoreApplication.translate("MainWindow", u"Friends", None))
-        self.pushButton_2.setText(QCoreApplication.translate("MainWindow", u"Server", None))
-        self.pushButton_3.setText(QCoreApplication.translate("MainWindow", u"Channel", None))
+        self.servers_notebook.setTabText(self.servers_notebook.indexOf(self.servers), QCoreApplication.translate("MainWindow", u"Servers", None))
+        self.servers_notebook.setTabText(self.servers_notebook.indexOf(self.channels), QCoreApplication.translate("MainWindow", u"Channels", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.servers_tab), QCoreApplication.translate("MainWindow", u"Servers", None))
     # retranslateUi
 
