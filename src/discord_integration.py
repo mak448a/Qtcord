@@ -20,7 +20,7 @@ def get_messages(channel_id: int, limit: int=100):
     headers = {
         "authorization": f"{auth}"
     }
-    r = requests.get(f"https://discord.com/api/v9/channels/{channel_id}/messages?limit=100", headers=headers)
+    r = requests.get(f"https://discord.com/api/v9/channels/{channel_id}/messages?limit={limit}", headers=headers)
     jsonn = json.loads(r.text)
     new_list = []
     for value in jsonn:
