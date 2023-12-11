@@ -4,7 +4,7 @@ QTCord is a Discord client aiming to bring a native look and feel chat experienc
 ![Screenshot of QTCord](demo.png)
 
 ## Setup
-Throw [your token](https://www.androidauthority.com/get-discord-token-3149920/) into `discordauth.txt`.
+Throw [your token](https://www.androidauthority.com/get-discord-token-3149920/) into `src/discordauth.txt`.
 
 Then do the standard Python procedure:
 `python3 -m venv venv`
