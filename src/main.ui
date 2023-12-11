@@ -36,7 +36,7 @@
           <rect>
            <x>0</x>
            <y>0</y>
-           <width>601</width>
+           <width>564</width>
            <height>409</height>
           </rect>
          </property>
@@ -130,6 +130,12 @@ li.checked::marker { content: &quot;\2612&quot;; }
    <addaction name="menuHelp"/>
   </widget>
   <widget class="QDockWidget" name="dockWidget">
+   <property name="minimumSize">
+    <size>
+     <width>250</width>
+     <height>142</height>
+    </size>
+   </property>
    <attribute name="dockWidgetArea">
     <number>1</number>
    </attribute>

@@ -2,6 +2,7 @@
 import os
 # Regenerate ui from ui file
 os.system("pyside6-uic main.ui -o main_ui.py")  # NOQA (basically tells pycharm to shut up)
+os.system("pyside6-uic ui/login.ui -o ui/login_ui.py")
 
 import sys
 
@@ -16,6 +17,8 @@ from PySide6.QtWidgets import QPushButton
 import discord_integration
 from PySide6.QtCore import QRunnable, Slot, QThreadPool
 from discord_worker import Worker
+from ui.login import LoginUI
+from PySide6 import QtWidgets
 
 
 
@@ -58,8 +61,8 @@ class Window(QMainWindow, Ui_MainWindow):
     def about(self):
         QMessageBox.about(
             self,
-            "About ChatApp",
-            "<p>ChatApp (c) mak448a 2023</p>"
+            "About QTCord",
+            "<p>QTCord (c) mak448a 2023</p>"
             "<p>This app uses the following</p>"
             "<p>- PySide6</p>"
             "<p>- Qt Designer</p>"
@@ -173,8 +176,15 @@ class Window(QMainWindow, Ui_MainWindow):
             # But if you do: https://stackoverflow.com/questions/19837486/lambda-in-a-loop
             # buttons[i].clicked.connect((lambda channel=channel: lambda: self.switch_channel(channel))(channel))
 
+
 if __name__ == "__main__":
     app = QApplication(sys.argv)
+    widget = QtWidgets.QStackedWidget()
     win = Window()
-    win.show()
+    login = LoginUI(widget)
+    widget.addWidget(login)
+    widget.addWidget(win)
+    widget.resize(840, 500)
+    widget.setWindowTitle("QTCord")
+    widget.show()
     sys.exit(app.exec())
