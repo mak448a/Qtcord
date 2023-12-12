@@ -187,6 +187,8 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
             buttons[i].clicked.connect((lambda server=guild: lambda: self.get_channels_in_guild(server))(guild))
 
     def get_channels_in_guild(self, guild):
+        # We want to change the tab to channels
+        self.ui.servers_notebook.setCurrentIndex(1)
         channels = discord_integration.get_guild_channels(guild["id"])
 
         # Clean buttons from previous server we visited
