@@ -1,5 +1,6 @@
 #! /usr/bin/env python3
 import os
+
 # Regenerate ui from ui file
 os.system("pyside6-uic main.ui -o main_ui.py")  # NOQA (basically tells pycharm to shut up)
 os.system("pyside6-uic ui/login.ui -o ui/login_ui.py")
@@ -21,8 +22,7 @@ from ui.login import LoginUI
 from PySide6 import QtWidgets
 
 
-
-class Window(QMainWindow, Ui_MainWindow):
+class ChatInterface(QMainWindow, Ui_MainWindow):
     quit_shortcut = None
     response, prev_response = "", ""
     messages = ""
@@ -38,12 +38,13 @@ class Window(QMainWindow, Ui_MainWindow):
 
         self.threadpool = QThreadPool()
         # Refresh interval used in setup function
-        self.refresh_message_interval = 600
-        
+        # Got "suspicious activity on your account" with this rate, let's try a different rate
+        # self.refresh_message_interval = 600
+        self.refresh_message_interval = 800
+
         self.setWindowIcon(QIcon("smiley.svg"))
 
         self.setup()
-
 
     def connect_signal_slots(self):
         self.ui.pushButton.clicked.connect(self.handle_input)
@@ -78,38 +79,37 @@ class Window(QMainWindow, Ui_MainWindow):
             self.messages += f"You: {text}\n"
 
             discord_integration.send_message(text, self.channel)
-            
+
             self.update_messages()
-    
+
     def update_messages(self):
         # If we're not in a channel, stop immediately.
         if not self.channel:
             return
-        
+
         worker = Worker(self.channel)
         worker.signals.update.connect(self._update_text)
         self.threadpool.start(worker)
-    
+
     def _update_text(self, messages):
         if not self.channel:
             return
-        
+
         # Get messages
         new_messages = ""
 
         for message in messages:
             new_messages += message["username"] + ": " + message["content"] + "\n"
-        
+
         if self.messages != new_messages:
             self.messages = new_messages
             self.ui.textBrowser.setText(self.messages)
 
             # Scroll to bottom
             self.ui.textBrowser.verticalScrollBar().setValue(self.ui.textBrowser.verticalScrollBar().maximum())
-    
+
     def setup(self):
         self.connect_signal_slots()
-        
 
         self.ui.lineEdit.setFocus()
 
@@ -126,27 +126,27 @@ class Window(QMainWindow, Ui_MainWindow):
     def get_friends(self):
         for friend in discord_integration.get_friends():
             self.friends.append({
-                    "global_name": friend["user"]["global_name"],
-                    "channel": discord_integration.get_channel_from_id(friend["id"]),
-                    "nickname": friend["nickname"]
-                })
-        
+                "global_name": friend["user"]["global_name"],
+                "channel": discord_integration.get_channel_from_id(friend["id"]),
+                "nickname": friend["nickname"]
+            })
+
         buttons = {}
         for i, friend in enumerate(self.friends):
             buttons[i] = QPushButton(text=friend["global_name"])
             self.ui.friends_tab.layout().addWidget(buttons[i])
-            
+
             channel = friend["channel"]
             # Oh my headache do not touch this code.
             # But if you do: https://stackoverflow.com/questions/19837486/lambda-in-a-loop
             buttons[i].clicked.connect((lambda channel=channel: lambda: self.switch_channel(channel))(channel))
-    
+
     def switch_channel(self, _id):
         self.channel = _id
 
     def get_servers(self):
         self.guilds = discord_integration.get_guilds()
-        
+
         buttons = {}
         channel_buttons = {}
 
@@ -163,10 +163,9 @@ class Window(QMainWindow, Ui_MainWindow):
             # But if you do: https://stackoverflow.com/questions/19837486/lambda-in-a-loop
             # buttons[i].clicked.connect((lambda channel=channel: lambda: self.switch_channel(channel))(channel))
 
-
     def get_channels(self, guild_id: int):
         channels = discord_integration.get_guild_channels(guild_id)
-        
+
         buttons = {}
         for i, guild_id in enumerate(channels):
             buttons[i] = QPushButton(text=guild_id["name"])
@@ -179,12 +178,17 @@ class Window(QMainWindow, Ui_MainWindow):
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
+    # Add widget to switch between pages of UI
     widget = QtWidgets.QStackedWidget()
-    win = Window()
+    win = ChatInterface()
     login = LoginUI(widget)
     widget.addWidget(login)
     widget.addWidget(win)
+
+    # Set window properties
     widget.resize(840, 500)
     widget.setWindowTitle("QTCord")
+    widget.setWindowIcon(QIcon("smiley.svg"))
+
     widget.show()
     sys.exit(app.exec())
