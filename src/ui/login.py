@@ -1,6 +1,4 @@
-from PySide6.QtWidgets import (
-    QApplication, QMainWindow, QMessageBox
-)
+from PySide6.QtWidgets import QMainWindow
 from . import login_ui
 
 

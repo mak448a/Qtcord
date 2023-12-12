@@ -2,24 +2,24 @@
 import os
 
 # Regenerate ui from ui file
-os.system("pyside6-uic main.ui -o main_ui.py")  # NOQA (basically tells pycharm to shut up)
-os.system("pyside6-uic ui/login.ui -o ui/login_ui.py")
+os.system("pyside6-uic main.ui -o ui/main_ui.py")  # NOQA (basically tells pycharm to shut up)
+os.system("pyside6-uic ui/login.ui -o ui/login_ui.py")  # NOQA
 
 import sys
 
 from PySide6.QtWidgets import (
-    QApplication, QMainWindow, QMessageBox
+    QApplication, QMainWindow, QMessageBox, QPushButton
 )
 
-from main_ui import Ui_MainWindow
 from PySide6.QtGui import QShortcut, QKeySequence, QIcon
-from PySide6.QtCore import QTimer
-from PySide6.QtWidgets import QPushButton
-import discord_integration
-from PySide6.QtCore import QRunnable, Slot, QThreadPool
-from discord_worker import Worker
-from ui.login import LoginUI
+from PySide6.QtCore import QTimer, QThreadPool
 from PySide6 import QtWidgets
+import discord_integration
+
+from discord_worker import Worker
+
+from ui.main_ui import Ui_MainWindow
+from ui.login import LoginUI
 
 
 class ChatInterface(QMainWindow, Ui_MainWindow):
