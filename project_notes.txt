@@ -9,5 +9,5 @@ https://www.youtube.com/channel/UC8PPJFudLUM1eJlM4BiJ40A
 # Todo: add to flathub https://docs.flathub.org/docs/for-app-authors/submission/
 # Todo: Implement differnet indicator for calling vs images
 # Todo: Make app icon instead of my placeholder one
-# Todo: Add login
 # Todo: Put friends into scrollbox
+# Todo: Put main window into a different file for organization
