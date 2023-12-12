@@ -11,3 +11,4 @@ https://www.youtube.com/channel/UC8PPJFudLUM1eJlM4BiJ40A
 # Todo: Make app icon instead of my placeholder one
 # Todo: Put friends into scrollbox
 # Todo: Put main window into a different file for organization
+# Todo: Emojis (probably get them when you get the guild)

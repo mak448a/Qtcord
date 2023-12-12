@@ -2,7 +2,7 @@ import os
 import requests
 import json
 
-people = set()
+
 api_base = "https://discord.com/api/v9"
 auth = ""  # Will be overridden in load_token
 headers = {}
@@ -37,14 +37,16 @@ def get_messages(channel_id: int, limit: int = 100) -> list:
     jsonn = json.loads(r.text)
     new_list = []
     for value in jsonn:
-        if not value["content"]:
-            people.add(value["author"]["global_name"])
-            new_list.append(
-                {"username": value["author"]["global_name"], "content": "[(call/image/other)]", "id": value["id"]})
+        if not value["author"].get("global_name", False):
+            author = value["author"]["username"]
         else:
-            people.add(value["author"]["global_name"])
+            author = value["author"]["global_name"]
+        if not value["content"]:
             new_list.append(
-                {"username": value["author"]["global_name"], "content": value["content"], "id": value["id"]})
+                {"username": author, "content": "[(call/image/other)]", "id": value["id"]})
+        else:
+            new_list.append(
+                {"username": author, "content": value["content"], "id": value["id"]})
 
     # Reverse the list of messages
     new_list.reverse()
@@ -107,7 +109,7 @@ def get_guilds() -> dict:
     r = requests.get(f"{api_base}/users/@me/guilds",
                      headers=headers)
 
-    # You can get the icon of the server by: https://cdn.discordapp.com/icons/{id}/{icon_name}.
+    # TODO: You can get the icon of the server by: https://cdn.discordapp.com/icons/{id}/{icon_name}.
     # You get the rest of the info from this function.
     return r.json()
 

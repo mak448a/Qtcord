@@ -32,6 +32,7 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
     friends = []
     guilds = []
     channel = 0
+    channel_buttons = {}
 
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -171,7 +172,6 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
         self.guilds = discord_integration.get_guilds()
 
         buttons = {}
-        channel_buttons = {}
 
         for i, guild in enumerate(self.guilds):
             buttons[i] = QPushButton(text=guild["name"])
@@ -179,12 +179,37 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
 
             # TODO: Get real stuff from discord_integration.get_guild_channels()
             # TODO: Only call this when you click on a channel, and switch the active tab too
-            channel_buttons[i] = QPushButton(text=guild["name"])
-            self.ui.channels.layout().addWidget(channel_buttons[i])
+            # channel_buttons[i] = QPushButton(text=guild["name"])
+            # self.ui.channels.layout().addWidget(channel_buttons[i])
 
             # Oh my headache do not touch this code.
             # But if you do: https://stackoverflow.com/questions/19837486/lambda-in-a-loop
-            # buttons[i].clicked.connect((lambda channel=channel: lambda: self.switch_channel(channel))(channel))
+            buttons[i].clicked.connect((lambda server=guild: lambda: self.get_channels_in_guild(server))(guild))
+
+    def get_channels_in_guild(self, guild):
+        channels = discord_integration.get_guild_channels(guild["id"])
+
+        # Clean buttons from previous server we visited
+        for button in self.channel_buttons:
+            self.channel_buttons[button].deleteLater()
+
+        self.channel_buttons = {}
+
+        for i, channel in enumerate(channels):
+            # Type 4 is a category and type 2 is a voice channel
+            if channel["type"] == 4 or channel["type"] == 2:
+                continue
+            self.channel_buttons[i] = QPushButton(text=channel["name"])
+            self.ui.channels.layout().addWidget(self.channel_buttons[i])
+
+            # channel_buttons[i] = QPushButton(text=guild["name"])
+            # self.ui.channels.layout().addWidget(channel_buttons[i])
+            channel_id = channel["id"]
+            # Oh my headache do not touch this code.
+            # But if you do: https://stackoverflow.com/questions/19837486/lambda-in-a-loop
+            self.channel_buttons[i].clicked.connect(
+                (lambda _id=channel_id: lambda: self.switch_channel(_id))(channel_id)
+            )
 
     def get_channels(self, guild_id: int):
         channels = discord_integration.get_guild_channels(guild_id)
