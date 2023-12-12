@@ -123,7 +123,15 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
         self.timer.start()
 
         def get_info():
-            if auth:
+            if os.path.isfile("discordauth.txt"):
+                with open("discordauth.txt") as f:
+                    if f.read():
+                        auth2 = True
+                        discord_integration.load_token()
+            else:
+                auth2 = False
+
+            if auth2:
                 self.get_friends()
                 self.get_servers()
                 self.timer2.setSingleShot(True)
@@ -200,9 +208,6 @@ if __name__ == "__main__":
         with open("discordauth.txt") as f:
             if f.read():
                 auth = True
-                discord_integration.load_token()
-            else:
-                auth = False
     else:
         auth = False
 
