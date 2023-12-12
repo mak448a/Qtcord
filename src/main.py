@@ -19,7 +19,10 @@ import discord_integration
 from discord_worker import Worker
 
 from ui.main_ui import Ui_MainWindow
-from ui.login import LoginUI
+from login import LoginUI
+
+# Will be set when run!
+auth = False
 
 
 class ChatInterface(QMainWindow, Ui_MainWindow):
@@ -119,9 +122,21 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
         self.timer.timeout.connect(self.update_messages)
         self.timer.start()
 
+        def get_info():
+            if auth:
+                self.get_friends()
+                self.get_servers()
+                self.timer2.setSingleShot(True)
+                # This gets called anyway, tell IDE to ignore
+                self.timer2.stop()
+
+        self.timer2 = QTimer()
+        self.timer2.setInterval(800)
+        self.timer2.timeout.connect(get_info)
+        self.timer2.start()
+
         # Add friends to the UI
-        self.get_friends()
-        self.get_servers()
+        get_info()
 
     def get_friends(self):
         for friend in discord_integration.get_friends():
@@ -180,9 +195,23 @@ if __name__ == "__main__":
     app = QApplication(sys.argv)
     # Add widget to switch between pages of UI
     widget = QtWidgets.QStackedWidget()
+
+    if os.path.isfile("discordauth.txt"):
+        with open("discordauth.txt") as f:
+            if f.read():
+                auth = True
+                discord_integration.load_token()
+            else:
+                auth = False
+    else:
+        auth = False
+
     win = ChatInterface()
     login = LoginUI(widget)
-    widget.addWidget(login)
+
+    if not auth:
+        widget.addWidget(login)
+
     widget.addWidget(win)
 
     # Set window properties

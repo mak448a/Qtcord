@@ -1,15 +1,25 @@
+import os
 import requests
 import json
 
 people = set()
 api_base = "https://discord.com/api/v9"
+auth = ""  # Will be overridden in load_token
+headers = {}
 
-with open("discordauth.txt") as f:
-    auth = f.read()
 
-headers = {
-    "authorization": f"{auth}"
-}
+def load_token():
+    global auth, headers
+    if os.path.isfile("discordauth.txt"):
+        with open("discordauth.txt") as f:
+            auth = f.read()
+        headers = {
+            "authorization": f"{auth}"
+        }
+
+
+# Load token
+load_token()
 
 
 def get_messages(channel_id: int, limit: int = 100) -> list:
@@ -116,3 +126,36 @@ def get_guild_channels(guild_id: int) -> dict:
                      headers=headers)
 
     return r.json()
+
+
+def login(email: str, password: str):
+    """
+    Takes in an email and a password, logs in, and spits out a token.
+    Args:
+        email (str): Your email, e.g., example@example.com
+        password (str): Your password for that account.
+
+    Returns:
+        str: Your token.
+    """
+    payload = {
+        "login": email,
+        "password": password,
+        "undelete": False,
+        "login_source": None,
+        "gift_code_sku_id": None
+    }
+
+    r = requests.post(f"{api_base}/auth/login",
+                      json=payload)
+
+    print(r.json())
+
+    if r.json().get("errors", False):
+        return None
+
+    if r.json().get("token", False):
+        return r.json()["token"]
+    else:
+        # We were probably rate limited
+        return None

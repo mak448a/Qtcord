@@ -58,10 +58,10 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_3.addWidget(self.label_3)
 
-        self.lineEdit_2 = QLineEdit(self.centralwidget)
-        self.lineEdit_2.setObjectName(u"lineEdit_2")
+        self.email = QLineEdit(self.centralwidget)
+        self.email.setObjectName(u"email")
 
-        self.horizontalLayout_3.addWidget(self.lineEdit_2)
+        self.horizontalLayout_3.addWidget(self.email)
 
         self.horizontalSpacer_3 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
@@ -86,11 +86,11 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_6.addWidget(self.label_2)
 
-        self.lineEdit = QLineEdit(self.centralwidget)
-        self.lineEdit.setObjectName(u"lineEdit")
-        self.lineEdit.setEchoMode(QLineEdit.Password)
+        self.password = QLineEdit(self.centralwidget)
+        self.password.setObjectName(u"password")
+        self.password.setEchoMode(QLineEdit.Password)
 
-        self.horizontalLayout_6.addWidget(self.lineEdit)
+        self.horizontalLayout_6.addWidget(self.password)
 
         self.horizontalSpacer_4 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 

@@ -83,7 +83,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="lineEdit_2"/>
+         <widget class="QLineEdit" name="email"/>
         </item>
         <item>
          <spacer name="horizontalSpacer_3">
@@ -134,7 +134,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="lineEdit">
+       <widget class="QLineEdit" name="password">
         <property name="echoMode">
          <enum>QLineEdit::Password</enum>
         </property>
