@@ -129,6 +129,8 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
                     if f.read():
                         auth2 = True
                         discord_integration.load_token()
+                    else:
+                        auth2 = False
             else:
                 auth2 = False
 
@@ -235,6 +237,8 @@ if __name__ == "__main__":
         with open("discordauth.txt") as f:
             if f.read():
                 auth = True
+            else:
+                auth = False
     else:
         auth = False
 
