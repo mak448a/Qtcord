@@ -1,5 +1,6 @@
 # QTCord
 QTCord is a Discord client aiming to bring a native look and feel chat experience. I am not responsible if you get your account banned from this project.
+> <p style="font-weight:bold;font-size:1.2em">My account has been flagged <em>twice</em> using this project.</p>
 
 ![Screenshot of QTCord](demo.png)
 
