@@ -1,6 +1,7 @@
 from PySide6.QtWidgets import QMainWindow
 from ui import login_ui
 from discord_integration import login, load_token
+import platformdirs
 
 
 class LoginUI(QMainWindow, login_ui.Ui_MainWindow):
@@ -27,7 +28,7 @@ class LoginUI(QMainWindow, login_ui.Ui_MainWindow):
             print(_token, "is our token")
 
             if _token:
-                with open("discordauth.txt", "w") as f:
+                with open(platformdirs.user_config_dir("QTCord") + "/discordauth.txt", "w") as f:
                     f.write(_token)
 
                 load_token()

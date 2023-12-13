@@ -14,9 +14,10 @@ from PySide6.QtWidgets import (
 from PySide6.QtGui import QShortcut, QKeySequence, QIcon
 from PySide6.QtCore import QTimer, QThreadPool
 from PySide6 import QtWidgets
-import discord_integration
+import platformdirs
 
 from discord_worker import Worker
+import discord_integration
 
 from ui.main_ui import Ui_MainWindow
 from login import LoginUI
@@ -124,8 +125,8 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
         self.timer.start()
 
         def get_info():
-            if os.path.isfile("discordauth.txt"):
-                with open("discordauth.txt") as f:
+            if os.path.isfile(platformdirs.user_config_dir("QTCord") + "/discordauth.txt"):
+                with open(platformdirs.user_config_dir("QTCord") + "/discordauth.txt") as f:
                     if f.read():
                         auth2 = True
                         discord_integration.load_token()
@@ -229,12 +230,14 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
 
 
 if __name__ == "__main__":
+    if not os.path.exists(platformdirs.user_config_dir("QTCord")):
+        os.mkdir(platformdirs.user_config_dir("QTCord"))
     app = QApplication(sys.argv)
     # Add widget to switch between pages of UI
     widget = QtWidgets.QStackedWidget()
 
-    if os.path.isfile("discordauth.txt"):
-        with open("discordauth.txt") as f:
+    if os.path.isfile(platformdirs.user_config_dir("QTCord") + "/discordauth.txt"):
+        with open(platformdirs.user_config_dir("QTCord") + "/discordauth.txt") as f:
             if f.read():
                 auth = True
             else:

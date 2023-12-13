@@ -1,6 +1,7 @@
 import os
 import requests
 import json
+import platformdirs
 
 
 api_base = "https://discord.com/api/v9"
@@ -10,8 +11,8 @@ headers = {}
 
 def load_token():
     global auth, headers
-    if os.path.isfile("discordauth.txt"):
-        with open("discordauth.txt") as f:
+    if os.path.isfile(platformdirs.user_config_dir("QTCord") + "/discordauth.txt"):
+        with open(platformdirs.user_config_dir("QTCord") + "/discordauth.txt") as f:
             auth = f.read()
         headers = {
             "authorization": f"{auth}"
