@@ -2,8 +2,8 @@
 import os
 
 # Regenerate ui from ui file
-os.system("pyside6-uic main.ui -o ui/main_ui.py")  # NOQA (basically tells pycharm to shut up)
-os.system("pyside6-uic ui/login.ui -o ui/login_ui.py")  # NOQA
+# os.system("pyside6-uic main.ui -o ui/main_ui.py")  # NOQA (basically tells pycharm to shut up)
+# os.system("pyside6-uic ui/login.ui -o ui/login_ui.py")  # NOQA
 
 import sys
 
@@ -53,12 +53,12 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
     def connect_signal_slots(self):
         self.ui.pushButton.clicked.connect(self.handle_input)
 
-        self.ui.actionQuit.triggered.connect(quit)
+        self.ui.actionQuit.triggered.connect(sys.exit)
         self.ui.actionAbout.triggered.connect(self.about)
         # Shortcuts
         # Quit
         self.quit_shortcut = QShortcut(QKeySequence("Ctrl+Q"), self)
-        self.quit_shortcut.activated.connect(quit)
+        self.quit_shortcut.activated.connect(sys.exit)
 
         # Detect enter key by using event filter function from self.
         self.ui.lineEdit.returnPressed.connect(self.handle_input)
