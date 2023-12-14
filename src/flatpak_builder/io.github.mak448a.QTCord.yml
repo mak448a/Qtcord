@@ -15,10 +15,10 @@ modules:
       - mkdir -p /app/share/applications/
       #- mkdir -p /app/share/icons/hicolor/128x128/apps/
       #- install -Dm644 smiley.png /app/share/icons/128x128/apps/io.github.mak448a.QTCord.png
-      - install -Dm 644 smiley.svg ${FLATPAK_DEST}/share/icons/hicolor/scalable/apps/${FLATPAK_ID}.svg
+      - install -Dm 644 src/smiley.svg ${FLATPAK_DEST}/share/icons/hicolor/scalable/apps/${FLATPAK_ID}.svg
       - ls ${FLATPAK_DEST}/share/icons/hicolor/scalable/apps/
       #- ls /app/share/icons/hicolor/128x128/apps
-      - mv QTCord.desktop /app/share/applications/io.github.mak448a.QTCord.desktop
+      - mv src/QTCord.desktop /app/share/applications/io.github.mak448a.QTCord.desktop
       - mv * /app/bin
       - ls /app/bin
     sources:
