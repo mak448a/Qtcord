@@ -1,6 +1,7 @@
 #!/bin/sh
 cd /app/bin/
 
+mkdir -p ~/.var/app/io.github.mak448a.QTCord/config/QTCord
 ls ~/.var/app/io.github.mak448a.QTCord/config/QTCord/
 if [ -f ~/.var/app/io.github.mak448a.QTCord/config/QTCord/installed ]; then
     echo "Previously opened!"
