@@ -1,7 +1,11 @@
 # My stuff
 discordauth.txt
 src/discordauth.txt
-src/flatpak_builder
+src/flatpak_builder/.flatpak-builder
+src/flatpak_builder/build-dir
+src/flatpak_builder/repo
+src/.flatpak-builder
+src/flatpak_builder/flatpak-pip-generator
 
 
 

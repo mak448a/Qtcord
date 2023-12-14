@@ -2,42 +2,17 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="57.299438mm"
-   height="57.299454mm"
+   width="256"
+   height="256"
    viewBox="0 0 57.299438 57.299454"
    version="1.1"
    id="svg5"
-   sodipodi:docname="smiley.svg"
-   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg">
-  <sodipodi:namedview
-     id="namedview7"
-     pagecolor="#ffffff"
-     bordercolor="#999999"
-     borderopacity="1"
-     inkscape:showpageshadow="0"
-     inkscape:pageopacity="0"
-     inkscape:pagecheckerboard="0"
-     inkscape:deskcolor="#d1d1d1"
-     inkscape:document-units="mm"
-     showgrid="false"
-     inkscape:zoom="1.2875732"
-     inkscape:cx="294.74052"
-     inkscape:cy="546.3767"
-     inkscape:window-width="1366"
-     inkscape:window-height="684"
-     inkscape:window-x="0"
-     inkscape:window-y="0"
-     inkscape:window-maximized="1"
-     inkscape:current-layer="layer1" />
   <defs
      id="defs2">
     <linearGradient
-       inkscape:collect="always"
        id="linearGradient3601">
       <stop
          style="stop-color:#ffff00;stop-opacity:1;"
@@ -49,7 +24,6 @@
          id="stop3599" />
     </linearGradient>
     <linearGradient
-       inkscape:collect="always"
        id="linearGradient3593">
       <stop
          style="stop-color:#37c8ab;stop-opacity:1;"
@@ -61,7 +35,6 @@
          id="stop3591" />
     </linearGradient>
     <linearGradient
-       inkscape:collect="always"
        xlink:href="#linearGradient3593"
        id="linearGradient3595"
        x1="82.278793"
@@ -70,7 +43,6 @@
        y2="122.05569"
        gradientUnits="userSpaceOnUse" />
     <linearGradient
-       inkscape:collect="always"
        xlink:href="#linearGradient3601"
        id="linearGradient3603"
        x1="112.61006"
@@ -80,8 +52,6 @@
        gradientUnits="userSpaceOnUse" />
   </defs>
   <g
-     inkscape:label="Layer 1"
-     inkscape:groupmode="layer"
      id="layer1"
      transform="translate(-83.273226,-126.36844)">
     <rect
@@ -105,7 +75,6 @@
        x="96.264221"
        y="151.82591"
        id="text442"><tspan
-         sodipodi:role="line"
          id="tspan440"
          style="stroke-width:0.264583"
          x="96.264221"
