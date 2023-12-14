@@ -13,4 +13,4 @@ else
 fi
 
 
-./main.py
+python3 main.py
