@@ -2,6 +2,10 @@
 QTCord is a Discord client aiming to bring a native look and feel chat experience. I am not responsible if you get your account banned from this project.
 **My account has been flagged *twice* using this project.**
 
+<a href='https://flathub.org/apps/io.github.mak448a.QTCord'>
+  <img width='240' alt='Download on Flathub' src='https://dl.flathub.org/assets/badges/flathub-badge-en.png'/>
+</a>
+
 ![Screenshot of QTCord](demo.png)
 
 ## Setup
