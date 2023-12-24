@@ -28,5 +28,11 @@
         </description>
         <url>https://github.com/mak448a/QTCord/releases/v0.0.2</url>
       </release>
+        <release version="v0.0.3" date="2023-12-23">
+        <description>
+          <p>Update app description</p>
+        </description>
+        <url>https://github.com/mak448a/QTCord/releases/v0.0.3</url>
+      </release>
     </releases>
 </component>
