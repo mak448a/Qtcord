@@ -8,7 +8,7 @@
     <developer_name>mak448a</developer_name>
     <description>
         <p>QTCord is a Discord client built with QT aiming to bring a native look-and-feel.</p>
-        <p>I am not responsible if your account gets banned with this app, as it is against the Discord TOS.</p>
+        <p>I am not responsible if your account gets banned with this app, as it is against the Discord TOS. One of my accounts has been flagged while developing this project.</p>
     </description>
     <url type="homepage">https://github.com/mak448a/QTCord</url>
     <metadata_license>MIT</metadata_license>
