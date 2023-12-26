@@ -22,17 +22,17 @@
       <content_attribute id="social-chat">intense</content_attribute>
     </content_rating>
     <releases>
-      <release version="v0.0.2" date="2023-12-14" type="stable">
-        <description>
-          <p>Initial release.</p>
-        </description>
-        <url>https://github.com/mak448a/QTCord/releases/v0.0.2</url>
-      </release>
       <release version="v0.0.4" date="2023-12-24" type="stable">
         <description>
           <p>Update app description</p>
         </description>
         <url>https://github.com/mak448a/QTCord/releases/v0.0.4</url>
+      </release>
+      <release version="v0.0.2" date="2023-12-14" type="stable">
+        <description>
+          <p>Initial release.</p>
+        </description>
+        <url>https://github.com/mak448a/QTCord/releases/v0.0.2</url>
       </release>
     </releases>
 </component>
