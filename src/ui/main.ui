@@ -125,6 +125,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <string>&amp;Help</string>
     </property>
     <addaction name="actionAbout"/>
+    <addaction name="actionLicenses"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuHelp"/>
@@ -191,6 +192,11 @@ li.checked::marker { content: &quot;\2612&quot;; }
   <action name="actionQuit">
    <property name="text">
     <string>Quit</string>
+   </property>
+  </action>
+  <action name="actionLicenses">
+   <property name="text">
+    <string>Licenses</string>
    </property>
   </action>
  </widget>

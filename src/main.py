@@ -3,9 +3,9 @@ import os
 
 # Regenerate ui from ui files
 if os.path.exists(f"{os.path.expanduser("~/Documents/regenerate_ui_files_indicator.txt")}"):  # NOQA (basically tells pycharm to shut up)
-    os.system("pyside6-uic main.ui -o ui/main_ui.py")  # NOQA
+    os.system("pyside6-uic ui/main.ui -o ui/main_ui.py")  # NOQA
     os.system("pyside6-uic ui/login.ui -o ui/login_ui.py")  # NOQA
-    os.system("pyside6-uic ui/licenses.ui -o licenses_ui.py")  # NOQA
+    os.system("pyside6-uic ui/licenses.ui -o ui/licenses_ui.py")  # NOQA
 
 
 import sys
@@ -24,13 +24,13 @@ import discord_integration
 
 from ui.main_ui import Ui_MainWindow
 from login import LoginUI
+import utils
 
 # Will be set when run!
 auth = False
 
 
 class ChatInterface(QMainWindow, Ui_MainWindow):
-    quit_shortcut = None
     response, prev_response = "", ""
     messages = ""
     friends = []
@@ -59,6 +59,8 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
 
         self.ui.actionQuit.triggered.connect(sys.exit)
         self.ui.actionAbout.triggered.connect(self.about)
+        # TODO: finish this
+        # self.ui.actionLicenses.triggered.connect()
         # Shortcuts
         # Quit
         self.quit_shortcut = QShortcut(QKeySequence("Ctrl+Q"), self)
@@ -72,11 +74,10 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
             self,
             "About QTCord",
             "<p>QTCord (c) mak448a 2023</p>"
-            "<p>This app uses the following</p>"
+            "<p>This app was built with the following:</p>"
             "<p>- PySide6</p>"
-            "<p>- Qt Designer</p>"
-            "<p>- <strong>Python</strong></p>"
-            "<p>PySide is licensed under LGPL.</p>",
+            "<p>- Python</p>"
+            "<p>- Requests</p>",
         )
 
     def handle_input(self):
@@ -203,6 +204,7 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
 
         self.channel_buttons = {}
 
+        # Dynamically add buttons based on channels
         for i, channel in enumerate(channels):
             # Type 4 is a category and type 2 is a voice channel
             if channel["type"] == 4 or channel["type"] == 2:
@@ -226,10 +228,6 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
         for i, guild_id in enumerate(channels):
             buttons[i] = QPushButton(text=guild_id["name"])
             self.ui.servers.layout().addWidget(buttons[i])
-
-            # Oh my headache do not touch this code.
-            # But if you do: https://stackoverflow.com/questions/19837486/lambda-in-a-loop
-            # buttons[i].clicked.connect((lambda channel=channel: lambda: self.switch_channel(channel))(channel))
 
 
 if __name__ == "__main__":
