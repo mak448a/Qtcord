@@ -1,9 +1,12 @@
 #! /usr/bin/env python3
 import os
 
-# Regenerate ui from ui file
-# os.system("pyside6-uic main.ui -o ui/main_ui.py")  # NOQA (basically tells pycharm to shut up)
-# os.system("pyside6-uic ui/login.ui -o ui/login_ui.py")  # NOQA
+# Regenerate ui from ui files
+if os.path.exists(f"{os.path.expanduser("~/Documents/regenerate_ui_files_indicator.txt")}"):  # NOQA (basically tells pycharm to shut up)
+    os.system("pyside6-uic main.ui -o ui/main_ui.py")  # NOQA
+    os.system("pyside6-uic ui/login.ui -o ui/login_ui.py")  # NOQA
+    os.system("pyside6-uic ui/licenses.ui -o licenses_ui.py")  # NOQA
+
 
 import sys
 
