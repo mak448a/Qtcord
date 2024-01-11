@@ -24,7 +24,6 @@ import discord_integration
 
 from ui.main_ui import Ui_MainWindow
 from login import LoginUI
-import utils
 
 # Will be set when run!
 auth = False
