@@ -25,4 +25,4 @@ python3 main.py
 ## Notes for developers
 The code is a mess, since I'm still working on it. Have fun!
 
-When you need to regenerate the ui files, create the file `~/Documents/regenerate_uirea_files_indicator.txt`.
+When you need to regenerate the ui files, create the file `~/Documents/regenerate_ui_files_indicator.txt`.
