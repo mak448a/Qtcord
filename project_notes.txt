@@ -4,6 +4,8 @@ https://discord.com/developers/docs/
 https://luna.gitlab.io/discord-unofficial-docs/
 https://www.youtube.com/channel/UC8PPJFudLUM1eJlM4BiJ40A
 
+If you want to package for Linux, take a look at https://github.com/flathub/io.github.mak448a.QTCord.
+If you want to package for Windows, run package_windows.py.
 
 # Todo: add typing indicator
 # Todo: Implement differnet indicator for calling vs images
