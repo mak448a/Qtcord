@@ -7,7 +7,7 @@ QTCord is a lightweight Discord client aiming to bring a native look and feel ch
 
 [Download for Windows](https://github.com/mak448a/QTCord/releases)
 
-![Screenshot of QTCord](demos.png)
+![Screenshot of QTCord](demo.png)
 
 ## Setup
 
