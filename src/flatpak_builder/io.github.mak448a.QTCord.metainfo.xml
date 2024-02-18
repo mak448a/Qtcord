@@ -22,6 +22,12 @@
       <content_attribute id="social-chat">intense</content_attribute>
     </content_rating>
     <releases>
+      <release version="v0.0.8" date="2023-12-24" type="stable">
+        <description>
+          <p>Little fixes and improvements, such as updating the desktop entry.</p>
+        </description>
+        <url>https://github.com/mak448a/QTCord/releases/v0.0.4</url>
+      </release>
       <release version="v0.0.4" date="2023-12-24" type="stable">
         <description>
           <p>Update app description</p>
