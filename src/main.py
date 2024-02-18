@@ -2,7 +2,7 @@
 import os
 
 # Regenerate ui from ui files
-if os.path.exists(f"{os.path.expanduser("~/Documents/regenerate_ui_files_indicator.txt")}"):  # NOQA (basically tells pycharm to shut up)
+if os.path.exists(f"{os.path.expanduser('~/Documents/regenerate_ui_files_indicator.txt')}"):  # NOQA (basically tells pycharm to shut up)
     os.system("pyside6-uic ui/main.ui -o ui/main_ui.py")  # NOQA
     os.system("pyside6-uic ui/login.ui -o ui/login_ui.py")  # NOQA
     os.system("pyside6-uic ui/licenses.ui -o ui/licenses_ui.py")  # NOQA
@@ -48,8 +48,9 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
         # Got "suspicious activity on your account" with this rate, let's try a different rate
         # self.refresh_message_interval = 600
         self.refresh_message_interval = 1000
-
-        self.setWindowIcon(QIcon("smiley.svg"))
+        current_dir = os.path.dirname(os.path.realpath(__file__)).replace(" ", "\ ")
+        icon_path = os.path.join(current_dir, "smiley.svg")
+        self.setWindowIcon(QIcon(icon_path))
 
         self.setup()
 
@@ -231,7 +232,7 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
 
 if __name__ == "__main__":
     if not os.path.exists(platformdirs.user_config_dir("QTCord")):
-        os.mkdir(platformdirs.user_config_dir("QTCord"))
+        os.makedirs(platformdirs.user_config_dir("QTCord"))
     app = QApplication(sys.argv)
     # Add widget to switch between pages of UI
     widget = QtWidgets.QStackedWidget()
@@ -256,7 +257,9 @@ if __name__ == "__main__":
     # Set window properties
     widget.resize(840, 500)
     widget.setWindowTitle("QTCord")
-    widget.setWindowIcon(QIcon("smiley.svg"))
+    current_dir = os.path.dirname(os.path.realpath(__file__)).replace(" ", "\ ")
+    icon_path = os.path.join(current_dir, "smiley.svg")
+    widget.setWindowIcon(QIcon(icon_path))
 
     widget.show()
     sys.exit(app.exec())
