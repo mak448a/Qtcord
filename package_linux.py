@@ -1,3 +1,2 @@
-# Use appimage
-# This file will only be run on Linux, since it needs zipping capabilities
-# TODO: Write out this file
+# Use flatpak builder
+# I don't even remember how to do this again lol
