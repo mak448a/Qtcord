@@ -1,7 +1,7 @@
 [Desktop Entry]
 Name=QTCord
 Icon=io.github.mak448a.QTCord
-Comment=A QT Discord client written in Python
+Comment=QT Discord client written in Python
 GenericName=QT Discord Client written in Python
 Exec=io.github.mak448a.QTCord
 NoDisplay=false
