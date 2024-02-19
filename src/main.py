@@ -110,7 +110,7 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
         for message in messages:
             new_messages += message["username"] + ": " + message["content"] + "\n"
 
-        if self.messages != new_messages:
+        if self.messages != new_messages and self.messages:
             self.messages = new_messages
             self.ui.textBrowser.setText(self.messages)
 
@@ -174,6 +174,7 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
 
     def switch_channel(self, _id):
         self.channel = _id
+        self.ui.textBrowser.setText("No messages yet!")
 
     def get_servers(self):
         self.guilds = discord_integration.get_guilds()
