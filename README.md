@@ -28,3 +28,4 @@ python3 main.py
 The code is a mess, since I'm just working on this for fun. Have fun! And if you're feeling very helpful, maybe even clean it up for me! 😅
 
 When you need to regenerate the ui files, create the file `~/Documents/regenerate_ui_files_indicator.txt`.
+More notes are in `projects_notes.txt`.
