@@ -48,7 +48,7 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
         # Got "suspicious activity on your account" with this rate, let's try a different rate
         # self.refresh_message_interval = 600
         self.refresh_message_interval = 1000
-        current_dir = os.path.dirname(os.path.realpath(__file__)).replace(" ", "\ ")
+        current_dir = os.path.dirname(os.path.realpath(__file__)).replace(" ", "\\ ")
         icon_path = os.path.join(current_dir, "smiley.svg")
         self.setWindowIcon(QIcon(icon_path))
 
@@ -257,7 +257,7 @@ if __name__ == "__main__":
     # Set window properties
     widget.resize(840, 500)
     widget.setWindowTitle("QTCord")
-    current_dir = os.path.dirname(os.path.realpath(__file__)).replace(" ", "\ ")
+    current_dir = os.path.dirname(os.path.realpath(__file__)).replace(" ", "\\ ")
     icon_path = os.path.join(current_dir, "smiley.svg")
     widget.setWindowIcon(QIcon(icon_path))
 
