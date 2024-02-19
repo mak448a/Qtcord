@@ -110,7 +110,7 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
         for message in messages:
             new_messages += message["username"] + ": " + message["content"] + "\n"
 
-        if self.messages != new_messages and self.messages:
+        if self.messages != new_messages and new_messages:
             self.messages = new_messages
             self.ui.textBrowser.setText(self.messages)
 
