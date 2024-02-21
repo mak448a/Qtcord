@@ -60,8 +60,6 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
 
         self.ui.actionQuit.triggered.connect(sys.exit)
         self.ui.actionAbout.triggered.connect(self.about)
-        # TODO: finish this
-        # self.ui.actionLicenses.triggered.connect()
         # Shortcuts
         # Quit
         self.quit_shortcut = QShortcut(QKeySequence("Ctrl+Q"), self)
