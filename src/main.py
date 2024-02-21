@@ -236,13 +236,8 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
         # Called every time we change the text.
         if not self.channel:
             return
-        # if not self.typing:
-        #     print("Typing")
-        #     discord_integration.send_typing(self.channel)
-        #     self.typing = True
-        print(len(self.ui.lineEdit.text()))
+        
         if 0 < len(self.ui.lineEdit.text()) < 2:
-            print("Typing...")
             discord_integration.send_typing(self.channel)
 
 
