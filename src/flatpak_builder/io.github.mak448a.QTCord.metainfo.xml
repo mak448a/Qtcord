@@ -22,9 +22,9 @@
       <content_attribute id="social-chat">intense</content_attribute>
     </content_rating>
     <releases>
-      <release version="v0.0.9" date="2024-x-x" type="stable">
+      <release version="v0.0.9" date="2024-2-20" type="stable">
         <description>
-          <p>Add "no messages" notification</p>
+          <p>Add "no messages" indicator and add a missing license.</p>
         </description>
         <url>https://github.com/mak448a/QTCord/releases/v0.0.9</url>
       </release>
