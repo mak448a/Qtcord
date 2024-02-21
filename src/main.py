@@ -36,6 +36,7 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
     guilds = []
     channel = 0
     channel_buttons = {}
+    typing = False
 
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -67,6 +68,7 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
         self.quit_shortcut.activated.connect(sys.exit)
 
         # Detect enter key by using event filter function from self.
+        self.ui.lineEdit.textChanged.connect(self.send_typing)
         self.ui.lineEdit.returnPressed.connect(self.handle_input)
 
     def about(self):
@@ -174,7 +176,7 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
 
     def switch_channel(self, _id):
         self.channel = _id
-        self.ui.textBrowser.setText("No messages yet!")
+        self.ui.textBrowser.setText("No messages in this conversation yet!")
 
     def get_servers(self):
         self.guilds = discord_integration.get_guilds()
@@ -229,6 +231,20 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
         for i, guild_id in enumerate(channels):
             buttons[i] = QPushButton(text=guild_id["name"])
             self.ui.servers.layout().addWidget(buttons[i])
+
+    def send_typing(self):
+        # Called every time we change the text.
+        if not self.channel:
+            return
+        # if not self.typing:
+        #     print("Typing")
+        #     discord_integration.send_typing(self.channel)
+        #     self.typing = True
+        print(len(self.ui.lineEdit.text()))
+        if 0 < len(self.ui.lineEdit.text()) < 2:
+            print("Typing...")
+            discord_integration.send_typing(self.channel)
+
 
 
 if __name__ == "__main__":

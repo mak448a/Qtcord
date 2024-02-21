@@ -162,3 +162,16 @@ def login(email: str, password: str):
     else:
         # We were probably rate limited
         return None
+
+
+def send_typing(channel: int):
+    """
+    Sends a typing indicator to a channel.
+    Args:
+        channel (int): The discord channel to send the typing indicator to
+
+    Returns:
+        None
+    """
+    
+    requests.post(f"{api_base}/channels/{channel}/typing", headers=headers)
