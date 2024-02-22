@@ -15,6 +15,6 @@ os.system("pyinstaller main.spec")
 choice = input("Delete build cache? (N/y) ").strip().lower()
 
 if choice == "yes" or choice == "y":
-    quit()
-else:
     shutil.rmtree("build")
+else:
+    quit()
