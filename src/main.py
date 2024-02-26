@@ -244,6 +244,8 @@ if __name__ == "__main__":
     if not os.path.exists(platformdirs.user_config_dir("QTCord")):
         os.makedirs(platformdirs.user_config_dir("QTCord"))
     app = QApplication(sys.argv)
+    app.setDesktopFileName("io.github.mak448a.QTCord")
+    
     # Add widget to switch between pages of UI
     widget = QtWidgets.QStackedWidget()
 
