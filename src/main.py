@@ -24,6 +24,7 @@ import discord_integration
 
 from ui.main_ui import Ui_MainWindow
 from login import LoginUI
+from licenses import LicensesUI
 
 # Will be set when run!
 auth = False
@@ -60,6 +61,7 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
 
         self.ui.actionQuit.triggered.connect(sys.exit)
         self.ui.actionAbout.triggered.connect(self.about)
+        self.ui.actionLicenses.triggered.connect()
         # Shortcuts
         # Quit
         self.quit_shortcut = QShortcut(QKeySequence("Ctrl+Q"), self)
@@ -79,6 +81,9 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
             "<p>- Python</p>"
             "<p>- Requests</p>",
         )
+    
+    def display_licenses(self):
+        LicensesUI()
 
     def handle_input(self):
         text = self.ui.lineEdit.text()

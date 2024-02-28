@@ -16,9 +16,4 @@ if __name__ == "__main__":
     app = QApplication(sys.argv)
     app.setDesktopFileName("io.github.mak448a.QTCord")
     widget = LicensesUI()
-    # Set window properties
-    # widget.resize(840, 500)
-    # widget.setWindowTitle("QTCord")
-
-    # widget.show()
     sys.exit(app.exec())
