@@ -9,7 +9,6 @@ class LicensesUI(QDialog, licenses_ui.Ui_LicensesDialog):
 
         self.ui = licenses_ui.Ui_LicensesDialog()
         self.ui.setupUi(self)
-        self.show()
 
 
 if __name__ == "__main__":

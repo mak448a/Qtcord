@@ -1,14 +1,15 @@
 #! /usr/bin/env python3
 import os
+import sys
+
+current_dir = os.path.dirname(os.path.realpath(__file__)).replace(" ", "\\ ")  # NOQA (basically tells pycharm to shut up)
 
 # Regenerate ui from ui files
-if os.path.exists(f"{os.path.expanduser('~/Documents/regenerate_ui_files_indicator.txt')}"):  # NOQA (basically tells pycharm to shut up)
-    os.system("pyside6-uic ui/main.ui -o ui/main_ui.py")  # NOQA
-    os.system("pyside6-uic ui/login.ui -o ui/login_ui.py")  # NOQA
-    os.system("pyside6-uic ui/licenses.ui -o ui/licenses_ui.py")  # NOQA
+if os.path.exists(f"{os.path.expanduser('~/Documents/regenerate_ui_files_indicator.txt')}"):  # NOQA
+    os.system(f"pyside6-uic {current_dir}/ui/main.ui -o {current_dir}/ui/main_ui.py")  # NOQA
+    os.system(f"pyside6-uic {current_dir}/ui/login.ui -o {current_dir}/ui/login_ui.py")  # NOQA
+    os.system(f"pyside6-uic {current_dir}/ui/licenses.ui -o {current_dir}/ui/licenses_ui.py")  # NOQA
 
-
-import sys
 
 from PySide6.QtWidgets import (
     QApplication, QMainWindow, QMessageBox, QPushButton
@@ -50,7 +51,6 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
         # Got "suspicious activity on your account" with this rate, let's try a different rate
         # self.refresh_message_interval = 600
         self.refresh_message_interval = 1000
-        current_dir = os.path.dirname(os.path.realpath(__file__)).replace(" ", "\\ ")
         icon_path = os.path.join(current_dir, "smiley.svg")
         self.setWindowIcon(QIcon(icon_path))
 
@@ -61,7 +61,7 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
 
         self.ui.actionQuit.triggered.connect(sys.exit)
         self.ui.actionAbout.triggered.connect(self.about)
-        self.ui.actionLicenses.triggered.connect()
+        self.ui.actionLicenses.triggered.connect(self.display_licenses)
         # Shortcuts
         # Quit
         self.quit_shortcut = QShortcut(QKeySequence("Ctrl+Q"), self)
@@ -83,7 +83,8 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
         )
     
     def display_licenses(self):
-        LicensesUI()
+        print("LICENSES")
+        LicensesUI().exec()
 
     def handle_input(self):
         text = self.ui.lineEdit.text()
@@ -274,7 +275,6 @@ if __name__ == "__main__":
     # Set window properties
     widget.resize(840, 500)
     widget.setWindowTitle("QTCord")
-    current_dir = os.path.dirname(os.path.realpath(__file__)).replace(" ", "\\ ")
     icon_path = os.path.join(current_dir, "smiley.svg")
     widget.setWindowIcon(QIcon(icon_path))
 
