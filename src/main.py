@@ -11,6 +11,7 @@ if os.path.exists(f"{os.path.expanduser('~/Documents/regenerate_ui_files_indicat
     os.system(f"pyside6-uic {current_dir}/ui/licenses.ui -o {current_dir}/ui/licenses_ui.py")  # NOQA
 
 
+# Pyside imports
 from PySide6.QtWidgets import (
     QApplication, QMainWindow, QMessageBox, QPushButton
 )
@@ -23,6 +24,7 @@ import platformdirs
 from discord_worker import Worker
 import discord_integration
 
+# UI imports
 from ui.main_ui import Ui_MainWindow
 from login import LoginUI
 from licenses import LicensesUI
