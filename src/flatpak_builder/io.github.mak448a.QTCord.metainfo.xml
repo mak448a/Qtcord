@@ -22,6 +22,12 @@
       <content_attribute id="social-chat">intense</content_attribute>
     </content_rating>
     <releases>
+      <release version="v0.0.11" date="2024-3-3" type="stable">
+        <description>
+          <p>Update icon scaling and add licenses viewer.</p>
+        </description>
+        <url>https://github.com/mak448a/QTCord/releases/v0.0.10</url>
+      </release>
       <release version="v0.0.10" date="2024-2-27" type="stable">
         <description>
           <p>Fix icon not displaying on Wayland</p>

@@ -1,8 +1,8 @@
 [Desktop Entry]
 Name=QTCord
 Icon=io.github.mak448a.QTCord
-Comment=Discord client written in Python and QT
-GenericName=Discord Client written in Python and QT
+Comment=Lightweight Discord Client
+GenericName=Lightweight Discord Client
 Exec=io.github.mak448a.QTCord
 NoDisplay=false
 StartupNotify=true
