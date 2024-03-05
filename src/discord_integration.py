@@ -36,11 +36,12 @@ def get_messages(channel_id: int, limit: int = 100) -> list:
     """
     r = requests.get(f"{api_base}/channels/{channel_id}/messages?limit={limit}", headers=headers)
     
-    if r.status_code != 200:
-        return
-    
     jsonn = json.loads(r.text)
     new_list = []
+
+    if r.status_code != 200:
+        new_list.append({"username": "System", "content": "Error. This may be a forum channel, or you're not allowed to view the content.", "id": 0})
+        return new_list
     
     for value in jsonn:
         if not value["author"].get("global_name", False):
