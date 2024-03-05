@@ -35,8 +35,13 @@ def get_messages(channel_id: int, limit: int = 100) -> list:
 
     """
     r = requests.get(f"{api_base}/channels/{channel_id}/messages?limit={limit}", headers=headers)
+    
+    if r.status_code != 200:
+        return
+    
     jsonn = json.loads(r.text)
     new_list = []
+    
     for value in jsonn:
         if not value["author"].get("global_name", False):
             author = value["author"]["username"]
@@ -152,7 +157,7 @@ def login(email: str, password: str):
     r = requests.post(f"{api_base}/auth/login",
                       json=payload)
 
-    print(r.json())
+    # print(r.json())
 
     if r.json().get("errors", False):
         return None

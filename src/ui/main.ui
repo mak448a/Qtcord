@@ -134,7 +134,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
    <property name="minimumSize">
     <size>
      <width>250</width>
-     <height>142</height>
+     <height>212</height>
     </size>
    </property>
    <attribute name="dockWidgetArea">
@@ -145,13 +145,32 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <item>
       <widget class="QTabWidget" name="tabWidget">
        <property name="currentIndex">
-        <number>0</number>
+        <number>1</number>
        </property>
        <widget class="QWidget" name="friends_tab">
         <attribute name="title">
          <string>Friends</string>
         </attribute>
-        <layout class="QVBoxLayout" name="verticalLayout_4"/>
+        <layout class="QVBoxLayout" name="verticalLayout_4">
+         <item>
+          <widget class="QScrollArea" name="scrollArea_2">
+           <property name="widgetResizable">
+            <bool>true</bool>
+           </property>
+           <widget class="QWidget" name="friends_scrollArea_contents">
+            <property name="geometry">
+             <rect>
+              <x>0</x>
+              <y>0</y>
+              <width>208</width>
+              <height>387</height>
+             </rect>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_2"/>
+           </widget>
+          </widget>
+         </item>
+        </layout>
        </widget>
        <widget class="QWidget" name="servers_tab">
         <attribute name="title">
@@ -161,19 +180,57 @@ li.checked::marker { content: &quot;\2612&quot;; }
          <item>
           <widget class="QTabWidget" name="servers_notebook">
            <property name="currentIndex">
-            <number>0</number>
+            <number>1</number>
            </property>
            <widget class="QWidget" name="servers">
             <attribute name="title">
              <string>Servers</string>
             </attribute>
-            <layout class="QVBoxLayout" name="verticalLayout_6"/>
+            <layout class="QVBoxLayout" name="verticalLayout_6">
+             <item>
+              <widget class="QScrollArea" name="scrollArea_3">
+               <property name="widgetResizable">
+                <bool>true</bool>
+               </property>
+               <widget class="QWidget" name="servers_scrollArea_contents">
+                <property name="geometry">
+                 <rect>
+                  <x>0</x>
+                  <y>0</y>
+                  <width>186</width>
+                  <height>337</height>
+                 </rect>
+                </property>
+                <layout class="QVBoxLayout" name="verticalLayout_5"/>
+               </widget>
+              </widget>
+             </item>
+            </layout>
            </widget>
            <widget class="QWidget" name="channels">
             <attribute name="title">
              <string>Channels</string>
             </attribute>
-            <layout class="QVBoxLayout" name="verticalLayout_7"/>
+            <layout class="QVBoxLayout" name="verticalLayout_7">
+             <item>
+              <widget class="QScrollArea" name="channels_scrollArea">
+               <property name="widgetResizable">
+                <bool>true</bool>
+               </property>
+               <widget class="QWidget" name="channels_scrollArea_contents">
+                <property name="geometry">
+                 <rect>
+                  <x>0</x>
+                  <y>0</y>
+                  <width>186</width>
+                  <height>337</height>
+                 </rect>
+                </property>
+                <layout class="QVBoxLayout" name="verticalLayout_8"/>
+               </widget>
+              </widget>
+             </item>
+            </layout>
            </widget>
           </widget>
          </item>

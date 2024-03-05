@@ -91,7 +91,7 @@ class Ui_MainWindow(object):
         MainWindow.setMenuBar(self.menubar)
         self.dockWidget = QDockWidget(MainWindow)
         self.dockWidget.setObjectName(u"dockWidget")
-        self.dockWidget.setMinimumSize(QSize(250, 142))
+        self.dockWidget.setMinimumSize(QSize(250, 212))
         self.dockWidgetContents = QWidget()
         self.dockWidgetContents.setObjectName(u"dockWidgetContents")
         self.verticalLayout_3 = QVBoxLayout(self.dockWidgetContents)
@@ -102,6 +102,18 @@ class Ui_MainWindow(object):
         self.friends_tab.setObjectName(u"friends_tab")
         self.verticalLayout_4 = QVBoxLayout(self.friends_tab)
         self.verticalLayout_4.setObjectName(u"verticalLayout_4")
+        self.scrollArea_2 = QScrollArea(self.friends_tab)
+        self.scrollArea_2.setObjectName(u"scrollArea_2")
+        self.scrollArea_2.setWidgetResizable(True)
+        self.friends_scrollArea_contents = QWidget()
+        self.friends_scrollArea_contents.setObjectName(u"friends_scrollArea_contents")
+        self.friends_scrollArea_contents.setGeometry(QRect(0, 0, 208, 387))
+        self.verticalLayout_2 = QVBoxLayout(self.friends_scrollArea_contents)
+        self.verticalLayout_2.setObjectName(u"verticalLayout_2")
+        self.scrollArea_2.setWidget(self.friends_scrollArea_contents)
+
+        self.verticalLayout_4.addWidget(self.scrollArea_2)
+
         self.tabWidget.addTab(self.friends_tab, "")
         self.servers_tab = QWidget()
         self.servers_tab.setObjectName(u"servers_tab")
@@ -113,11 +125,35 @@ class Ui_MainWindow(object):
         self.servers.setObjectName(u"servers")
         self.verticalLayout_6 = QVBoxLayout(self.servers)
         self.verticalLayout_6.setObjectName(u"verticalLayout_6")
+        self.scrollArea_3 = QScrollArea(self.servers)
+        self.scrollArea_3.setObjectName(u"scrollArea_3")
+        self.scrollArea_3.setWidgetResizable(True)
+        self.servers_scrollArea_contents = QWidget()
+        self.servers_scrollArea_contents.setObjectName(u"servers_scrollArea_contents")
+        self.servers_scrollArea_contents.setGeometry(QRect(0, 0, 186, 337))
+        self.verticalLayout_5 = QVBoxLayout(self.servers_scrollArea_contents)
+        self.verticalLayout_5.setObjectName(u"verticalLayout_5")
+        self.scrollArea_3.setWidget(self.servers_scrollArea_contents)
+
+        self.verticalLayout_6.addWidget(self.scrollArea_3)
+
         self.servers_notebook.addTab(self.servers, "")
         self.channels = QWidget()
         self.channels.setObjectName(u"channels")
         self.verticalLayout_7 = QVBoxLayout(self.channels)
         self.verticalLayout_7.setObjectName(u"verticalLayout_7")
+        self.channels_scrollArea = QScrollArea(self.channels)
+        self.channels_scrollArea.setObjectName(u"channels_scrollArea")
+        self.channels_scrollArea.setWidgetResizable(True)
+        self.channels_scrollArea_contents = QWidget()
+        self.channels_scrollArea_contents.setObjectName(u"channels_scrollArea_contents")
+        self.channels_scrollArea_contents.setGeometry(QRect(0, 0, 186, 337))
+        self.verticalLayout_8 = QVBoxLayout(self.channels_scrollArea_contents)
+        self.verticalLayout_8.setObjectName(u"verticalLayout_8")
+        self.channels_scrollArea.setWidget(self.channels_scrollArea_contents)
+
+        self.verticalLayout_7.addWidget(self.channels_scrollArea)
+
         self.servers_notebook.addTab(self.channels, "")
 
         self.horizontalLayout_5.addWidget(self.servers_notebook)
@@ -137,8 +173,8 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.tabWidget.setCurrentIndex(0)
-        self.servers_notebook.setCurrentIndex(0)
+        self.tabWidget.setCurrentIndex(1)
+        self.servers_notebook.setCurrentIndex(1)
 
 
         QMetaObject.connectSlotsByName(MainWindow)

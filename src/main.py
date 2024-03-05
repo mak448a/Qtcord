@@ -114,6 +114,7 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
 
         # Get messages
         new_messages = ""
+        print(messages, self.messages)
 
         for message in messages:
             new_messages += message["username"] + ": " + message["content"] + "\n"
@@ -173,7 +174,7 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
         buttons = {}
         for i, friend in enumerate(self.friends):
             buttons[i] = QPushButton(text=friend["global_name"])
-            self.ui.friends_tab.layout().addWidget(buttons[i])
+            self.ui.friends_scrollArea_contents.layout().addWidget(buttons[i])
 
             channel = friend["channel"]
             # Oh my headache do not touch this code.
@@ -191,7 +192,7 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
 
         for i, guild in enumerate(self.guilds):
             buttons[i] = QPushButton(text=guild["name"])
-            self.ui.servers.layout().addWidget(buttons[i])
+            self.ui.servers_scrollArea_contents.layout().addWidget(buttons[i])
 
             # TODO: Get real stuff from discord_integration.get_guild_channels()
             # TODO: Only call this when you click on a channel, and switch the active tab too
@@ -219,7 +220,7 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
             if channel["type"] == 4 or channel["type"] == 2:
                 continue
             self.channel_buttons[i] = QPushButton(text=channel["name"])
-            self.ui.channels.layout().addWidget(self.channel_buttons[i])
+            self.ui.channels_scrollArea_contents.layout().addWidget(self.channel_buttons[i])
 
             # channel_buttons[i] = QPushButton(text=guild["name"])
             # self.ui.channels.layout().addWidget(channel_buttons[i])
