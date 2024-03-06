@@ -117,7 +117,21 @@ def get_guilds() -> dict:
                      headers=headers)
 
     # TODO: You can get the icon of the server by: https://cdn.discordapp.com/icons/{id}/{icon_name}.
+    # Icon name and id is in the icon.  
+    # Make sure to handle blank icons!!!! they are set to none
     # You get the rest of the info from this function.
+    # for server in r.json():
+    #     print(f"https://cdn.discordapp.com/icons/{server["id"]}/{server["icon"]}")
+    #     test = requests.get(f"https://cdn.discordapp.com/icons/{server["id"]}/{server["icon"]}")
+        
+    #     # Handle no image servers
+    #     if test.status_code == 404:
+    #         continue
+    #     with open(f"servers/{server["name"]}.png", "wb") as f:
+    #         for chunk in test.iter_content():
+    #             f.write(chunk)
+        
+    # print(f"https://cdn.discordapp.com/icons/{r.json()[1]["id"]}/{r.json()[1]["icon"]}")
     return r.json()
 
 

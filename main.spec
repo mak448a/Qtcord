@@ -7,7 +7,7 @@ a = Analysis(
     binaries=[],
     datas=[
         ("licenses", "licenses"),
-        ("src/smiley.svg", ".")
+        ("src/assets/smiley.svg", ".")
     ],
     hiddenimports=[],
     hookspath=[],

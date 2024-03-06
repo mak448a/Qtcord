@@ -105,11 +105,27 @@ class Ui_MainWindow(object):
         self.scrollArea_2 = QScrollArea(self.friends_tab)
         self.scrollArea_2.setObjectName(u"scrollArea_2")
         self.scrollArea_2.setWidgetResizable(True)
+        self.scrollArea_2.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignVCenter)
         self.friends_scrollArea_contents = QWidget()
         self.friends_scrollArea_contents.setObjectName(u"friends_scrollArea_contents")
         self.friends_scrollArea_contents.setGeometry(QRect(0, 0, 208, 387))
         self.verticalLayout_2 = QVBoxLayout(self.friends_scrollArea_contents)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
+        self.pushbutton = QPushButton(self.friends_scrollArea_contents)
+        self.pushbutton.setObjectName(u"pushbutton")
+        sizePolicy = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.pushbutton.sizePolicy().hasHeightForWidth())
+        self.pushbutton.setSizePolicy(sizePolicy)
+        icon = QIcon(QIcon.fromTheme(u"io.github.mak448a.QTCord"))
+        self.pushbutton.setIcon(icon)
+        self.pushbutton.setIconSize(QSize(64, 64))
+        self.pushbutton.setAutoDefault(False)
+        self.pushbutton.setFlat(False)
+
+        self.verticalLayout_2.addWidget(self.pushbutton, 0, Qt.AlignHCenter)
+
         self.scrollArea_2.setWidget(self.friends_scrollArea_contents)
 
         self.verticalLayout_4.addWidget(self.scrollArea_2)
@@ -173,8 +189,8 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.tabWidget.setCurrentIndex(1)
-        self.servers_notebook.setCurrentIndex(1)
+        self.tabWidget.setCurrentIndex(0)
+        self.servers_notebook.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -196,6 +212,10 @@ class Ui_MainWindow(object):
         self.pushButton.setText(QCoreApplication.translate("MainWindow", u"Send", None))
         self.menuFile.setTitle(QCoreApplication.translate("MainWindow", u"&File", None))
         self.menuHelp.setTitle(QCoreApplication.translate("MainWindow", u"&Help", None))
+#if QT_CONFIG(tooltip)
+        self.pushbutton.setToolTip(QCoreApplication.translate("MainWindow", u"QTCord server", None))
+#endif // QT_CONFIG(tooltip)
+        self.pushbutton.setText("")
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.friends_tab), QCoreApplication.translate("MainWindow", u"Friends", None))
         self.servers_notebook.setTabText(self.servers_notebook.indexOf(self.servers), QCoreApplication.translate("MainWindow", u"Servers", None))
         self.servers_notebook.setTabText(self.servers_notebook.indexOf(self.channels), QCoreApplication.translate("MainWindow", u"Channels", None))

@@ -53,7 +53,7 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
         # Got "suspicious activity on your account" with this rate, let's try a different rate
         # self.refresh_message_interval = 600
         self.refresh_message_interval = 1000
-        icon_path = os.path.join(current_dir, "smiley.svg")
+        icon_path = os.path.join(current_dir, "assets", "smiley.svg")
         self.setWindowIcon(QIcon(icon_path))
 
         self.setup()
@@ -77,7 +77,7 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
         QMessageBox.about(
             self,
             "About QTCord",
-            "<p>QTCord (c) mak448a 2023-present</p>"
+            "<p>QTCord (c) mak448a 2023-2024</p>"
             "<p>This app was built with the following:</p>"
             "<p>- PySide6</p>"
             "<p>- Python</p>"
@@ -278,7 +278,7 @@ if __name__ == "__main__":
     # Set window properties
     widget.resize(840, 500)
     widget.setWindowTitle("QTCord")
-    icon_path = os.path.join(current_dir, "smiley.svg")
+    icon_path = os.path.join(current_dir, "assets", "smiley.svg")
     widget.setWindowIcon(QIcon(icon_path))
 
     widget.show()
