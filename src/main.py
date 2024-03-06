@@ -85,7 +85,6 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
         )
     
     def display_licenses(self):
-        print("LICENSES")
         LicensesUI().exec()
 
     def handle_input(self):
@@ -114,7 +113,6 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
 
         # Get messages
         new_messages = ""
-        print(messages, self.messages)
 
         for message in messages:
             new_messages += message["username"] + ": " + message["content"] + "\n"
