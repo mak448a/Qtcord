@@ -8,6 +8,7 @@
     <developer_name>mak448a</developer_name>
     <description>
         <p>QTCord is a Discord client built with QT aiming to bring a native look-and-feel.</p>
+        <p>Sidenote: The reviews seems to be trashing my app, but not reporting any bugs. Please go to https://github.com/mak448a/QTCord/issues, so that I can improve the app. Also, have you guys tried deleting auth.txt in ~/.var/app/io.github.mak448a.QTCord/config? That will log your account out.</p>
         <p>I am not responsible if your account gets banned with this app, as it is against the Discord TOS.</p>
     </description>
     <url type="homepage">https://github.com/mak448a/QTCord</url>
