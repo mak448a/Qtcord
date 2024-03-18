@@ -6,6 +6,7 @@ current_dir = os.path.dirname(os.path.realpath(__file__)).replace(" ", "\\ ")  #
 
 # Regenerate ui from ui files
 if os.path.exists(f"{os.path.expanduser('~/Documents/regenerate_ui_files_indicator.txt')}"):  # NOQA
+    print("Regenerating ui files...")
     os.system(f"pyside6-uic {current_dir}/ui/main.ui -o {current_dir}/ui/main_ui.py")  # NOQA
     os.system(f"pyside6-uic {current_dir}/ui/login.ui -o {current_dir}/ui/login_ui.py")  # NOQA
     os.system(f"pyside6-uic {current_dir}/ui/licenses.ui -o {current_dir}/ui/licenses_ui.py")  # NOQA
@@ -115,7 +116,8 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
         new_messages = ""
 
         for message in messages:
-            new_messages += message["username"] + ": " + message["content"] + "\n"
+            tags = """<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-weight:700;">"""
+            new_messages += f"{tags}{message["username"]}</span>: {message["content"]}</p>" + "\n"
 
         if self.messages != new_messages and new_messages:
             self.messages = new_messages
@@ -190,6 +192,14 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
 
         for i, guild in enumerate(self.guilds):
             buttons[i] = QPushButton(text=guild["name"])
+            # icon = QIcon(QIcon.fromTheme(u"io.github.mak448a.QTCord"))
+            if os.path.exists(os.path.join(platformdirs.user_config_dir("QTCord"), "servers", f"{guild["id"]}.png")):
+                icon = QIcon(os.path.join(platformdirs.user_config_dir("QTCord"), "servers", f"{guild["id"]}.png"))
+            else:
+                icon = QIcon(os.path.join(current_dir, "assets", "server.png"))
+            buttons[i].setIcon(icon)
+            self.ui.servers_scrollArea_contents.layout().addWidget(buttons[i])
+
             self.ui.servers_scrollArea_contents.layout().addWidget(buttons[i])
 
             # TODO: Get real stuff from discord_integration.get_guild_channels()

@@ -36,7 +36,7 @@
           <rect>
            <x>0</x>
            <y>0</y>
-           <width>564</width>
+           <width>496</width>
            <height>409</height>
           </rect>
          </property>
@@ -133,7 +133,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
   <widget class="QDockWidget" name="dockWidget">
    <property name="minimumSize">
     <size>
-     <width>250</width>
+     <width>270</width>
      <height>212</height>
     </size>
    </property>
@@ -145,7 +145,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <item>
       <widget class="QTabWidget" name="tabWidget">
        <property name="currentIndex">
-        <number>0</number>
+        <number>1</number>
        </property>
        <widget class="QWidget" name="friends_tab">
         <attribute name="title">
@@ -165,43 +165,11 @@ li.checked::marker { content: &quot;\2612&quot;; }
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>208</width>
-              <height>387</height>
+              <width>98</width>
+              <height>28</height>
              </rect>
             </property>
-            <layout class="QVBoxLayout" name="verticalLayout_2">
-             <item alignment="Qt::AlignHCenter">
-              <widget class="QPushButton" name="pushbutton">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="toolTip">
-                <string>QTCord server</string>
-               </property>
-               <property name="text">
-                <string/>
-               </property>
-               <property name="icon">
-                <iconset theme="io.github.mak448a.QTCord"/>
-               </property>
-               <property name="iconSize">
-                <size>
-                 <width>64</width>
-                 <height>64</height>
-                </size>
-               </property>
-               <property name="autoDefault">
-                <bool>false</bool>
-               </property>
-               <property name="flat">
-                <bool>false</bool>
-               </property>
-              </widget>
-             </item>
-            </layout>
+            <layout class="QVBoxLayout" name="verticalLayout_2"/>
            </widget>
           </widget>
          </item>
@@ -224,6 +192,12 @@ li.checked::marker { content: &quot;\2612&quot;; }
             <layout class="QVBoxLayout" name="verticalLayout_6">
              <item>
               <widget class="QScrollArea" name="scrollArea_3">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>0</height>
+                </size>
+               </property>
                <property name="widgetResizable">
                 <bool>true</bool>
                </property>
@@ -232,7 +206,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                  <rect>
                   <x>0</x>
                   <y>0</y>
-                  <width>186</width>
+                  <width>254</width>
                   <height>337</height>
                  </rect>
                 </property>
@@ -257,8 +231,8 @@ li.checked::marker { content: &quot;\2612&quot;; }
                  <rect>
                   <x>0</x>
                   <y>0</y>
-                  <width>186</width>
-                  <height>337</height>
+                  <width>98</width>
+                  <height>28</height>
                  </rect>
                 </property>
                 <layout class="QVBoxLayout" name="verticalLayout_8"/>

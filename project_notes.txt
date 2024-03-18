@@ -23,4 +23,5 @@ If you want to package for Windows, run package_windows.py.
 
 # changelog for v0.0.12
 Add scrollable channels/servers/friends
-Add icons (still not quite done yet)
+Add icons
+Bold font on usernames
