@@ -1,6 +1,7 @@
 #! /usr/bin/env python3
 import os
 import sys
+import requests
 
 current_dir = os.path.dirname(os.path.realpath(__file__)).replace(" ", "\\ ")  # NOQA (basically tells pycharm to shut up)
 
@@ -10,11 +11,12 @@ if os.path.exists(f"{os.path.expanduser('~/Documents/regenerate_ui_files_indicat
     os.system(f"pyside6-uic {current_dir}/ui/main.ui -o {current_dir}/ui/main_ui.py")  # NOQA
     os.system(f"pyside6-uic {current_dir}/ui/login.ui -o {current_dir}/ui/login_ui.py")  # NOQA
     os.system(f"pyside6-uic {current_dir}/ui/licenses.ui -o {current_dir}/ui/licenses_ui.py")  # NOQA
+    os.system(f"pyside6-uic {current_dir}/ui/no_internet.ui -o {current_dir}/ui/no_internet.py")  # NOQA
 
 
 # Pyside imports
 from PySide6.QtWidgets import (
-    QApplication, QMainWindow, QMessageBox, QPushButton
+    QApplication, QMainWindow, QMessageBox, QPushButton, QLabel
 )
 
 from PySide6.QtGui import QShortcut, QKeySequence, QIcon
@@ -29,6 +31,7 @@ import discord_integration
 from ui.main_ui import Ui_MainWindow
 from login import LoginUI
 from licenses import LicensesUI
+from no_internet import NoInternetUI
 
 # Will be set when run!
 auth = False
@@ -256,8 +259,20 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
             discord_integration.send_typing(self.channel)
 
 
+def handle_no_internet() -> None:
+    try:
+        requests.get("https://discord.com")
+    except requests.exceptions.ConnectionError:
+        app = QApplication(sys.argv)
+        app.setDesktopFileName("io.github.mak448a.QTCord")
+        NoInternetUI().exec()
+        sys.exit(app.exec())
+
 
 if __name__ == "__main__":
+    # if no internet, throw up a dialog that says no internet
+    handle_no_internet()
+
     if not os.path.exists(platformdirs.user_config_dir("QTCord")):
         os.makedirs(platformdirs.user_config_dir("QTCord"))
     app = QApplication(sys.argv)
