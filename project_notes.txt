@@ -17,11 +17,3 @@ If you want to package for Windows, run package_windows.py.
 # Todo: Emojis (probably get them when you get the guild)
 # Todo: Add logout
 # Todo: Add auto logout when credentials are bad
-
-
-
-# changelog for v0.0.12
-Add scrollable channels/servers/friends
-Add icons
-Bold font on usernames
-Add no internet dialog
