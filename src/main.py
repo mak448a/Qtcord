@@ -266,7 +266,7 @@ def handle_no_internet() -> None:
         app = QApplication(sys.argv)
         app.setDesktopFileName("io.github.mak448a.QTCord")
         NoInternetUI().exec()
-        sys.exit(app.exec())
+        sys.exit()
 
 
 if __name__ == "__main__":
