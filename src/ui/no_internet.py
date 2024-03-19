@@ -50,6 +50,6 @@ class Ui_NoInternet(object):
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:28pt; font-weight:700;\">No internet!</span></p>\n"
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">QTCord requires internet to connect to Discord.</p>\n"
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-inde"
-                        "nt:0; text-indent:0px;\">You probably accidentally turned off your Wi-Fi or..... you don't have Wi-Fi.</p></body></html>", None))
+                        "nt:0; text-indent:0px;\">You probably turned off your Wi-Fi or..... you don't have Wi-Fi.</p></body></html>", None))
     # retranslateUi
 
