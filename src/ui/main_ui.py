@@ -46,7 +46,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents_2 = QWidget()
         self.scrollAreaWidgetContents_2.setObjectName(u"scrollAreaWidgetContents_2")
-        self.scrollAreaWidgetContents_2.setGeometry(QRect(0, 0, 496, 409))
+        self.scrollAreaWidgetContents_2.setGeometry(QRect(0, 0, 544, 409))
         self.gridLayout = QGridLayout(self.scrollAreaWidgetContents_2)
         self.gridLayout.setObjectName(u"gridLayout")
         self.gridLayout.setContentsMargins(0, 0, 0, 0)
@@ -108,7 +108,7 @@ class Ui_MainWindow(object):
         self.scrollArea_2.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignVCenter)
         self.friends_scrollArea_contents = QWidget()
         self.friends_scrollArea_contents.setObjectName(u"friends_scrollArea_contents")
-        self.friends_scrollArea_contents.setGeometry(QRect(0, 0, 98, 28))
+        self.friends_scrollArea_contents.setGeometry(QRect(0, 0, 228, 387))
         self.verticalLayout_2 = QVBoxLayout(self.friends_scrollArea_contents)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
         self.scrollArea_2.setWidget(self.friends_scrollArea_contents)
@@ -132,7 +132,7 @@ class Ui_MainWindow(object):
         self.scrollArea_3.setWidgetResizable(True)
         self.servers_scrollArea_contents = QWidget()
         self.servers_scrollArea_contents.setObjectName(u"servers_scrollArea_contents")
-        self.servers_scrollArea_contents.setGeometry(QRect(0, 0, 254, 337))
+        self.servers_scrollArea_contents.setGeometry(QRect(0, 0, 206, 337))
         self.verticalLayout_5 = QVBoxLayout(self.servers_scrollArea_contents)
         self.verticalLayout_5.setObjectName(u"verticalLayout_5")
         self.scrollArea_3.setWidget(self.servers_scrollArea_contents)
@@ -175,7 +175,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.tabWidget.setCurrentIndex(1)
+        self.tabWidget.setCurrentIndex(0)
         self.servers_notebook.setCurrentIndex(0)
 
 

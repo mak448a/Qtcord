@@ -36,7 +36,7 @@
           <rect>
            <x>0</x>
            <y>0</y>
-           <width>496</width>
+           <width>544</width>
            <height>409</height>
           </rect>
          </property>
@@ -145,7 +145,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <item>
       <widget class="QTabWidget" name="tabWidget">
        <property name="currentIndex">
-        <number>1</number>
+        <number>0</number>
        </property>
        <widget class="QWidget" name="friends_tab">
         <attribute name="title">
@@ -165,8 +165,8 @@ li.checked::marker { content: &quot;\2612&quot;; }
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>98</width>
-              <height>28</height>
+              <width>228</width>
+              <height>387</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_2"/>
@@ -206,7 +206,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                  <rect>
                   <x>0</x>
                   <y>0</y>
-                  <width>254</width>
+                  <width>206</width>
                   <height>337</height>
                  </rect>
                 </property>
