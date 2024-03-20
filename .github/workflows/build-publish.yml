@@ -9,5 +9,5 @@ jobs:
       - run: cd QTCord && pip install -r requirements.txt && pip install pyinstaller && python3 package_windows.py
       - uses: actions/upload-artifact@v4
         with:
-            name: "QTCord-Windows.zip"
+            name: "QTCord-Windows"
             path: "QTCord/dist/QTCord"
