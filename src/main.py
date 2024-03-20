@@ -120,7 +120,7 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
 
         for message in messages:
             tags = """<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-weight:700;">"""
-            new_messages += f"{tags}{message["username"]}</span>: {message["content"]}</p>" + "\n"
+            new_messages += f"{tags}{message['username']}</span>: {message['content']}</p>" + "\n"
 
         if self.messages != new_messages and new_messages:
             self.messages = new_messages
