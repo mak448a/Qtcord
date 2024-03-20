@@ -14,4 +14,4 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
             name: "QTCord-Windows"
-            path: "QTCord/dist/QTCord"
+            path: "dist/QTCord"
