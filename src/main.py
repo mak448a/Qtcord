@@ -196,7 +196,7 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
         for i, guild in enumerate(self.guilds):
             buttons[i] = QPushButton(text=guild["name"])
             # icon = QIcon(QIcon.fromTheme(u"io.github.mak448a.QTCord"))
-            if os.path.exists(os.path.join(platformdirs.user_config_dir("QTCord"), "servers", f"{guild["id"]}.png")):
+            if os.path.exists(os.path.join(platformdirs.user_config_dir("QTCord"), "servers", f"{guild['id']}.png")):
                 icon = QIcon(os.path.join(platformdirs.user_config_dir("QTCord"), "servers", f"{guild['id']}.png"))
             else:
                 icon = QIcon(os.path.join(current_dir, "assets", "server.png"))
