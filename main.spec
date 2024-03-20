@@ -2,12 +2,13 @@
 
 
 a = Analysis(
-    ['src\\main.py'],
+    ['src/main.py'],
     pathex=[],
     binaries=[],
     datas=[
         ("licenses", "licenses"),
-        ("src/assets/smiley.svg", ".")
+        ("src/assets/smiley.svg", "assets/"),
+        ("src/assets/server.png", "assets/")
     ],
     hiddenimports=[],
     hookspath=[],
