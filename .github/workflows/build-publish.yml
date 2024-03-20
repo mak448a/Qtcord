@@ -1,9 +1,6 @@
 name: GitHub Actions Demo
 run-name: Build Windows
-on:
-    push:
-        tags:
-            - "**"
+on: [push]
 jobs:
   Explore-GitHub-Actions:
     runs-on: windows-latest
