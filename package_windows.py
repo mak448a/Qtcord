@@ -12,9 +12,9 @@ except ModuleNotFoundError:
 
 os.system("pyinstaller main.spec")
 
-choice = input("Delete build cache? (N/y) ").strip().lower()
+# choice = input("Delete build cache? (N/y) ").strip().lower()
 
-if choice == "yes" or choice == "y":
-    shutil.rmtree("build")
-else:
-    quit()
+# if choice == "yes" or choice == "y":
+#     shutil.rmtree("build")
+# else:
+#     quit()
