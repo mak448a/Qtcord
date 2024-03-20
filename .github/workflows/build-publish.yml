@@ -1,6 +1,9 @@
 name: Build Windows
 run-name: Build Windows
-on: [push]
+on:
+  push:
+    tags:
+      - "**"
 jobs:
   Build-Windows:
     runs-on: windows-latest
