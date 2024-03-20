@@ -6,9 +6,7 @@ jobs:
     runs-on: windows-latest
     steps:
       - run: git clone https://github.com/mak448a/QTCord/ --depth=1
-      - run: cd QTCord
-      - run: pip install -r requirements.txt && python3 package_windows.py
-      - run: zip -r QTCord-Windows.zip dist/QTCord
+      - run: cd QTCord && pip install -r requirements.txt && python3 package_windows.py
       - uses: actions/upload-artifact@v4
         with:
             name: "QTCord-Windows.zip"
