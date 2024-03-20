@@ -1,10 +1,12 @@
-name: GitHub Actions Demo
+name: Build Windows
 run-name: Build Windows
 on: [push]
 jobs:
   Explore-GitHub-Actions:
     runs-on: windows-latest
     steps:
+      - run: git clone https://github.com/mak448a/QTCord/ --depth=1
+      - run: cd QTCord
       - run: pip install -r requirements.txt && python3 package_windows.py
       - run: zip -r QTCord-Windows.zip dist/QTCord
       - uses: actions/upload-artifact@v4
