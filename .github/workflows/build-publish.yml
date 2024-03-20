@@ -2,7 +2,7 @@ name: Build Windows
 run-name: Build Windows
 on: [push]
 jobs:
-  Explore-GitHub-Actions:
+  Build-Windows:
     runs-on: windows-latest
     steps:
       - run: git clone https://github.com/mak448a/QTCord/ --depth=1
