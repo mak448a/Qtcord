@@ -16,7 +16,10 @@
     <project_license>MIT</project_license>
     <screenshots>
       <screenshot type="default">
-        <image type="source">https://github.com/mak448a/QTCord/raw/v0.0.9/demo_linux.png</image>
+        <image type="source">https://github.com/mak448a/QTCord/raw/v0.0.13/demo1.png</image>
+      </screenshot>
+      <screenshot>
+        <image type="source">https://github.com/mak448a/QTCord/raw/v0.0.13/demo2.png</image>
       </screenshot>
     </screenshots>
     <content_rating type="oars-1.1">
