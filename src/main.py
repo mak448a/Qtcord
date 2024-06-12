@@ -63,11 +63,16 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
         self.setup()
 
     def connect_signal_slots(self):
+        # Connect buttons to actions
         self.ui.pushButton.clicked.connect(self.handle_input)
 
+
+        # Connect menubar actions
         self.ui.actionQuit.triggered.connect(sys.exit)
         self.ui.actionAbout.triggered.connect(self.about)
         self.ui.actionLicenses.triggered.connect(self.display_licenses)
+        self.ui.actionLogout.triggered.connect(self.logout_account)
+
         # Shortcuts
         # Quit
         self.quit_shortcut = QShortcut(QKeySequence("Ctrl+Q"), self)
@@ -257,7 +262,12 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
         
         if 0 < len(self.ui.lineEdit.text()) < 2:
             discord_integration.send_typing(self.channel)
-
+    
+    def logout_account(self):
+        # Remove Discord token from discordauth.txt
+        os.remove(platformdirs.user_config_dir("QTCord") + "/discordauth.txt")
+        # Switch back to the first page, the login page.
+        switcher.setCurrentIndex(switcher.currentIndex() - 1)
 
 def handle_no_internet() -> None:
     try:
@@ -279,7 +289,7 @@ if __name__ == "__main__":
     app.setDesktopFileName("io.github.mak448a.QTCord")
     
     # Add widget to switch between pages of UI
-    widget = QtWidgets.QStackedWidget()
+    switcher = QtWidgets.QStackedWidget()
 
     if os.path.isfile(platformdirs.user_config_dir("QTCord") + "/discordauth.txt"):
         with open(platformdirs.user_config_dir("QTCord") + "/discordauth.txt") as f:
@@ -291,18 +301,18 @@ if __name__ == "__main__":
         auth = False
 
     win = ChatInterface()
-    login = LoginUI(widget)
+    login = LoginUI(switcher)
 
-    if not auth:
-        widget.addWidget(login)
-
-    widget.addWidget(win)
+    switcher.addWidget(login)
+    switcher.addWidget(win)
+    if auth:
+        switcher.setCurrentIndex(switcher.currentIndex() + 1)
 
     # Set window properties
-    widget.resize(840, 500)
-    widget.setWindowTitle("QTCord")
+    switcher.resize(840, 500)
+    switcher.setWindowTitle("QTCord")
     icon_path = os.path.join(current_dir, "assets", "smiley.svg")
-    widget.setWindowIcon(QIcon(icon_path))
+    switcher.setWindowIcon(QIcon(icon_path))
 
-    widget.show()
+    switcher.show()
     sys.exit(app.exec())

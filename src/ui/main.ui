@@ -20,10 +20,10 @@
       <item>
        <widget class="QScrollArea" name="scrollArea">
         <property name="frameShape">
-         <enum>QFrame::NoFrame</enum>
+         <enum>QFrame::Shape::NoFrame</enum>
         </property>
         <property name="frameShadow">
-         <enum>QFrame::Plain</enum>
+         <enum>QFrame::Shadow::Plain</enum>
         </property>
         <property name="lineWidth">
          <number>1</number>
@@ -36,8 +36,8 @@
           <rect>
            <x>0</x>
            <y>0</y>
-           <width>544</width>
-           <height>409</height>
+           <width>555</width>
+           <height>408</height>
           </rect>
          </property>
          <layout class="QGridLayout" name="gridLayout">
@@ -111,7 +111,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <x>0</x>
      <y>0</y>
      <width>840</width>
-     <height>23</height>
+     <height>30</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -127,14 +127,21 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <addaction name="actionAbout"/>
     <addaction name="actionLicenses"/>
    </widget>
+   <widget class="QMenu" name="menuAccount">
+    <property name="title">
+     <string>Acco&amp;unt</string>
+    </property>
+    <addaction name="actionLogout"/>
+   </widget>
    <addaction name="menuFile"/>
+   <addaction name="menuAccount"/>
    <addaction name="menuHelp"/>
   </widget>
   <widget class="QDockWidget" name="dockWidget">
    <property name="minimumSize">
     <size>
      <width>270</width>
-     <height>212</height>
+     <height>221</height>
     </size>
    </property>
    <attribute name="dockWidgetArea">
@@ -158,15 +165,15 @@ li.checked::marker { content: &quot;\2612&quot;; }
             <bool>true</bool>
            </property>
            <property name="alignment">
-            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+            <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
            </property>
            <widget class="QWidget" name="friends_scrollArea_contents">
             <property name="geometry">
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>228</width>
-              <height>387</height>
+              <width>240</width>
+              <height>381</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_2"/>
@@ -206,8 +213,8 @@ li.checked::marker { content: &quot;\2612&quot;; }
                  <rect>
                   <x>0</x>
                   <y>0</y>
-                  <width>206</width>
-                  <height>337</height>
+                  <width>100</width>
+                  <height>30</height>
                  </rect>
                 </property>
                 <layout class="QVBoxLayout" name="verticalLayout_5"/>
@@ -231,8 +238,8 @@ li.checked::marker { content: &quot;\2612&quot;; }
                  <rect>
                   <x>0</x>
                   <y>0</y>
-                  <width>98</width>
-                  <height>28</height>
+                  <width>100</width>
+                  <height>30</height>
                  </rect>
                 </property>
                 <layout class="QVBoxLayout" name="verticalLayout_8"/>
@@ -252,17 +259,22 @@ li.checked::marker { content: &quot;\2612&quot;; }
   </widget>
   <action name="actionAbout">
    <property name="text">
-    <string>About</string>
+    <string>&amp;About</string>
    </property>
   </action>
   <action name="actionQuit">
    <property name="text">
-    <string>Quit</string>
+    <string>&amp;Quit</string>
    </property>
   </action>
   <action name="actionLicenses">
    <property name="text">
-    <string>Licenses</string>
+    <string>&amp;Licenses</string>
+   </property>
+  </action>
+  <action name="actionLogout">
+   <property name="text">
+    <string>Logout</string>
    </property>
   </action>
  </widget>
