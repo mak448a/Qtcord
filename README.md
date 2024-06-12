@@ -6,7 +6,7 @@ QTCord is a lightweight Discord client aiming to bring a native look and feel ch
 </a>
 
 Join our Discord:<br>
-[![Discord Invite](https://dcbadge.limes.pink/api/server/https://discord.gg/e4UxaEEYdu?style=flat)](https://discord.gg/gV8SjzZAXj)
+[![Discord Invite](https://dcbadge.limes.pink/api/server/https://discord.gg/gV8SjzZAXj?style=flat)](https://discord.gg/gV8SjzZAXj)
 
 [Download for Windows](https://github.com/mak448a/QTCord/releases)
 <br>
