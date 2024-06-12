@@ -5,7 +5,11 @@ QTCord is a lightweight Discord client aiming to bring a native look and feel ch
   <img width='150' alt='Download on Flathub' src='https://dl.flathub.org/assets/badges/flathub-badge-en.png'/>
 </a>
 
+Join our Discord:<br>
+[![Discord Invite](https://dcbadge.limes.pink/api/server/https://discord.gg/e4UxaEEYdu?style=flat)](https://discord.gg/e4UxaEEYdu)
+
 [Download for Windows](https://github.com/mak448a/QTCord/releases)
+<br>
 
 ![Screenshot of QTCord](demo1.png)
 
