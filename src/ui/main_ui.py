@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'main.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.6.1
+## Created by: Qt User Interface Compiler version 6.7.1
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -165,7 +165,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_3.addWidget(self.tabWidget)
 
         self.dockWidget.setWidget(self.dockWidgetContents)
-        MainWindow.addDockWidget(Qt.LeftDockWidgetArea, self.dockWidget)
+        MainWindow.addDockWidget(Qt.DockWidgetArea.LeftDockWidgetArea, self.dockWidget)
 
         self.menubar.addAction(self.menuFile.menuAction())
         self.menubar.addAction(self.menuHelp.menuAction())

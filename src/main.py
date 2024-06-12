@@ -7,7 +7,7 @@ current_dir = os.path.dirname(os.path.realpath(__file__)).replace(" ", "\\ ")  #
 
 # Regenerate ui from ui files
 if os.path.exists(f"{os.path.expanduser('~/Documents/regenerate_ui_files_indicator.txt')}"):  # NOQA
-    print("Regenerating ui files...")
+    print("Regenerating ui files")
     os.system(f"pyside6-uic {current_dir}/ui/main.ui -o {current_dir}/ui/main_ui.py")  # NOQA
     os.system(f"pyside6-uic {current_dir}/ui/login.ui -o {current_dir}/ui/login_ui.py")  # NOQA
     os.system(f"pyside6-uic {current_dir}/ui/licenses.ui -o {current_dir}/ui/licenses_ui.py")  # NOQA

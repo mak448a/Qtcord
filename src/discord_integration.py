@@ -124,17 +124,17 @@ def get_guilds() -> dict:
         if os.path.exists(f"{platformdirs.user_config_dir('QTCord')}/servers/{server['id']}.png"):
             continue
         
-        print(f"https://cdn.discordapp.com/icons/{server['id']}/{server['icon']}")
-        test = requests.get(f"https://cdn.discordapp.com/icons/{server['id']}/{server['icon']}")
+        # print(f"https://cdn.discordapp.com/icons/{server['id']}/{server['icon']}")
+        server_icon = requests.get(f"https://cdn.discordapp.com/icons/{server['id']}/{server['icon']}")
         
         # Handle no image servers
-        if test.status_code == 404:
+        if server_icon.status_code == 404:
             continue
         if not os.path.exists(f"{platformdirs.user_config_dir('QTCord')}/servers"):
             os.makedirs(f"{platformdirs.user_config_dir('QTCord')}/servers")
 
         with open(f"{platformdirs.user_config_dir('QTCord')}/servers/{server['id']}.png", "wb") as f:
-            for chunk in test.iter_content():
+            for chunk in server_icon.iter_content():
                 f.write(chunk)
         
     # print(f"https://cdn.discordapp.com/icons/{r.json()[1]["id"]}/{r.json()[1]["icon"]}")
@@ -178,11 +178,11 @@ def login(email: str, password: str):
     r = requests.post(f"{api_base}/auth/login",
                       json=payload)
 
-    # print(r.json())
-
+    # Check for errors
     if r.json().get("errors", False):
         return None
 
+    # Return token if it succeeds, otherwise, return nothing.
     if r.json().get("token", False):
         return r.json()["token"]
     else:

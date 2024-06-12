@@ -25,7 +25,7 @@ class LoginUI(QMainWindow, login_ui.Ui_MainWindow):
 
         if valid:
             _token = login(email, password)
-            print(_token, "is our token")
+            # print(_token, "is our token")
 
             if _token:
                 with open(platformdirs.user_config_dir("QTCord") + "/discordauth.txt", "w") as f:
