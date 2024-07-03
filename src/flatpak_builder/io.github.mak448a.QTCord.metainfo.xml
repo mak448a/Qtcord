@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Copyright 2023 mak448a -->
+<!-- Copyright 2024 mak448a -->
 <component type="desktop-application">
     <id>io.github.mak448a.QTCord</id>
     <name>QTCord</name>
@@ -8,7 +8,7 @@
     <developer_name>mak448a</developer_name>
     <description>
         <p>QTCord is a Discord client built with QT aiming to bring a native look-and-feel.</p>
-        <p>Sidenote: Please go to https://github.com/mak448a/QTCord/issues for bugs. To logout, delete ~/.var/app/io.github.mak448a.QTCord/.</p>
+        <p>Sidenote: Please report bugs and accounts bans at https://github.com/mak448a/QTCord/issues.</p>
         <p>I am not responsible if your account gets banned with this app, as it is against the Discord TOS.</p>
     </description>
     <url type="homepage">https://github.com/mak448a/QTCord</url>
@@ -26,6 +26,18 @@
       <content_attribute id="social-chat">intense</content_attribute>
     </content_rating>
     <releases>
+      <release version="v0.0.14" date="2024-7-2" type="stable">
+        <description>
+          <p>- Add logout button</p>
+        </description>
+        <url>https://github.com/mak448a/QTCord/releases/v0.0.14</url>
+      </release>
+      <release version="v0.0.13" date="2024-3-24" type="stable">
+        <description>
+          <p>- Code cleanup</p>
+        </description>
+        <url>https://github.com/mak448a/QTCord/releases/v0.0.13</url>
+      </release>
       <release version="v0.0.12" date="2024-3-19" type="stable">
         <description>
           <p>- Fix bug where servers, friends, or channels would overflow out of the screen</p>
