@@ -28,6 +28,12 @@ Afterwards, just run main.py.
 python3 main.py
 ```
 
+## Credits
+Here are the links to the tutorials/docs that I used to make this app.
+https://discord.com/developers/docs/
+https://luna.gitlab.io/discord-unofficial-docs/
+https://www.youtube.com/channel/UC8PPJFudLUM1eJlM4BiJ40A
+
 ## Notes for developers
 The code is a mess, since I'm just working on this for fun. Have fun! And if you're feeling very helpful, maybe even clean it up for me! 😅
 
