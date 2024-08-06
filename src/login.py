@@ -3,7 +3,6 @@ from ui import login_ui
 from discord_integration import login, load_token
 import platformdirs
 
-
 class LoginUI(QMainWindow, login_ui.Ui_MainWindow):
     def __init__(self, switcher, parent=None):
         super().__init__(parent)
@@ -14,14 +13,11 @@ class LoginUI(QMainWindow, login_ui.Ui_MainWindow):
         self.switcher = switcher
 
         self.ui.password.returnPressed.connect(self.switch)
-    
+
     def switch(self):
         email = self.ui.email.text()
         password = self.ui.password.text()
         valid = email and password
-
-        self.ui.email.setText("")
-        self.ui.password.setText("")
 
         if valid:
             _token = login(email, password)
@@ -32,5 +28,6 @@ class LoginUI(QMainWindow, login_ui.Ui_MainWindow):
                     f.write(_token)
 
                 load_token()
-
                 self.switcher.setCurrentIndex(self.switcher.currentIndex() + 1)
+            else:
+                self.ui.error_label.setText("Login or password is invalid.")
