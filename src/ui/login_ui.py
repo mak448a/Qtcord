@@ -118,6 +118,25 @@ class Ui_MainWindow(object):
 
         self.verticalLayout.addLayout(self.horizontalLayout_4)
 
+        self.horizontalLayout_5 = QHBoxLayout()
+        self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
+        self.horizontalSpacer_7 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.horizontalLayout_5.addItem(self.horizontalSpacer_7)
+
+        self.error_label = QLabel(self.centralwidget)
+        self.error_label.setObjectName(u"error_label")
+        self.error_label.setStyleSheet("color: red;")
+        self.error_label.setAlignment(Qt.AlignCenter)
+
+        self.horizontalLayout_5.addWidget(self.error_label)
+
+        self.horizontalSpacer_8 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.horizontalLayout_5.addItem(self.horizontalSpacer_8)
+
+        self.verticalLayout.addLayout(self.horizontalLayout_5)
+
         self.verticalSpacer_4 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
         self.verticalLayout.addItem(self.verticalSpacer_4)
@@ -139,5 +158,5 @@ class Ui_MainWindow(object):
         self.label_3.setText(QCoreApplication.translate("MainWindow", u"Email", None))
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"Password", None))
         self.pushButton.setText(QCoreApplication.translate("MainWindow", u"Login", None))
+        self.error_label.setText("")
     # retranslateUi
-
