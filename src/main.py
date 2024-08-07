@@ -72,6 +72,7 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
         self.ui.actionAbout.triggered.connect(self.about)
         self.ui.actionLicenses.triggered.connect(self.display_licenses)
         self.ui.actionLogout.triggered.connect(self.logout_account)
+        self.ui.actionReport_an_Issue.triggered.connect(self.open_issues)
 
         # Shortcuts
         # Quit
@@ -81,6 +82,8 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
         # Detect enter key by using event filter function from self.
         self.ui.lineEdit.textChanged.connect(self.send_typing)
         self.ui.lineEdit.returnPressed.connect(self.handle_input)
+
+    def open_issues(self): os.system("xdg-open https://github.com/mak448a/QTCord/issues")
 
     def about(self):
         QMessageBox.about(
@@ -280,14 +283,17 @@ def handle_no_internet() -> None:
 
 
 if __name__ == "__main__":
-    # if no internet, throw up a dialog that says no internet
+    # If no internet, throw up a dialog that says no internet
     handle_no_internet()
 
     if not os.path.exists(platformdirs.user_config_dir("QTCord")):
         os.makedirs(platformdirs.user_config_dir("QTCord"))
+    
     app = QApplication(sys.argv)
     app.setDesktopFileName("io.github.mak448a.QTCord")
-    
+    import qdarktheme
+    qdarktheme.setup_theme("dark")
+
     # Add widget to switch between pages of UI
     switcher = QtWidgets.QStackedWidget()
 

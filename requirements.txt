@@ -13,3 +13,5 @@ PySide6_Addons~=6.7.1
 PySide6_Essentials~=6.7.1
 shiboken6~=6.7.1
 urllib3~=2.2.1
+
+pyqtdarktheme-fork~=2.3.2

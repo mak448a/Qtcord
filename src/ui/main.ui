@@ -118,6 +118,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <property name="title">
      <string>&amp;File</string>
     </property>
+    <addaction name="actionLogout"/>
     <addaction name="actionQuit"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
@@ -126,15 +127,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
     </property>
     <addaction name="actionAbout"/>
     <addaction name="actionLicenses"/>
-   </widget>
-   <widget class="QMenu" name="menuAccount">
-    <property name="title">
-     <string>Acco&amp;unt</string>
-    </property>
-    <addaction name="actionLogout"/>
+    <addaction name="actionReport_an_Issue"/>
    </widget>
    <addaction name="menuFile"/>
-   <addaction name="menuAccount"/>
    <addaction name="menuHelp"/>
   </widget>
   <widget class="QDockWidget" name="dockWidget">
@@ -213,8 +208,8 @@ li.checked::marker { content: &quot;\2612&quot;; }
                  <rect>
                   <x>0</x>
                   <y>0</y>
-                  <width>100</width>
-                  <height>30</height>
+                  <width>222</width>
+                  <height>334</height>
                  </rect>
                 </property>
                 <layout class="QVBoxLayout" name="verticalLayout_5"/>
@@ -274,7 +269,12 @@ li.checked::marker { content: &quot;\2612&quot;; }
   </action>
   <action name="actionLogout">
    <property name="text">
-    <string>Logout</string>
+    <string>&amp;Logout</string>
+   </property>
+  </action>
+  <action name="actionReport_an_Issue">
+   <property name="text">
+    <string>Report an Issue</string>
    </property>
   </action>
  </widget>

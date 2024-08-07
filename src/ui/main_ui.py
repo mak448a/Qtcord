@@ -34,6 +34,8 @@ class Ui_MainWindow(object):
         self.actionLicenses.setObjectName(u"actionLicenses")
         self.actionLogout = QAction(MainWindow)
         self.actionLogout.setObjectName(u"actionLogout")
+        self.actionReport_an_Issue = QAction(MainWindow)
+        self.actionReport_an_Issue.setObjectName(u"actionReport_an_Issue")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.horizontalLayout_4 = QHBoxLayout(self.centralwidget)
@@ -90,8 +92,6 @@ class Ui_MainWindow(object):
         self.menuFile.setObjectName(u"menuFile")
         self.menuHelp = QMenu(self.menubar)
         self.menuHelp.setObjectName(u"menuHelp")
-        self.menuAccount = QMenu(self.menubar)
-        self.menuAccount.setObjectName(u"menuAccount")
         MainWindow.setMenuBar(self.menubar)
         self.dockWidget = QDockWidget(MainWindow)
         self.dockWidget.setObjectName(u"dockWidget")
@@ -136,7 +136,7 @@ class Ui_MainWindow(object):
         self.scrollArea_3.setWidgetResizable(True)
         self.servers_scrollArea_contents = QWidget()
         self.servers_scrollArea_contents.setObjectName(u"servers_scrollArea_contents")
-        self.servers_scrollArea_contents.setGeometry(QRect(0, 0, 100, 30))
+        self.servers_scrollArea_contents.setGeometry(QRect(0, 0, 222, 334))
         self.verticalLayout_5 = QVBoxLayout(self.servers_scrollArea_contents)
         self.verticalLayout_5.setObjectName(u"verticalLayout_5")
         self.scrollArea_3.setWidget(self.servers_scrollArea_contents)
@@ -172,12 +172,12 @@ class Ui_MainWindow(object):
         MainWindow.addDockWidget(Qt.DockWidgetArea.LeftDockWidgetArea, self.dockWidget)
 
         self.menubar.addAction(self.menuFile.menuAction())
-        self.menubar.addAction(self.menuAccount.menuAction())
         self.menubar.addAction(self.menuHelp.menuAction())
+        self.menuFile.addAction(self.actionLogout)
         self.menuFile.addAction(self.actionQuit)
         self.menuHelp.addAction(self.actionAbout)
         self.menuHelp.addAction(self.actionLicenses)
-        self.menuAccount.addAction(self.actionLogout)
+        self.menuHelp.addAction(self.actionReport_an_Issue)
 
         self.retranslateUi(MainWindow)
 
@@ -193,7 +193,8 @@ class Ui_MainWindow(object):
         self.actionAbout.setText(QCoreApplication.translate("MainWindow", u"&About", None))
         self.actionQuit.setText(QCoreApplication.translate("MainWindow", u"&Quit", None))
         self.actionLicenses.setText(QCoreApplication.translate("MainWindow", u"&Licenses", None))
-        self.actionLogout.setText(QCoreApplication.translate("MainWindow", u"Logout", None))
+        self.actionLogout.setText(QCoreApplication.translate("MainWindow", u"&Logout", None))
+        self.actionReport_an_Issue.setText(QCoreApplication.translate("MainWindow", u"Report an Issue", None))
         self.textBrowser.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
@@ -205,7 +206,6 @@ class Ui_MainWindow(object):
         self.pushButton.setText(QCoreApplication.translate("MainWindow", u"Send", None))
         self.menuFile.setTitle(QCoreApplication.translate("MainWindow", u"&File", None))
         self.menuHelp.setTitle(QCoreApplication.translate("MainWindow", u"&Help", None))
-        self.menuAccount.setTitle(QCoreApplication.translate("MainWindow", u"Acco&unt", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.friends_tab), QCoreApplication.translate("MainWindow", u"Friends", None))
         self.servers_notebook.setTabText(self.servers_notebook.indexOf(self.servers), QCoreApplication.translate("MainWindow", u"Servers", None))
         self.servers_notebook.setTabText(self.servers_notebook.indexOf(self.channels), QCoreApplication.translate("MainWindow", u"Channels", None))
