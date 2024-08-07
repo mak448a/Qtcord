@@ -1,6 +1,7 @@
 #! /usr/bin/env python3
 import os
 import sys
+import webbrowser
 import requests
 
 current_dir = os.path.dirname(os.path.realpath(__file__)).replace(" ", "\\ ")  # NOQA (basically tells pycharm to shut up)
@@ -86,7 +87,7 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
         self.ui.lineEdit.textChanged.connect(self.send_typing)
         self.ui.lineEdit.returnPressed.connect(self.handle_input)
 
-    def open_issues(self): os.system("xdg-open https://github.com/mak448a/QTCord/issues")
+    def open_issues(self): webbrowser.open("https://github.com/mak448a/QTCord")
 
     def about(self):
         QMessageBox.about(
