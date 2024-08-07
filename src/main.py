@@ -14,7 +14,7 @@ if os.path.exists(f"{os.path.expanduser('~/Documents/regenerate_ui_files_indicat
     os.system(f"pyside6-uic {current_dir}/ui/no_internet.ui -o {current_dir}/ui/no_internet.py")  # NOQA
 
 
-# Pyside imports
+# PySide imports
 from PySide6.QtWidgets import (
     QApplication, QMainWindow, QMessageBox, QPushButton, QLabel
 )
@@ -22,7 +22,10 @@ from PySide6.QtWidgets import (
 from PySide6.QtGui import QShortcut, QKeySequence, QIcon
 from PySide6.QtCore import QTimer, QThreadPool
 from PySide6 import QtWidgets
+
+# 3rd party libraries
 import platformdirs
+import qdarktheme
 
 from discord_worker import Worker
 import discord_integration
@@ -291,7 +294,6 @@ if __name__ == "__main__":
     
     app = QApplication(sys.argv)
     app.setDesktopFileName("io.github.mak448a.QTCord")
-    import qdarktheme
     qdarktheme.setup_theme("dark")
 
     # Add widget to switch between pages of UI
