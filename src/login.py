@@ -45,5 +45,5 @@ class LoginUI(QMainWindow, login_ui.Ui_MainWindow):
                 # Show the info_frame on login error
                 self.ui.info_frame.show()
         else:
-            # Show the info_frame if the fields are empty
+            # Show the info_frame if fields are empty
             self.ui.info_frame.show()
