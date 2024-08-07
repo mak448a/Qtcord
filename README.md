@@ -1,12 +1,12 @@
 # QTCord
+![Download Count](https://img.shields.io/endpoint?url=https://flathub-stats-backend.vercel.app/badges/io.github.mak448a.QTCord/shields.io.json)
+[![Discord Invite](https://dcbadge.limes.pink/api/server/https://discord.gg/gV8SjzZAXj?style=flat)](https://discord.gg/gV8SjzZAXj)
+
 QTCord is a lightweight Discord client aiming to bring a native look and feel chat experience. I am not responsible if you get your account banned from this project.
 
 <a href='https://flathub.org/apps/io.github.mak448a.QTCord'>
   <img width='150' alt='Download on Flathub' src='https://dl.flathub.org/assets/badges/flathub-badge-en.png'/>
 </a>
-
-Join our Discord:<br>
-[![Discord Invite](https://dcbadge.limes.pink/api/server/https://discord.gg/gV8SjzZAXj?style=flat)](https://discord.gg/gV8SjzZAXj)
 
 [Download for Windows](https://github.com/mak448a/QTCord/releases)
 <br>
