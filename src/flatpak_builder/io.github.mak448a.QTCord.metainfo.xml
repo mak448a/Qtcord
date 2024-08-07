@@ -7,8 +7,8 @@
     <launchable type="desktop-id">io.github.mak448a.QTCord.desktop</launchable>
     <developer_name>mak448a</developer_name>
     <description>
-        <p>QTCord is a Discord client built with QT aiming to bring a native look-and-feel.</p>
-        <p>Sidenote: Please report bugs and accounts bans at https://github.com/mak448a/QTCord/issues.</p>
+        <p>QTCord is a Discord client built with QT aiming to bring a lightweight, native experience.</p>
+        <p>Sidenote: Please report bugs and account bans at https://github.com/mak448a/QTCord/issues.</p>
         <p>I am not responsible if your account gets banned with this app, as it is against the Discord TOS.</p>
     </description>
     <url type="homepage">https://github.com/mak448a/QTCord</url>
@@ -16,10 +16,10 @@
     <project_license>MIT</project_license>
     <screenshots>
       <screenshot type="default">
-        <image type="source">https://github.com/mak448a/QTCord/raw/v0.0.13/demo1.png</image>
+        <image type="source">https://github.com/mak448a/QTCord/raw/v0.0.15/demo1.png</image>
       </screenshot>
       <screenshot>
-        <image type="source">https://github.com/mak448a/QTCord/raw/v0.0.13/demo2.png</image>
+        <image type="source">https://github.com/mak448a/QTCord/raw/v0.0.15/demo2.png</image>
       </screenshot>
     </screenshots>
     <content_rating type="oars-1.1">
