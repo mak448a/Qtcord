@@ -9,6 +9,11 @@ jobs:
   Build-Windows:
     runs-on: windows-latest
     steps:
+      # Use Python 3.12.4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12.4"
       - run: git clone https://github.com/mak448a/QTCord/ --depth=1
       - run: cd QTCord && pip install -r requirements.txt && pip install pyinstaller && python3 package_windows.py
       - uses: actions/upload-artifact@v4
