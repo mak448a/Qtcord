@@ -1,3 +1,6 @@
+# DISCLAIMER: Some of this code has been written by ChatGPT. Be warned.
+
+
 import threading
 import json
 import time
