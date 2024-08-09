@@ -3,7 +3,7 @@ platformdirs~=4.2.2
 PySide6~=6.7.1
 requests~=2.32.3
 
-websocket-client
+websocket-client~=1.8.0
 
 
 # Depedencies of dependencies. You need not install these manually, but here for good measure.
