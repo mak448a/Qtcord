@@ -1,10 +1,10 @@
 name: Build Mac
 run-name: Build Mac
-# on:
-#   push:
-#     tags:
-#       - "**"
-on: [push]
+on:
+  push:
+    tags:
+      - "**"
+# on: [push]
 jobs:
   Build-Mac:
     runs-on: macos-latest
