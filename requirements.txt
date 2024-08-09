@@ -3,13 +3,10 @@ platformdirs~=4.2.2
 PySide6~=6.7.1
 requests~=2.32.3
 
-pyqtdarktheme-fork~=2.3.2
 websocket-client
 
 
 # Depedencies of dependencies. You need not install these manually, but here for good measure.
-# Dark detect is for pyqtdarktheme-fork
-darkdetect~=0.7.1
 certifi~=2024.6.2
 charset-normalizer~=3.3.2
 idna~=3.7
