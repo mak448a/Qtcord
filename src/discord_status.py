@@ -24,7 +24,7 @@ def _start():
         data = json.loads(message)
         if data["op"] == 10:
             heartbeat_interval = data["d"]["heartbeat_interval"] / 1000.0
-            print(f"Sending heartbeats every {heartbeat_interval}")
+            print(f"Sending heartbeats every {heartbeat_interval} seconds")
             start_heartbeat(ws)
         elif data["op"] == 11:
             # The server accepted our heartbeat, i.e. Heartbeat ACK
