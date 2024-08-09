@@ -15,7 +15,7 @@ jobs:
         with:
           python-version: "3.12.4"
       - run: git clone https://github.com/mak448a/QTCord/ --depth=1
-      - run: cd QTCord/helper_scripts && pip install -r requirements.txt && pip install pyinstaller && python3 package_windows.py
+      - run: cd QTCord/helper_scripts && pip install -r ../requirements.txt && pip install pyinstaller && python3 package_windows.py
       - uses: actions/upload-artifact@v4
         with:
             name: "QTCord-Windows"
