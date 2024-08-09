@@ -2,11 +2,14 @@ import os
 import requests
 import json
 import platformdirs
+from discord_status import keep_online
 
 
 api_base = "https://discord.com/api/v9"
 auth = ""  # Will be overridden in load_token
-headers = {}
+headers = {
+    "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36"
+}
 
 
 def load_token():
@@ -14,9 +17,7 @@ def load_token():
     if os.path.isfile(platformdirs.user_config_dir("QTCord") + "/discordauth.txt"):
         with open(platformdirs.user_config_dir("QTCord") + "/discordauth.txt") as f:
             auth = f.read()
-        headers = {
-            "authorization": f"{auth}"
-        }
+        headers["authorization"] = auth
 
 
 # Load token

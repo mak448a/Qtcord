@@ -36,7 +36,7 @@
           <rect>
            <x>0</x>
            <y>0</y>
-           <width>555</width>
+           <width>535</width>
            <height>408</height>
           </rect>
          </property>
@@ -135,7 +135,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
   <widget class="QDockWidget" name="dockWidget">
    <property name="minimumSize">
     <size>
-     <width>270</width>
+     <width>290</width>
      <height>221</height>
     </size>
    </property>
@@ -167,7 +167,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>240</width>
+              <width>260</width>
               <height>381</height>
              </rect>
             </property>
@@ -208,7 +208,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                  <rect>
                   <x>0</x>
                   <y>0</y>
-                  <width>222</width>
+                  <width>237</width>
                   <height>334</height>
                  </rect>
                 </property>
@@ -274,7 +274,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
   </action>
   <action name="actionReport_an_Issue">
    <property name="text">
-    <string>Report an Issue</string>
+    <string>&amp;Report an Issue</string>
    </property>
   </action>
  </widget>

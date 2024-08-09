@@ -3,6 +3,7 @@ platformdirs~=4.2.2
 PySide6~=6.7.1
 requests~=2.32.3
 
+pyqtdarktheme-fork~=2.3.2
 
 
 # Depedencies of dependencies. You need not install these manually, but here for good measure.
@@ -14,4 +15,3 @@ PySide6_Essentials~=6.7.1
 shiboken6~=6.7.1
 urllib3~=2.2.1
 
-pyqtdarktheme-fork~=2.3.2
