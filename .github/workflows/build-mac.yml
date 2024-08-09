@@ -1,5 +1,5 @@
-name: Build Windows
-run-name: Build Windows
+name: Build Mac
+run-name: Build Mac
 # on:
 #   push:
 #     tags:
@@ -7,7 +7,7 @@ run-name: Build Windows
 on: [push]
 jobs:
   Build-Windows:
-    runs-on: windows-latest
+    runs-on: macos-latest
     steps:
       # Use Python 3.12.4
       - uses: actions/checkout@v4
@@ -15,8 +15,8 @@ jobs:
         with:
           python-version: "3.12.4"
       - run: git clone https://github.com/mak448a/QTCord/ --depth=1
-      - run: cd QTCord/helper_scripts && pip install -r requirements.txt && pip install pyinstaller && python3 package_windows.py
+      - run: cd QTCord/helper_scripts && pip install -r requirements.txt && pip install pyinstaller && python3 package_mac.py
       - uses: actions/upload-artifact@v4
         with:
-            name: "QTCord-Windows"
+            name: "QTCord-Mac"
             path: "QTCord/src/dist/QTCord"
