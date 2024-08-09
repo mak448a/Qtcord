@@ -208,20 +208,16 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
 
         for i, guild in enumerate(self.guilds):
             buttons[i] = QPushButton(text=guild["name"])
-            # icon = QIcon(QIcon.fromTheme(u"io.github.mak448a.QTCord"))
-            if os.path.exists(os.path.join(platformdirs.user_config_dir("QTCord"), "servers", f"{guild['id']}.png")):
-                icon = QIcon(os.path.join(platformdirs.user_config_dir("QTCord"), "servers", f"{guild['id']}.png"))
+
+            if os.path.exists(os.path.join(platformdirs.user_cache_dir("QTCord"), "servers", f"{guild['id']}.png")):
+                icon = QIcon(os.path.join(platformdirs.user_cache_dir("QTCord"), "servers", f"{guild['id']}.png"))
             else:
                 icon = QIcon(os.path.join(current_dir, "assets", "server.png"))
+            
             buttons[i].setIcon(icon)
             self.ui.servers_scrollArea_contents.layout().addWidget(buttons[i])
 
             self.ui.servers_scrollArea_contents.layout().addWidget(buttons[i])
-
-            # TODO: Get real stuff from discord_integration.get_guild_channels()
-            # TODO: Only call this when you click on a channel, and switch the active tab too
-            # channel_buttons[i] = QPushButton(text=guild["name"])
-            # self.ui.channels.layout().addWidget(channel_buttons[i])
 
             # Oh my headache do not touch this code.
             # But if you do: https://stackoverflow.com/questions/19837486/lambda-in-a-loop
@@ -291,8 +287,13 @@ if __name__ == "__main__":
     # If no internet, throw up a dialog that says no internet
     handle_no_internet()
 
+    # Make configuration and cache directories
     if not os.path.exists(platformdirs.user_config_dir("QTCord")):
         os.makedirs(platformdirs.user_config_dir("QTCord"))
+    
+    if not os.path.exists(platformdirs.user_cache_dir("QTCord")):
+        os.makedirs(platformdirs.user_cache_dir("QTCord"))
+    
     
     app = QApplication(sys.argv)
     app.setDesktopFileName("io.github.mak448a.QTCord")

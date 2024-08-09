@@ -122,7 +122,7 @@ def get_guilds() -> dict:
     # Make sure to handle blank icons!!!! they are set to none
     # You get the rest of the info from this function.
     for server in r.json():
-        if os.path.exists(f"{platformdirs.user_config_dir('QTCord')}/servers/{server['id']}.png"):
+        if os.path.exists(f"{platformdirs.user_cache_dir('QTCord')}/servers/{server['id']}.png"):
             continue
         
         # print(f"https://cdn.discordapp.com/icons/{server['id']}/{server['icon']}")
@@ -131,10 +131,11 @@ def get_guilds() -> dict:
         # Handle no image servers
         if server_icon.status_code == 404:
             continue
-        if not os.path.exists(f"{platformdirs.user_config_dir('QTCord')}/servers"):
-            os.makedirs(f"{platformdirs.user_config_dir('QTCord')}/servers")
+        
+        if not os.path.exists(f"{platformdirs.user_cache_dir('QTCord')}/servers"):
+            os.makedirs(f"{platformdirs.user_cache_dir('QTCord')}/servers")
 
-        with open(f"{platformdirs.user_config_dir('QTCord')}/servers/{server['id']}.png", "wb") as f:
+        with open(f"{platformdirs.user_cache_dir('QTCord')}/servers/{server['id']}.png", "wb") as f:
             for chunk in server_icon.iter_content():
                 f.write(chunk)
         
