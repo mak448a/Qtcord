@@ -8,6 +8,8 @@ websocket-client
 
 
 # Depedencies of dependencies. You need not install these manually, but here for good measure.
+# Dark detect is for pyqtdarktheme-fork
+darkdetect~=0.7.1
 certifi~=2024.6.2
 charset-normalizer~=3.3.2
 idna~=3.7
@@ -15,4 +17,3 @@ PySide6_Addons~=6.7.1
 PySide6_Essentials~=6.7.1
 shiboken6~=6.7.1
 urllib3~=2.2.1
-
