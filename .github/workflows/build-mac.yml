@@ -6,7 +6,7 @@ run-name: Build Mac
 #       - "**"
 on: [push]
 jobs:
-  Build-Windows:
+  Build-Mac:
     runs-on: macos-latest
     steps:
       # Use Python 3.12.4
