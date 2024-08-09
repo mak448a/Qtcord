@@ -26,7 +26,13 @@
       <content_attribute id="social-chat">intense</content_attribute>
     </content_rating>
     <releases>
-    <release version="v0.0.15" date="2024-8-8" type="stable">
+      <release version="v0.0.16" date="2024-8-9" type="stable">
+        <description>
+          <p>Use native theme</p>
+        </description>
+        <url>https://github.com/mak448a/QTCord/releases/v0.0.15</url>
+      </release>
+      <release version="v0.0.15" date="2024-8-8" type="stable">
         <description>
           <p>Switch theme to PyQTDark theme</p>
           <p>Add online indicator</p>
