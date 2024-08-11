@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'main.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.7.1
+## Created by: Qt User Interface Compiler version 6.7.2
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -74,7 +74,7 @@ class Ui_MainWindow(object):
         self.pushButton = QPushButton(self.centralwidget)
         self.pushButton.setObjectName(u"pushButton")
         self.pushButton.setMinimumSize(QSize(0, 40))
-        self.pushButton.setCursor(QCursor(Qt.PointingHandCursor))
+        self.pushButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
 
         self.horizontalLayout.addWidget(self.pushButton)
 
