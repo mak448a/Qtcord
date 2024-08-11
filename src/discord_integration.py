@@ -23,9 +23,28 @@ def load_token():
 load_token()
 
 
+def validate_token() -> bool:
+    """
+    Checks whether a token is valid or not
+
+    Returns:
+        bool: Valid or not
+    """
+
+    r = requests.get(f"{api_base}/users/@me/relationships", headers=headers)
+
+    if r.status_code == 200:
+        return True
+    elif r.status_code == 401:
+        return False
+    else:
+        return False
+
+
 def get_messages(channel_id: int, limit: int = 100) -> list:
     """
     Returns messages from a given channel.
+
     Args:
         channel_id (int): The channel ID to request from
         limit (int): Amount of messages to request
@@ -34,15 +53,23 @@ def get_messages(channel_id: int, limit: int = 100) -> list:
         list: Messages from the specified channel.
 
     """
-    r = requests.get(f"{api_base}/channels/{channel_id}/messages?limit={limit}", headers=headers)
-    
+    r = requests.get(
+        f"{api_base}/channels/{channel_id}/messages?limit={limit}", headers=headers
+    )
+
     jsonn = json.loads(r.text)
     new_list = []
 
     if r.status_code != 200:
-        new_list.append({"username": "System", "content": "Error. This may be a forum channel, or you're not allowed to view the content.", "id": 0})
+        new_list.append(
+            {
+                "username": "System",
+                "content": "Error. This may be a forum channel, or you're not allowed to view the content.",
+                "id": 0,
+            }
+        )
         return new_list
-    
+
     for value in jsonn:
         if not value["author"].get("global_name", False):
             author = value["author"]["username"]
@@ -50,10 +77,16 @@ def get_messages(channel_id: int, limit: int = 100) -> list:
             author = value["author"]["global_name"]
         if not value["content"]:
             new_list.append(
-                {"username": author, "content": "[(call/image/other)]", "id": value["id"]})
+                {
+                    "username": author,
+                    "content": "[(call/image/other)]",
+                    "id": value["id"],
+                }
+            )
         else:
             new_list.append(
-                {"username": author, "content": value["content"], "id": value["id"]})
+                {"username": author, "content": value["content"], "id": value["id"]}
+            )
 
     # Reverse the list of messages
     new_list.reverse()
@@ -63,6 +96,7 @@ def get_messages(channel_id: int, limit: int = 100) -> list:
 def send_message(msg, channel) -> None:
     """
     Sends a message to a given channel.
+
     Args:
         msg (str): Message
         channel (int): The channel to send the message
@@ -71,20 +105,22 @@ def send_message(msg, channel) -> None:
         None: Nothing
 
     """
-    r = requests.post(f"{api_base}/channels/{channel}/messages",
-                      headers=headers,
-                      json={"content": msg})
+    r = requests.post(
+        f"{api_base}/channels/{channel}/messages",
+        headers=headers,
+        json={"content": msg},
+    )
     # print(r.text)
 
 
 def get_friends() -> dict:
     """
     Returns a list of friends for the current account.
+
     Returns:
         dict: Friends of the current account
     """
-    r = requests.get(f"{api_base}/users/@me/relationships",
-                     headers=headers)
+    r = requests.get(f"{api_base}/users/@me/relationships", headers=headers)
 
     # for friend in r.json():
     #     print(friend["user"]["global_name"])
@@ -95,49 +131,59 @@ def get_friends() -> dict:
 def get_channel_from_id(user_id: int) -> int:
     """
     Converts a user ID into a channel ID.
+
     Args:
         user_id (int): The user's ID
 
     Returns:
         int: The user's channel which they can be reached
     """
-    r = requests.post(f"{api_base}/users/@me/channels",
-                      headers=headers, json={"recipient_id": user_id})
+    r = requests.post(
+        f"{api_base}/users/@me/channels",
+        headers=headers,
+        json={"recipient_id": user_id},
+    )
     return r.json()["id"]
 
 
 def get_guilds() -> dict:
     """
     Returns all guilds (aka servers) that the current user is in. Also downloads the icons of the servers.
+
     Returns:
         dict: Guilds that the current account is in.
     """
 
-    r = requests.get(f"{api_base}/users/@me/guilds",
-                     headers=headers)
+    r = requests.get(f"{api_base}/users/@me/guilds", headers=headers)
 
     # TODO: You can get the icon of the server by: https://cdn.discordapp.com/icons/{id}/{icon_name}.
-    # Icon name and id is in the icon.  
+    # Icon name and id is in the icon.
     # Make sure to handle blank icons!!!! they are set to none
     # You get the rest of the info from this function.
     for server in r.json():
-        if os.path.exists(f"{platformdirs.user_cache_dir('QTCord')}/servers/{server['id']}.png"):
+        if os.path.exists(
+            f"{platformdirs.user_cache_dir('QTCord')}/servers/{server['id']}.png"
+        ):
             continue
-        
+
         # print(f"https://cdn.discordapp.com/icons/{server['id']}/{server['icon']}")
-        server_icon = requests.get(f"https://cdn.discordapp.com/icons/{server['id']}/{server['icon']}")
-        
+        server_icon = requests.get(
+            f"https://cdn.discordapp.com/icons/{server['id']}/{server['icon']}"
+        )
+
         # Handle no image servers
         if server_icon.status_code == 404:
             continue
-        
+
         if not os.path.exists(f"{platformdirs.user_cache_dir('QTCord')}/servers"):
             os.makedirs(f"{platformdirs.user_cache_dir('QTCord')}/servers")
 
-        with open(f"{platformdirs.user_cache_dir('QTCord')}/servers/{server['id']}.png", "wb") as f:
+        with open(
+            f"{platformdirs.user_cache_dir('QTCord')}/servers/{server['id']}.png", "wb"
+        ) as f:
             for chunk in server_icon.iter_content():
                 f.write(chunk)
-        
+
     # print(f"https://cdn.discordapp.com/icons/{r.json()[1]["id"]}/{r.json()[1]["icon"]}")
     return r.json()
 
@@ -145,6 +191,7 @@ def get_guilds() -> dict:
 def get_guild_channels(guild_id: int) -> dict:
     """
     Returns all channels in a guild.
+
     Args:
         guild_id (int): Any guild that the current user is in.
 
@@ -152,8 +199,7 @@ def get_guild_channels(guild_id: int) -> dict:
         dict: The channels in the guild.
     """
 
-    r = requests.get(f"{api_base}/guilds/{guild_id}/channels",
-                     headers=headers)
+    r = requests.get(f"{api_base}/guilds/{guild_id}/channels", headers=headers)
 
     return r.json()
 
@@ -174,11 +220,10 @@ def login(email: str, password: str, totp_code: str = ""):
         "password": password,
         "undelete": False,
         "login_source": None,
-        "gift_code_sku_id": None
+        "gift_code_sku_id": None,
     }
 
-    r = requests.post(f"{api_base}/auth/login",
-                      json=payload)
+    r = requests.post(f"{api_base}/auth/login", json=payload)
 
     # Check for errors
     if r.json().get("errors", False):
@@ -190,10 +235,7 @@ def login(email: str, password: str, totp_code: str = ""):
     else:
         # If we have 2fa with totp
         if r.json().get("totp", False):
-            totp_payload = {
-                "ticket": r.json()["ticket"],
-                "code": totp_code
-            }
+            totp_payload = {"ticket": r.json()["ticket"], "code": totp_code}
 
             res = requests.post(f"{api_base}/auth/mfa/totp", json=totp_payload)
 
@@ -215,11 +257,12 @@ def login(email: str, password: str, totp_code: str = ""):
 def send_typing(channel: int):
     """
     Sends a typing indicator to a channel.
+
     Args:
         channel (int): The discord channel to send the typing indicator to
 
     Returns:
         None
     """
-    
+
     requests.post(f"{api_base}/channels/{channel}/typing", headers=headers)
