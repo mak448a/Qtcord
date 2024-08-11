@@ -2,7 +2,6 @@ import os
 import requests
 import json
 import platformdirs
-from discord_status import keep_online
 
 
 api_base = "https://discord.com/api/v9"

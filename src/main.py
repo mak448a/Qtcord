@@ -29,6 +29,7 @@ import platformdirs
 
 from discord_worker import Worker
 import discord_integration
+import discord_status
 
 # UI imports
 from ui.main_ui import Ui_MainWindow
@@ -142,7 +143,7 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
 
     def setup(self):
         if auth:
-            discord_integration.keep_online()
+            discord_status.keep_online()
         
         self.connect_signal_slots()
 

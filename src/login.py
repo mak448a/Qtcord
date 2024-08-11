@@ -1,6 +1,7 @@
 from PySide6.QtWidgets import QMainWindow
 from ui import login_ui
-from discord_integration import login, load_token, keep_online
+from discord_integration import login, load_token
+from discord_status import keep_online
 import platformdirs
 
 
