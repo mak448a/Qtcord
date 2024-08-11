@@ -205,10 +205,11 @@ def login(email: str, password: str, totp_code: str = ""):
                 # Else, we have our token!
                 return res.json()["token"]
         else:
-            # This happens when it is not a totp user.
-            # We probably have a sms authenticator here.
-            print("Error. Maybe you have SMS 2FA? SMS 2FA is not supported currently.\n" +
-                  "Ask for it at https://github.com/mak448a/QTCord/issues")
+            print(
+                "Error. You probably entered in your credentials wrong.\n"
+                + "Or maybe you have SMS 2FA? SMS 2FA is not supported currently.\n"
+                + "Ask for it at https://github.com/mak448a/QTCord/issues"
+            )
             return None
 
 
