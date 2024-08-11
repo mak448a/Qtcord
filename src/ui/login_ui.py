@@ -147,6 +147,12 @@ class Ui_MainWindow(object):
 
         self.verticalLayout.addItem(self.verticalSpacer_2)
 
+        self.label_4 = QLabel(self.centralwidget)
+        self.label_4.setObjectName(u"label_4")
+        self.label_4.setAlignment(Qt.AlignmentFlag.AlignCenter)
+
+        self.verticalLayout.addWidget(self.label_4)
+
         self.info_frame = QFrame(self.centralwidget)
         self.info_frame.setObjectName(u"info_frame")
         self.info_frame.setFrameShape(QFrame.Shape.NoFrame)
@@ -161,15 +167,15 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_4.addWidget(self.info)
 
-        self.verticalSpacer_3 = QSpacerItem(20, 20, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Fixed)
-
-        self.verticalLayout_4.addItem(self.verticalSpacer_3)
-
 
         self.verticalLayout_2.addLayout(self.verticalLayout_4)
 
 
         self.verticalLayout.addWidget(self.info_frame)
+
+        self.verticalSpacer_3 = QSpacerItem(20, 20, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Fixed)
+
+        self.verticalLayout.addItem(self.verticalSpacer_3)
 
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
@@ -185,10 +191,11 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"Login to Discord", None))
-        self.label_3.setText(QCoreApplication.translate("MainWindow", u"Email", None))
-        self.label_2.setText(QCoreApplication.translate("MainWindow", u"Password", None))
+        self.label_3.setText(QCoreApplication.translate("MainWindow", u"Email *", None))
+        self.label_2.setText(QCoreApplication.translate("MainWindow", u"Password *", None))
         self.label_3u.setText(QCoreApplication.translate("MainWindow", u"TOTP Code", None))
         self.pushButton.setText(QCoreApplication.translate("MainWindow", u"Login", None))
+        self.label_4.setText(QCoreApplication.translate("MainWindow", u"Fields marked with * are required.", None))
         self.info.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:12pt; font-weight:700; color:#ff0004;\">Error! Invalid credentials. Check your email,</span></p><p><span style=\" font-size:12pt; font-weight:700; color:#ff0004;\">password, and TOTP code (if you use it)!</span></p><p><span style=\" font-size:12pt; font-weight:700; color:#ff0004;\">You could also be ratelimited.</span></p></body></html>", None))
     # retranslateUi
 
