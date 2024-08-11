@@ -40,6 +40,7 @@ def validate_token() -> bool:
     else:
         return False
 
+
 # If token is invalid, delete it and log us out.
 if not validate_token():
     print("TOKEN INVALID")
