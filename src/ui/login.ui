@@ -47,6 +47,16 @@
      </widget>
     </item>
     <item>
+     <widget class="QLabel" name="label_5">
+      <property name="text">
+       <string>WARNING: I'm not responsible for account bans</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item>
      <layout class="QVBoxLayout" name="verticalLayout_3">
       <property name="topMargin">
        <number>50</number>
@@ -281,7 +291,7 @@
          <item>
           <widget class="QLabel" name="info">
            <property name="text">
-            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:700; color:#ff0004;&quot;&gt;Error! Invalid credentials. Check your email,&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:700; color:#ff0004;&quot;&gt;password, and TOTP code (if you use it)!&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:700; color:#ff0004;&quot;&gt;You could also be ratelimited.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:700; color:#ff0004;&quot;&gt;Error! Invalid credentials. Check your email,&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:700; color:#ff0004;&quot;&gt;password, and TOTP code (if you use it)!&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:700; color:#ff0004;&quot;&gt;You could also be rate-limited.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
            </property>
            <property name="alignment">
             <set>Qt::AlignmentFlag::AlignCenter</set>

@@ -42,6 +42,12 @@ class Ui_MainWindow(object):
 
         self.verticalLayout.addWidget(self.label)
 
+        self.label_5 = QLabel(self.centralwidget)
+        self.label_5.setObjectName(u"label_5")
+        self.label_5.setAlignment(Qt.AlignmentFlag.AlignCenter)
+
+        self.verticalLayout.addWidget(self.label_5)
+
         self.verticalLayout_3 = QVBoxLayout()
         self.verticalLayout_3.setObjectName(u"verticalLayout_3")
         self.verticalLayout_3.setContentsMargins(-1, 50, -1, -1)
@@ -191,11 +197,12 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"Login to Discord", None))
+        self.label_5.setText(QCoreApplication.translate("MainWindow", u"WARNING: I'm not responsible for account bans", None))
         self.label_3.setText(QCoreApplication.translate("MainWindow", u"Email *", None))
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"Password *", None))
         self.label_3u.setText(QCoreApplication.translate("MainWindow", u"TOTP Code", None))
         self.pushButton.setText(QCoreApplication.translate("MainWindow", u"Login", None))
         self.label_4.setText(QCoreApplication.translate("MainWindow", u"Fields marked with * are required.", None))
-        self.info.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:12pt; font-weight:700; color:#ff0004;\">Error! Invalid credentials. Check your email,</span></p><p><span style=\" font-size:12pt; font-weight:700; color:#ff0004;\">password, and TOTP code (if you use it)!</span></p><p><span style=\" font-size:12pt; font-weight:700; color:#ff0004;\">You could also be ratelimited.</span></p></body></html>", None))
+        self.info.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:12pt; font-weight:700; color:#ff0004;\">Error! Invalid credentials. Check your email,</span></p><p><span style=\" font-size:12pt; font-weight:700; color:#ff0004;\">password, and TOTP code (if you use it)!</span></p><p><span style=\" font-size:12pt; font-weight:700; color:#ff0004;\">You could also be rate-limited.</span></p></body></html>", None))
     # retranslateUi
 

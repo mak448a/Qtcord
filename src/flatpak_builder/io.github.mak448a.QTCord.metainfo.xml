@@ -9,7 +9,7 @@
     <description>
         <p>QTCord is a Discord client built with QT aiming to bring a lightweight, native experience.</p>
         <p>Please report bugs and account bans at https://github.com/mak448a/QTCord/issues.</p>
-        <p>I am not responsible if your account gets banned with this app, as it is against the Discord TOS.</p>
+        <p>DISCLAIMER: I am not responsible if your account gets banned with this app, as it is against the Discord TOS.</p>
     </description>
     <url type="homepage">https://github.com/mak448a/QTCord</url>
     <metadata_license>MIT</metadata_license>
@@ -26,6 +26,11 @@
       <content_attribute id="social-chat">intense</content_attribute>
     </content_rating>
     <releases>
+      <release version="v0.0.18" date="2024-8-10" type="stable">
+        <description>
+          <p>Added warning at login screen</p>
+        </description>
+      </release>
       <release version="v0.0.17" date="2024-8-10" type="stable">
         <description>
           <p>Added TOTP 2FA</p>
