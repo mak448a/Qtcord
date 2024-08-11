@@ -16,7 +16,7 @@ def load_token():
     if os.path.isfile(platformdirs.user_config_dir("QTCord") + "/discordauth.txt"):
         with open(platformdirs.user_config_dir("QTCord") + "/discordauth.txt") as f:
             auth = f.read()
-        headers["authorization"] = auth
+        headers["authorization"] = auth.strip()
 
 
 # Load token
