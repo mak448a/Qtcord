@@ -141,7 +141,9 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
             self.ui.textBrowser.verticalScrollBar().setValue(self.ui.textBrowser.verticalScrollBar().maximum())
 
     def setup(self):
-        discord_integration.keep_online()
+        if auth:
+            discord_integration.keep_online()
+        
         self.connect_signal_slots()
 
         self.ui.lineEdit.setFocus()

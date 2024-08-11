@@ -1,6 +1,5 @@
 # DISCLAIMER: Some of this code has been written by ChatGPT. Be warned.
 
-
 import threading
 import json
 import time
@@ -10,13 +9,9 @@ import platformdirs
 import websocket
 
 
-# Get Discord token
-if os.path.isfile(platformdirs.user_config_dir("QTCord") + "/discordauth.txt"):
-    with open(platformdirs.user_config_dir("QTCord") + "/discordauth.txt") as f:
-        bot_token = f.read()
-
 # This will be set later
 heartbeat_interval = None
+bot_token = None
 
 
 def _start():
@@ -80,4 +75,13 @@ def _start():
 
 
 def keep_online():
+    # Get Discord token
+    if os.path.isfile(platformdirs.user_config_dir("QTCord") + "/discordauth.txt"):
+        with open(platformdirs.user_config_dir("QTCord") + "/discordauth.txt") as f:
+            bot_token = f.read()
+
+    # Stop if bot token isn't defined
+    if not bot_token:
+        return
+
     threading.Thread(target=_start, daemon=True).start()

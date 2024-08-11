@@ -1,6 +1,6 @@
 from PySide6.QtWidgets import QMainWindow
 from ui import login_ui
-from discord_integration import login, load_token
+from discord_integration import login, load_token, keep_online
 import platformdirs
 
 
@@ -18,12 +18,14 @@ class LoginUI(QMainWindow, login_ui.Ui_MainWindow):
         self.ui.password.returnPressed.connect(self.switch)
 
     def switch(self):
+        # Grab email and password from the UI fields
         email = self.ui.email.text()
         password = self.ui.password.text()
+        # Check on our end before validating with Discord
         valid = email and password
 
         if valid:
-            # Reset our UI elements
+            # Reset UI elements
             self.ui.email.setText("")
             self.ui.password.setText("")
             self.ui.info_frame.hide()
@@ -32,12 +34,17 @@ class LoginUI(QMainWindow, login_ui.Ui_MainWindow):
             _token = login(email, password)
 
             if _token:
+                # Save the token
                 with open(
                     platformdirs.user_config_dir("QTCord") + "/discordauth.txt", "w"
                 ) as f:
                     f.write(_token)
 
+                # Load the token
                 load_token()
+
+                # Open a connection to Discord to add the online indicator
+                keep_online()
 
                 # Switch the page to the chat page
                 self.switcher.setCurrentIndex(self.switcher.currentIndex() + 1)
