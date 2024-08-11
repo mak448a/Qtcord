@@ -25,7 +25,7 @@ load_token()
 
 def validate_token() -> bool:
     """
-    Checks whether a token is valid or not
+    Checks whether the token is valid or not
 
     Returns:
         bool: Valid or not
@@ -41,10 +41,13 @@ def validate_token() -> bool:
         return False
 
 
-# If token is invalid, delete it and log us out.
+# If token is invalid, delete it and log us out.\
 if not validate_token():
-    print("TOKEN INVALID")
-    os.remove(platformdirs.user_config_dir("QTCord") + "/discordauth.txt")
+    # If there is a token and it's invalid
+    if os.path.exists(platformdirs.user_config_dir("QTCord") + "/discordauth.txt"):
+        print("TOKEN INVALID")
+        os.remove(platformdirs.user_config_dir("QTCord") + "/discordauth.txt")
+
 
 
 def get_messages(channel_id: int, limit: int = 100) -> list:
