@@ -99,6 +99,31 @@ class Ui_MainWindow(object):
 
         self.verticalLayout.addLayout(self.horizontalLayout_6)
 
+        self.horizontalLayout_2 = QHBoxLayout()
+        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
+        self.horizontalSpaceru = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.horizontalLayout_2.addItem(self.horizontalSpaceru)
+
+        self.label_3u = QLabel(self.centralwidget)
+        self.label_3u.setObjectName(u"label_3u")
+        self.label_3u.setMinimumSize(QSize(80, 0))
+        self.label_3u.setAlignment(Qt.AlignmentFlag.AlignCenter)
+
+        self.horizontalLayout_2.addWidget(self.label_3u)
+
+        self.totp = QLineEdit(self.centralwidget)
+        self.totp.setObjectName(u"totp")
+
+        self.horizontalLayout_2.addWidget(self.totp)
+
+        self.horizontalSpacer_3u = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.horizontalLayout_2.addItem(self.horizontalSpacer_3u)
+
+
+        self.verticalLayout.addLayout(self.horizontalLayout_2)
+
         self.horizontalLayout_4 = QHBoxLayout()
         self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
         self.horizontalLayout_4.setContentsMargins(-1, 10, -1, -1)
@@ -162,7 +187,8 @@ class Ui_MainWindow(object):
         self.label.setText(QCoreApplication.translate("MainWindow", u"Login to Discord", None))
         self.label_3.setText(QCoreApplication.translate("MainWindow", u"Email", None))
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"Password", None))
+        self.label_3u.setText(QCoreApplication.translate("MainWindow", u"TOTP Code", None))
         self.pushButton.setText(QCoreApplication.translate("MainWindow", u"Login", None))
-        self.info.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:12pt; font-weight:700; color:#ff0004;\">Error! Invalid credentials. Check your email and password!</span></p></body></html>", None))
+        self.info.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:12pt; font-weight:700; color:#ff0004;\">Error! Invalid credentials. Check your email,</span></p><p><span style=\" font-size:12pt; font-weight:700; color:#ff0004;\">password, and TOTP code (if you use it)!</span></p><p><span style=\" font-size:12pt; font-weight:700; color:#ff0004;\">You could also be ratelimited.</span></p></body></html>", None))
     # retranslateUi
 

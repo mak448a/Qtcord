@@ -159,9 +159,10 @@ def get_guild_channels(guild_id: int) -> dict:
     return r.json()
 
 
-def login(email: str, password: str):
+def login(email: str, password: str, totp_code: str = ""):
     """
     Takes in an email and a password, logs in, and spits out a token.
+
     Args:
         email (str): Your email, e.g., example@example.com
         password (str): Your password for that account.
@@ -188,8 +189,27 @@ def login(email: str, password: str):
     if r.json().get("token", False):
         return r.json()["token"]
     else:
-        # We were probably rate limited
-        return None
+        # If we have 2fa with totp
+        if r.json().get("totp", False):
+            totp_payload = {
+                "ticket": r.json()["ticket"],
+                "code": totp_code
+            }
+
+            res = requests.post(f"{api_base}/auth/mfa/totp", json=totp_payload)
+
+            if res.status_code == 400:
+                # If authentication was a failure
+                return None
+            else:
+                # Else, we have our token!
+                return res.json()["token"]
+        else:
+            # This happens when it is not a totp user.
+            # We probably have a sms authenticator here.
+            print("Error. Maybe you have SMS 2FA? SMS 2FA is not supported currently.\n" +
+                  "Ask for it at https://github.com/mak448a/QTCord/issues")
+            return None
 
 
 def send_typing(channel: int):

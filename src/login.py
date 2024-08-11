@@ -18,9 +18,11 @@ class LoginUI(QMainWindow, login_ui.Ui_MainWindow):
         self.ui.password.returnPressed.connect(self.switch)
 
     def switch(self):
-        # Grab email and password from the UI fields
+        # Grab email, password, and totp code from the UI fields
         email = self.ui.email.text()
         password = self.ui.password.text()
+        totp = self.ui.totp.text()
+
         # Check on our end before validating with Discord
         valid = email and password
 
@@ -31,7 +33,12 @@ class LoginUI(QMainWindow, login_ui.Ui_MainWindow):
             self.ui.info_frame.hide()
 
             # Get the token from the Discord API using our credentials.
-            _token = login(email, password)
+            if totp:
+                # The user has 2fa
+                _token = login(email, password, totp_code=totp)
+            else:
+                # No 2fa
+                _token = login(email, password)
 
             if _token:
                 # Save the token
