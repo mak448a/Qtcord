@@ -30,8 +30,11 @@ def validate_token() -> bool:
     Returns:
         bool: Valid or not
     """
-
-    r = requests.get(f"{api_base}/users/@me/relationships", headers=headers)
+    try:
+        r = requests.get(f"{api_base}/users/@me/relationships", headers=headers)
+    except requests.exceptions.ConnectionError:
+        # Just assume that the token is valid, since there's no internet or Discord is down.
+        return True
 
     if r.status_code == 200:
         return True
@@ -41,7 +44,8 @@ def validate_token() -> bool:
         return False
 
 
-# If token is invalid, delete it and log us out.\
+# If token is invalid, delete it and log us out.
+# Inside validate_token is a function that checks for internet, too.
 if not validate_token():
     # If there is a token and it's invalid
     if os.path.exists(platformdirs.user_config_dir("QTCord") + "/discordauth.txt"):
