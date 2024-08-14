@@ -85,7 +85,8 @@ def get_messages(channel_id: int, limit: int = 100) -> list:
         return new_list
 
     for message in r.json():
-        # TODO: You can get the author's profile picture from message["avatar"].
+        # TODO: You can get the author's profile picture ID from message["avatar"].
+        # TODO: Then, https://cdn.discordapp.com/avatars/user_id/avatar_id.webp?size={size} (size can equal 64, 128, 256, etc.)
         # TODO: Make sure to add error handling for no profile picture.
         if not message["author"].get("global_name", False):
             author = message["author"]["username"]
