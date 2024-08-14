@@ -2,6 +2,7 @@ import os
 import requests
 import json
 import platformdirs
+from datetime import datetime
 
 
 api_base = "https://discord.com/api/v9"
@@ -70,12 +71,12 @@ def get_messages(channel_id: int, limit: int = 100) -> list:
         f"{api_base}/channels/{channel_id}/messages?limit={limit}", headers=headers
     )
 
-    jsonn = json.loads(r.text)
     new_list = []
 
     if r.status_code != 200:
         new_list.append(
             {
+                "timestamp": datetime.now(),
                 "username": "System",
                 "content": "Error. This may be a forum channel, or you're not allowed to view the content.",
                 "id": 0,
@@ -83,23 +84,34 @@ def get_messages(channel_id: int, limit: int = 100) -> list:
         )
         return new_list
 
-    for value in jsonn:
-        if not value["author"].get("global_name", False):
-            author = value["author"]["username"]
+    for message in r.json():
+        # TODO: You can get the author's profile picture from message["avatar"].
+        # TODO: Make sure to add error handling for no profile picture.
+        if not message["author"].get("global_name", False):
+            author = message["author"]["username"]
         else:
-            author = value["author"]["global_name"]
-        if not value["content"]:
-            new_list.append(
-                {
-                    "username": author,
-                    "content": "[(call/image/other)]",
-                    "id": value["id"],
-                }
-            )
+            author = message["author"]["global_name"]
+
+        if not message["content"]:
+            content = "[(call/image/other)]"
         else:
-            new_list.append(
-                {"username": author, "content": value["content"], "id": value["id"]}
-            )
+            content = message["content"]
+
+        # For some reason, messages can use two, slightly different, timestamp formats.
+        time_str = message["timestamp"]
+        if len(time_str) == 32:
+            timestamp = datetime.strptime(time_str, "%Y-%m-%dT%H:%M:%S.%f%z")
+        else:
+            timestamp = datetime.strptime(time_str, "%Y-%m-%dT%H:%M:%S%z")
+
+        new_list.append(
+            {
+                "timestamp": timestamp.astimezone(),
+                "username": author,
+                "content": content,
+                "id": message["id"]
+            }
+        )
 
     # Reverse the list of messages
     new_list.reverse()
