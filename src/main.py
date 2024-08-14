@@ -108,8 +108,6 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
         if text:
             self.ui.lineEdit.setText("")
 
-            self.messages += f"You: {text}\n"
-
             discord_integration.send_message(text, self.channel)
 
             self.update_messages()
@@ -209,8 +207,9 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
             buttons[i].clicked.connect((lambda channel=channel: lambda: self.switch_channel(channel))(channel))
 
     def switch_channel(self, _id):
-        self.channel = _id
-        self.ui.textBrowser.setText("No messages in this conversation yet!")
+        if _id != self.channel:
+            self.channel = _id
+            self.ui.textBrowser.setText("No messages in this conversation yet!")
 
     def get_servers(self):
         self.guilds = discord_integration.get_guilds()
