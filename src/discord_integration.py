@@ -84,19 +84,21 @@ def get_messages(channel_id: int, limit: int = 100) -> list:
         )
         return new_list
 
-    for value in r.json():
-        if not value["author"].get("global_name", False):
-            author = value["author"]["username"]
+    for message in r.json():
+        # TODO: You can get the author's profile picture from message["avatar"].
+        # TODO: Make sure to add error handling for no profile picture.
+        if not message["author"].get("global_name", False):
+            author = message["author"]["username"]
         else:
-            author = value["author"]["global_name"]
+            author = message["author"]["global_name"]
 
-        if not value["content"]:
+        if not message["content"]:
             content = "[(call/image/other)]"
         else:
-            content = value["content"]
+            content = message["content"]
 
         # For some reason, messages can use two, slightly different, timestamp formats.
-        time_str = value["timestamp"]
+        time_str = message["timestamp"]
         if len(time_str) == 32:
             timestamp = datetime.strptime(time_str, "%Y-%m-%dT%H:%M:%S.%f%z")
         else:
@@ -107,7 +109,7 @@ def get_messages(channel_id: int, limit: int = 100) -> list:
                 "timestamp": timestamp.astimezone(),
                 "username": author,
                 "content": content,
-                "id": value["id"]
+                "id": message["id"]
             }
         )
 
