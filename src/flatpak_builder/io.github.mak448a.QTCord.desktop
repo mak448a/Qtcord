@@ -1,9 +1,9 @@
 [Desktop Entry]
 Name=Qtcord
-Icon=io.github.mak448a.Qtcord
+Icon=io.github.mak448a.QTCord
 Comment=Lightweight Discord Client
 GenericName=Lightweight Discord Client
-Exec=io.github.mak448a.Qtcord
+Exec=io.github.mak448a.QTCord
 NoDisplay=false
 StartupNotify=true
 Terminal=false

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Copyright 2024 mak448a -->
 <component type="desktop-application">
-    <id>io.github.mak448a.Qtcord</id>
+    <id>io.github.mak448a.QTCord</id>
     <name>Qtcord</name>
     <summary>Lightweight Discord Client</summary>
     <launchable type="desktop-id">io.github.mak448a.Qtcord.desktop</launchable>
