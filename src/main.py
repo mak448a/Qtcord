@@ -87,13 +87,13 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
         self.ui.lineEdit.textChanged.connect(self.send_typing)
         self.ui.lineEdit.returnPressed.connect(self.handle_input)
 
-    def open_issues(self): webbrowser.open("https://github.com/mak448a/QTCord")
+    def open_issues(self): webbrowser.open("https://github.com/mak448a/Qtcord")
 
     def about(self):
         QMessageBox.about(
             self,
-            "About QTCord",
-            "<p>QTCord (c) mak448a 2023-2024</p>"
+            "About Qtcord",
+            "<p>Qtcord (c) mak448a 2023-2024</p>"
             "<p>This app was built with the following:</p>"
             "<p>- PySide6</p>"
             "<p>- Python</p>"
@@ -163,8 +163,8 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
         self.timer.start()
 
         def get_info():
-            if os.path.isfile(platformdirs.user_config_dir("QTCord") + "/discordauth.txt"):
-                with open(platformdirs.user_config_dir("QTCord") + "/discordauth.txt") as f:
+            if os.path.isfile(platformdirs.user_config_dir("Qtcord") + "/discordauth.txt"):
+                with open(platformdirs.user_config_dir("Qtcord") + "/discordauth.txt") as f:
                     if f.read():
                         auth2 = True
                         discord_integration.load_token()
@@ -219,8 +219,8 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
         for i, guild in enumerate(self.guilds):
             buttons[i] = QPushButton(text=guild["name"])
 
-            if os.path.exists(os.path.join(platformdirs.user_cache_dir("QTCord"), "servers", f"{guild['id']}.png")):
-                icon = QIcon(os.path.join(platformdirs.user_cache_dir("QTCord"), "servers", f"{guild['id']}.png"))
+            if os.path.exists(os.path.join(platformdirs.user_cache_dir("Qtcord"), "servers", f"{guild['id']}.png")):
+                icon = QIcon(os.path.join(platformdirs.user_cache_dir("Qtcord"), "servers", f"{guild['id']}.png"))
             else:
                 icon = QIcon(os.path.join(current_dir, "assets", "server.png"))
             
@@ -279,7 +279,7 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
     
     def logout_account(self):
         # Remove Discord token from discordauth.txt
-        os.remove(platformdirs.user_config_dir("QTCord") + "/discordauth.txt")
+        os.remove(platformdirs.user_config_dir("Qtcord") + "/discordauth.txt")
         # Switch back to the first page, the login page.
         switcher.setCurrentIndex(switcher.currentIndex() - 1)
 
@@ -288,7 +288,7 @@ def handle_no_internet() -> None:
         requests.get("https://discord.com")
     except requests.exceptions.ConnectionError:
         app = QApplication(sys.argv)
-        app.setDesktopFileName("io.github.mak448a.QTCord")
+        app.setDesktopFileName("io.github.mak448a.Qtcord")
         NoInternetUI().exec()
         sys.exit()
 
@@ -298,21 +298,21 @@ if __name__ == "__main__":
     handle_no_internet()
 
     # Make configuration and cache directories
-    if not os.path.exists(platformdirs.user_config_dir("QTCord")):
-        os.makedirs(platformdirs.user_config_dir("QTCord"))
+    if not os.path.exists(platformdirs.user_config_dir("Qtcord")):
+        os.makedirs(platformdirs.user_config_dir("Qtcord"))
     
-    if not os.path.exists(platformdirs.user_cache_dir("QTCord")):
-        os.makedirs(platformdirs.user_cache_dir("QTCord"))
+    if not os.path.exists(platformdirs.user_cache_dir("Qtcord")):
+        os.makedirs(platformdirs.user_cache_dir("Qtcord"))
     
     
     app = QApplication(sys.argv)
-    app.setDesktopFileName("io.github.mak448a.QTCord")
+    app.setDesktopFileName("io.github.mak448a.Qtcord")
 
     # Add widget to switch between pages of UI
     switcher = QtWidgets.QStackedWidget()
 
-    if os.path.isfile(platformdirs.user_config_dir("QTCord") + "/discordauth.txt"):
-        with open(platformdirs.user_config_dir("QTCord") + "/discordauth.txt") as f:
+    if os.path.isfile(platformdirs.user_config_dir("Qtcord") + "/discordauth.txt"):
+        with open(platformdirs.user_config_dir("Qtcord") + "/discordauth.txt") as f:
             if f.read():
                 auth = True
             else:
@@ -330,7 +330,7 @@ if __name__ == "__main__":
 
     # Set window properties
     switcher.resize(840, 500)
-    switcher.setWindowTitle("QTCord")
+    switcher.setWindowTitle("Qtcord")
     icon_path = os.path.join(current_dir, "assets", "smiley.svg")
     switcher.setWindowIcon(QIcon(icon_path))
 

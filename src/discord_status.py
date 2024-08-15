@@ -76,8 +76,8 @@ def _start():
 
 def keep_online():
     # Get Discord token
-    if os.path.isfile(platformdirs.user_config_dir("QTCord") + "/discordauth.txt"):
-        with open(platformdirs.user_config_dir("QTCord") + "/discordauth.txt") as f:
+    if os.path.isfile(platformdirs.user_config_dir("Qtcord") + "/discordauth.txt"):
+        with open(platformdirs.user_config_dir("Qtcord") + "/discordauth.txt") as f:
             bot_token = f.read()
 
     # Stop if bot token isn't defined

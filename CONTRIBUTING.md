@@ -1,4 +1,4 @@
-# QTCord Contributor Agreement and Guidelines
+# Qtcord Contributor Agreement and Guidelines
 
 By contributing to this repository, you agree that I (mak448a) have the rights to use the code contributed to this repository however I want, under any license.
 

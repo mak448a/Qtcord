@@ -23,7 +23,7 @@ class Ui_NoInternet(object):
         if not NoInternet.objectName():
             NoInternet.setObjectName(u"NoInternet")
         NoInternet.resize(400, 300)
-        icon = QIcon(QIcon.fromTheme(u"io.github.mak448a.QTCord"))
+        icon = QIcon(QIcon.fromTheme(u"io.github.mak448a.Qtcord"))
         NoInternet.setWindowIcon(icon)
         self.gridLayout = QGridLayout(NoInternet)
         self.gridLayout.setObjectName(u"gridLayout")
@@ -39,7 +39,7 @@ class Ui_NoInternet(object):
     # setupUi
 
     def retranslateUi(self, NoInternet):
-        NoInternet.setWindowTitle(QCoreApplication.translate("NoInternet", u"QTCord", None))
+        NoInternet.setWindowTitle(QCoreApplication.translate("NoInternet", u"Qtcord", None))
         self.textBrowser.setHtml(QCoreApplication.translate("NoInternet", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
@@ -48,7 +48,7 @@ class Ui_NoInternet(object):
 "li.checked::marker { content: \"\\2612\"; }\n"
 "</style></head><body style=\" font-family:'Noto Sans'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:28pt; font-weight:700;\">Couldn't connect to Discord!</span></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">QTCord requires internet to connect to Discord.</p>\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Qtcord requires internet to connect to Discord.</p>\n"
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px"
                         "; -qt-block-indent:0; text-indent:0px;\">Either you aren't connected to a Wi-Fi network, or Discord is down.</p>\n"
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Go to https://discordstatus.com/ to check if Discord is down.</p></body></html>", None))

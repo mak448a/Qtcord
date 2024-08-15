@@ -14,9 +14,9 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12.4"
-      - run: git clone https://github.com/mak448a/QTCord/ --depth=1
-      - run: cd QTCord && pip install -r requirements.txt && pip install pyinstaller && python3 helper_scripts/package_windows.py
+      - run: git clone https://github.com/mak448a/Qtcord/ --depth=1
+      - run: cd Qtcord && pip install -r requirements.txt && pip install pyinstaller && python3 helper_scripts/package_windows.py
       - uses: actions/upload-artifact@v4
         with:
-            name: "QTCord-Windows"
-            path: "QTCord/src/dist/QTCord"
+            name: "Qtcord-Windows"
+            path: "Qtcord/src/dist/Qtcord"

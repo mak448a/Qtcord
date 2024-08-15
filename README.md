@@ -4,11 +4,11 @@
 
 Qtcord is a Discord client built with QT aiming to bring a lightweight, native experience. I am not responsible if you get your account banned from this project.
 
-<a href='https://flathub.org/apps/io.github.mak448a.QTCord'>
+<a href='https://flathub.org/apps/io.github.mak448a.Qtcord'>
   <img width='150' alt='Download on Flathub' src='https://dl.flathub.org/assets/badges/flathub-badge-en.png'/>
 </a>
 
-[Download for Windows](https://github.com/mak448a/QTCord/releases)
+[Download for Windows](https://github.com/mak448a/Qtcord/releases)
 <br>
 
 ![Screenshot of Qtcord](demo1.png)

@@ -13,6 +13,6 @@ class LicensesUI(QDialog, licenses_ui.Ui_LicensesDialog):
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-    app.setDesktopFileName("io.github.mak448a.QTCord")
+    app.setDesktopFileName("io.github.mak448a.Qtcord")
     widget = LicensesUI()
     sys.exit(app.exec())

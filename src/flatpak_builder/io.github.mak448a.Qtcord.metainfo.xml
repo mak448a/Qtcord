@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Copyright 2024 mak448a -->
 <component type="desktop-application">
-    <id>io.github.mak448a.QTCord</id>
-    <name>QTCord</name>
+    <id>io.github.mak448a.Qtcord</id>
+    <name>Qtcord</name>
     <summary>Lightweight Discord Client</summary>
-    <launchable type="desktop-id">io.github.mak448a.QTCord.desktop</launchable>
+    <launchable type="desktop-id">io.github.mak448a.Qtcord.desktop</launchable>
     <developer_name>mak448a</developer_name>
     <description>
-        <p>QTCord is a Discord client built with QT aiming to bring a lightweight, native experience.</p>
-        <p>Please report bugs and account bans at https://github.com/mak448a/QTCord/issues.</p>
+        <p>Qtcord is a Discord client built with QT aiming to bring a lightweight, native experience.</p>
+        <p>Please report bugs and account bans at https://github.com/mak448a/Qtcord/issues.</p>
         <p>DISCLAIMER: I am not responsible if your account gets banned with this app, as it is against the Discord TOS.</p>
     </description>
-    <url type="homepage">https://github.com/mak448a/QTCord</url>
+    <url type="homepage">https://github.com/mak448a/Qtcord</url>
     <metadata_license>MIT</metadata_license>
     <project_license>MIT</project_license>
     <screenshots>
       <screenshot type="default">
-        <image type="source">https://github.com/mak448a/QTCord/raw/v0.0.17/demo1.png</image>
+        <image type="source">https://github.com/mak448a/Qtcord/raw/v0.0.17/demo1.png</image>
       </screenshot>
       <screenshot>
-        <image type="source">https://github.com/mak448a/QTCord/raw/v0.0.17/demo2.png</image>
+        <image type="source">https://github.com/mak448a/Qtcord/raw/v0.0.17/demo2.png</image>
       </screenshot>
     </screenshots>
     <content_rating type="oars-1.1">
@@ -42,7 +42,7 @@
         <description>
           <p>Use native theme</p>
         </description>
-        <url>https://github.com/mak448a/QTCord/releases/v0.0.15</url>
+        <url>https://github.com/mak448a/Qtcord/releases/v0.0.15</url>
       </release>
       <release version="v0.0.15" date="2024-8-8" type="stable">
         <description>
@@ -53,19 +53,19 @@
           <p>Add GitHub issues link</p>
           <p>Move titlebar entries around</p>
         </description>
-        <url>https://github.com/mak448a/QTCord/releases/v0.0.15</url>
+        <url>https://github.com/mak448a/Qtcord/releases/v0.0.15</url>
       </release>
       <release version="v0.0.14" date="2024-7-2" type="stable">
         <description>
           <p>- Add logout button</p>
         </description>
-        <url>https://github.com/mak448a/QTCord/releases/v0.0.14</url>
+        <url>https://github.com/mak448a/Qtcord/releases/v0.0.14</url>
       </release>
       <release version="v0.0.13" date="2024-3-24" type="stable">
         <description>
           <p>- Code cleanup</p>
         </description>
-        <url>https://github.com/mak448a/QTCord/releases/v0.0.13</url>
+        <url>https://github.com/mak448a/Qtcord/releases/v0.0.13</url>
       </release>
       <release version="v0.0.12" date="2024-3-19" type="stable">
         <description>
@@ -74,43 +74,43 @@
           <p>- Bold usernames in message display area</p>
           <p>- Add no internet dialog</p>
         </description>
-        <url>https://github.com/mak448a/QTCord/releases/v0.0.12</url>
+        <url>https://github.com/mak448a/Qtcord/releases/v0.0.12</url>
       </release>
       <release version="v0.0.11" date="2024-3-3" type="stable">
         <description>
           <p>Update icon scaling and add licenses viewer.</p>
         </description>
-        <url>https://github.com/mak448a/QTCord/releases/v0.0.11</url>
+        <url>https://github.com/mak448a/Qtcord/releases/v0.0.11</url>
       </release>
       <release version="v0.0.10" date="2024-2-27" type="stable">
         <description>
           <p>Fix icon not displaying on Wayland</p>
         </description>
-        <url>https://github.com/mak448a/QTCord/releases/v0.0.10</url>
+        <url>https://github.com/mak448a/Qtcord/releases/v0.0.10</url>
       </release>
       <release version="v0.0.9" date="2024-2-20" type="stable">
         <description>
           <p>Add "no messages" indicator and add a missing license.</p>
         </description>
-        <url>https://github.com/mak448a/QTCord/releases/v0.0.9</url>
+        <url>https://github.com/mak448a/Qtcord/releases/v0.0.9</url>
       </release>
       <release version="v0.0.8" date="2024-2-17" type="stable">
         <description>
           <p>Little fixes and improvements, such as updating the desktop entry.</p>
         </description>
-        <url>https://github.com/mak448a/QTCord/releases/v0.0.8</url>
+        <url>https://github.com/mak448a/Qtcord/releases/v0.0.8</url>
       </release>
       <release version="v0.0.4" date="2023-12-24" type="stable">
         <description>
           <p>Update app description</p>
         </description>
-        <url>https://github.com/mak448a/QTCord/releases/v0.0.4</url>
+        <url>https://github.com/mak448a/Qtcord/releases/v0.0.4</url>
       </release>
       <release version="v0.0.2" date="2023-12-14" type="stable">
         <description>
           <p>Initial release.</p>
         </description>
-        <url>https://github.com/mak448a/QTCord/releases/v0.0.2</url>
+        <url>https://github.com/mak448a/Qtcord/releases/v0.0.2</url>
       </release>
     </releases>
 </component>

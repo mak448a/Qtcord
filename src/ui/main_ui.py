@@ -189,7 +189,7 @@ class Ui_MainWindow(object):
     # setupUi
 
     def retranslateUi(self, MainWindow):
-        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"QTCord", None))
+        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"Qtcord", None))
         self.actionAbout.setText(QCoreApplication.translate("MainWindow", u"&About", None))
         self.actionQuit.setText(QCoreApplication.translate("MainWindow", u"&Quit", None))
         self.actionLicenses.setText(QCoreApplication.translate("MainWindow", u"&Licenses", None))

@@ -13,6 +13,6 @@ class NoInternetUI(QDialog, Ui_NoInternet):
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-    app.setDesktopFileName("io.github.mak448a.QTCord")
+    app.setDesktopFileName("io.github.mak448a.Qtcord")
     widget = NoInternetUI()
     sys.exit(app.exec())

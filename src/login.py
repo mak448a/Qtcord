@@ -44,7 +44,7 @@ class LoginUI(QMainWindow, login_ui.Ui_MainWindow):
             if _token:
                 # Save the token
                 with open(
-                    platformdirs.user_config_dir("QTCord") + "/discordauth.txt", "w"
+                    platformdirs.user_config_dir("Qtcord") + "/discordauth.txt", "w"
                 ) as f:
                     f.write(_token)
 

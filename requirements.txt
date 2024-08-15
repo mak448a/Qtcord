@@ -1,9 +1,9 @@
 # Essentials
 platformdirs~=4.2.2
-PySide6~=6.7.1
 requests~=2.32.3
-
 websocket-client~=1.8.0
+# Only essential if you don't have it installed in your system package manager.
+PySide6~=6.7.1
 
 
 # Depedencies of dependencies. You need not install these manually, but here for good measure.

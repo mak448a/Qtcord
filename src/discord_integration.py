@@ -1,6 +1,5 @@
 import os
 import requests
-import json
 import platformdirs
 from datetime import datetime
 
@@ -14,8 +13,8 @@ headers = {
 
 def load_token():
     global auth, headers
-    if os.path.isfile(platformdirs.user_config_dir("QTCord") + "/discordauth.txt"):
-        with open(platformdirs.user_config_dir("QTCord") + "/discordauth.txt") as f:
+    if os.path.isfile(platformdirs.user_config_dir("Qtcord") + "/discordauth.txt"):
+        with open(platformdirs.user_config_dir("Qtcord") + "/discordauth.txt") as f:
             auth = f.read()
         headers["authorization"] = auth.strip()
 
@@ -49,9 +48,9 @@ def validate_token() -> bool:
 # Inside validate_token is a function that checks for internet, too.
 if not validate_token():
     # If there is a token and it's invalid
-    if os.path.exists(platformdirs.user_config_dir("QTCord") + "/discordauth.txt"):
+    if os.path.exists(platformdirs.user_config_dir("Qtcord") + "/discordauth.txt"):
         print("TOKEN INVALID")
-        os.remove(platformdirs.user_config_dir("QTCord") + "/discordauth.txt")
+        os.remove(platformdirs.user_config_dir("Qtcord") + "/discordauth.txt")
 
 
 
@@ -188,7 +187,7 @@ def get_guilds() -> dict:
     # You get the rest of the info from this function.
     for server in r.json():
         if os.path.exists(
-            f"{platformdirs.user_cache_dir('QTCord')}/servers/{server['id']}.png"
+            f"{platformdirs.user_cache_dir('Qtcord')}/servers/{server['id']}.png"
         ):
             continue
 
@@ -201,11 +200,11 @@ def get_guilds() -> dict:
         if server_icon.status_code == 404:
             continue
 
-        if not os.path.exists(f"{platformdirs.user_cache_dir('QTCord')}/servers"):
-            os.makedirs(f"{platformdirs.user_cache_dir('QTCord')}/servers")
+        if not os.path.exists(f"{platformdirs.user_cache_dir('Qtcord')}/servers"):
+            os.makedirs(f"{platformdirs.user_cache_dir('Qtcord')}/servers")
 
         with open(
-            f"{platformdirs.user_cache_dir('QTCord')}/servers/{server['id']}.png", "wb"
+            f"{platformdirs.user_cache_dir('Qtcord')}/servers/{server['id']}.png", "wb"
         ) as f:
             for chunk in server_icon.iter_content():
                 f.write(chunk)
@@ -275,7 +274,7 @@ def login(email: str, password: str, totp_code: str = ""):
             print(
                 "Error. You probably entered in your credentials wrong.\n"
                 + "Or maybe you have SMS 2FA? SMS 2FA is not supported currently.\n"
-                + "Ask for it at https://github.com/mak448a/QTCord/issues"
+                + "Ask for it at https://github.com/mak448a/Qtcord/issues"
             )
             return None
 
