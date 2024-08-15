@@ -17,9 +17,11 @@
     <screenshots>
       <screenshot type="default">
         <image type="source">https://github.com/mak448a/Qtcord/raw/v0.0.18/demo1.png</image>
+        <caption>Server list view</caption>
       </screenshot>
       <screenshot>
         <image type="source">https://github.com/mak448a/Qtcord/raw/v0.0.18/demo2.png</image>
+        <caption>Channel list view</caption>
       </screenshot>
     </screenshots>
     <content_rating type="oars-1.1">
