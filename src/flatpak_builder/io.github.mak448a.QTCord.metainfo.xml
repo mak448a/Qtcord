@@ -4,7 +4,7 @@
     <id>io.github.mak448a.QTCord</id>
     <name>Qtcord</name>
     <summary>Lightweight Discord Client</summary>
-    <launchable type="desktop-id">io.github.mak448a.Qtcord.desktop</launchable>
+    <launchable type="desktop-id">io.github.mak448a.QTCord.desktop</launchable>
     <developer_name>mak448a</developer_name>
     <description>
         <p>Qtcord is a Discord client built with QT aiming to bring a lightweight, native experience.</p>
