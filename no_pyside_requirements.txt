@@ -1,0 +1,8 @@
+# You should use requirements.txt.
+# This is only for if you have PySide6 installed system-wide.
+# You'll have to make a venv with --system-site-packages.
+
+
+platformdirs~=4.2.2
+requests~=2.32.3
+websocket-client~=1.8.0
