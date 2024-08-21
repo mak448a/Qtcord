@@ -7,18 +7,22 @@ import requests
 current_dir = os.path.dirname(os.path.realpath(__file__)).replace(" ", "\\ ")  # NOQA (basically tells pycharm to shut up)
 
 # Regenerate ui from ui files
-if os.path.exists(f"{os.path.expanduser('~/Documents/regenerate_ui_files_indicator.txt')}"):  # NOQA
+if os.path.exists(
+    f"{os.path.expanduser('~/Documents/regenerate_ui_files_indicator.txt')}"
+):  # NOQA
     print("Regenerating ui files")
     os.system(f"pyside6-uic {current_dir}/ui/main.ui -o {current_dir}/ui/main_ui.py")  # NOQA
     os.system(f"pyside6-uic {current_dir}/ui/login.ui -o {current_dir}/ui/login_ui.py")  # NOQA
-    os.system(f"pyside6-uic {current_dir}/ui/licenses.ui -o {current_dir}/ui/licenses_ui.py")  # NOQA
-    os.system(f"pyside6-uic {current_dir}/ui/no_internet.ui -o {current_dir}/ui/no_internet.py")  # NOQA
+    os.system(
+        f"pyside6-uic {current_dir}/ui/licenses.ui -o {current_dir}/ui/licenses_ui.py"
+    )  # NOQA
+    os.system(
+        f"pyside6-uic {current_dir}/ui/no_internet.ui -o {current_dir}/ui/no_internet.py"
+    )  # NOQA
 
 
 # PySide imports
-from PySide6.QtWidgets import (
-    QApplication, QMainWindow, QMessageBox, QPushButton, QLabel
-)
+from PySide6.QtWidgets import QApplication, QMainWindow, QMessageBox, QPushButton
 
 from PySide6.QtGui import QShortcut, QKeySequence, QIcon
 from PySide6.QtCore import QTimer, QThreadPool
@@ -70,7 +74,6 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
         # Connect buttons to actions
         self.ui.pushButton.clicked.connect(self.handle_input)
 
-
         # Connect menubar actions
         self.ui.actionQuit.triggered.connect(sys.exit)
         self.ui.actionAbout.triggered.connect(self.about)
@@ -87,7 +90,8 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
         self.ui.lineEdit.textChanged.connect(self.send_typing)
         self.ui.lineEdit.returnPressed.connect(self.handle_input)
 
-    def open_issues(self): webbrowser.open("https://github.com/mak448a/Qtcord")
+    def open_issues(self):
+        webbrowser.open("https://github.com/mak448a/Qtcord")
 
     def about(self):
         QMessageBox.about(
@@ -146,7 +150,9 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
             self.ui.textBrowser.setText(self.messages)
 
             # Scroll to bottom
-            self.ui.textBrowser.verticalScrollBar().setValue(self.ui.textBrowser.verticalScrollBar().maximum())
+            self.ui.textBrowser.verticalScrollBar().setValue(
+                self.ui.textBrowser.verticalScrollBar().maximum()
+            )
 
     def setup(self):
         if auth:
@@ -163,8 +169,12 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
         self.timer.start()
 
         def get_info():
-            if os.path.isfile(platformdirs.user_config_dir("Qtcord") + "/discordauth.txt"):
-                with open(platformdirs.user_config_dir("Qtcord") + "/discordauth.txt") as f:
+            if os.path.isfile(
+                platformdirs.user_config_dir("Qtcord") + "/discordauth.txt"
+            ):
+                with open(
+                    platformdirs.user_config_dir("Qtcord") + "/discordauth.txt"
+                ) as f:
                     if f.read():
                         auth2 = True
                         discord_integration.load_token()
@@ -190,11 +200,13 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
 
     def get_friends(self):
         for friend in discord_integration.get_friends():
-            self.friends.append({
-                "global_name": friend["user"]["global_name"],
-                "channel": discord_integration.get_channel_from_id(friend["id"]),
-                "nickname": friend["nickname"]
-            })
+            self.friends.append(
+                {
+                    "global_name": friend["user"]["global_name"],
+                    "channel": discord_integration.get_channel_from_id(friend["id"]),
+                    "nickname": friend["nickname"],
+                }
+            )
 
         buttons = {}
         for i, friend in enumerate(self.friends):
@@ -204,7 +216,9 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
             channel = friend["channel"]
             # Oh my headache do not touch this code.
             # But if you do: https://stackoverflow.com/questions/19837486/lambda-in-a-loop
-            buttons[i].clicked.connect((lambda channel=channel: lambda: self.switch_channel(channel))(channel))
+            buttons[i].clicked.connect(
+                (lambda channel=channel: lambda: self.switch_channel(channel))(channel)
+            )
 
     def switch_channel(self, _id):
         if _id != self.channel:
@@ -219,8 +233,20 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
         for i, guild in enumerate(self.guilds):
             buttons[i] = QPushButton(text=guild["name"])
 
-            if os.path.exists(os.path.join(platformdirs.user_cache_dir("Qtcord"), "servers", f"{guild['id']}.png")):
-                icon = QIcon(os.path.join(platformdirs.user_cache_dir("Qtcord"), "servers", f"{guild['id']}.png"))
+            if os.path.exists(
+                os.path.join(
+                    platformdirs.user_cache_dir("Qtcord"),
+                    "servers",
+                    f"{guild['id']}.png",
+                )
+            ):
+                icon = QIcon(
+                    os.path.join(
+                        platformdirs.user_cache_dir("Qtcord"),
+                        "servers",
+                        f"{guild['id']}.png",
+                    )
+                )
             else:
                 icon = QIcon(os.path.join(current_dir, "assets", "server.png"))
 
@@ -231,7 +257,9 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
 
             # Oh my headache do not touch this code.
             # But if you do: https://stackoverflow.com/questions/19837486/lambda-in-a-loop
-            buttons[i].clicked.connect((lambda server=guild: lambda: self.get_channels_in_guild(server))(guild))
+            buttons[i].clicked.connect(
+                (lambda server=guild: lambda: self.get_channels_in_guild(server))(guild)
+            )
 
     def get_channels_in_guild(self, guild):
         # We want to change the tab to channels
@@ -250,7 +278,9 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
             if channel["type"] == 4 or channel["type"] == 2:
                 continue
             self.channel_buttons[i] = QPushButton(text=channel["name"])
-            self.ui.channels_scrollArea_contents.layout().addWidget(self.channel_buttons[i])
+            self.ui.channels_scrollArea_contents.layout().addWidget(
+                self.channel_buttons[i]
+            )
 
             # channel_buttons[i] = QPushButton(text=guild["name"])
             # self.ui.channels.layout().addWidget(channel_buttons[i])
@@ -283,6 +313,7 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
         # Exit the app
         sys.exit(0)
 
+
 def handle_no_internet() -> None:
     try:
         requests.get("https://discord.com")
@@ -303,7 +334,6 @@ if __name__ == "__main__":
 
     if not os.path.exists(platformdirs.user_cache_dir("Qtcord")):
         os.makedirs(platformdirs.user_cache_dir("Qtcord"))
-
 
     app = QApplication(sys.argv)
     app.setDesktopFileName("io.github.mak448a.Qtcord")
