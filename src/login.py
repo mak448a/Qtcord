@@ -17,6 +17,8 @@ class LoginUI(QMainWindow, login_ui.Ui_MainWindow):
         self.switcher = switcher
 
         self.ui.password.returnPressed.connect(self.switch)
+        self.ui.email.returnPressed.connect(self.switch)
+        self.ui.totp.returnPressed.connect(self.switch)
 
     def switch(self):
         # Grab email, password, and totp code from the UI fields
