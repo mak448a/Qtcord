@@ -265,8 +265,8 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
         channels = discord_integration.get_guild_channels(guild_id)
 
         buttons = {}
-        for i, guild_id in enumerate(channels):
-            buttons[i] = QPushButton(text=guild_id["name"])
+        for i, guild in enumerate(channels):
+            buttons[i] = QPushButton(text=guild["name"])
             self.ui.servers.layout().addWidget(buttons[i])
 
     def send_typing(self):
