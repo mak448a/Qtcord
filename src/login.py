@@ -6,8 +6,8 @@ import platformdirs
 
 
 class LoginUI(QMainWindow, login_ui.Ui_MainWindow):
-    def __init__(self, switcher, parent=None):
-        super().__init__(parent)
+    def __init__(self, switcher):
+        super().__init__()
 
         self.ui = login_ui.Ui_MainWindow()
         self.ui.setupUi(self)

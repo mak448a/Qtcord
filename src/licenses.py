@@ -4,8 +4,8 @@ import sys
 
 
 class LicensesUI(QDialog, licenses_ui.Ui_LicensesDialog):
-    def __init__(self, parent=None):
-        super().__init__(parent)
+    def __init__(self):
+        super().__init__()
 
         self.ui = licenses_ui.Ui_LicensesDialog()
         self.ui.setupUi(self)

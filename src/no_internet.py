@@ -4,8 +4,8 @@ import sys
 
 
 class NoInternetUI(QDialog, Ui_NoInternet):
-    def __init__(self, parent=None):
-        super().__init__(parent)
+    def __init__(self):
+        super().__init__()
 
         self.ui = Ui_NoInternet()
         self.ui.setupUi(self)

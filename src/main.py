@@ -50,8 +50,8 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
     channel_buttons = {}
     typing = False
 
-    def __init__(self, parent=None):
-        super().__init__(parent)
+    def __init__(self):
+        super().__init__()
 
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
@@ -99,7 +99,7 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
             "<p>- Python</p>"
             "<p>- Requests</p>",
         )
-    
+
     def display_licenses(self):
         LicensesUI().exec()
 
@@ -151,7 +151,7 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
     def setup(self):
         if auth:
             discord_status.keep_online()
-        
+
         self.connect_signal_slots()
 
         self.ui.lineEdit.setFocus()
@@ -223,7 +223,7 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
                 icon = QIcon(os.path.join(platformdirs.user_cache_dir("Qtcord"), "servers", f"{guild['id']}.png"))
             else:
                 icon = QIcon(os.path.join(current_dir, "assets", "server.png"))
-            
+
             buttons[i].setIcon(icon)
             self.ui.servers_scrollArea_contents.layout().addWidget(buttons[i])
 
@@ -273,10 +273,10 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
         # Called every time we change the text.
         if not self.channel:
             return
-        
+
         if 0 < len(self.ui.lineEdit.text()) < 2:
             discord_integration.send_typing(self.channel)
-    
+
     def logout_account(self):
         # Remove Discord token from discordauth.txt
         os.remove(platformdirs.user_config_dir("Qtcord") + "/discordauth.txt")
@@ -300,11 +300,11 @@ if __name__ == "__main__":
     # Make configuration and cache directories
     if not os.path.exists(platformdirs.user_config_dir("Qtcord")):
         os.makedirs(platformdirs.user_config_dir("Qtcord"))
-    
+
     if not os.path.exists(platformdirs.user_cache_dir("Qtcord")):
         os.makedirs(platformdirs.user_cache_dir("Qtcord"))
-    
-    
+
+
     app = QApplication(sys.argv)
     app.setDesktopFileName("io.github.mak448a.Qtcord")
 
