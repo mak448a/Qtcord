@@ -136,7 +136,7 @@ class Ui_MainWindow(object):
         self.scrollArea_3.setWidgetResizable(True)
         self.servers_scrollArea_contents = QWidget()
         self.servers_scrollArea_contents.setObjectName(u"servers_scrollArea_contents")
-        self.servers_scrollArea_contents.setGeometry(QRect(0, 0, 237, 334))
+        self.servers_scrollArea_contents.setGeometry(QRect(0, 0, 100, 30))
         self.verticalLayout_5 = QVBoxLayout(self.servers_scrollArea_contents)
         self.verticalLayout_5.setObjectName(u"verticalLayout_5")
         self.scrollArea_3.setWidget(self.servers_scrollArea_contents)
@@ -193,7 +193,7 @@ class Ui_MainWindow(object):
         self.actionAbout.setText(QCoreApplication.translate("MainWindow", u"&About", None))
         self.actionQuit.setText(QCoreApplication.translate("MainWindow", u"&Quit", None))
         self.actionLicenses.setText(QCoreApplication.translate("MainWindow", u"&Licenses", None))
-        self.actionLogout.setText(QCoreApplication.translate("MainWindow", u"&Logout", None))
+        self.actionLogout.setText(QCoreApplication.translate("MainWindow", u"&Logout and Quit", None))
         self.actionReport_an_Issue.setText(QCoreApplication.translate("MainWindow", u"&Report an Issue", None))
         self.textBrowser.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"

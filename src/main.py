@@ -265,8 +265,8 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
         channels = discord_integration.get_guild_channels(guild_id)
 
         buttons = {}
-        for i, guild_id in enumerate(channels):
-            buttons[i] = QPushButton(text=guild_id["name"])
+        for i, guild in enumerate(channels):
+            buttons[i] = QPushButton(text=guild["name"])
             self.ui.servers.layout().addWidget(buttons[i])
 
     def send_typing(self):
@@ -280,8 +280,8 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
     def logout_account(self):
         # Remove Discord token from discordauth.txt
         os.remove(platformdirs.user_config_dir("Qtcord") + "/discordauth.txt")
-        # Switch back to the first page, the login page.
-        switcher.setCurrentIndex(switcher.currentIndex() - 1)
+        # Exit the app
+        sys.exit(0)
 
 def handle_no_internet() -> None:
     try:

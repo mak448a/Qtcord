@@ -75,13 +75,18 @@ def _start():
 
 
 def keep_online():
-    # Get Discord token
+    # Read Discord token
     if os.path.isfile(platformdirs.user_config_dir("Qtcord") + "/discordauth.txt"):
         with open(platformdirs.user_config_dir("Qtcord") + "/discordauth.txt") as f:
             bot_token = f.read()
+    else:
+        # Set bot_token to blank so that the variable won't be undefined
+        # This shouldn't happen. We usually only call this function after we log in.
+        bot_token = ""
 
     # Stop if bot token isn't defined
     if not bot_token:
         return
 
+    # Start the keep online thread
     threading.Thread(target=_start, daemon=True).start()
