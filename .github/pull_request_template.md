@@ -1,1 +1,1 @@
-- [ ] I agree to the [contributor agreements](https://github.com/mak448a/Qtcord/blob/main/CONTRIBUTING.md)
+- [X] I agree to the [contributor agreements](https://github.com/mak448a/Qtcord/blob/main/CONTRIBUTING.md)
