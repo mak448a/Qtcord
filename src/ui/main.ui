@@ -208,8 +208,8 @@ li.checked::marker { content: &quot;\2612&quot;; }
                  <rect>
                   <x>0</x>
                   <y>0</y>
-                  <width>237</width>
-                  <height>334</height>
+                  <width>100</width>
+                  <height>30</height>
                  </rect>
                 </property>
                 <layout class="QVBoxLayout" name="verticalLayout_5"/>
@@ -269,7 +269,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
   </action>
   <action name="actionLogout">
    <property name="text">
-    <string>&amp;Logout</string>
+    <string>&amp;Logout and Quit</string>
    </property>
   </action>
   <action name="actionReport_an_Issue">
