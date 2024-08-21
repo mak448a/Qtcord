@@ -5,7 +5,7 @@ By contributing to this repository, you agree that I (mak448a) have the rights t
 DISCLAIMER: I am just doing this in case if I have to copy and paste from this repository.
 
 ## Reverse Engineering
-I highly recommend (this tutorial)[https://www.youtube.com/watch?v=xh28F6f-Cds] for getting started with reverse engineering the Discord API.
+I highly recommend [this tutorial](https://www.youtube.com/watch?v=xh28F6f-Cds) for getting started with reverse engineering the Discord API.
 
 ## Coding Guidelines
 Try to follow PEP-8 (the squiggly underlines in Pycharm) standards. If you can't, that's perfectly fine.
