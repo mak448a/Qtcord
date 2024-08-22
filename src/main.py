@@ -49,7 +49,7 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
         # Got "suspicious activity on your account" with this rate, let's try a different rate
         # self.refresh_message_interval = 600
         self.refresh_message_interval = 1000
-        icon_path = os.path.join(current_dir, "assets", "smiley.svg")
+        icon_path = os.path.join(current_dir, "assets", "icon.svg")
         self.setWindowIcon(QIcon(icon_path))
 
         self.setup()
@@ -345,7 +345,7 @@ if __name__ == "__main__":
     # Set window properties
     switcher.resize(840, 500)
     switcher.setWindowTitle("Qtcord")
-    icon_path = os.path.join(current_dir, "assets", "smiley.svg")
+    icon_path = os.path.join(current_dir, "assets", "icon.svg")
     switcher.setWindowIcon(QIcon(icon_path))
 
     switcher.show()
