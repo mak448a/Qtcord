@@ -21,7 +21,7 @@ import discord_status
 # UI imports
 from ui.main_ui import Ui_MainWindow
 from login import LoginUI
-from licenses import LicensesUI
+from licensesui import LicensesUI
 from no_internet import NoInternetUI
 
 # Will be set when run!
