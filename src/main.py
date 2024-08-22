@@ -4,23 +4,6 @@ import sys
 import webbrowser
 import requests
 
-current_dir = os.path.dirname(os.path.realpath(__file__)).replace(" ", "\\ ")  # NOQA (basically tells pycharm to shut up)
-
-# Regenerate ui from ui files
-if os.path.exists(
-    f"{os.path.expanduser('~/Documents/regenerate_ui_files_indicator.txt')}"
-):  # NOQA
-    print("Regenerating ui files")
-    os.system(f"pyside6-uic {current_dir}/ui/main.ui -o {current_dir}/ui/main_ui.py")  # NOQA
-    os.system(f"pyside6-uic {current_dir}/ui/login.ui -o {current_dir}/ui/login_ui.py")  # NOQA
-    os.system(
-        f"pyside6-uic {current_dir}/ui/licenses.ui -o {current_dir}/ui/licenses_ui.py"
-    )  # NOQA
-    os.system(
-        f"pyside6-uic {current_dir}/ui/no_internet.ui -o {current_dir}/ui/no_internet.py"
-    )  # NOQA
-
-
 # PySide imports
 from PySide6.QtWidgets import QApplication, QMainWindow, QMessageBox, QPushButton
 
@@ -43,6 +26,7 @@ from no_internet import NoInternetUI
 
 # Will be set when run!
 auth = False
+current_dir = os.path.dirname(os.path.realpath(__file__)).replace(" ", "\\ ")
 
 
 class ChatInterface(QMainWindow, Ui_MainWindow):
