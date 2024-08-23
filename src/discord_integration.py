@@ -1,48 +1,56 @@
-import os
 import requests
 import platformdirs
+import os
 from datetime import datetime
 
 
 api_base = "https://discord.com/api/v9"
-auth = ""  # Will be overridden in load_token
+auth = ""  # Will be overridden when load_token is called
 headers = {
     "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) discord/0.0.63 Chrome/124.0.6367.243 Electron/30.2.0 Safari/537.36"
 }
 
 
-def load_token():
+def load_token() -> None:
+    """
+    Loads the token from discordauth.txt.
+    """
+
     global auth, headers
+
     if os.path.isfile(platformdirs.user_config_dir("Qtcord") + "/discordauth.txt"):
         with open(platformdirs.user_config_dir("Qtcord") + "/discordauth.txt") as f:
             auth = f.read()
         headers["authorization"] = auth.strip()
 
 
-# Load token
-load_token()
-
-
 def validate_token() -> bool:
     """
-    Checks whether the token is valid or not
+    Checks whether the token is valid or not.
 
     Returns:
-        bool: Valid or not
+        bool: True if the token is valid, False otherwise.
     """
+
     try:
         r = requests.get(f"{api_base}/users/@me/relationships", headers=headers)
     except requests.exceptions.ConnectionError:
         # Just assume that the token is valid, since there's no internet or Discord is down.
         return True
 
+    # It's valid
     if r.status_code == 200:
         return True
+    # 401 means "unauthorized," which means it's invalid.
     elif r.status_code == 401:
         return False
+    # This shouldn't happen, but it's here anyway for safety.
     else:
         return False
 
+
+# Load token
+load_token()
 
 # If token is invalid, delete it and log us out.
 # Inside validate_token is a function that checks for internet, too.
@@ -53,19 +61,18 @@ if not validate_token():
         os.remove(platformdirs.user_config_dir("Qtcord") + "/discordauth.txt")
 
 
-
 def get_messages(channel_id: int, limit: int = 100) -> list:
     """
-    Returns messages from a given channel.
+    Retrives messages from a specified channel.
 
     Args:
         channel_id (int): The channel ID to request from
-        limit (int): Amount of messages to request
+        limit (int, optional): The maximum messages to request. Default is 100. May not go higher.
 
     Returns:
-        list: Messages from the specified channel.
-
+        list: The messages from the channel.
     """
+
     r = requests.get(
         f"{api_base}/channels/{channel_id}/messages?limit={limit}", headers=headers
     )
@@ -97,6 +104,7 @@ def get_messages(channel_id: int, limit: int = 100) -> list:
         else:
             content = message["content"]
 
+        # Code for displaying timestamps
         # For some reason, messages can use two, slightly different, timestamp formats.
         time_str = message["timestamp"]
         if len(time_str) == 32:
@@ -109,7 +117,7 @@ def get_messages(channel_id: int, limit: int = 100) -> list:
                 "timestamp": timestamp.astimezone(),
                 "username": author,
                 "content": content,
-                "id": message["id"]
+                "id": message["id"],
             }
         )
 
@@ -123,19 +131,18 @@ def send_message(msg, channel) -> None:
     Sends a message to a given channel.
 
     Args:
-        msg (str): Message
-        channel (int): The channel to send the message
+        msg (str): The message to send.
+        channel (int): The channel to send the message in.
 
     Returns:
-        None: Nothing
-
+        None: No return value is needed.
     """
-    r = requests.post(
+
+    requests.post(
         f"{api_base}/channels/{channel}/messages",
         headers=headers,
         json={"content": msg},
     )
-    # print(r.text)
 
 
 def get_friends() -> dict:
@@ -143,8 +150,9 @@ def get_friends() -> dict:
     Returns a list of friends for the current account.
 
     Returns:
-        dict: Friends of the current account
+        dict: The friends of the current account.
     """
+
     r = requests.get(f"{api_base}/users/@me/relationships", headers=headers)
 
     # for friend in r.json():
@@ -158,11 +166,12 @@ def get_channel_from_id(user_id: int) -> int:
     Converts a user ID into a channel ID.
 
     Args:
-        user_id (int): The user's ID
+        user_id (int): The user's ID.
 
     Returns:
-        int: The user's channel which they can be reached
+        int: The user's channel from which they can be reached.
     """
+
     r = requests.post(
         f"{api_base}/users/@me/channels",
         headers=headers,
