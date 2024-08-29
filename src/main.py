@@ -187,6 +187,7 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
             self.friends.append(
                 {
                     "global_name": friend["user"]["global_name"],
+                    "user_id": friend["id"],
                     "channel": discord_integration.get_channel_from_id(friend["id"]),
                     "nickname": friend["nickname"],
                 }
@@ -195,6 +196,25 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
         buttons = {}
         for i, friend in enumerate(self.friends):
             buttons[i] = QPushButton(text=friend["global_name"])
+
+            if os.path.exists(
+                os.path.join(
+                    platformdirs.user_cache_dir("Qtcord"),
+                    "users",
+                    f"{friend['user_id']}.webp",
+                )
+            ):
+                icon = QIcon(
+                    os.path.join(
+                        platformdirs.user_cache_dir("Qtcord"),
+                        "users",
+                        f"{friend['user_id']}.webp",
+                    )
+                )
+            else:
+                icon = QIcon(os.path.join(current_dir, "assets", "user.png"))
+
+            buttons[i].setIcon(icon)
             self.ui.friends_scrollArea_contents.layout().addWidget(buttons[i])
 
             channel = friend["channel"]
@@ -235,8 +255,6 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
                 icon = QIcon(os.path.join(current_dir, "assets", "server.png"))
 
             buttons[i].setIcon(icon)
-            self.ui.servers_scrollArea_contents.layout().addWidget(buttons[i])
-
             self.ui.servers_scrollArea_contents.layout().addWidget(buttons[i])
 
             # Oh my headache do not touch this code.

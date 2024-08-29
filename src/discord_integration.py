@@ -155,8 +155,29 @@ def get_friends() -> dict:
 
     r = requests.get(f"{api_base}/users/@me/relationships", headers=headers)
 
-    # for friend in r.json():
-    #     print(friend["user"]["global_name"])
+    for friend in r.json():
+        friend = friend['user']
+        if os.path.exists(
+            f"{platformdirs.user_cache_dir('Qtcord')}/users/{friend['id']}.webp"
+        ):
+            continue
+
+        user_icon = requests.get(
+            f"https://cdn.discordapp.com/avatars/{friend['id']}/{friend['avatar']}.webp?size=128"
+        )
+
+        # Handle no profile picture
+        if user_icon.status_code == 404:
+            continue
+
+        if not os.path.exists(f"{platformdirs.user_cache_dir('Qtcord')}/users"):
+            os.makedirs(f"{platformdirs.user_cache_dir('Qtcord')}/users")
+
+        with open(
+            f"{platformdirs.user_cache_dir('Qtcord')}/users/{friend['id']}.webp", "wb"
+        ) as f:
+            for chunk in user_icon.iter_content():
+                f.write(chunk)
 
     return r.json()
 
