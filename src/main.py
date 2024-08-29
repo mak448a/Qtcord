@@ -117,7 +117,7 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
         new_messages = ""
         last_timestamp = None
 
-        for message in messages:
+        for message in messages.get(self.channel, []):
             tags = """<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-weight:700;">"""
 
             timestamp = message["timestamp"]
