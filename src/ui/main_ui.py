@@ -17,9 +17,10 @@ from PySide6.QtGui import (QAction, QBrush, QColor, QConicalGradient,
     QPainter, QPalette, QPixmap, QRadialGradient,
     QTransform)
 from PySide6.QtWidgets import (QApplication, QDockWidget, QFrame, QGridLayout,
-    QHBoxLayout, QLineEdit, QMainWindow, QMenu,
-    QMenuBar, QPushButton, QScrollArea, QSizePolicy,
-    QTabWidget, QTextBrowser, QVBoxLayout, QWidget)
+    QHBoxLayout, QLabel, QLineEdit, QMainWindow,
+    QMenu, QMenuBar, QPushButton, QScrollArea,
+    QSizePolicy, QTabWidget, QTextBrowser, QVBoxLayout,
+    QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -42,6 +43,12 @@ class Ui_MainWindow(object):
         self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
         self.verticalLayout = QVBoxLayout()
         self.verticalLayout.setObjectName(u"verticalLayout")
+        self.channel_label = QLabel(self.centralwidget)
+        self.channel_label.setObjectName(u"channel_label")
+        self.channel_label.setMargin(2)
+
+        self.verticalLayout.addWidget(self.channel_label)
+
         self.scrollArea = QScrollArea(self.centralwidget)
         self.scrollArea.setObjectName(u"scrollArea")
         self.scrollArea.setFrameShape(QFrame.Shape.NoFrame)
@@ -203,6 +210,7 @@ class Ui_MainWindow(object):
         self.actionLicenses.setText(QCoreApplication.translate("MainWindow", u"&Licenses", None))
         self.actionLogout.setText(QCoreApplication.translate("MainWindow", u"&Logout and Quit", None))
         self.actionReport_an_Issue.setText(QCoreApplication.translate("MainWindow", u"&Report an Issue", None))
+        self.channel_label.setText(QCoreApplication.translate("MainWindow", u"Select a Channel to Start", None))
         self.textBrowser.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
