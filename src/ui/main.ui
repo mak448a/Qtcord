@@ -159,17 +159,20 @@ li.checked::marker { content: &quot;\2612&quot;; }
            <property name="widgetResizable">
             <bool>true</bool>
            </property>
-           <property name="alignment">
-            <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
-           </property>
            <widget class="QWidget" name="friends_scrollArea_contents">
             <property name="geometry">
              <rect>
               <x>0</x>
               <y>0</y>
               <width>260</width>
-              <height>381</height>
+              <height>32</height>
              </rect>
+            </property>
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_2"/>
            </widget>
@@ -212,6 +215,12 @@ li.checked::marker { content: &quot;\2612&quot;; }
                   <height>30</height>
                  </rect>
                 </property>
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
                 <layout class="QVBoxLayout" name="verticalLayout_5"/>
                </widget>
               </widget>
@@ -236,6 +245,12 @@ li.checked::marker { content: &quot;\2612&quot;; }
                   <width>100</width>
                   <height>30</height>
                  </rect>
+                </property>
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
                 </property>
                 <layout class="QVBoxLayout" name="verticalLayout_8"/>
                </widget>
