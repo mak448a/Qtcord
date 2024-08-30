@@ -33,12 +33,12 @@
     </content_rating>
     <releases>
       <release version="v0.0.19" date="2024-8-29" type="stable">
-        <p>- New icon! #3</p>
-        <p>- Profile pictures now show! By @randomusername-a in #56.</p>
-        <p>- The sidebar now is not vertically centered. By @randomusername-a in #57.</p>
-        <p>- Changing channels should be smoother! By @randomusername-a in #55.</p>
-        <p>- Logout button now closes the app. #19</p>
-        <p>- The enter key now can submit details on any field in login form. #44.</p>
+        <p>- New icon!</p>
+        <p>- Profile pictures now show!</p>
+        <p>- The sidebar now is not vertically centered.</p>
+        <p>- Changing channels should be smoother!</p>
+        <p>- Logout button now closes the app.</p>
+        <p>- The enter key now can submit details on any field in login form.</p>
       </release>
       <release version="v0.0.18" date="2024-8-14" type="stable">
         <description>
