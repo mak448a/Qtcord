@@ -11,7 +11,7 @@ Qtcord is a Discord client built with QT aiming to bring a lightweight, native e
 [Download for Windows](https://github.com/mak448a/Qtcord/releases)
 <br>
 
-![Screenshot of Qtcord](demo1.png)
+![Screenshot of Qtcord](demos/demo1.png)
 
 ## Setup
 
