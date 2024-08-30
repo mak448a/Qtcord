@@ -3,7 +3,7 @@ from discord_integration import get_messages
 
 
 class WorkerSignals(QObject):
-    update = Signal(list)
+    update = Signal(dict)
 
 
 class Worker(QRunnable):

@@ -61,7 +61,7 @@ if not validate_token():
         os.remove(platformdirs.user_config_dir("Qtcord") + "/discordauth.txt")
 
 
-def get_messages(channel_id: int, limit: int = 100) -> list:
+def get_messages(channel_id: int, limit: int = 100) -> dict:
     """
     Retrives messages from a specified channel.
 
@@ -70,7 +70,7 @@ def get_messages(channel_id: int, limit: int = 100) -> list:
         limit (int, optional): The maximum messages to request. Default is 100. May not go higher.
 
     Returns:
-        list: The messages from the channel.
+        dict: The channel ID as the only key, and a list with the messages from the channel as its value.
     """
 
     r = requests.get(
@@ -88,7 +88,7 @@ def get_messages(channel_id: int, limit: int = 100) -> list:
                 "id": 0,
             }
         )
-        return new_list
+        return {channel_id: new_list}
 
     for message in r.json():
         # TODO: You can get the author's profile picture ID from message["avatar"].
@@ -123,7 +123,7 @@ def get_messages(channel_id: int, limit: int = 100) -> list:
 
     # Reverse the list of messages
     new_list.reverse()
-    return new_list
+    return {channel_id: new_list}
 
 
 def send_message(msg, channel) -> None:
