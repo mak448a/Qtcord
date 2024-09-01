@@ -14,7 +14,7 @@ from PySide6 import QtWidgets
 # 3rd party libraries
 import platformdirs
 
-from discord_worker import Worker
+from discord_workers import SendMessageWorker, SendTypingWorker, UpdateMessagesWorker
 import discord_integration
 import discord_status
 
@@ -96,17 +96,17 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
         if text:
             self.ui.lineEdit.setText("")
 
-            discord_integration.send_message(text, self.channel_id)
-
-            self.update_messages()
+            worker = SendMessageWorker(text, self.channel_id)
+            worker.finished.connect(self.update_messages)
+            self.threadpool.start(worker)
 
     def update_messages(self):
         # If we're not in a channel, stop immediately.
         if not self.channel_id:
             return
 
-        worker = Worker(self.channel_id)
-        worker.signals.update.connect(self._update_text)
+        worker = UpdateMessagesWorker(self.channel_id)
+        worker.update.connect(self._update_text)
         self.threadpool.start(worker)
 
     def _update_text(self, messages):
@@ -295,7 +295,8 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
             return
 
         if 0 < len(self.ui.lineEdit.text()) < 2:
-            discord_integration.send_typing(self.channel_id)
+            worker = SendTypingWorker(self.channel_id)
+            self.threadpool.start(worker)
 
     def logout_account(self):
         # Remove Discord token from discordauth.txt
