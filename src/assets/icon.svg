@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-
 <svg
    height="512"
    stroke-miterlimit="10"
@@ -16,6 +15,7 @@
    inkscape:export-ydpi="96"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg"><sodipodi:namedview
    id="namedview5"
@@ -26,17 +26,32 @@
    inkscape:pageopacity="0.0"
    inkscape:pagecheckerboard="0"
    inkscape:deskcolor="#d1d1d1"
-   inkscape:zoom="1"
-   inkscape:cx="123"
-   inkscape:cy="347.5"
+   inkscape:zoom="0.98558315"
+   inkscape:cx="230.3205"
+   inkscape:cy="279.52994"
    inkscape:window-width="1536"
    inkscape:window-height="783"
    inkscape:window-x="0"
    inkscape:window-y="0"
    inkscape:window-maximized="1"
-   inkscape:current-layer="Layer-1-copy" />
+   inkscape:current-layer="svg5" />
 <defs
-   id="defs1" />
+   id="defs1"><linearGradient
+     xlink:href="#linearGradient3601"
+     id="linearGradient3603"
+     x1="112.61006"
+     y1="152.04504"
+     x2="146.36473"
+     y2="123.48283"
+     gradientUnits="userSpaceOnUse"
+     gradientTransform="matrix(0.10908467,0,0,0.10908467,-5.3746622,-10.461896)" /><linearGradient
+     id="linearGradient3601"><stop
+       style="stop-color:#ffff00;stop-opacity:1;"
+       offset="0"
+       id="stop3597" /><stop
+       style="stop-color:#ffffff;stop-opacity:1;"
+       offset="1"
+       id="stop3599" /></linearGradient></defs>
 
 
 <g
@@ -95,5 +110,18 @@
    stroke-linejoin="round"
    stroke-width="0"
    id="path5" />
-</g>
+</g><circle
+   style="clip-rule:evenodd;fill:#000000;fill-rule:nonzero;stroke-width:0.0389616;stroke-linecap:round;stroke-linejoin:round"
+   id="path624"
+   cx="5.2738032"
+   cy="5.276166"
+   r="0.436551" /><circle
+   style="clip-rule:evenodd;fill:#000000;fill-rule:nonzero;stroke-width:0.0389616;stroke-linecap:round;stroke-linejoin:round"
+   id="path624-3"
+   cx="7.3264565"
+   cy="5.2609"
+   r="0.436551" /><path
+   style="clip-rule:evenodd;fill:#ff0000;fill-rule:nonzero;stroke-width:0.0394318;stroke-linecap:round;stroke-linejoin:round"
+   d="M 4.8642281,7.4312071 C 6.0004985,9.5717129 8.3104192,7.617792 8.3104192,7.617792"
+   id="path5847" />
 </svg>
