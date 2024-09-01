@@ -155,30 +155,6 @@ def get_friends() -> dict:
 
     r = requests.get(f"{api_base}/users/@me/relationships", headers=headers)
 
-    for friend in r.json():
-        friend = friend['user']
-        if os.path.exists(
-            f"{platformdirs.user_cache_dir('Qtcord')}/users/{friend['id']}.webp"
-        ):
-            continue
-
-        user_icon = requests.get(
-            f"https://cdn.discordapp.com/avatars/{friend['id']}/{friend['avatar']}.webp?size=128"
-        )
-
-        # Handle no profile picture
-        if user_icon.status_code == 404:
-            continue
-
-        if not os.path.exists(f"{platformdirs.user_cache_dir('Qtcord')}/users"):
-            os.makedirs(f"{platformdirs.user_cache_dir('Qtcord')}/users")
-
-        with open(
-            f"{platformdirs.user_cache_dir('Qtcord')}/users/{friend['id']}.webp", "wb"
-        ) as f:
-            for chunk in user_icon.iter_content():
-                f.write(chunk)
-
     return r.json()
 
 
@@ -203,7 +179,7 @@ def get_channel_from_id(user_id: int) -> int:
 
 def get_guilds() -> dict:
     """
-    Returns all guilds (aka servers) that the current user is in. Also downloads the icons of the servers.
+    Returns all guilds (aka servers) that the current user is in.
 
     Returns:
         dict: Guilds that the current account is in.
@@ -211,35 +187,6 @@ def get_guilds() -> dict:
 
     r = requests.get(f"{api_base}/users/@me/guilds", headers=headers)
 
-    # TODO: You can get the icon of the server by: https://cdn.discordapp.com/icons/{id}/{icon_name}.
-    # Icon name and id is in the icon.
-    # Make sure to handle blank icons!!!! they are set to none
-    # You get the rest of the info from this function.
-    for server in r.json():
-        if os.path.exists(
-            f"{platformdirs.user_cache_dir('Qtcord')}/servers/{server['id']}.png"
-        ):
-            continue
-
-        # print(f"https://cdn.discordapp.com/icons/{server['id']}/{server['icon']}")
-        server_icon = requests.get(
-            f"https://cdn.discordapp.com/icons/{server['id']}/{server['icon']}"
-        )
-
-        # Handle no image servers
-        if server_icon.status_code == 404:
-            continue
-
-        if not os.path.exists(f"{platformdirs.user_cache_dir('Qtcord')}/servers"):
-            os.makedirs(f"{platformdirs.user_cache_dir('Qtcord')}/servers")
-
-        with open(
-            f"{platformdirs.user_cache_dir('Qtcord')}/servers/{server['id']}.png", "wb"
-        ) as f:
-            for chunk in server_icon.iter_content():
-                f.write(chunk)
-
-    # print(f"https://cdn.discordapp.com/icons/{r.json()[1]["id"]}/{r.json()[1]["icon"]}")
     return r.json()
 
 
