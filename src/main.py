@@ -35,7 +35,7 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
     friends = []
     guilds = []
     channel_id = 0
-    channel_buttons = {}
+    channel_buttons = []
     typing = False
 
     def __init__(self):
@@ -183,48 +183,41 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
         get_info()
 
     def get_friends(self):
-        for friend in discord_integration.get_friends():
-            self.friends.append(
-                {
-                    "global_name": friend["user"]["global_name"],
-                    "user_id": friend["id"],
-                    "channel": discord_integration.get_channel_from_id(friend["id"]),
-                    "nickname": friend["nickname"],
-                }
-            )
+        self.friends = discord_integration.get_friends()
 
-        buttons = {}
-        for i, friend in enumerate(self.friends):
-            buttons[i] = QPushButton(text=friend["global_name"])
+        for friend in self.friends:
+            user = friend["user"]
+            button = QPushButton(text=user["global_name"])
 
             if os.path.exists(
                 os.path.join(
                     platformdirs.user_cache_dir("Qtcord"),
                     "users",
-                    f"{friend['user_id']}.webp",
+                    f"{user['id']}.webp",
                 )
             ):
                 icon = QIcon(
                     os.path.join(
                         platformdirs.user_cache_dir("Qtcord"),
                         "users",
-                        f"{friend['user_id']}.webp",
+                        f"{user['id']}.webp",
                     )
                 )
             else:
                 icon = QIcon(os.path.join(current_dir, "assets", "user.png"))
 
-            buttons[i].setIcon(icon)
-            self.ui.friends_scrollArea_contents.layout().addWidget(buttons[i])
+            button.setIcon(icon)
+            self.ui.friends_scrollArea_contents.layout().addWidget(button)
 
             channel = {
-                "id": friend["channel"],
-                "name": friend["global_name"],
+                "id": discord_integration.get_channel_from_id(user["id"]),
+                "name": user["global_name"],
             }
+
             # Oh my headache do not touch this code.
             # But if you do: https://stackoverflow.com/questions/19837486/lambda-in-a-loop
-            buttons[i].clicked.connect(
-                (lambda channel=channel: lambda: self.switch_channel(channel))(channel)
+            button.clicked.connect(
+                (lambda channel: lambda: self.switch_channel(channel))(channel)
             )
 
     def switch_channel(self, channel):
@@ -236,10 +229,8 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
     def get_servers(self):
         self.guilds = discord_integration.get_guilds()
 
-        buttons = {}
-
-        for i, guild in enumerate(self.guilds):
-            buttons[i] = QPushButton(text=guild["name"])
+        for guild in self.guilds:
+            button = QPushButton(text=guild["name"])
 
             if os.path.exists(
                 os.path.join(
@@ -258,35 +249,33 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
             else:
                 icon = QIcon(os.path.join(current_dir, "assets", "server.png"))
 
-            buttons[i].setIcon(icon)
-            self.ui.servers_scrollArea_contents.layout().addWidget(buttons[i])
+            button.setIcon(icon)
+            self.ui.servers_scrollArea_contents.layout().addWidget(button)
 
             # Oh my headache do not touch this code.
             # But if you do: https://stackoverflow.com/questions/19837486/lambda-in-a-loop
-            buttons[i].clicked.connect(
-                (lambda server=guild: lambda: self.get_channels_in_guild(server))(guild)
+            button.clicked.connect(
+                (lambda server: lambda: self.get_channels_in_guild(server))(guild)
             )
 
     def get_channels_in_guild(self, guild):
         # We want to change the tab to channels
         self.ui.servers_notebook.setCurrentIndex(1)
-        channels = discord_integration.get_guild_channels(guild["id"])
 
         # Clean buttons from previous server we visited
         for button in self.channel_buttons:
-            self.channel_buttons[button].deleteLater()
+            button.deleteLater()
 
-        self.channel_buttons = {}
+        self.channel_buttons = []
 
         # Dynamically add buttons based on channels
-        for i, channel in enumerate(channels):
+        for channel in discord_integration.get_guild_channels(guild["id"]):
             # Type 4 is a category and type 2 is a voice channel
             if channel["type"] == 4 or channel["type"] == 2:
                 continue
-            self.channel_buttons[i] = QPushButton(text=channel["name"])
-            self.ui.channels_scrollArea_contents.layout().addWidget(
-                self.channel_buttons[i]
-            )
+
+            button = QPushButton(text=channel["name"])
+            self.ui.channels_scrollArea_contents.layout().addWidget(button)
 
             channel = {
                 "id": channel["id"],
@@ -294,17 +283,11 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
             }
             # Oh my headache do not touch this code.
             # But if you do: https://stackoverflow.com/questions/19837486/lambda-in-a-loop
-            self.channel_buttons[i].clicked.connect(
-                (lambda channel=channel: lambda: self.switch_channel(channel))(channel)
+            button.clicked.connect(
+                (lambda channel: lambda: self.switch_channel(channel))(channel)
             )
 
-    def get_channels(self, guild_id: int):
-        channels = discord_integration.get_guild_channels(guild_id)
-
-        buttons = {}
-        for i, guild in enumerate(channels):
-            buttons[i] = QPushButton(text=guild["name"])
-            self.ui.servers.layout().addWidget(buttons[i])
+            self.channel_buttons.append(button)
 
     def send_typing(self):
         # Called every time we change the text.
