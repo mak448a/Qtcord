@@ -108,10 +108,10 @@ def send_message(msg, channel) -> None:
 
     Args:
         msg (str): The message to send.
-        channel (int): The channel to send the message in.
+        channel (int): The channel to which send the message.
 
     Returns:
-        None: No return value is needed.
+        None
     """
 
     requests.post(
@@ -182,16 +182,16 @@ def get_guild_channels(guild_id: int) -> list[DiscordChannel]:
     return [DiscordChannel.from_dict(channel) for channel in r.json()]
 
 
-def login(email: str, password: str, totp_code: str = ""):
+def login(email: str, password: str, totp_code: str = "") -> str | None:
     """
     Takes in an email and a password, logs in, and spits out a token.
 
     Args:
-        email (str): Your email, e.g., example@example.com
-        password (str): Your password for that account.
+        email (str): The email address for an account.
+        password (str): The password for the account.
 
     Returns:
-        str: Your token.
+        str | None: A user token if login was successful, None otherwise.
     """
     payload = {
         "login": email,
@@ -232,7 +232,7 @@ def login(email: str, password: str, totp_code: str = ""):
             return None
 
 
-def send_typing(channel: int):
+def send_typing(channel: int) -> None:
     """
     Sends a typing indicator to a channel.
 
