@@ -119,14 +119,15 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
         for message in messages.get(self.channel_id, []):
             tags = """<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-weight:700;">"""
 
-            timestamp = message["timestamp"]
+            timestamp = message.timestamp
             if not last_timestamp or timestamp.day != last_timestamp.day:
                 message_day = timestamp.strftime("%d %b %Y")
                 new_messages += f"{tags}Day changed to {message_day}</span></p>\n"
             last_timestamp = timestamp
 
             message_hour = timestamp.strftime("%H:%M:%S")
-            new_messages += f"{tags}[{message_hour}] {message['username']}</span>: {message['content']}</p>\n"
+            message_author = message.author.get_user_name()
+            new_messages += f"{tags}[{message_hour}] {message_author}</span>: {message.content}</p>\n"
 
         if self.messages != new_messages and new_messages:
             self.messages = new_messages
@@ -185,33 +186,28 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
         self.friends = discord_integration.get_friends()
 
         for friend in self.friends:
-            user = friend["user"]
+            user = friend.user
 
-            button = QPushButton(
-                text=friend["nickname"] if friend["nickname"] else user["global_name"]
-            )
+            button = QPushButton(text=friend.get_friend_name())
 
             def set_button_icon(button, data):
                 pixmap = QPixmap()
                 if pixmap.loadFromData(data):
                     button.setIcon(QIcon(pixmap))
-                else:
-                    fallback_path = os.path.join(current_dir, "assets", "user.png")
-                    button.setIcon(QIcon(fallback_path))
 
-            avatar_url = f"https://cdn.discordapp.com/avatars/{user['id']}/{user['avatar']}.webp?size=128"
-            worker = FileRequestWorker(avatar_url, "users")
-            worker.finished.connect(
-                (lambda button: lambda data: set_button_icon(button, data))(button)
-            )
-            self.threadpool.start(worker)
+            if avatar_url := user.get_avatar_url():
+                worker = FileRequestWorker(avatar_url, "users")
+                worker.finished.connect(
+                    (lambda button: lambda data: set_button_icon(button, data))(button)
+                )
+                self.threadpool.start(worker)
+
+            default_avatar = os.path.join(current_dir, "assets", "user.png")
+            button.setIcon(QIcon(default_avatar))
 
             self.ui.friends_scrollArea_contents.layout().addWidget(button)
 
-            channel = {
-                "id": discord_integration.get_channel_from_id(user["id"]),
-                "name": user["global_name"],
-            }
+            channel = discord_integration.get_channel_from_id(user.id)
 
             # Oh my headache do not touch this code.
             # But if you do: https://stackoverflow.com/questions/19837486/lambda-in-a-loop
@@ -220,31 +216,31 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
             )
 
     def switch_channel(self, channel):
-        if channel["id"] != self.channel_id:
-            self.channel_id = channel["id"]
-            self.ui.channel_label.setText(channel["name"])
+        if channel.id != self.channel_id:
+            self.channel_id = channel.id
+            self.ui.channel_label.setText(channel.get_channel_name())
             self.ui.textBrowser.setText("No messages in this conversation yet!")
 
     def get_servers(self):
         self.guilds = discord_integration.get_guilds()
 
         for guild in self.guilds:
-            button = QPushButton(text=guild["name"])
+            button = QPushButton(text=guild.name)
 
             def set_button_icon(button, data):
                 pixmap = QPixmap()
                 if pixmap.loadFromData(data):
                     button.setIcon(QIcon(pixmap))
-                else:
-                    fallback_path = os.path.join(current_dir, "assets", "server.png")
-                    button.setIcon(QIcon(fallback_path))
 
-            server_icon_url = f"https://cdn.discordapp.com/icons/{guild['id']}/{guild['icon']}"
-            worker = FileRequestWorker(server_icon_url, "servers")
-            worker.finished.connect(
-                (lambda button: lambda data: set_button_icon(button, data))(button)
-            )
-            self.threadpool.start(worker)
+            if icon_url := guild.get_icon_url():
+                worker = FileRequestWorker(icon_url, "servers")
+                worker.finished.connect(
+                    (lambda button: lambda data: set_button_icon(button, data))(button)
+                )
+                self.threadpool.start(worker)
+
+            default_icon = os.path.join(current_dir, "assets", "server.png")
+            button.setIcon(QIcon(default_icon))
 
             self.ui.servers_scrollArea_contents.layout().addWidget(button)
 
@@ -265,15 +261,14 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
         self.channel_buttons = []
 
         # Dynamically add buttons based on channels
-        for channel in discord_integration.get_guild_channels(guild["id"]):
+        for channel in discord_integration.get_guild_channels(guild.id):
             # Type 4 is a category and type 2 is a voice channel
-            if channel["type"] == 4 or channel["type"] == 2:
+            if channel.type == 4 or channel.type == 2:
                 continue
 
-            button = QPushButton(text=channel["name"])
+            button = QPushButton(text=channel.get_channel_name())
             self.ui.channels_scrollArea_contents.layout().addWidget(button)
 
-            channel = {"id": channel["id"], "name": channel["name"]}
             # Oh my headache do not touch this code.
             # But if you do: https://stackoverflow.com/questions/19837486/lambda-in-a-loop
             button.clicked.connect(
