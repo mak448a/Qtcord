@@ -211,14 +211,7 @@ class Ui_MainWindow(object):
         self.actionLogout.setText(QCoreApplication.translate("MainWindow", u"&Logout and Quit", None))
         self.actionReport_an_Issue.setText(QCoreApplication.translate("MainWindow", u"&Report an Issue", None))
         self.channel_label.setText(QCoreApplication.translate("MainWindow", u"Select a Channel to Start", None))
-        self.textBrowser.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"hr { height: 1px; border-width: 0; }\n"
-"li.unchecked::marker { content: \"\\2610\"; }\n"
-"li.checked::marker { content: \"\\2612\"; }\n"
-"</style></head><body style=\" font-family:'Noto Sans'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">No channel selected!</p></body></html>", None))
+        self.textBrowser.setPlainText(QCoreApplication.translate("MainWindow", u"No channel selected!", None))
         self.pushButton.setText(QCoreApplication.translate("MainWindow", u"Send", None))
         self.menuFile.setTitle(QCoreApplication.translate("MainWindow", u"&File", None))
         self.menuHelp.setTitle(QCoreApplication.translate("MainWindow", u"&Help", None))
