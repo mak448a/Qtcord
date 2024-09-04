@@ -34,7 +34,7 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
     messages = ""
     friends = []
     guilds = []
-    channel = 0
+    channel_id = 0
     channel_buttons = {}
     typing = False
 
@@ -96,28 +96,28 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
         if text:
             self.ui.lineEdit.setText("")
 
-            discord_integration.send_message(text, self.channel)
+            discord_integration.send_message(text, self.channel_id)
 
             self.update_messages()
 
     def update_messages(self):
         # If we're not in a channel, stop immediately.
-        if not self.channel:
+        if not self.channel_id:
             return
 
-        worker = Worker(self.channel)
+        worker = Worker(self.channel_id)
         worker.signals.update.connect(self._update_text)
         self.threadpool.start(worker)
 
     def _update_text(self, messages):
-        if not self.channel:
+        if not self.channel_id:
             return
 
         # Get messages
         new_messages = ""
         last_timestamp = None
 
-        for message in messages.get(self.channel, []):
+        for message in messages.get(self.channel_id, []):
             tags = """<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-weight:700;">"""
 
             timestamp = message["timestamp"]
@@ -217,16 +217,20 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
             buttons[i].setIcon(icon)
             self.ui.friends_scrollArea_contents.layout().addWidget(buttons[i])
 
-            channel = friend["channel"]
+            channel = {
+                "id": friend["channel"],
+                "name": friend["global_name"],
+            }
             # Oh my headache do not touch this code.
             # But if you do: https://stackoverflow.com/questions/19837486/lambda-in-a-loop
             buttons[i].clicked.connect(
                 (lambda channel=channel: lambda: self.switch_channel(channel))(channel)
             )
 
-    def switch_channel(self, _id):
-        if _id != self.channel:
-            self.channel = _id
+    def switch_channel(self, channel):
+        if channel["id"] != self.channel_id:
+            self.channel_id = channel["id"]
+            self.ui.channel_label.setText(channel["name"])
             self.ui.textBrowser.setText("No messages in this conversation yet!")
 
     def get_servers(self):
@@ -284,13 +288,14 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
                 self.channel_buttons[i]
             )
 
-            # channel_buttons[i] = QPushButton(text=guild["name"])
-            # self.ui.channels.layout().addWidget(channel_buttons[i])
-            channel_id = channel["id"]
+            channel = {
+                "id": channel["id"],
+                "name": channel['name'],
+            }
             # Oh my headache do not touch this code.
             # But if you do: https://stackoverflow.com/questions/19837486/lambda-in-a-loop
             self.channel_buttons[i].clicked.connect(
-                (lambda _id=channel_id: lambda: self.switch_channel(_id))(channel_id)
+                (lambda channel=channel: lambda: self.switch_channel(channel))(channel)
             )
 
     def get_channels(self, guild_id: int):
@@ -303,11 +308,11 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
 
     def send_typing(self):
         # Called every time we change the text.
-        if not self.channel:
+        if not self.channel_id:
             return
 
         if 0 < len(self.ui.lineEdit.text()) < 2:
-            discord_integration.send_typing(self.channel)
+            discord_integration.send_typing(self.channel_id)
 
     def logout_account(self):
         # Remove Discord token from discordauth.txt

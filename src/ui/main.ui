@@ -18,6 +18,16 @@
     <item>
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
+       <widget class="QLabel" name="channel_label">
+        <property name="text">
+         <string>Select a Channel to Start</string>
+        </property>
+        <property name="margin">
+         <number>2</number>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QScrollArea" name="scrollArea">
         <property name="frameShape">
          <enum>QFrame::Shape::NoFrame</enum>
