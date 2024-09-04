@@ -6,15 +6,14 @@ import requests
 
 # PySide imports
 from PySide6.QtWidgets import QApplication, QMainWindow, QMessageBox, QPushButton
-
-from PySide6.QtGui import QShortcut, QKeySequence, QIcon
+from PySide6.QtGui import QShortcut, QKeySequence, QIcon, QPixmap
 from PySide6.QtCore import QTimer, QThreadPool
 from PySide6 import QtWidgets
 
 # 3rd party libraries
 import platformdirs
 
-from discord_worker import Worker
+from discord_workers import FileRequestWorker, SendMessageWorker, SendTypingWorker, UpdateMessagesWorker
 import discord_integration
 import discord_status
 
@@ -96,17 +95,17 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
         if text:
             self.ui.lineEdit.setText("")
 
-            discord_integration.send_message(text, self.channel_id)
-
-            self.update_messages()
+            worker = SendMessageWorker(text, self.channel_id)
+            worker.finished.connect(self.update_messages)
+            self.threadpool.start(worker)
 
     def update_messages(self):
         # If we're not in a channel, stop immediately.
         if not self.channel_id:
             return
 
-        worker = Worker(self.channel_id)
-        worker.signals.update.connect(self._update_text)
+        worker = UpdateMessagesWorker(self.channel_id)
+        worker.update.connect(self._update_text)
         self.threadpool.start(worker)
 
     def _update_text(self, messages):
@@ -192,24 +191,21 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
                 text=friend["nickname"] if friend["nickname"] else user["global_name"]
             )
 
-            if os.path.exists(
-                os.path.join(
-                    platformdirs.user_cache_dir("Qtcord"),
-                    "users",
-                    f"{user['id']}.webp",
-                )
-            ):
-                icon = QIcon(
-                    os.path.join(
-                        platformdirs.user_cache_dir("Qtcord"),
-                        "users",
-                        f"{user['id']}.webp",
-                    )
-                )
-            else:
-                icon = QIcon(os.path.join(current_dir, "assets", "user.png"))
+            def set_button_icon(button, data):
+                pixmap = QPixmap()
+                if pixmap.loadFromData(data):
+                    button.setIcon(QIcon(pixmap))
+                else:
+                    fallback_path = os.path.join(current_dir, "assets", "user.png")
+                    button.setIcon(QIcon(fallback_path))
 
-            button.setIcon(icon)
+            avatar_url = f"https://cdn.discordapp.com/avatars/{user['id']}/{user['avatar']}.webp?size=128"
+            worker = FileRequestWorker(avatar_url, "users")
+            worker.finished.connect(
+                (lambda button: lambda data: set_button_icon(button, data))(button)
+            )
+            self.threadpool.start(worker)
+
             self.ui.friends_scrollArea_contents.layout().addWidget(button)
 
             channel = {
@@ -235,24 +231,21 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
         for guild in self.guilds:
             button = QPushButton(text=guild["name"])
 
-            if os.path.exists(
-                os.path.join(
-                    platformdirs.user_cache_dir("Qtcord"),
-                    "servers",
-                    f"{guild['id']}.png",
-                )
-            ):
-                icon = QIcon(
-                    os.path.join(
-                        platformdirs.user_cache_dir("Qtcord"),
-                        "servers",
-                        f"{guild['id']}.png",
-                    )
-                )
-            else:
-                icon = QIcon(os.path.join(current_dir, "assets", "server.png"))
+            def set_button_icon(button, data):
+                pixmap = QPixmap()
+                if pixmap.loadFromData(data):
+                    button.setIcon(QIcon(pixmap))
+                else:
+                    fallback_path = os.path.join(current_dir, "assets", "server.png")
+                    button.setIcon(QIcon(fallback_path))
 
-            button.setIcon(icon)
+            server_icon_url = f"https://cdn.discordapp.com/icons/{guild['id']}/{guild['icon']}"
+            worker = FileRequestWorker(server_icon_url, "servers")
+            worker.finished.connect(
+                (lambda button: lambda data: set_button_icon(button, data))(button)
+            )
+            self.threadpool.start(worker)
+
             self.ui.servers_scrollArea_contents.layout().addWidget(button)
 
             # Oh my headache do not touch this code.
@@ -295,7 +288,8 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
             return
 
         if 0 < len(self.ui.lineEdit.text()) < 2:
-            discord_integration.send_typing(self.channel_id)
+            worker = SendTypingWorker(self.channel_id)
+            self.threadpool.start(worker)
 
     def logout_account(self):
         # Remove Discord token from discordauth.txt
