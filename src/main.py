@@ -187,7 +187,10 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
 
         for friend in self.friends:
             user = friend["user"]
-            button = QPushButton(text=user["global_name"])
+
+            button = QPushButton(
+                text=friend["nickname"] if friend["nickname"] else user["global_name"]
+            )
 
             if os.path.exists(
                 os.path.join(
@@ -277,10 +280,7 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
             button = QPushButton(text=channel["name"])
             self.ui.channels_scrollArea_contents.layout().addWidget(button)
 
-            channel = {
-                "id": channel["id"],
-                "name": channel['name'],
-            }
+            channel = {"id": channel["id"], "name": channel["name"]}
             # Oh my headache do not touch this code.
             # But if you do: https://stackoverflow.com/questions/19837486/lambda-in-a-loop
             button.clicked.connect(
