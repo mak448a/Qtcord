@@ -2,6 +2,7 @@ import requests
 import platformdirs
 import os
 from datetime import datetime
+from discord_objects import *
 
 
 api_base = "https://discord.com/api/v9"
@@ -61,69 +62,44 @@ if not validate_token():
         os.remove(platformdirs.user_config_dir("Qtcord") + "/discordauth.txt")
 
 
-def get_messages(channel_id: int, limit: int = 100) -> dict:
+def get_messages(channel_id: int, limit: int = 100) -> dict[int, DiscordMessage]:
     """
     Retrives messages from a specified channel.
 
     Args:
-        channel_id (int): The channel ID to request from
+        channel_id (int): A channel ID.
         limit (int, optional): The maximum messages to request. Default is 100. May not go higher.
 
     Returns:
-        dict: The channel ID as the only key, and a list with the messages from the channel as its value.
+        dict[int, DiscordMessage]: A dictionary with the channel ID as only key, and a list with
+          the channel's messages as its value.
     """
 
     r = requests.get(
         f"{api_base}/channels/{channel_id}/messages?limit={limit}", headers=headers
     )
 
-    new_list = []
+    messages_list = []
 
     if r.status_code != 200:
-        new_list.append(
-            {
-                "timestamp": datetime.now(),
-                "username": "System",
-                "content": "Error. This may be a forum channel, or you're not allowed to view the content.",
-                "id": 0,
-            }
+        messages_list.append(
+            DiscordMessage(
+                id=0,
+                author=DiscordUser(0, "", "", "System"),
+                content="Error. This may be a forum channel, or you're not allowed to view the content.",
+                attachments=[],
+                timestamp=datetime.utcfromtimestamp(0),
+                referenced_message=None,
+            )
         )
-        return {channel_id: new_list}
+        return {channel_id: messages_list}
 
     for message in r.json():
-        # TODO: You can get the author's profile picture ID from message["avatar"].
-        # TODO: Then, https://cdn.discordapp.com/avatars/user_id/avatar_id.webp?size={size} (size can equal 64, 128, 256, etc.)
-        # TODO: Make sure to add error handling for no profile picture.
-        if not message["author"].get("global_name", False):
-            author = message["author"]["username"]
-        else:
-            author = message["author"]["global_name"]
-
-        if not message["content"]:
-            content = "[(call/image/other)]"
-        else:
-            content = message["content"]
-
-        # Code for displaying timestamps
-        # For some reason, messages can use two, slightly different, timestamp formats.
-        time_str = message["timestamp"]
-        if len(time_str) == 32:
-            timestamp = datetime.strptime(time_str, "%Y-%m-%dT%H:%M:%S.%f%z")
-        else:
-            timestamp = datetime.strptime(time_str, "%Y-%m-%dT%H:%M:%S%z")
-
-        new_list.append(
-            {
-                "timestamp": timestamp.astimezone(),
-                "username": author,
-                "content": content,
-                "id": message["id"],
-            }
-        )
+        messages_list.append(DiscordMessage.from_dict(message))
 
     # Reverse the list of messages
-    new_list.reverse()
-    return {channel_id: new_list}
+    messages_list.reverse()
+    return {channel_id: messages_list}
 
 
 def send_message(msg, channel) -> None:
@@ -132,10 +108,10 @@ def send_message(msg, channel) -> None:
 
     Args:
         msg (str): The message to send.
-        channel (int): The channel to send the message in.
+        channel (int): The channel to which send the message.
 
     Returns:
-        None: No return value is needed.
+        None
     """
 
     requests.post(
@@ -145,28 +121,28 @@ def send_message(msg, channel) -> None:
     )
 
 
-def get_friends() -> dict:
+def get_friends() -> list[DiscordFriend]:
     """
-    Returns a list of friends for the current account.
+    Returns the list of friends of the current user.
 
     Returns:
-        dict: The friends of the current account.
+        list: The friends of the current user.
     """
 
     r = requests.get(f"{api_base}/users/@me/relationships", headers=headers)
 
-    return r.json()
+    return [DiscordFriend.from_dict(friend) for friend in r.json()]
 
 
-def get_channel_from_id(user_id: int) -> int:
+def get_channel_from_id(user_id: int) -> DiscordChannel:
     """
-    Converts a user ID into a channel ID.
+    Get the DM channel for a user.
 
     Args:
-        user_id (int): The user's ID.
+        user_id (int): A user ID.
 
     Returns:
-        int: The user's channel from which they can be reached.
+        DiscordChannel: The user's DM channel.
     """
 
     r = requests.post(
@@ -174,48 +150,48 @@ def get_channel_from_id(user_id: int) -> int:
         headers=headers,
         json={"recipient_id": user_id},
     )
-    return r.json()["id"]
+    return DiscordChannel.from_dict(r.json())
 
 
-def get_guilds() -> dict:
+def get_guilds() -> list[DiscordGuild]:
     """
-    Returns all guilds (aka servers) that the current user is in.
+    Returns all the guilds (aka servers) the current user is in.
 
     Returns:
-        dict: Guilds that the current account is in.
+        list[DiscordGuild]: Guilds the current user is in.
     """
 
     r = requests.get(f"{api_base}/users/@me/guilds", headers=headers)
 
-    return r.json()
+    return [DiscordGuild.from_dict(guild) for guild in r.json()]
 
 
-def get_guild_channels(guild_id: int) -> dict:
+def get_guild_channels(guild_id: int) -> list[DiscordChannel]:
     """
     Returns all channels in a guild.
 
     Args:
-        guild_id (int): Any guild that the current user is in.
+        guild_id (int): The ID of a guild the current user is in.
 
     Returns:
-        dict: The channels in the guild.
+        list[DiscordChannel]: The channels in the guild.
     """
 
     r = requests.get(f"{api_base}/guilds/{guild_id}/channels", headers=headers)
 
-    return r.json()
+    return [DiscordChannel.from_dict(channel) for channel in r.json()]
 
 
-def login(email: str, password: str, totp_code: str = ""):
+def login(email: str, password: str, totp_code: str = "") -> str | None:
     """
     Takes in an email and a password, logs in, and spits out a token.
 
     Args:
-        email (str): Your email, e.g., example@example.com
-        password (str): Your password for that account.
+        email (str): The email address for an account.
+        password (str): The password for the account.
 
     Returns:
-        str: Your token.
+        str | None: A user token if login was successful, None otherwise.
     """
     payload = {
         "login": email,
@@ -256,7 +232,7 @@ def login(email: str, password: str, totp_code: str = ""):
             return None
 
 
-def send_typing(channel: int):
+def send_typing(channel: int) -> None:
     """
     Sends a typing indicator to a channel.
 
