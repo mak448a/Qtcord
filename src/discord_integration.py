@@ -2,7 +2,13 @@ import requests
 import platformdirs
 import os
 from datetime import datetime
-from discord_objects import *
+from discord_objects import (
+    DiscordUser,
+    DiscordMessage,
+    DiscordFriend,
+    DiscordChannel,
+    DiscordGuild,
+)
 
 
 api_base = "https://discord.com/api/v9"
@@ -62,7 +68,7 @@ if not validate_token():
         os.remove(platformdirs.user_config_dir("Qtcord") + "/discordauth.txt")
 
 
-def get_messages(channel_id: int, limit: int = 100) -> dict[int, DiscordMessage]:
+def get_messages(channel_id: int, limit: int = 100) -> dict[int, list]:
     """
     Retrives messages from a specified channel.
 
@@ -87,9 +93,9 @@ def get_messages(channel_id: int, limit: int = 100) -> dict[int, DiscordMessage]
                 id=0,
                 author=DiscordUser(0, "", "", "System"),
                 content="Error. This may be a forum channel, or you're not allowed to view the content.",
-                attachments=[],
+                # attachments=[],
                 timestamp=datetime.utcfromtimestamp(0),
-                referenced_message=None,
+                # referenced_message=None,
             )
         )
         return {channel_id: messages_list}

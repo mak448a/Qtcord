@@ -13,10 +13,10 @@ class DiscordUser:
     @classmethod
     def from_dict(cls, user: dict) -> Self:
         return cls(
-            id = user["id"],
-            avatar = user["avatar"],
-            user_name = user["username"],
-            global_name = user["global_name"],
+            id=user["id"],
+            avatar=user["avatar"],
+            user_name=user["username"],
+            global_name=user["global_name"],
         )
 
     def get_user_name(self) -> str:
@@ -28,6 +28,7 @@ class DiscordUser:
             avatar_url = f"https://cdn.discordapp.com/avatars/{self.id}/{self.avatar}.webp?size={size}"
         return avatar_url
 
+
 @dataclass
 class DiscordFriend:
     user: DiscordUser
@@ -36,15 +37,17 @@ class DiscordFriend:
     @classmethod
     def from_dict(cls, friend: dict) -> Self:
         return cls(
-            user = DiscordUser.from_dict(friend["user"]),
-            nickname = friend["nickname"],
+            user=DiscordUser.from_dict(friend["user"]),
+            nickname=friend["nickname"],
         )
 
     def get_friend_name(self) -> str:
         return self.nickname if self.nickname else self.user.get_user_name()
 
+
 @dataclass
 class DiscordMessage:
+    # referenced_message may need to be edited in a future release.
     id: int
     author: DiscordUser
     content: str
@@ -69,6 +72,7 @@ class DiscordMessage:
             timestamp=timestamp.astimezone(),
         )
 
+
 @dataclass
 class DiscordChannel:
     id: int
@@ -79,20 +83,23 @@ class DiscordChannel:
     @classmethod
     def from_dict(cls, channel: dict) -> Self:
         return cls(
-            id = channel["id"],
-            type = channel["type"],
-            name = channel.get("name"),
-            recipients = [DiscordUser.from_dict(user) for user in channel.get("recipients", [])],
+            id=channel["id"],
+            type=channel["type"],
+            name=channel.get("name"),
+            recipients=[
+                DiscordUser.from_dict(user) for user in channel.get("recipients", [])
+            ],
         )
 
-    def get_channel_name(self) -> str:
-        if self.type in (1, 3): # DM or GROUP_DM types, respectively
+    def get_channel_name(self) -> str | None:
+        if self.type in (1, 3):  # DM or GROUP_DM types, respectively
             return self.get_dm_name()
         else:
             return self.name
 
     def get_dm_name(self) -> str:
         return "+".join(recipient.get_user_name() for recipient in self.recipients)
+
 
 @dataclass
 class DiscordGuild:
@@ -102,14 +109,12 @@ class DiscordGuild:
 
     @classmethod
     def from_dict(cls, guild: dict) -> Self:
-        return cls(
-            id = guild["id"],
-            name = guild["name"],
-            icon = guild["icon"]
-        )
+        return cls(id=guild["id"], name=guild["name"], icon=guild["icon"])
 
     def get_icon_url(self, size: int = 128) -> str:
         icon_url = ""
         if self.icon:
-            icon_url = f"https://cdn.discordapp.com/icons/{self.id}/{self.icon}?size={size}"
+            icon_url = (
+                f"https://cdn.discordapp.com/icons/{self.id}/{self.icon}?size={size}"
+            )
         return icon_url
