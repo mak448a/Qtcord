@@ -14,6 +14,8 @@ Qtcord is a Discord client built with QT aiming to bring a lightweight, native e
 ![Screenshot of Qtcord](demos/demo1.png)
 
 ## Setup
+> [!NOTE]
+> You need Python 3.10 or higher!
 
 Do the standard Python procedure:
 `python3 -m venv venv`
