@@ -13,7 +13,12 @@ from PySide6 import QtWidgets
 # 3rd party libraries
 import platformdirs
 
-from discord_workers import FileRequestWorker, SendMessageWorker, SendTypingWorker, UpdateMessagesWorker
+from discord_workers import (
+    FileRequestWorker,
+    SendMessageWorker,
+    SendTypingWorker,
+    UpdateMessagesWorker,
+)
 import discord_integration
 import discord_status
 
@@ -266,7 +271,12 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
             if channel.type == 4 or channel.type == 2:
                 continue
 
-            button = QPushButton(text=channel.get_channel_name())
+            channel_name = channel.get_channel_name()
+            if channel_name:
+                button = QPushButton(text=channel_name)
+            else:
+                button = QPushButton(text="unamed-channel")
+
             self.ui.channels_scrollArea_contents.layout().addWidget(button)
 
             # Oh my headache do not touch this code.
