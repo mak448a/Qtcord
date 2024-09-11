@@ -14,4 +14,6 @@ If you're on Windows, just stick with Python requests.
 Try to follow PEP-8 (the squiggly underlines in Pycharm) standards. If you can't, that's perfectly fine.
 You can use a code formatter called Ruff if needed.
 
+If you add a dependency, make sure to add the appropriate license to the licenses folder.
+
 To edit the user interface, use QT designer and put the UI files under `src/ui`. To apply the UI, run `src/regenerate.py`.
