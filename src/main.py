@@ -220,10 +220,12 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
                 (lambda channel: lambda: self.switch_channel(channel))(channel)
             )
 
-    def switch_channel(self, channel):
+    def switch_channel(self, channel, guild_name=None):
         if channel.id != self.channel_id:
             self.channel_id = channel.id
-            self.ui.channel_label.setText(channel.get_channel_name())
+            self.ui.channel_label.setText(
+                f"{guild_name + '>' if guild_name else ''}{channel.get_channel_name()}"
+            )
             self.ui.textBrowser.setText("No messages in this conversation yet!")
 
     def get_servers(self):
@@ -282,7 +284,11 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
             # Oh my headache do not touch this code.
             # But if you do: https://stackoverflow.com/questions/19837486/lambda-in-a-loop
             button.clicked.connect(
-                (lambda channel: lambda: self.switch_channel(channel))(channel)
+                (
+                    lambda channel: lambda: self.switch_channel(
+                        channel, guild_name=guild.name
+                    )
+                )(channel)
             )
 
             self.channel_buttons.append(button)
