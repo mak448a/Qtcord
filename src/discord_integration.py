@@ -201,6 +201,7 @@ def login(email: str, password: str, totp_code: str = "") -> str | None:
     Returns:
         str | None: A user token if login was successful, None otherwise.
     """
+
     payload = {
         "login": email,
         "password": password,
