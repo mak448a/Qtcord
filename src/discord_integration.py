@@ -252,3 +252,18 @@ def send_typing(channel: int) -> None:
     """
 
     requests.post(f"{api_base}/channels/{channel}/typing", headers=headers)
+
+
+def get_user_from_id(user_id: int) -> DiscordUser:
+    """
+    Returns the user with the specified ID.
+
+    Args:
+        user_id (int): A user's ID.
+
+    Returns:
+        DiscordUser: The user with the specified ID.
+    """
+
+    response = requests.get(f"{api_base}/users/{user_id}", headers=headers)
+    return DiscordUser.from_dict(response.json())
