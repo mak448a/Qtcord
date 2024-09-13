@@ -174,7 +174,7 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
 
             if auth2:
                 self.get_friends()
-                self.get_servers()
+                self.get_guilds()
                 self.timer2.setSingleShot(True)
                 # This gets called anyway, tell IDE to ignore
                 self.timer2.stop()
@@ -228,7 +228,7 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
             )
             self.ui.textBrowser.setText("No messages in this conversation yet!")
 
-    def get_servers(self):
+    def get_guilds(self):
         self.guilds = discord_integration.get_guilds()
 
         for guild in self.guilds:
