@@ -80,6 +80,8 @@ def get_messages(channel_id: int, limit: int = 100) -> dict[int, list]:
         dict[int, DiscordMessage]: A dictionary with the channel ID as only key, and a list with
           the channel's messages as its value.
     """
+    # TODO: Add the ability to get messages before a message, like
+    # https://discord.com/api/v9/channels/%7Bchannel_id%7D/messages?before={message}&limit={message_limit}
 
     r = requests.get(
         f"{api_base}/channels/{channel_id}/messages?limit={limit}", headers=headers
