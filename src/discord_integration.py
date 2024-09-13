@@ -254,7 +254,8 @@ def send_typing(channel: int) -> None:
     requests.post(f"{api_base}/channels/{channel}/typing", headers=headers)
 
 
-def get_user_from_id(user_id: int) -> DiscordUser:
+def get_user_from_id(user_id: int, users_cache_data: dict = {}) -> DiscordUser:
+    # users_cache_data is mutable! It can and will be modified!
     """
     Returns the user with the specified ID.
 
@@ -265,5 +266,14 @@ def get_user_from_id(user_id: int) -> DiscordUser:
         DiscordUser: The user with the specified ID.
     """
 
+    # Keep data in a cache so users don't get ratelimited
+    if users_cache_data.get(user_id, False):
+        return users_cache_data[user_id]
+
+    # Wasn't cached.
     response = requests.get(f"{api_base}/users/{user_id}", headers=headers)
-    return DiscordUser.from_dict(response.json())
+    user = DiscordUser.from_dict(response.json())
+    # Cache it for later.
+    users_cache_data[user_id] = user
+
+    return user
