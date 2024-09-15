@@ -1,17 +1,16 @@
 #! /usr/bin/env python3
 import os
 import sys
+import re
 import webbrowser
 import requests
+import platformdirs
 
 # PySide imports
 from PySide6.QtWidgets import QApplication, QMainWindow, QMessageBox, QPushButton
 from PySide6.QtGui import QShortcut, QKeySequence, QIcon, QPixmap
 from PySide6.QtCore import QTimer, QThreadPool
 from PySide6 import QtWidgets
-
-# 3rd party libraries
-import platformdirs
 
 from discord_workers import (
     FileRequestWorker,
@@ -113,7 +112,7 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
         worker.update.connect(self._update_text)
         self.threadpool.start(worker)
 
-    def _update_text(self, messages):
+    def _update_text(self, messages: dict) -> None:
         if not self.channel_id:
             return
 
@@ -122,6 +121,21 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
         last_timestamp = None
 
         for message in messages.get(self.channel_id, []):
+            # Each message is a DiscordMessage object.
+
+            # Here we're replacing <@user_id> with @username.
+            # TODO: ALLOW SENDING @ MENTIONS
+            if "<@" in message.content:
+                matches = re.findall(r"<@(\d+)>", message.content)
+
+                for id_mentioned in matches:
+                    user = discord_integration.get_user_from_id(id_mentioned)
+                    message.content = re.sub(
+                        f"<@{id_mentioned}>",
+                        f"<em>@{user.get_user_name()}</em>",
+                        message.content,
+                    )
+
             tags = """<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-weight:700;">"""
 
             timestamp = message.timestamp
