@@ -16,6 +16,7 @@ Qtcord is a Discord client built with Qt aiming to bring a lightweight, native e
 ## Setup
 > [!NOTE]
 > You need Python 3.10 or higher!
+> Also, I recommend using uv if you have it installed. It's faster than pip. (`uv pip install -r requirements.txt`)
 
 Do the standard Python procedure:
 `python3 -m venv venv`
