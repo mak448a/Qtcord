@@ -22,20 +22,22 @@ def _start():
         data = json.loads(message)
         if data["op"] == 10:
             heartbeat_interval = data["d"]["heartbeat_interval"] / 1000.0
-            print(f"Sending heartbeats every {heartbeat_interval} seconds")
+            print(
+                f"[DiscordIndicator]: Sending heartbeats every {heartbeat_interval} seconds"
+            )
             start_heartbeat(ws)
         elif data["op"] == 11:
             # The server accepted our heartbeat, i.e. Heartbeat ACK
-            print("Heartbeat acknowledged")
+            print("[DiscordIndicator]: Heartbeat acknowledged")
 
     def on_error(_, error):
-        print(f"Error: {error}")
+        print(f"[DiscordIndicator]: Error: {error}")
 
     def on_close(_, __, ___):
-        print("Connection closed")
+        print("[DiscordIndicator]: Connection closed")
 
     def on_open(ws):
-        print("Connection opened")
+        print("[DiscordIndicator]: Connection opened")
 
         # Authenticate
         payload = {

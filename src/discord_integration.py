@@ -8,6 +8,7 @@ from discord_objects import (
     DiscordFriend,
     DiscordChannel,
     DiscordGuild,
+    users_cache_data,
 )
 
 
@@ -255,16 +256,17 @@ def send_typing(channel: int) -> None:
     requests.post(f"{api_base}/channels/{channel}/typing", headers=headers)
 
 
-def get_user_from_id(user_id: int, users_cache_data: dict = {}) -> DiscordUser:
+def get_user_from_id(user_id: int, friend: bool = False) -> DiscordUser | DiscordFriend:
     # users_cache_data is mutable! It can and will be modified!
     """
     Returns the user with the specified ID.
 
     Args:
         user_id (int): A user's ID.
+        friend (bool): Whether to instantiate a DiscordFriend or DiscordUser.
 
     Returns:
-        DiscordUser: The user with the specified ID.
+        DiscordUser | DiscordFriend: The user with the specified ID.
     """
 
     # Keep data in a cache so users don't get ratelimited
@@ -273,7 +275,12 @@ def get_user_from_id(user_id: int, users_cache_data: dict = {}) -> DiscordUser:
 
     # Wasn't cached.
     response = requests.get(f"{api_base}/users/{user_id}", headers=headers)
-    user = DiscordUser.from_dict(response.json())
+
+    if friend:
+        user = DiscordFriend.from_dict(response.json())
+    else:
+        user = DiscordUser.from_dict(response.json())
+
     # Cache it for later.
     users_cache_data[user_id] = user
 
