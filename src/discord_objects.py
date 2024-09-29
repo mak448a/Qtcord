@@ -21,12 +21,17 @@ class DiscordUser:
         Returns:
             Self: A DiscordUser instance.
         """
-        return cls(
+        global users_cache_data
+
+        instance = cls(
             id=user["id"],
             avatar=user["avatar"],
             user_name=user["username"],
             global_name=user["global_name"],
         )
+        users_cache_data[user["id"]] = instance
+
+        return instance
 
     def get_user_name(self) -> str:
         """
@@ -69,12 +74,17 @@ class DiscordFriend:
         Returns:
             Self: A DiscordFriend instance.
         """
-        return cls(
+        global users_cache_data
+
+        instance = cls(
             user=DiscordUser.from_dict(friend["user"]),
             nickname=friend["nickname"],
         )
+        users_cache_data[friend["id"]] = instance
 
-    def get_friend_name(self) -> str:
+        return instance
+
+    def get_user_name(self) -> str:
         """
         Returns the friend's nickname if it exists, otherwise the username.
 
@@ -202,3 +212,9 @@ class DiscordGuild:
                 f"https://cdn.discordapp.com/icons/{self.id}/{self.icon}?size={size}"
             )
         return icon_url
+
+
+# This variable caches all DiscordUser/DiscordFriend objects that are created.
+# This will break if we don't start on the friend's list since
+# the friend's nickname is only found once we get it from our friends list.
+users_cache_data = {}

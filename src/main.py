@@ -207,7 +207,7 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
         for friend in self.friends:
             user = friend.user
 
-            button = QPushButton(text=friend.get_friend_name())
+            button = QPushButton(text=friend.get_user_name())
 
             def set_button_icon(button, data):
                 pixmap = QPixmap()
@@ -237,8 +237,18 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
     def switch_channel(self, channel, guild_name=None):
         if channel.id != self.channel_id:
             self.channel_id = channel.id
+            username = ""
+
+            # TODO! Make this better for getting finding group DMs and finding the group name
+            if 0 < len(channel.recipients) < 2:
+                # This must be a one friend DM so get the user's nickname
+                username = discord_integration.get_user_from_id(
+                    channel.recipients[0].id
+                ).get_user_name()
+
+            # Set the channel indicator label to the user's nickname or username depending
             self.ui.channel_label.setText(
-                f"{guild_name + '>' if guild_name else ''}{channel.get_channel_name()}"
+                f"{guild_name + '>' if guild_name else ''}{username if username else channel.get_channel_name()}"
             )
             self.ui.textBrowser.setText("No messages in this conversation yet!")
 
