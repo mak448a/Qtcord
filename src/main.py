@@ -243,7 +243,7 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
             if 0 < len(channel.recipients) < 2:
                 # This must be a one friend DM so get the user's nickname
                 username = discord_integration.get_user_from_id(
-                    channel.recipients[0].id
+                    channel.recipients[0].user.id, friend=True
                 ).get_user_name()
 
             # Set the channel indicator label to the user's nickname or username depending

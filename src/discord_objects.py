@@ -23,15 +23,19 @@ class DiscordUser:
         """
         global users_cache_data
 
-        instance = cls(
-            id=user["id"],
-            avatar=user["avatar"],
-            user_name=user["username"],
-            global_name=user["global_name"],
-        )
-        users_cache_data[user["id"]] = instance
+        # Check if the user is in the cache. If it is, return it. Otherwise, add it.
+        if not users_cache_data.get(user["id"], False):
+            instance = cls(
+                id=user["id"],
+                avatar=user["avatar"],
+                user_name=user["username"],
+                global_name=user["global_name"],
+            )
+            users_cache_data[user["id"]] = instance
 
-        return instance
+            return instance
+        else:
+            return users_cache_data[user["id"]]
 
     def get_user_name(self) -> str:
         """
