@@ -27,7 +27,7 @@ Do the standard Python procedure:
 Cd into src
 `cd src/`
 
-Afterwards, just run main.py.
+Afterwards, just run main.py. If you're on Windows, substitute `python3` for `python`.
 ```shell
 python3 main.py
 ```
