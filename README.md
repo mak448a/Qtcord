@@ -13,7 +13,8 @@ Qtcord is a Discord client built with Qt aiming to bring a lightweight, native e
 
 ![Screenshot of Qtcord](demos/demo4.png)
 
-## Setup
+## Notes for developers
+Check out [CONTRIBUTING.md](https://github.com/mak448a/Qtcord/blob/main/CONTRIBUTING.md)!
 > [!NOTE]
 > You need Python 3.10 or higher!
 > Also, I recommend using uv if you have it installed. It's faster than pip. (`uv pip install -r requirements.txt`)
@@ -37,6 +38,3 @@ https://discord.com/developers/docs/
 https://luna.gitlab.io/discord-unofficial-docs/
 https://www.youtube.com/channel/UC8PPJFudLUM1eJlM4BiJ40A
 
-## Notes for developers
-The code is a mess, since I'm just working on this for fun. Have fun! And if you're feeling very helpful, maybe even clean it up for me! 😅
-Check out CONTRIBUTING.md for more information.
