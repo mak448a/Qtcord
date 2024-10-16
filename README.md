@@ -37,4 +37,3 @@ Here are the links to the tutorials/docs that I used to make this app.
 https://discord.com/developers/docs/
 https://luna.gitlab.io/discord-unofficial-docs/
 https://www.youtube.com/channel/UC8PPJFudLUM1eJlM4BiJ40A
-

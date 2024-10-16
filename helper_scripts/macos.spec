@@ -7,7 +7,7 @@ a = Analysis(
     binaries=[],
     datas=[
         ("../licenses", "licenses"),
-        ("../src/", ".")
+        ("../src", ".")
     ],
     hiddenimports=[],
     hookspath=[],
@@ -48,7 +48,7 @@ coll = COLLECT(
 )
 app = BUNDLE(
     coll,
-    name='Qtcord.app',
+    name='Qtcord-macOS.app',
     icon='../src/assets/icon.icns',
     bundle_identifier='io.github.mak448a.Qtcord',
 )
