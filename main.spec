@@ -44,11 +44,11 @@ coll = COLLECT(
     strip=False,
     upx=True,
     upx_exclude=[],
-    name='main',
+    name='Qtcord',
 )
 app = BUNDLE(
     coll,
-    name='main.app',
-    icon='icon.icns',
+    name='Qtcord.app',
+    icon='src/assets/icon.icns',
     bundle_identifier='io.github.mak448a.Qtcord',
 )
