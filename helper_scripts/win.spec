@@ -2,12 +2,12 @@
 
 
 a = Analysis(
-    ['src/main.py'],
+    ['../src/main.py'],
     pathex=[],
     binaries=[],
     datas=[
-        ("licenses", "licenses"),
-        ("src/", ".")
+        ("../licenses", "licenses"),
+        ("../src/", ".")
     ],
     hiddenimports=[],
     hookspath=[],
@@ -15,7 +15,6 @@ a = Analysis(
     runtime_hooks=[],
     excludes=[],
     noarchive=False,
-    optimize=0,
 )
 pyz = PYZ(a.pure)
 
@@ -24,7 +23,7 @@ exe = EXE(
     a.scripts,
     [],
     exclude_binaries=True,
-    name='main',
+    name='Qtcord',
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,
@@ -35,7 +34,7 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
-    icon=['icon.icns'],
+    icon=['../src/assets/icon.ico'],
 )
 coll = COLLECT(
     exe,
@@ -45,10 +44,4 @@ coll = COLLECT(
     upx=True,
     upx_exclude=[],
     name='Qtcord',
-)
-app = BUNDLE(
-    coll,
-    name='Qtcord.app',
-    icon='src/assets/icon.icns',
-    bundle_identifier='io.github.mak448a.Qtcord',
 )
