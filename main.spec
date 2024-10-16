@@ -50,5 +50,5 @@ app = BUNDLE(
     coll,
     name='main.app',
     icon='icon.icns',
-    bundle_identifier=None,
+    bundle_identifier='io.github.mak448a.Qtcord',
 )
