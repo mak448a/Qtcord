@@ -15,6 +15,7 @@ a = Analysis(
     runtime_hooks=[],
     excludes=[],
     noarchive=False,
+    optimize=0,
 )
 pyz = PYZ(a.pure)
 
@@ -23,7 +24,7 @@ exe = EXE(
     a.scripts,
     [],
     exclude_binaries=True,
-    name='Qtcord',
+    name='main',
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,
@@ -34,7 +35,7 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
-    icon=['src/assets/icon.ico'],
+    icon=['icon.icns'],
 )
 coll = COLLECT(
     exe,
@@ -43,5 +44,11 @@ coll = COLLECT(
     strip=False,
     upx=True,
     upx_exclude=[],
-    name='Qtcord',
+    name='main',
+)
+app = BUNDLE(
+    coll,
+    name='main.app',
+    icon='icon.icns',
+    bundle_identifier=None,
 )
