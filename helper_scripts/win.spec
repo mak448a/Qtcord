@@ -2,12 +2,12 @@
 
 
 a = Analysis(
-    ['src/main.py'],
+    ['../src/main.py'],
     pathex=[],
     binaries=[],
     datas=[
-        ("licenses", "licenses"),
-        ("src/", ".")
+        ("../licenses", "licenses"),
+        ("../src/", ".")
     ],
     hiddenimports=[],
     hookspath=[],
@@ -34,7 +34,7 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
-    icon=['src/assets/icon.ico'],
+    icon=['../src/assets/icon.ico'],
 )
 coll = COLLECT(
     exe,
@@ -43,5 +43,5 @@ coll = COLLECT(
     strip=False,
     upx=True,
     upx_exclude=[],
-    name='Qtcord',
+    name='Qtcord-Windows',
 )

@@ -12,4 +12,4 @@ except ModuleNotFoundError:
     )
 
 os.chdir("src")
-os.system("pyinstaller ../helper_scripts/win.spec")
+os.system("pyinstaller ../helper_scripts/macos.spec")
