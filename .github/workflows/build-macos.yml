@@ -1,9 +1,11 @@
 name: Build macOS
 run-name: Build macOS
+#on:
+#  push:
+#    tags:
+#      - "**"
 on:
-  push:
-    tags:
-      - "**"
+  push
 
 jobs:
   Build-macOS:
@@ -15,7 +17,7 @@ jobs:
         with:
           python-version: "3.12.4"
       - run: git clone https://github.com/mak448a/Qtcord/ --depth=1
-      - run: pip install -r requirements.txt && pip install pyinstaller && python3 helper_scripts/package_mac.py
+      - run: pip install -r requirements.txt && pip install pyinstaller && python3 helper_scripts/package_mac.py && ls
       - uses: actions/upload-artifact@v4
         with:
           name: "Qtcord-macOS"
