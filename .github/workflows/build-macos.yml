@@ -16,8 +16,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12.4"
-      - run: git clone https://github.com/mak448a/Qtcord/ --depth=1
-      - run: pip install -r requirements.txt && pip install pyinstaller && python3 helper_scripts/package_mac.py && ls
+      - run: pip install -r requirements.txt && pip install pyinstaller && python3 helper_scripts/package_mac.py && ls src/dist
       - uses: actions/upload-artifact@v4
         with:
           name: "Qtcord-macOS"
