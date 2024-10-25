@@ -3,7 +3,7 @@
 <component type="desktop-application">
     <id>io.github.mak448a.QTCord</id>
     <name>Qtcord</name>
-    <summary>Lightweight Discord Client</summary>
+    <summary>Lightweight Discord client</summary>
     <launchable type="desktop-id">io.github.mak448a.QTCord.desktop</launchable>
     <developer_name>mak448a</developer_name>
     <description>
