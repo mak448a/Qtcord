@@ -3,7 +3,7 @@
 # You'll have to make a venv with --system-site-packages.
 
 
-platformdirs~=4.2.2
+platformdirs~=4.3.6
 requests~=2.32.3
 xxhash~=3.5.0
 websocket-client~=1.8.0
