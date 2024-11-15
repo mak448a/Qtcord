@@ -1,7 +1,6 @@
 from PySide6.QtWidgets import QMainWindow
 from ui import login_ui
 from discord_integration import login, load_token
-from discord_status import keep_online
 import platformdirs
 
 
@@ -52,9 +51,6 @@ class LoginUI(QMainWindow, login_ui.Ui_MainWindow):
 
                 # Load the token
                 load_token()
-
-                # Open a connection to Discord to add the online indicator
-                keep_online()
 
                 # Switch the page to the chat page
                 self.switcher.setCurrentIndex(self.switcher.currentIndex() + 1)
