@@ -34,7 +34,7 @@ def load_token() -> None:
 
 def validate_token() -> bool:
     """
-    Checks whether the token is valid or not.
+    Checks for a valid token.
 
     Returns:
         bool: True if the token is valid, False otherwise.
@@ -71,7 +71,7 @@ if not validate_token():
 
 def get_messages(channel_id: int, limit: int = 100) -> dict[int, list]:
     """
-    Retrives messages from a specified channel.
+    Retrives messages from the specified channel.
 
     Args:
         channel_id (int): A channel ID.
@@ -113,7 +113,7 @@ def get_messages(channel_id: int, limit: int = 100) -> dict[int, list]:
 
 def send_message(msg, channel) -> None:
     """
-    Sends a message to a given channel.
+    Sends a message to the specified channel.
 
     Args:
         msg (str): The message to send.
@@ -132,10 +132,10 @@ def send_message(msg, channel) -> None:
 
 def get_friends() -> list[DiscordFriend]:
     """
-    Returns the list of friends of the current user.
+    Returns the current user's friends.
 
     Returns:
-        list: The friends of the current user.
+        list: The current user's friends.
     """
 
     r = requests.get(f"{api_base}/users/@me/relationships", headers=headers)
@@ -148,7 +148,7 @@ def get_channel_from_id(user_id: int) -> DiscordChannel:
     Get the DM channel for a user.
 
     Args:
-        user_id (int): A user ID.
+        user_id (int): The user's ID.
 
     Returns:
         DiscordChannel: The user's DM channel.
@@ -167,7 +167,7 @@ def get_guilds() -> list[DiscordGuild]:
     Returns all the guilds (aka servers) the current user is in.
 
     Returns:
-        list[DiscordGuild]: Guilds the current user is in.
+        list[DiscordGuild]: The user's guilds.
     """
 
     r = requests.get(f"{api_base}/users/@me/guilds", headers=headers)
@@ -180,7 +180,7 @@ def get_guild_channels(guild_id: int) -> list[DiscordChannel]:
     Returns all channels in a guild.
 
     Args:
-        guild_id (int): The ID of a guild the current user is in.
+        guild_id (int): The guild's ID.
 
     Returns:
         list[DiscordChannel]: The channels in the guild.
@@ -247,7 +247,7 @@ def send_typing(channel: int) -> None:
     Sends a typing indicator to a channel.
 
     Args:
-        channel (int): The discord channel to send the typing indicator to
+        channel (int): The channel to send the typing indicator
 
     Returns:
         None
