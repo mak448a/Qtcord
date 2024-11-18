@@ -48,6 +48,13 @@
       <content_attribute id="social-chat">intense</content_attribute>
     </content_rating>
     <releases>
+      <release version="v0.0.22" date="2024-11-17" type="stable">
+        <description>
+          <p>Update dependencies</p>
+          <p>Remove online indicator (code was written by AI)</p>
+        </description>
+        <url>https://github.com/mak448a/Qtcord/releases/v0.0.22</url>
+      </release>
       <release version="v0.0.21" date="2024-10-13" type="stable">
         <description>
           <p>Fix displaying @mentions!</p>
