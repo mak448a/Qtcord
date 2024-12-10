@@ -4,20 +4,30 @@ on:
   push:
     tags:
       - "**"
-# on: [push]
+
 jobs:
   Build-Windows:
     runs-on: windows-latest
     steps:
-      # Use Python 3.12.4
       - uses: actions/checkout@v4
+      
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12.4"
-      - run: |
-          pip install -r requirements.txt && pip install pyinstaller && python3 helper_scripts/package_windows.py && pyinstaller helper_scripts/win.spec
-          Move-Item ./dist/Qtcord-Windows/Qtcord.exe ./Qtcord-${{github.ref_name}}-Windows-x86_64.exe
-          Compress-Archive ./Qtcord-${{github.ref_name}}-Windows-x86_64.exe ./Qtcord-${{github.ref_name}}-Windows-x86_64.zip
-      - uses: softprops/action-gh-release@v1
+      
+      - name: Install dependencies and build
+        run: |
+          pip install -r requirements.txt
+          pip install pyinstaller
+          python3 helper_scripts/package_windows.py
+          pyinstaller helper_scripts/win.spec
+      
+      - name: Rename and Compress Executable
+        run: |
+          Move-Item -Path ".\dist\Qtcord-Windows\Qtcord.exe" -Destination ".\Qtcord-${{github.ref_name}}-Windows-x86_64.exe"
+          Compress-Archive -Path ".\Qtcord-${{github.ref_name}}-Windows-x86_64.exe" -DestinationPath ".\Qtcord-${{github.ref_name}}-Windows-x86_64.zip"
+      
+      - name: Upload Release Asset
+        uses: softprops/action-gh-release@v1
         with:
-          path: "./Qtcord-${{github.ref_name}}-Windows-x86_64.zip"
+          files: "Qtcord-${{github.ref_name}}-Windows-x86_64.zip"
