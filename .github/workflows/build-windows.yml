@@ -15,7 +15,7 @@ jobs:
         with:
           python-version: "3.12.4"
       - run: |
-          pip install -r requirements.txt && pip install pyinstaller && python3 helper_scripts/package_windows.py
+          pip install -r requirements.txt && pip install pyinstaller && python3 helper_scripts/package_windows.py && pyinstaller helper_scripts/win.spec
           Move-Item ./dist/Qtcord-Windows/Qtcord.exe ./Qtcord-${{github.ref_name}}-Windows-x86_64.exe
           Compress-Archive ./Qtcord-${{github.ref_name}}-Windows-x86_64.exe ./Qtcord-${{github.ref_name}}-Windows-x86_64.zip
       - uses: softprops/action-gh-release@v1
