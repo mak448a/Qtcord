@@ -17,7 +17,6 @@ jobs:
         with:
           python-version: "3.12.4"
       - run: pip install -r requirements.txt && pip install pyinstaller && python3 helper_scripts/package_mac.py && mkdir src/dist/Qtcord-macOS && mv src/dist/Qtcord-macOS.app src/dist/Qtcord-macOS
-      - uses: actions/upload-artifact@v4
+      - uses: softprops/action-gh-release@v1
         with:
-          name: "Qtcord-macOS"
           path: "src/dist/Qtcord-macOS"

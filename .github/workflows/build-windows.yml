@@ -15,7 +15,6 @@ jobs:
         with:
           python-version: "3.12.4"
       - run: pip install -r requirements.txt && pip install pyinstaller && python3 helper_scripts/package_windows.py
-      - uses: actions/upload-artifact@v4
+      - uses: softprops/action-gh-release@v1
         with:
-          name: "Qtcord-Windows"
           path: "src/dist/Qtcord-Windows"
