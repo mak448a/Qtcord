@@ -17,7 +17,7 @@ jobs:
       - run: |
           pip install -r requirements.txt && pip install pyinstaller && python3 helper_scripts/package_windows.py
           Move-Item ./dist/Qtcord-Windows/Qtcord.exe ./Qtcord-${{github.ref_name}}-Windows-x86_64.exe
-          Compress-Archive ./TinyWiiBackupManager-${{github.ref_name}}-Windows-x86_64.exe TinyWiiBackupManager-${{github.ref_name}}-Windows-x86_64.zip
+          Compress-Archive ./Qtcord-${{github.ref_name}}-Windows-x86_64.exe ./Qtcord-${{github.ref_name}}-Windows-x86_64.zip
     - uses: softprops/action-gh-release@v1
         with:
           path: "./Qtcord-${{github.ref_name}}-Windows-x86_64.exe"
