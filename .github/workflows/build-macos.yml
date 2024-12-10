@@ -1,22 +1,47 @@
 name: Build macOS
 run-name: Build macOS
 on:
- push:
-   tags:
-     - "**"
-# on:
-#   push
+  push:
+    tags:
+      - "**"
 
 jobs:
   Build-macOS:
     runs-on: macos-latest
     steps:
-      # Use Python 3.12.4
       - uses: actions/checkout@v4
+      
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12.4"
-      - run: pip install -r requirements.txt && pip install pyinstaller && python3 helper_scripts/package_mac.py && mkdir src/dist/Qtcord-macOS && mv src/dist/Qtcord-macOS.app src/dist/Qtcord-macOS
-      - uses: softprops/action-gh-release@v1
+      
+      - name: Install dependencies and build
+        run: |
+          pip install -r requirements.txt
+          pip install pyinstaller
+          python3 helper_scripts/package_mac.py
+      
+      - name: Prepare release artifacts
+        run: |
+          # Create .zip archive
+          mkdir -p src/dist/Qtcord-macOS
+          mv src/dist/Qtcord-macOS.app src/dist/Qtcord-macOS/
+          zip -r Qtcord-${{github.ref_name}}-macOS-x86_64.zip src/dist/Qtcord-macOS
+          
+          # Create .dmg file
+          brew install create-dmg
+          create-dmg \
+            --volname "Qtcord" \
+            --window-pos 200 120 \
+            --window-size 800 400 \
+            --icon-size 100 \
+            --app-drop-link 600 185 \
+            Qtcord-${{github.ref_name}}-macOS-x86_64.dmg \
+            src/dist/Qtcord-macOS.app
+      
+      - name: Upload Release Assets
+        uses: softprops/action-gh-release@v1
         with:
-          path: "src/dist/Qtcord-macOS"
+          files: |
+            Qtcord-${{github.ref_name}}-macOS-x86_64.zip
+            Qtcord-${{github.ref_name}}-macOS-x86_64.dmg
