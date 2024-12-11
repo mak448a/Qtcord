@@ -13,8 +13,41 @@ except ModuleNotFoundError:
 
 # Get the absolute path of the script
 script_dir = os.path.dirname(os.path.abspath(__file__))
-src_path = os.path.join(script_dir, "src")
+print(f"Script directory: {script_dir}")
+
+# Print out the contents of the script directory
+print("Contents of script directory:")
+print(os.listdir(script_dir))
+
+# Attempt to locate the src directory
+possible_src_paths = [
+    os.path.join(script_dir, "src"),
+    os.path.join(os.path.dirname(script_dir), "src"),
+    os.path.join(script_dir, "..", "src"),
+    os.path.join(script_dir, "Qtcord", "src"),
+]
+
+src_path = None
+for path in possible_src_paths:
+    abs_path = os.path.abspath(path)
+    print(f"Checking path: {abs_path}")
+    if os.path.exists(abs_path) and os.path.isdir(abs_path):
+        src_path = abs_path
+        break
+
+if not src_path:
+    print("Could not find src directory")
+    sys.exit(1)
+
+print(f"Found src directory: {src_path}")
+
+# Find the spec file
 spec_path = os.path.join(script_dir, "helper_scripts", "win.spec")
+print(f"Spec file path: {spec_path}")
+
+if not os.path.exists(spec_path):
+    print("Spec file not found")
+    sys.exit(1)
 
 # Change to the src directory
 try:
