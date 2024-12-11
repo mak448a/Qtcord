@@ -11,4 +11,4 @@ except ModuleNotFoundError:
         "You need pyinstaller installed. Make sure to install a version at least 2 months old as to avoid false positives on virus detectors. Use pip install pyinstaller."
     )
 
-os.system("pyinstaller ../helper_scripts/win.spec")
+os.system("pyinstaller ./helper_scripts/win.spec")
