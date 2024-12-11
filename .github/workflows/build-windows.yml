@@ -14,7 +14,13 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12.4"
-          
+      
+      - name: Install dependencies and build
+        run: |
+          pip install -r requirements.txt
+          pip install pyinstaller
+          python helper_scripts/package_windows.py
+      
       - name: Rename and Compress Executable
         run: |
           Move-Item -Path ".\dist\Qtcord-Windows\Qtcord.exe" -Destination ".\Qtcord-${{github.ref_name}}-Windows-x86_64.exe"
