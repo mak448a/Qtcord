@@ -33,12 +33,12 @@ jobs:
             --window-size 800 400 \
             --icon-size 100 \
             --app-drop-link 600 185 \
-            Qtcord-${{github.ref_name}}-macOS-x86_64.dmg \
+            Qtcord-${{github.ref_name}}-macOS-aarch64.dmg \
             src/dist/Qtcord-macOS.app
       
       - name: Upload Release Assets
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            Qtcord-${{github.ref_name}}-macOS-x86_64.zip
-            Qtcord-${{github.ref_name}}-macOS-x86_64.dmg
+            Qtcord-${{github.ref_name}}-macOS-aarch64.zip
+            Qtcord-${{github.ref_name}}-macOS-aarch64.dmg
