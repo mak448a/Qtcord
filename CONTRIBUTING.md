@@ -5,7 +5,7 @@ If you disagree with this, you can ask for me to make this a little less ridicul
 DISCLAIMER: I am just doing this in case if I have to copy and paste from this repository or relicense the code.
 
 ## Discord API Usage
-I highly recommend [this tutorial](https://www.youtube.com/watch?v=xh28F6f-Cds) for getting started with reverse engineering the Discord API.
+Try [this tutorial](https://www.youtube.com/watch?v=xh28F6f-Cds) for getting started with the Discord API.
 More notes are in `projects_notes.txt`.
 For API testing on Linux, I recommend [this app.](https://github.com/CleoMenezesJr/escambo)
 If you're on Windows, just stick with Python requests.
