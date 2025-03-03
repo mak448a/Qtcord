@@ -25,7 +25,7 @@ from ui.main_ui import Ui_MainWindow
 from login import LoginUI
 from licensesui import LicensesUI
 from no_internet import NoInternetUI
-
+from version import get_version
 # Will be set when run!
 auth = False
 current_dir = os.path.dirname(os.path.realpath(__file__)).replace(" ", "\\ ")
@@ -340,6 +340,9 @@ def handle_no_internet() -> None:
 
 
 if __name__ == "__main__":
+
+    #call the get_version function
+    version = get_version()
     # If no internet, throw up a dialog that says no internet
     handle_no_internet()
 
@@ -375,7 +378,7 @@ if __name__ == "__main__":
 
     # Set window properties
     switcher.resize(840, 500)
-    switcher.setWindowTitle("Qtcord")
+    switcher.setWindowTitle(f"Qtcord {version}")
     icon_path = os.path.join(current_dir, "assets", "icon.svg")
     switcher.setWindowIcon(QIcon(icon_path))
 
