@@ -26,6 +26,7 @@ from login import LoginUI
 from licensesui import LicensesUI
 from no_internet import NoInternetUI
 from version import get_version
+
 # Will be set when run!
 auth = False
 current_dir = os.path.dirname(os.path.realpath(__file__)).replace(" ", "\\ ")
@@ -340,8 +341,7 @@ def handle_no_internet() -> None:
 
 
 if __name__ == "__main__":
-
-    #call the get_version function
+    # Get the version number for use in the about dialog and titlebar.
     version = get_version()
     # If no internet, throw up a dialog that says no internet
     handle_no_internet()
