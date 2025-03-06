@@ -2,7 +2,10 @@
 ![Download Count](https://img.shields.io/endpoint?url=https://flathub-stats-backend.vercel.app/badges/io.github.mak448a.QTCord/shields.io.json)
 [![Discord Invite](https://dcbadge.limes.pink/api/server/https://discord.gg/gV8SjzZAXj?style=flat)](https://discord.gg/gV8SjzZAXj)
 
-Qtcord is a Discord client built with Qt aiming to bring a lightweight, native experience. I am not responsible if you get your account banned from this project.
+Qtcord is a Discord client built with Qt aiming to bring a lightweight, native experience.
+
+> [!CAUTION]
+> For educational use only! I am not responsible if you get your account banned from this project.
 
 (Make sure you're getting Qtcord from the right source! The official source is https://github.com/mak448a/Qtcord!)
 
