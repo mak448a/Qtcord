@@ -12,7 +12,7 @@ from discord_objects import (
 )
 
 
-api_base = "https://discord.com/api/v9"
+api_base = "https://api.old.server.spacebar.chat/api/v9"
 auth = ""  # Will be overridden when load_token is called
 headers = {
     "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) discord/0.0.63 Chrome/124.0.6367.243 Electron/30.2.0 Safari/537.36"

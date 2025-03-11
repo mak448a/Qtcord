@@ -29,7 +29,7 @@ class DiscordUser:
                 id=user["id"],
                 avatar=user["avatar"],
                 user_name=user["username"],
-                global_name=user["global_name"],
+                global_name=user.get("global_name", None),
             )
             users_cache_data[user["id"]] = instance
 
@@ -131,7 +131,8 @@ class DiscordMessage:
 
         # For some reason, messages can use two, slightly different, timestamp formats.
         time_str = message["timestamp"]
-        if len(time_str) == 32:
+
+        if len(time_str) == 32 or len(time_str) == 29:
             timestamp = datetime.strptime(time_str, "%Y-%m-%dT%H:%M:%S.%f%z")
         else:
             timestamp = datetime.strptime(time_str, "%Y-%m-%dT%H:%M:%S%z")
