@@ -11,6 +11,8 @@ from PySide6.QtWidgets import QApplication, QMainWindow, QMessageBox, QPushButto
 from PySide6.QtGui import QShortcut, QKeySequence, QIcon, QPixmap
 from PySide6.QtCore import QTimer, QThreadPool
 from PySide6 import QtWidgets
+from emoji import process_message_content
+
 
 from discord_workers import (
     FileRequestWorker,
@@ -125,6 +127,7 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
 
             # Here we're replacing <@user_id> with @username.
             # TODO: ALLOW SENDING @ MENTIONS
+            message.content = process_message_content(message.content)
             if "<@" in message.content:
                 matches = re.findall(r"<@(\d+)>", message.content)
 
@@ -133,7 +136,7 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
                     message.content = re.sub(
                         f"<@{id_mentioned}>",
                         f"<em>@{user.get_user_name()}</em>",
-                        message.content,
+                    message.content
                     )
 
             tags = """<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-weight:700;">"""
