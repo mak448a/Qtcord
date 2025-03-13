@@ -19,3 +19,6 @@ def get_version():
             return "(Report bug if you see this)"
     else:
         return "(Report bug if you see this)"
+
+if __name__ == "__main__":
+    print(get_version())
