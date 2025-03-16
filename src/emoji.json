@@ -11,7 +11,7 @@
     "grin": "😁",
     "angry": "😠",
     "surprised": "😲",
-    "cool": "😎",
+    "sunglasses": "😎",
     "sweat": "😅",
     "joy": "🤣",
     "sad": "😞",
@@ -119,6 +119,6 @@
     "newspaper": "📰",
     "calendar": "📅",
     "hourglass_done": "⏳",
-    "penguin": "🐧"
+    "penguin": "🐧",
+    "cool": "🆒"
 }
-
