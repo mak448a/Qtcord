@@ -54,7 +54,11 @@
     "dizzy": "😵",
     "relieved": "😌",
     "halo": "😇",
-    "devil": "😈",
+    "melting_face": "🫠",
+    "+1": "👍",
+    "saluting_face": "🫡",
+    "exploding_head": "🤯",
+    "imp": "😈",
     "clown": "🤡",
     "muscle": "💪",
     "coffee": "☕",
@@ -115,8 +119,6 @@
     "newspaper": "📰",
     "calendar": "📅",
     "hourglass_done": "⏳",
-    "melting_face": "🫠",
-    "+1": "👍",
-    "saluting_face": "🫡"
+    "penguin": "🐧"
 }
 
