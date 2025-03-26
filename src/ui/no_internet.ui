@@ -14,7 +14,7 @@
    <string>Qtcord</string>
   </property>
   <property name="windowIcon">
-   <iconset theme="io.github.mak448a.Qtcord"/>
+   <iconset theme="io.github.mak448a.QTCord"/>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">

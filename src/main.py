@@ -335,7 +335,7 @@ def handle_no_internet() -> None:
         requests.get("https://discord.com")
     except requests.exceptions.ConnectionError:
         app = QApplication(sys.argv)
-        app.setDesktopFileName("io.github.mak448a.Qtcord")
+        app.setDesktopFileName("io.github.mak448a.QTCord")
         NoInternetUI().exec()
         sys.exit()
 
@@ -354,7 +354,7 @@ if __name__ == "__main__":
         os.makedirs(platformdirs.user_cache_dir("Qtcord"))
 
     app = QApplication(sys.argv)
-    app.setDesktopFileName("io.github.mak448a.Qtcord")
+    app.setDesktopFileName("io.github.mak448a.QTCord")
 
     # Add widget to switch between pages of UI
     switcher = QtWidgets.QStackedWidget()

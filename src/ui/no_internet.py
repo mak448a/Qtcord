@@ -23,7 +23,7 @@ class Ui_NoInternet(object):
         if not NoInternet.objectName():
             NoInternet.setObjectName(u"NoInternet")
         NoInternet.resize(400, 300)
-        icon = QIcon(QIcon.fromTheme(u"io.github.mak448a.Qtcord"))
+        icon = QIcon(QIcon.fromTheme(u"io.github.mak448a.QTCord"))
         NoInternet.setWindowIcon(icon)
         self.gridLayout = QGridLayout(NoInternet)
         self.gridLayout.setObjectName(u"gridLayout")
