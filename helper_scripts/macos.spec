@@ -50,5 +50,5 @@ app = BUNDLE(
     coll,
     name='Qtcord-macOS.app',
     icon='../src/assets/icon.icns',
-    bundle_identifier='io.github.mak448a.Qtcord',
+    bundle_identifier='io.github.mak448a.QTCord',
 )
