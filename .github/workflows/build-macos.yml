@@ -1,23 +1,39 @@
 name: Build macOS
 run-name: Build macOS
 on:
- push:
-   tags:
-     - "**"
+  push:
+    tags:
+      - "**"
 # on:
 #   push
 
 jobs:
-  Build-macOS:
+  build-macos:
     runs-on: macos-latest
+    # Use Python 3.12.4
     steps:
-      # Use Python 3.12.4
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12.4"
-      - run: pip install -r requirements.txt && pip install pyinstaller && python3 helper_scripts/package_mac.py && mkdir src/dist/Qtcord-macOS && mv src/dist/Qtcord-macOS.app src/dist/Qtcord-macOS
-      - uses: actions/upload-artifact@v4
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt pyinstaller
+
+      - name: Get version from XML
+        run: |
+          VERSION=$(python src/version.py)
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+          echo "Version: $VERSION"
+
+      - name: Build macOS package
+        run: |
+          python3 helper_scripts/package_mac.py
+          mkdir src/dist/Qtcord-macOS
+          mv src/dist/Qtcord-macOS.app src/dist/Qtcord-macOS
+
+      - name: Rename and upload artifact with version
+        uses: actions/upload-artifact@v4
         with:
-          name: "Qtcord-macOS"
-          path: "src/dist/Qtcord-macOS"
+          name: Qtcord-macOS-${{ env.VERSION }}
+          path: src/dist/Qtcord-macOS.app
