@@ -5,7 +5,7 @@
 Qtcord is a Discord client built with Qt aiming to bring a lightweight, native experience.
 
 > [!CAUTION]
-> This is just a fun side project. I am not responsible if you get your account banned from this project. Use at your own risk.
+> This is just a fun side project. I am not responsible if you get your account banned from this project. I do not endorse using this project. Use at your own risk!!!
 
 (Make sure you're getting Qtcord from the right source! The official source is https://github.com/mak448a/Qtcord!)
 
