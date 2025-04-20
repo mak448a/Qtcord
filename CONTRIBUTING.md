@@ -21,7 +21,7 @@ You can use a code formatter called Ruff if needed.
 
 If you add a dependency, make sure to add the appropriate license to the licenses folder.
 
-To edit the user interface, use QT designer and put the UI files under `src/ui`. To apply the UI, run `src/regenerate.py`.
+To edit the user interface, use Qt designer and put the UI files under `src/ui`. To apply the UI, run `src/regenerate.py`.
 
 ## Packaging
 If you want to package for Linux, take a look at https://github.com/flathub/io.github.mak448a.QTCord.
