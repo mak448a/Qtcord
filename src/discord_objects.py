@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from datetime import datetime
 from typing import Self
-
+import re
 
 @dataclass
 class DiscordUser:
@@ -108,6 +108,7 @@ class DiscordMessage:
     author: DiscordUser
     content: str
     timestamp: datetime
+    message_type: str = 'text' #default
 
     @classmethod
     def from_dict(cls, message: dict) -> Self:
@@ -125,9 +126,45 @@ class DiscordMessage:
         # content = message["content"]
         # if content: ...
 
-        # TODO: WORK ON THIS. Make a difference between images and other stuff.
-        if not (content := message["content"]):
+        # # TODO: WORK ON THIS. Make a difference between images and other stuff.
+        # if not (content := message["content"]):
+        #     content = "[(call/image/other)]"
+        
+        content = message.get("content", "")
+        message_type = "text"
+
+        attachments = message.get("attachments", [])
+        embeds = message.get("embeds", [])
+        stickers = message.get("sticker_items", [])
+
+        # Check for image attachments
+        if attachments:
+            if any(att.get("content_type", "").startswith("image/") for att in attachments):
+                message_type = "image"
+                if not content:
+                    content = "[Image Attachment]"
+            else:
+                message_type = "file"
+                if not content:
+                    content = "[File Attachment]"
+        elif embeds:
+            message_type = "embed"
+            if not content:
+                content = "[Link Preview / Embed]"
+        elif stickers:
+            message_type = "sticker"
+            if not content:
+                content = "[Sticker]"
+        elif not content:
+            message_type = "other"
             content = "[(call/image/other)]"
+        else:
+            url_pattern = re.compile(r'https?://\S+')
+            emoji_pattern = re.compile(r'^[\U00010000-\U0010ffff]+$', flags=re.UNICODE)
+            if emoji_pattern.match(content):
+                message_type = "emote"
+            elif url_pattern.search(content):
+                message_type = "link"
 
         # For some reason, messages can use two, slightly different, timestamp formats.
         time_str = message["timestamp"]
@@ -141,6 +178,7 @@ class DiscordMessage:
             author=DiscordUser.from_dict(message["author"]),
             content=content,
             timestamp=timestamp.astimezone(),
+            message_type=message_type,
         )
 
 
