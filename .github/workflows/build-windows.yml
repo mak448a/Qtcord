@@ -9,11 +9,11 @@ jobs:
   Build-Windows:
     runs-on: windows-latest
     steps:
-      # Use Python 3.12.4
+      # Use Python 3.13.4
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
-          python-version: "3.12.4"
+          python-version: "3.13.4"
       - run: pip install -r requirements.txt && pip install pyinstaller && python3 helper_scripts/package_windows.py
       - uses: actions/upload-artifact@v4
         with:
