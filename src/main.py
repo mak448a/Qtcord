@@ -226,13 +226,18 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
 
             self.ui.friends_scrollArea_contents.layout().addWidget(button)
 
-            channel = discord_integration.get_channel_from_id(user.id)
-
-            # Oh my headache do not touch this code.
-            # But if you do: https://stackoverflow.com/questions/19837486/lambda-in-a-loop
-            button.clicked.connect(
-                (lambda channel: lambda: self.switch_channel(channel))(channel)
-            )
+            try:
+                channel = discord_integration.get_channel_from_id(user.id)
+                
+                # Oh my headache do not touch this code.
+                # But if you do: https://stackoverflow.com/questions/19837486/lambda-in-a-loop
+                button.clicked.connect(
+                    (lambda channel: lambda: self.switch_channel(channel))(channel)
+                )
+            except Exception as e:
+                print(f"Warning: Could not get channel for user {user.get_user_name()} (ID: {user.id}): {e}")
+                # Friend button will still be added, but clicking it won't work
+                button.setEnabled(False)
 
     def switch_channel(self, channel, guild_name=None):
         if channel.id != self.channel_id:
