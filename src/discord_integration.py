@@ -159,7 +159,18 @@ def get_channel_from_id(user_id: int) -> DiscordChannel:
         headers=headers,
         json={"recipient_id": user_id},
     )
-    return DiscordChannel.from_dict(r.json())
+    
+    # Check if the request was successful
+    if r.status_code != 200:
+        raise Exception(f"Failed to get channel for user {user_id}: {r.status_code} - {r.text}")
+    
+    response_data = r.json()
+    
+    # Verify the response has the required 'id' field
+    if "id" not in response_data:
+        raise Exception(f"Invalid channel response for user {user_id}: missing 'id' field. Response: {response_data}")
+    
+    return DiscordChannel.from_dict(response_data)
 
 
 def get_guilds() -> list[DiscordGuild]:
