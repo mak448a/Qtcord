@@ -21,6 +21,7 @@ from discord_workers import (
     UpdateMessagesWorker,
 )
 import discord_integration
+from discord_exceptions import ChannelAccessError, InvalidResponseError
 
 # UI imports
 from ui.main_ui import Ui_MainWindow
@@ -234,7 +235,7 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
                 button.clicked.connect(
                     (lambda channel: lambda: self.switch_channel(channel))(channel)
                 )
-            except Exception as e:
+            except (ChannelAccessError, InvalidResponseError) as e:
                 print(f"Warning: Could not get channel for user {user.get_user_name()} (ID: {user.id}): {e}")
                 # Friend button will still be added, but clicking it won't work
                 button.setEnabled(False)
