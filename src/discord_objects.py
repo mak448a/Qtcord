@@ -161,7 +161,16 @@ class DiscordChannel:
 
         Returns:
             Self: A DiscordChannel instance.
+        
+        Raises:
+            KeyError: If required fields ('id' or 'type') are missing from the channel dictionary.
         """
+        # Validate required fields
+        if "id" not in channel:
+            raise KeyError(f"Missing required field 'id' in channel data: {channel}")
+        if "type" not in channel:
+            raise KeyError(f"Missing required field 'type' in channel data: {channel}")
+        
         return cls(
             id=channel["id"],
             type=channel["type"],
