@@ -9,7 +9,7 @@ jobs:
   Build-Windows:
     runs-on: windows-latest
     steps:
-      # Use Python 3.12.4
+      # Use Python 3.13.11
       - uses: actions/checkout@v6
       - uses: actions/setup-python@v6
         with:
