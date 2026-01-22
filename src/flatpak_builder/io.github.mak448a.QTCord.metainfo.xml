@@ -16,6 +16,7 @@
       <color type="primary" scheme_preference="dark">#30a18b</color>
     </branding>
     <url type="homepage">https://github.com/mak448a/Qtcord</url>
+    <url type="vcs-browser">https://github.com/mak448a/Qtcord</url>
     <metadata_license>MIT</metadata_license>
     <project_license>MIT</project_license>
     <screenshots>
