@@ -49,6 +49,16 @@
       <content_attribute id="social-chat">intense</content_attribute>
     </content_rating>
     <releases>
+      <release version="v0.0.23" date="2026-1-23" type="stable">
+        <description>
+          <p>Fix KeyError when channel response is missing 'id' field #110</p>
+          <p>Add emoji shortcodes #99</p>
+          <p>Rectify typo in application ID to fix Wayland window icon #102</p>
+          <p>Add version version number to builds (#94)</p>
+          <p>Update dependencies</p>
+        </description>
+        <url>https://github.com/mak448a/Qtcord/releases/v0.0.22</url>
+      </release>
       <release version="v0.0.22" date="2024-11-17" type="stable">
         <description>
           <p>Update dependencies</p>
