@@ -378,6 +378,7 @@ if __name__ == "__main__":
         auth = False
 
     win = ChatInterface()
+    win.menuBar().setNativeMenuBar(False)
     login = LoginUI(switcher)
 
     switcher.addWidget(login)
