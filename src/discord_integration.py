@@ -82,8 +82,6 @@ def _check_ratelimit(response) -> None:
         raise RateLimitError("Ratelimited by Discord API!", response.json()["retry_after"])
 
 
-
-
 def get_messages(channel_id: int, limit: int = 100) -> dict[int, list]:
     """
     Retrives messages from the specified channel.
@@ -291,7 +289,7 @@ def send_typing(channel: int) -> None:
     requests.post(f"{api_base}/channels/{channel}/typing", headers=headers)
 
 
-def get_user_from_id(user_id: int, friend: bool = False) -> DiscordUser | DiscordFriend:
+def get_user_from_id(user_id: int, friend: bool = False) -> DiscordUser | DiscordFriend | None:
     # users_cache_data is mutable! It can and will be modified!
     """
     Returns the user with the specified ID.
@@ -301,7 +299,7 @@ def get_user_from_id(user_id: int, friend: bool = False) -> DiscordUser | Discor
         friend (bool): Whether to instantiate a DiscordFriend or DiscordUser.
 
     Returns:
-        DiscordUser | DiscordFriend: The user with the specified ID.
+        DiscordUser | DiscordFriend | None: The user with the specified ID or None, if the request doesn't succeed.
     """
 
     # Keep data in a cache so users don't get ratelimited
@@ -312,6 +310,10 @@ def get_user_from_id(user_id: int, friend: bool = False) -> DiscordUser | Discor
     response = requests.get(f"{api_base}/users/{user_id}", headers=headers)
     _check_ratelimit(response)
 
+    # If 403 - Forbidden code is returned
+    if response.status_code == 403:
+        return None
+    
     if friend:
         user = DiscordFriend.from_dict(response.json())
     else:

@@ -30,6 +30,7 @@ def process_message_content(content):
         matches = re.findall(r"<@(\d+)>", content)
         for id_mentioned in matches:
             user = get_user_from_id(id_mentioned)
+            # TODO: ALLOW SENDING @ MENTIONS
             if user:
                 content = re.sub(
                     f"<@{id_mentioned}>",

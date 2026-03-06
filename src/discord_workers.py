@@ -4,6 +4,7 @@ import os
 import platformdirs
 import requests
 import xxhash
+from discord_exceptions import RateLimitError
 
 
 class SendMessageWorker(QObject, QRunnable):
@@ -42,7 +43,14 @@ class UpdateMessagesWorker(QObject, QRunnable):
 
     @Slot()
     def run(self):
-        self.update.emit(discord_integration.get_messages(self.channel_id))
+        while True:
+            try:
+                messages = discord_integration.get_messages(self.channel_id)
+                self.update.emit(messages)
+                break
+            except RateLimitError as e:
+                self.update.emit({"ratelimit": e.retry_after})
+                break
 
 
 class FileRequestWorker(QObject, QRunnable):
