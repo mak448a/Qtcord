@@ -1,6 +1,8 @@
 import requests
 import platformdirs
 import os
+import sys
+
 from datetime import datetime
 from discord_objects import (
     DiscordUser,
@@ -10,7 +12,7 @@ from discord_objects import (
     DiscordGuild,
     users_cache_data,
 )
-from discord_exceptions import ChannelAccessError, InvalidResponseError
+from discord_exceptions import ChannelAccessError, InvalidResponseError, RateLimitError
 
 
 api_base = "https://discord.com/api/v9"
@@ -70,6 +72,16 @@ if not validate_token():
         os.remove(platformdirs.user_config_dir("Qtcord") + "/discordauth.txt")
 
 
+def _check_ratelimit(response) -> None:
+    if response.status_code == 429:
+        if response.json()["global"]:
+            print("Discord is ratelimiting us globally! We haven't handled this, so exitting!")
+            sys.exit(0)
+        
+        print(f"We are being ratelimited! Retry after {response.json()["retry_after"]}")
+        raise RateLimitError("Ratelimited by Discord API!", response.json()["retry_after"])
+
+
 def get_messages(channel_id: int, limit: int = 100) -> dict[int, list]:
     """
     Retrives messages from the specified channel.
@@ -88,6 +100,8 @@ def get_messages(channel_id: int, limit: int = 100) -> dict[int, list]:
     r = requests.get(
         f"{api_base}/channels/{channel_id}/messages?limit={limit}", headers=headers
     )
+
+    _check_ratelimit(r)
 
     messages_list = []
 
@@ -140,6 +154,7 @@ def get_friends() -> list[DiscordFriend]:
     """
 
     r = requests.get(f"{api_base}/users/@me/relationships", headers=headers)
+    _check_ratelimit(r)
 
     return [DiscordFriend.from_dict(friend) for friend in r.json()]
 
@@ -160,12 +175,16 @@ def get_channel_from_id(user_id: int) -> DiscordChannel:
         headers=headers,
         json={"recipient_id": user_id},
     )
-    
+
+    response_data = r.json()
+    print(response_data)
+
     # Check if the request was successful
+    _check_ratelimit(r)
+
     if r.status_code != 200:
         raise ChannelAccessError(f"Failed to get channel for user {user_id}: {r.status_code} - {r.text}")
     
-    response_data = r.json()
     
     # Verify the response has the required 'id' field
     if "id" not in response_data:
@@ -183,6 +202,7 @@ def get_guilds() -> list[DiscordGuild]:
     """
 
     r = requests.get(f"{api_base}/users/@me/guilds", headers=headers)
+    _check_ratelimit(r)
 
     return [DiscordGuild.from_dict(guild) for guild in r.json()]
 
@@ -199,6 +219,7 @@ def get_guild_channels(guild_id: int) -> list[DiscordChannel]:
     """
 
     r = requests.get(f"{api_base}/guilds/{guild_id}/channels", headers=headers)
+    _check_ratelimit(r)
 
     return [DiscordChannel.from_dict(channel) for channel in r.json()]
 
@@ -268,7 +289,7 @@ def send_typing(channel: int) -> None:
     requests.post(f"{api_base}/channels/{channel}/typing", headers=headers)
 
 
-def get_user_from_id(user_id: int, friend: bool = False) -> DiscordUser | DiscordFriend:
+def get_user_from_id(user_id: int, friend: bool = False) -> DiscordUser | DiscordFriend | None:
     # users_cache_data is mutable! It can and will be modified!
     """
     Returns the user with the specified ID.
@@ -278,7 +299,7 @@ def get_user_from_id(user_id: int, friend: bool = False) -> DiscordUser | Discor
         friend (bool): Whether to instantiate a DiscordFriend or DiscordUser.
 
     Returns:
-        DiscordUser | DiscordFriend: The user with the specified ID.
+        DiscordUser | DiscordFriend | None: The user with the specified ID or None, if the request doesn't succeed.
     """
 
     # Keep data in a cache so users don't get ratelimited
@@ -287,7 +308,12 @@ def get_user_from_id(user_id: int, friend: bool = False) -> DiscordUser | Discor
 
     # Wasn't cached.
     response = requests.get(f"{api_base}/users/{user_id}", headers=headers)
+    _check_ratelimit(response)
 
+    # If 403 - Forbidden code is returned
+    if response.status_code == 403:
+        return None
+    
     if friend:
         user = DiscordFriend.from_dict(response.json())
     else:
