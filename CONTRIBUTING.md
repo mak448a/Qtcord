@@ -16,6 +16,8 @@ You can use following resources for API docs.
 - https://www.youtube.com/channel/UC8PPJFudLUM1eJlM4BiJ40A
 
 ## Coding Guidelines
+If you use AI, review the code it outputs for mistakes. Clean the code if needed, and remove the unnecessary comments.
+
 Try to follow PEP-8 (the squiggly underlines in Pycharm) standards. If you can't, that's perfectly fine.
 You can use a code formatter called Ruff if needed.
 
