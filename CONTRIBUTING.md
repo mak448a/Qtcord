@@ -19,7 +19,8 @@ You can use following resources for API docs.
 If you use AI, review the code it outputs for mistakes. Clean the code if needed, and remove the unnecessary comments.
 
 Try to follow PEP-8 (the squiggly underlines in Pycharm) standards. If you can't, that's perfectly fine.
-You can use a code formatter called Ruff if needed.
+
+If possible, use Ruff to format your code.
 
 If you add a dependency, make sure to add the appropriate license to the licenses folder.
 
