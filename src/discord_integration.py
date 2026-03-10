@@ -1,6 +1,7 @@
 import requests
 import platformdirs
 import os
+import keyring # Added for secure token storage
 from datetime import datetime
 from discord_objects import (
     DiscordUser,
@@ -22,15 +23,26 @@ headers = {
 
 def load_token() -> None:
     """
-    Loads the token from discordauth.txt.
+    SECURITY UPDATE: Loads the token from system keyring (primary) 
+    or discordauth.txt (legacy fallback).
     """
 
     global auth, headers
 
-    if os.path.isfile(platformdirs.user_config_dir("Qtcord") + "/discordauth.txt"):
-        with open(platformdirs.user_config_dir("Qtcord") + "/discordauth.txt") as f:
-            auth = f.read()
-        headers["authorization"] = auth.strip()
+    # First, try to get the token from the OS secure storage
+    secure_token = keyring.get_password("Qtcord", "discord_token")
+    
+    if secure_token:
+        auth = secure_token
+    else:
+        # Fallback to the old plaintext file if keyring is empty
+        auth_path = os.path.join(platformdirs.user_config_dir("Qtcord"), "discordauth.txt")
+        if os.path.isfile(auth_path):
+            with open(auth_path) as f:
+                auth = f.read().strip()
+    
+    if auth:
+        headers["authorization"] = auth
 
 
 def validate_token() -> bool:
@@ -61,13 +73,21 @@ def validate_token() -> bool:
 # Load token
 load_token()
 
-# If token is invalid, delete it and log us out.
-# Inside validate_token is a function that checks for internet, too.
+# If token is invalid, delete it from all storage locations to force re-login.
 if not validate_token():
-    # If there is a token and it's invalid
-    if os.path.exists(platformdirs.user_config_dir("Qtcord") + "/discordauth.txt"):
-        print("TOKEN INVALID")
-        os.remove(platformdirs.user_config_dir("Qtcord") + "/discordauth.txt")
+    auth_path = os.path.join(platformdirs.user_config_dir("Qtcord"), "discordauth.txt")
+    if os.path.exists(auth_path) or keyring.get_password("Qtcord", "discord_token"):
+        print("TOKEN INVALID - Clearing storage")
+        
+        # Remove legacy file
+        if os.path.exists(auth_path):
+            os.remove(auth_path)
+            
+        # Remove from keyring
+        try:
+            keyring.delete_password("Qtcord", "discord_token")
+        except keyring.errors.PasswordDeleteError:
+            pass
 
 
 def get_messages(channel_id: int, limit: int = 100) -> dict[int, list]:

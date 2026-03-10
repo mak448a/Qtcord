@@ -5,6 +5,7 @@ import re
 import webbrowser
 import requests
 import platformdirs
+import keyring  # Added for secure token storage
 
 # PySide imports
 from PySide6.QtWidgets import QApplication, QMainWindow, QMessageBox, QPushButton
@@ -173,19 +174,21 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
         self.timer.start()
 
         def get_info():
-            if os.path.isfile(
-                platformdirs.user_config_dir("Qtcord") + "/discordauth.txt"
-            ):
-                with open(
-                    platformdirs.user_config_dir("Qtcord") + "/discordauth.txt"
-                ) as f:
-                    if f.read():
-                        auth2 = True
-                        discord_integration.load_token()
-                    else:
-                        auth2 = False
+            # Check keyring first as it is more secure
+            secure_token = keyring.get_password("Qtcord", "discord_token")
+            
+            auth2 = False
+            if secure_token:
+                auth2 = True
+                discord_integration.load_token()
             else:
-                auth2 = False
+                # Fallback to legacy plaintext file check
+                auth_file = os.path.join(platformdirs.user_config_dir("Qtcord"), "discordauth.txt")
+                if os.path.isfile(auth_file):
+                    with open(auth_file) as f:
+                        if f.read().strip():
+                            auth2 = True
+                            discord_integration.load_token()
 
             if auth2:
                 self.get_friends()
@@ -333,8 +336,16 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
             self.threadpool.start(worker)
 
     def logout_account(self):
-        # Remove Discord token from discordauth.txt
-        os.remove(platformdirs.user_config_dir("Qtcord") + "/discordauth.txt")
+        # Securely remove token from both the legacy file and the system keyring
+        auth_file = os.path.join(platformdirs.user_config_dir("Qtcord"), "discordauth.txt")
+        if os.path.exists(auth_file):
+            os.remove(auth_file)
+        
+        try:
+            keyring.delete_password("Qtcord", "discord_token")
+        except keyring.errors.PasswordDeleteError:
+            pass # Token was already gone or not set
+            
         # Exit the app
         sys.exit(0)
 
@@ -368,14 +379,19 @@ if __name__ == "__main__":
     # Add widget to switch between pages of UI
     switcher = QtWidgets.QStackedWidget()
 
-    if os.path.isfile(platformdirs.user_config_dir("Qtcord") + "/discordauth.txt"):
-        with open(platformdirs.user_config_dir("Qtcord") + "/discordauth.txt") as f:
-            if f.read():
-                auth = True
-            else:
-                auth = False
+    # SECURITY UPDATE: Now checking both Keyring and legacy file for the authentication token.
+    # We prefer Keyring (system secure storage) to avoid storing tokens in plaintext.
+    secure_token = keyring.get_password("Qtcord", "discord_token")
+    auth = False
+    
+    if secure_token:
+        auth = True
     else:
-        auth = False
+        auth_file = os.path.join(platformdirs.user_config_dir("Qtcord"), "discordauth.txt")
+        if os.path.isfile(auth_file):
+            with open(auth_file) as f:
+                if f.read().strip():
+                    auth = True
 
     win = ChatInterface()
     win.menuBar().setNativeMenuBar(False)
