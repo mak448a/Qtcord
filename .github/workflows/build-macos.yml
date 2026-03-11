@@ -1,11 +1,11 @@
 name: Build macOS
 run-name: Build macOS
-# on:
-#  push:
-#    tags:
-#      - "**"
 on:
-  push
+ push:
+   tags:
+     - "**"
+# on:
+#   push
 
 jobs:
   Build-macOS:
