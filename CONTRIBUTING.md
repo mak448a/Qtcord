@@ -22,7 +22,8 @@ Try to follow PEP-8 (the squiggly underlines in Pycharm) standards. If you can't
 
 If possible, use Ruff to format your code.
 
-If you add a dependency, make sure to add the appropriate license to the licenses folder.
+If you add a dependency, make sure to add it to `requirements.txt` and `no_pyside_requirements.txt`.
+Don't forget to add the appropriate license to the licenses folder and UI!
 
 To edit the user interface, use Qt designer and put the UI files under `src/ui`. To apply the UI, run `src/regenerate.py`.
 

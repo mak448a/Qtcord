@@ -88,7 +88,7 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
         QMessageBox.about(
             self,
             "About Qtcord",
-            "<p>Qtcord (c) mak448a 2023-2024</p>"
+            "<p>Qtcord (c) mak448a 2023-present</p>"
             "<p>This app was built with the following:</p>"
             "<p>- PySide6</p>"
             "<p>- Python</p>"
