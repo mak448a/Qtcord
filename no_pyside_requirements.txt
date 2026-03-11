@@ -7,3 +7,4 @@ platformdirs~=4.5.1
 requests~=2.32.5
 xxhash~=3.6.0
 websocket-client~=1.9.0
+keyring~=25.7.0
