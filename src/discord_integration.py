@@ -1,5 +1,6 @@
 import requests
 import platformdirs
+import keyring, keyring.errors
 import os
 from datetime import datetime
 from discord_objects import (
@@ -14,7 +15,6 @@ from discord_exceptions import ChannelAccessError, InvalidResponseError
 
 
 api_base = "https://discord.com/api/v10"
-auth = ""  # Will be overridden when load_token is called
 headers = {
     "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) discord/0.0.63 Chrome/124.0.6367.243 Electron/30.2.0 Safari/537.36"
 }
@@ -22,15 +22,48 @@ headers = {
 
 def load_token() -> None:
     """
-    Loads the token from discordauth.txt.
+    Loads the token from system keyring, otherwise falls back to checking discordauth.txt.
     """
 
-    global auth, headers
+    global headers
+
+    try:
+        auth = keyring.get_password("Qtcord", "token")
+    except keyring.errors.NoKeyringError:
+        print("Keyring is not available! Install a keyring for your OS!")
+        import sys
+        sys.exit(1)
+
+    # Check if keyring is writable if keyring doesn't have token
+    if not auth:
+        print("Checking if keyring is writable")
+        keyring.set_password("Qtcord", "token", "test")
+        if keyring.get_password("Qtcord", "token"):
+            print("Keyring is available.")
+        else:
+            print("Keyring is not available! Install a keyring for your OS!")
+            import sys
+            sys.exit(1)
+    
 
     if os.path.isfile(platformdirs.user_config_dir("Qtcord") + "/discordauth.txt"):
+        print("Found discordauth.txt! Loading from discordauth.txt instead of system keychain!")
         with open(platformdirs.user_config_dir("Qtcord") + "/discordauth.txt") as f:
-            auth = f.read()
-        headers["authorization"] = auth.strip()
+            auth = f.read().strip()
+        
+        print("Copying token to keyring!")
+        keyring.set_password("Qtcord", "token", auth)
+
+        token_path = os.path.join(platformdirs.user_config_dir("Qtcord"), "discordauth.txt")
+        if os.path.exists(token_path):
+            print("Deleting token from discordauth.txt!")
+            os.remove(token_path)
+
+    if auth:
+        headers["authorization"] = auth
+    else:
+        print("Nothing is stored in keyring. ")
+
 
 
 def validate_token() -> bool:
@@ -65,9 +98,11 @@ load_token()
 # Inside validate_token is a function that checks for internet, too.
 if not validate_token():
     # If there is a token and it's invalid
+    print("TOKEN INVALID")
+    keyring.delete_password("Qtcord", "token")
     if os.path.exists(platformdirs.user_config_dir("Qtcord") + "/discordauth.txt"):
-        print("TOKEN INVALID")
         os.remove(platformdirs.user_config_dir("Qtcord") + "/discordauth.txt")
+    
 
 
 def get_messages(channel_id: int, limit: int = 100) -> dict[int, list]:

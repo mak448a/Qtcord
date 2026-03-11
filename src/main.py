@@ -5,6 +5,7 @@ import re
 import webbrowser
 import requests
 import platformdirs
+import keyring
 
 # PySide imports
 from PySide6.QtWidgets import QApplication, QMainWindow, QMessageBox, QPushButton
@@ -173,19 +174,22 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
         self.timer.start()
 
         def get_info():
-            if os.path.isfile(
+            auth2 = False
+
+            # TODO: Add get_authorization_status() function in discord_integration to validate without relying on this
+            if keyring.get_password("Qtcord", "token"):
+                discord_integration.load_token()
+                auth2 = True
+            elif os.path.isfile(
                 platformdirs.user_config_dir("Qtcord") + "/discordauth.txt"
             ):
                 with open(
                     platformdirs.user_config_dir("Qtcord") + "/discordauth.txt"
                 ) as f:
                     if f.read():
+                        print("There is a discordauth.txt, loading token")
                         auth2 = True
                         discord_integration.load_token()
-                    else:
-                        auth2 = False
-            else:
-                auth2 = False
 
             if auth2:
                 self.get_friends()
@@ -333,8 +337,12 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
             self.threadpool.start(worker)
 
     def logout_account(self):
-        # Remove Discord token from discordauth.txt
-        os.remove(platformdirs.user_config_dir("Qtcord") + "/discordauth.txt")
+        keyring.delete_password("Qtcord", "token")
+        # Remove Discord token from discordauth.txt (just to be safe; probably is redundant)
+        token_path = platformdirs.user_config_dir("Qtcord") + "/discordauth.txt"
+        if os.path.exists(token_path):
+            os.remove(token_path)
+        
         # Exit the app
         sys.exit(0)
 
@@ -368,14 +376,18 @@ if __name__ == "__main__":
     # Add widget to switch between pages of UI
     switcher = QtWidgets.QStackedWidget()
 
-    if os.path.isfile(platformdirs.user_config_dir("Qtcord") + "/discordauth.txt"):
+    
+
+
+    auth = False
+
+    if keyring.get_password("Qtcord", "token"):
+        auth = True
+    elif os.path.isfile(platformdirs.user_config_dir("Qtcord") + "/discordauth.txt"):
+        print("Falling back to checking discordauth.txt")
         with open(platformdirs.user_config_dir("Qtcord") + "/discordauth.txt") as f:
             if f.read():
                 auth = True
-            else:
-                auth = False
-    else:
-        auth = False
 
     win = ChatInterface()
     win.menuBar().setNativeMenuBar(False)

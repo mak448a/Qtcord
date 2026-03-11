@@ -1,7 +1,7 @@
 from PySide6.QtWidgets import QMainWindow
 from ui import login_ui
 from discord_integration import login, load_token
-import platformdirs
+import keyring
 
 
 class LoginUI(QMainWindow, login_ui.Ui_MainWindow):
@@ -44,12 +44,8 @@ class LoginUI(QMainWindow, login_ui.Ui_MainWindow):
 
             if _token:
                 # Save the token
-                with open(
-                    platformdirs.user_config_dir("Qtcord") + "/discordauth.txt", "w"
-                ) as f:
-                    f.write(_token)
+                keyring.set_password("Qtcord", "token", _token)
 
-                # Load the token
                 load_token()
 
                 # Switch the page to the chat page
