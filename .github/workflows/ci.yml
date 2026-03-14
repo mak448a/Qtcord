@@ -1,0 +1,116 @@
+name: CI Build & Release
+
+on:
+  push:
+    branches: [ main ]
+    tags: [ 'v*' ]
+  pull_request:
+    branches: [ main ]
+
+# This workflow builds and lints the application. 
+# It DOES NOT require a Discord token or any other external secrets to function.
+# It uses the built-in GITHUB_TOKEN for releases.
+
+jobs:
+  lint:
+    name: Linting
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Install Ruff
+        run: pip install ruff
+
+      - name: Run Ruff Check
+        run: ruff check src/
+
+      - name: Run Ruff Format Check
+        run: ruff format --check src/
+
+  build:
+    name: Build (${{ matrix.platform }})
+    needs: lint
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows-latest
+            platform: Windows
+            artifact_name: Qtcord-Windows
+            build_command: |
+              pip install -r requirements.txt pyinstaller
+              python helper_scripts/package_windows.py
+            dist_path: src/dist/Qtcord-Windows
+          - os: macos-latest
+            platform: macOS
+            artifact_name: Qtcord-macOS
+            build_command: |
+              pip install -r requirements.txt pyinstaller
+              python3 helper_scripts/package_mac.py
+            dist_path: src/dist/Qtcord-macOS.app
+          - os: ubuntu-latest
+            platform: Linux
+            artifact_name: Qtcord-Linux
+            # Use linux.spec for consistency
+            build_command: |
+              pip install -r requirements.txt pyinstaller
+              cd src && pyinstaller ../helper_scripts/linux.spec
+            dist_path: src/dist/Qtcord-Linux
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: 'pip'
+
+      - name: Build Application
+        run: ${{ matrix.build_command }}
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.artifact_name }}
+          path: ${{ matrix.dist_path }}
+          if-no-files-found: error
+
+  release:
+    name: Create Release
+    needs: build
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+
+      - name: Zip Artifacts
+        run: |
+          cd artifacts
+          zip -r ../Qtcord-Windows.zip Qtcord-Windows/*
+          # macOS app is already a bundle, we might want to zip it
+          zip -r ../Qtcord-macOS.zip Qtcord-macOS/*
+          cd ..
+          cp artifacts/Qtcord-Linux/Qtcord-Linux .
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            Qtcord-Windows.zip
+            Qtcord-macOS.zip
+            Qtcord-Linux
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
