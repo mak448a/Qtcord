@@ -8,6 +8,13 @@ src/flatpak_builder/repo
 src/.flatpak-builder
 src/flatpak_builder/flatpak-pip-generator
 
+# PyInstaller build artifacts
+src/build/
+src/dist/
+build/
+dist/
+*.spec.bak
+
 # Caches and venvs
 __pycache__/
 .env

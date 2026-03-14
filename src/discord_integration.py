@@ -1,6 +1,7 @@
 import requests
 import platformdirs
-import keyring, keyring.errors
+import keyring
+import keyring.errors
 import os
 from datetime import datetime
 from discord_objects import (
@@ -32,6 +33,7 @@ def load_token() -> None:
     except keyring.errors.NoKeyringError:
         print("Keyring is not available! Install a keyring for your OS!")
         import sys
+
         sys.exit(1)
 
     # Check if keyring is writable if keyring doesn't have token
@@ -43,14 +45,14 @@ def load_token() -> None:
         else:
             print("Keyring is not available! Install a keyring for your OS!")
             import sys
+
             sys.exit(1)
-    
 
     if os.path.isfile(platformdirs.user_config_dir("Qtcord") + "/discordauth.txt"):
         print("Found discordauth.txt! Loading from discordauth.txt instead of system keychain!")
         with open(platformdirs.user_config_dir("Qtcord") + "/discordauth.txt") as f:
             auth = f.read().strip()
-        
+
         print("Copying token to keyring!")
         keyring.set_password("Qtcord", "token", auth)
 
@@ -63,7 +65,6 @@ def load_token() -> None:
         headers["authorization"] = auth
     else:
         print("Nothing is stored in keyring. ")
-
 
 
 def validate_token() -> bool:
@@ -102,7 +103,6 @@ if not validate_token():
     keyring.delete_password("Qtcord", "token")
     if os.path.exists(platformdirs.user_config_dir("Qtcord") + "/discordauth.txt"):
         os.remove(platformdirs.user_config_dir("Qtcord") + "/discordauth.txt")
-    
 
 
 def get_messages(channel_id: int, limit: int = 100) -> dict[int, list]:
@@ -120,9 +120,7 @@ def get_messages(channel_id: int, limit: int = 100) -> dict[int, list]:
     # TODO: Add the ability to get messages before a message, like
     # https://discord.com/api/v9/channels/%7Bchannel_id%7D/messages?before={message}&limit={message_limit}
 
-    r = requests.get(
-        f"{api_base}/channels/{channel_id}/messages?limit={limit}", headers=headers
-    )
+    r = requests.get(f"{api_base}/channels/{channel_id}/messages?limit={limit}", headers=headers)
 
     messages_list = []
 
@@ -195,17 +193,19 @@ def get_channel_from_id(user_id: int) -> DiscordChannel:
         headers=headers,
         json={"recipient_id": user_id},
     )
-    
+
     # Check if the request was successful
     if r.status_code != 200:
         raise ChannelAccessError(f"Failed to get channel for user {user_id}: {r.status_code} - {r.text}")
-    
+
     response_data = r.json()
-    
+
     # Verify the response has the required 'id' field
     if "id" not in response_data:
-        raise InvalidResponseError(f"Invalid channel response for user {user_id}: missing 'id' field. Response: {response_data}")
-    
+        raise InvalidResponseError(
+            f"Invalid channel response for user {user_id}: missing 'id' field. Response: {response_data}"
+        )
+
     return DiscordChannel.from_dict(response_data)
 
 
