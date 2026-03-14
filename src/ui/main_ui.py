@@ -8,61 +8,68 @@
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
 
-from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
-    QMetaObject, QObject, QPoint, QRect,
-    QSize, QTime, QUrl, Qt)
-from PySide6.QtGui import (QAction, QBrush, QColor, QConicalGradient,
-    QCursor, QFont, QFontDatabase, QGradient,
-    QIcon, QImage, QKeySequence, QLinearGradient,
-    QPainter, QPalette, QPixmap, QRadialGradient,
-    QTransform)
-from PySide6.QtWidgets import (QApplication, QDockWidget, QFrame, QGridLayout,
-    QHBoxLayout, QLabel, QLineEdit, QMainWindow,
-    QMenu, QMenuBar, QPushButton, QScrollArea,
-    QSizePolicy, QTabWidget, QTextBrowser, QVBoxLayout,
-    QWidget)
+from PySide6.QtCore import QCoreApplication, QMetaObject, QRect, QSize, Qt
+from PySide6.QtGui import QAction, QCursor
+from PySide6.QtWidgets import (
+    QDockWidget,
+    QFrame,
+    QGridLayout,
+    QHBoxLayout,
+    QLabel,
+    QLineEdit,
+    QMenu,
+    QMenuBar,
+    QPushButton,
+    QScrollArea,
+    QSizePolicy,
+    QTabWidget,
+    QTextBrowser,
+    QVBoxLayout,
+    QWidget,
+)
+
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
-            MainWindow.setObjectName(u"MainWindow")
+            MainWindow.setObjectName("MainWindow")
         MainWindow.resize(840, 500)
         self.actionAbout = QAction(MainWindow)
-        self.actionAbout.setObjectName(u"actionAbout")
+        self.actionAbout.setObjectName("actionAbout")
         self.actionQuit = QAction(MainWindow)
-        self.actionQuit.setObjectName(u"actionQuit")
+        self.actionQuit.setObjectName("actionQuit")
         self.actionLicenses = QAction(MainWindow)
-        self.actionLicenses.setObjectName(u"actionLicenses")
+        self.actionLicenses.setObjectName("actionLicenses")
         self.actionLogout = QAction(MainWindow)
-        self.actionLogout.setObjectName(u"actionLogout")
+        self.actionLogout.setObjectName("actionLogout")
         self.actionReport_an_Issue = QAction(MainWindow)
-        self.actionReport_an_Issue.setObjectName(u"actionReport_an_Issue")
+        self.actionReport_an_Issue.setObjectName("actionReport_an_Issue")
         self.centralwidget = QWidget(MainWindow)
-        self.centralwidget.setObjectName(u"centralwidget")
+        self.centralwidget.setObjectName("centralwidget")
         self.horizontalLayout_4 = QHBoxLayout(self.centralwidget)
-        self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
+        self.horizontalLayout_4.setObjectName("horizontalLayout_4")
         self.verticalLayout = QVBoxLayout()
-        self.verticalLayout.setObjectName(u"verticalLayout")
+        self.verticalLayout.setObjectName("verticalLayout")
         self.channel_label = QLabel(self.centralwidget)
-        self.channel_label.setObjectName(u"channel_label")
+        self.channel_label.setObjectName("channel_label")
         self.channel_label.setMargin(2)
 
         self.verticalLayout.addWidget(self.channel_label)
 
         self.scrollArea = QScrollArea(self.centralwidget)
-        self.scrollArea.setObjectName(u"scrollArea")
+        self.scrollArea.setObjectName("scrollArea")
         self.scrollArea.setFrameShape(QFrame.Shape.NoFrame)
         self.scrollArea.setFrameShadow(QFrame.Shadow.Plain)
         self.scrollArea.setLineWidth(1)
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents_2 = QWidget()
-        self.scrollAreaWidgetContents_2.setObjectName(u"scrollAreaWidgetContents_2")
+        self.scrollAreaWidgetContents_2.setObjectName("scrollAreaWidgetContents_2")
         self.scrollAreaWidgetContents_2.setGeometry(QRect(0, 0, 535, 408))
         self.gridLayout = QGridLayout(self.scrollAreaWidgetContents_2)
-        self.gridLayout.setObjectName(u"gridLayout")
+        self.gridLayout.setObjectName("gridLayout")
         self.gridLayout.setContentsMargins(0, 0, 0, 0)
         self.textBrowser = QTextBrowser(self.scrollAreaWidgetContents_2)
-        self.textBrowser.setObjectName(u"textBrowser")
+        self.textBrowser.setObjectName("textBrowser")
 
         self.gridLayout.addWidget(self.textBrowser, 0, 0, 1, 1)
 
@@ -71,106 +78,112 @@ class Ui_MainWindow(object):
         self.verticalLayout.addWidget(self.scrollArea)
 
         self.horizontalLayout = QHBoxLayout()
-        self.horizontalLayout.setObjectName(u"horizontalLayout")
+        self.horizontalLayout.setObjectName("horizontalLayout")
         self.lineEdit = QLineEdit(self.centralwidget)
-        self.lineEdit.setObjectName(u"lineEdit")
+        self.lineEdit.setObjectName("lineEdit")
         self.lineEdit.setMinimumSize(QSize(0, 40))
 
         self.horizontalLayout.addWidget(self.lineEdit)
 
         self.pushButton = QPushButton(self.centralwidget)
-        self.pushButton.setObjectName(u"pushButton")
+        self.pushButton.setObjectName("pushButton")
         self.pushButton.setMinimumSize(QSize(0, 40))
         self.pushButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
 
         self.horizontalLayout.addWidget(self.pushButton)
 
-
         self.verticalLayout.addLayout(self.horizontalLayout)
-
 
         self.horizontalLayout_4.addLayout(self.verticalLayout)
 
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
-        self.menubar.setObjectName(u"menubar")
+        self.menubar.setObjectName("menubar")
         self.menubar.setGeometry(QRect(0, 0, 840, 30))
         self.menuFile = QMenu(self.menubar)
-        self.menuFile.setObjectName(u"menuFile")
+        self.menuFile.setObjectName("menuFile")
         self.menuHelp = QMenu(self.menubar)
-        self.menuHelp.setObjectName(u"menuHelp")
+        self.menuHelp.setObjectName("menuHelp")
         MainWindow.setMenuBar(self.menubar)
         self.dockWidget = QDockWidget(MainWindow)
-        self.dockWidget.setObjectName(u"dockWidget")
+        self.dockWidget.setObjectName("dockWidget")
         self.dockWidget.setMinimumSize(QSize(290, 221))
         self.dockWidgetContents = QWidget()
-        self.dockWidgetContents.setObjectName(u"dockWidgetContents")
+        self.dockWidgetContents.setObjectName("dockWidgetContents")
         self.verticalLayout_3 = QVBoxLayout(self.dockWidgetContents)
-        self.verticalLayout_3.setObjectName(u"verticalLayout_3")
+        self.verticalLayout_3.setObjectName("verticalLayout_3")
         self.tabWidget = QTabWidget(self.dockWidgetContents)
-        self.tabWidget.setObjectName(u"tabWidget")
+        self.tabWidget.setObjectName("tabWidget")
         self.friends_tab = QWidget()
-        self.friends_tab.setObjectName(u"friends_tab")
+        self.friends_tab.setObjectName("friends_tab")
         self.verticalLayout_4 = QVBoxLayout(self.friends_tab)
-        self.verticalLayout_4.setObjectName(u"verticalLayout_4")
+        self.verticalLayout_4.setObjectName("verticalLayout_4")
         self.scrollArea_2 = QScrollArea(self.friends_tab)
-        self.scrollArea_2.setObjectName(u"scrollArea_2")
+        self.scrollArea_2.setObjectName("scrollArea_2")
         self.scrollArea_2.setWidgetResizable(True)
         self.friends_scrollArea_contents = QWidget()
-        self.friends_scrollArea_contents.setObjectName(u"friends_scrollArea_contents")
+        self.friends_scrollArea_contents.setObjectName("friends_scrollArea_contents")
         self.friends_scrollArea_contents.setGeometry(QRect(0, 0, 260, 32))
-        sizePolicy = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Maximum)
+        sizePolicy = QSizePolicy(
+            QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Maximum
+        )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.friends_scrollArea_contents.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.friends_scrollArea_contents.sizePolicy().hasHeightForWidth()
+        )
         self.friends_scrollArea_contents.setSizePolicy(sizePolicy)
         self.verticalLayout_2 = QVBoxLayout(self.friends_scrollArea_contents)
-        self.verticalLayout_2.setObjectName(u"verticalLayout_2")
+        self.verticalLayout_2.setObjectName("verticalLayout_2")
         self.scrollArea_2.setWidget(self.friends_scrollArea_contents)
 
         self.verticalLayout_4.addWidget(self.scrollArea_2)
 
         self.tabWidget.addTab(self.friends_tab, "")
         self.servers_tab = QWidget()
-        self.servers_tab.setObjectName(u"servers_tab")
+        self.servers_tab.setObjectName("servers_tab")
         self.horizontalLayout_5 = QHBoxLayout(self.servers_tab)
-        self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
+        self.horizontalLayout_5.setObjectName("horizontalLayout_5")
         self.servers_notebook = QTabWidget(self.servers_tab)
-        self.servers_notebook.setObjectName(u"servers_notebook")
+        self.servers_notebook.setObjectName("servers_notebook")
         self.servers = QWidget()
-        self.servers.setObjectName(u"servers")
+        self.servers.setObjectName("servers")
         self.verticalLayout_6 = QVBoxLayout(self.servers)
-        self.verticalLayout_6.setObjectName(u"verticalLayout_6")
+        self.verticalLayout_6.setObjectName("verticalLayout_6")
         self.scrollArea_3 = QScrollArea(self.servers)
-        self.scrollArea_3.setObjectName(u"scrollArea_3")
+        self.scrollArea_3.setObjectName("scrollArea_3")
         self.scrollArea_3.setMinimumSize(QSize(0, 0))
         self.scrollArea_3.setWidgetResizable(True)
         self.servers_scrollArea_contents = QWidget()
-        self.servers_scrollArea_contents.setObjectName(u"servers_scrollArea_contents")
+        self.servers_scrollArea_contents.setObjectName("servers_scrollArea_contents")
         self.servers_scrollArea_contents.setGeometry(QRect(0, 0, 100, 30))
-        sizePolicy.setHeightForWidth(self.servers_scrollArea_contents.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.servers_scrollArea_contents.sizePolicy().hasHeightForWidth()
+        )
         self.servers_scrollArea_contents.setSizePolicy(sizePolicy)
         self.verticalLayout_5 = QVBoxLayout(self.servers_scrollArea_contents)
-        self.verticalLayout_5.setObjectName(u"verticalLayout_5")
+        self.verticalLayout_5.setObjectName("verticalLayout_5")
         self.scrollArea_3.setWidget(self.servers_scrollArea_contents)
 
         self.verticalLayout_6.addWidget(self.scrollArea_3)
 
         self.servers_notebook.addTab(self.servers, "")
         self.channels = QWidget()
-        self.channels.setObjectName(u"channels")
+        self.channels.setObjectName("channels")
         self.verticalLayout_7 = QVBoxLayout(self.channels)
-        self.verticalLayout_7.setObjectName(u"verticalLayout_7")
+        self.verticalLayout_7.setObjectName("verticalLayout_7")
         self.channels_scrollArea = QScrollArea(self.channels)
-        self.channels_scrollArea.setObjectName(u"channels_scrollArea")
+        self.channels_scrollArea.setObjectName("channels_scrollArea")
         self.channels_scrollArea.setWidgetResizable(True)
         self.channels_scrollArea_contents = QWidget()
-        self.channels_scrollArea_contents.setObjectName(u"channels_scrollArea_contents")
+        self.channels_scrollArea_contents.setObjectName("channels_scrollArea_contents")
         self.channels_scrollArea_contents.setGeometry(QRect(0, 0, 100, 30))
-        sizePolicy.setHeightForWidth(self.channels_scrollArea_contents.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.channels_scrollArea_contents.sizePolicy().hasHeightForWidth()
+        )
         self.channels_scrollArea_contents.setSizePolicy(sizePolicy)
         self.verticalLayout_8 = QVBoxLayout(self.channels_scrollArea_contents)
-        self.verticalLayout_8.setObjectName(u"verticalLayout_8")
+        self.verticalLayout_8.setObjectName("verticalLayout_8")
         self.channels_scrollArea.setWidget(self.channels_scrollArea_contents)
 
         self.verticalLayout_7.addWidget(self.channels_scrollArea)
@@ -199,25 +212,51 @@ class Ui_MainWindow(object):
         self.tabWidget.setCurrentIndex(0)
         self.servers_notebook.setCurrentIndex(0)
 
-
         QMetaObject.connectSlotsByName(MainWindow)
+
     # setupUi
 
     def retranslateUi(self, MainWindow):
-        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"Qtcord", None))
-        self.actionAbout.setText(QCoreApplication.translate("MainWindow", u"&About", None))
-        self.actionQuit.setText(QCoreApplication.translate("MainWindow", u"&Quit", None))
-        self.actionLicenses.setText(QCoreApplication.translate("MainWindow", u"&Licenses", None))
-        self.actionLogout.setText(QCoreApplication.translate("MainWindow", u"&Logout and Quit", None))
-        self.actionReport_an_Issue.setText(QCoreApplication.translate("MainWindow", u"&Report an Issue", None))
-        self.channel_label.setText(QCoreApplication.translate("MainWindow", u"Select a Channel to Start", None))
-        self.textBrowser.setPlainText(QCoreApplication.translate("MainWindow", u"No channel selected!", None))
-        self.pushButton.setText(QCoreApplication.translate("MainWindow", u"Send", None))
-        self.menuFile.setTitle(QCoreApplication.translate("MainWindow", u"&File", None))
-        self.menuHelp.setTitle(QCoreApplication.translate("MainWindow", u"&Help", None))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.friends_tab), QCoreApplication.translate("MainWindow", u"Friends", None))
-        self.servers_notebook.setTabText(self.servers_notebook.indexOf(self.servers), QCoreApplication.translate("MainWindow", u"Servers", None))
-        self.servers_notebook.setTabText(self.servers_notebook.indexOf(self.channels), QCoreApplication.translate("MainWindow", u"Channels", None))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.servers_tab), QCoreApplication.translate("MainWindow", u"Servers", None))
-    # retranslateUi
+        MainWindow.setWindowTitle(
+            QCoreApplication.translate("MainWindow", "Qtcord", None)
+        )
+        self.actionAbout.setText(
+            QCoreApplication.translate("MainWindow", "&About", None)
+        )
+        self.actionQuit.setText(QCoreApplication.translate("MainWindow", "&Quit", None))
+        self.actionLicenses.setText(
+            QCoreApplication.translate("MainWindow", "&Licenses", None)
+        )
+        self.actionLogout.setText(
+            QCoreApplication.translate("MainWindow", "&Logout and Quit", None)
+        )
+        self.actionReport_an_Issue.setText(
+            QCoreApplication.translate("MainWindow", "&Report an Issue", None)
+        )
+        self.channel_label.setText(
+            QCoreApplication.translate("MainWindow", "Select a Channel to Start", None)
+        )
+        self.textBrowser.setPlainText(
+            QCoreApplication.translate("MainWindow", "No channel selected!", None)
+        )
+        self.pushButton.setText(QCoreApplication.translate("MainWindow", "Send", None))
+        self.menuFile.setTitle(QCoreApplication.translate("MainWindow", "&File", None))
+        self.menuHelp.setTitle(QCoreApplication.translate("MainWindow", "&Help", None))
+        self.tabWidget.setTabText(
+            self.tabWidget.indexOf(self.friends_tab),
+            QCoreApplication.translate("MainWindow", "Friends", None),
+        )
+        self.servers_notebook.setTabText(
+            self.servers_notebook.indexOf(self.servers),
+            QCoreApplication.translate("MainWindow", "Servers", None),
+        )
+        self.servers_notebook.setTabText(
+            self.servers_notebook.indexOf(self.channels),
+            QCoreApplication.translate("MainWindow", "Channels", None),
+        )
+        self.tabWidget.setTabText(
+            self.tabWidget.indexOf(self.servers_tab),
+            QCoreApplication.translate("MainWindow", "Servers", None),
+        )
 
+    # retranslateUi

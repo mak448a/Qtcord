@@ -8,201 +8,244 @@
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
 
-from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
-    QMetaObject, QObject, QPoint, QRect,
-    QSize, QTime, QUrl, Qt)
-from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
-    QFont, QFontDatabase, QGradient, QIcon,
-    QImage, QKeySequence, QLinearGradient, QPainter,
-    QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QFrame, QHBoxLayout, QLabel,
-    QLineEdit, QMainWindow, QMenuBar, QPushButton,
-    QSizePolicy, QSpacerItem, QVBoxLayout, QWidget)
+from PySide6.QtCore import QCoreApplication, QMetaObject, QRect, QSize, Qt
+from PySide6.QtGui import QFont
+from PySide6.QtWidgets import (
+    QFrame,
+    QHBoxLayout,
+    QLabel,
+    QLineEdit,
+    QMenuBar,
+    QPushButton,
+    QSizePolicy,
+    QSpacerItem,
+    QVBoxLayout,
+    QWidget,
+)
+
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
-            MainWindow.setObjectName(u"MainWindow")
+            MainWindow.setObjectName("MainWindow")
         MainWindow.resize(840, 500)
         self.centralwidget = QWidget(MainWindow)
-        self.centralwidget.setObjectName(u"centralwidget")
+        self.centralwidget.setObjectName("centralwidget")
         self.verticalLayout = QVBoxLayout(self.centralwidget)
-        self.verticalLayout.setObjectName(u"verticalLayout")
-        self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+        self.verticalLayout.setObjectName("verticalLayout")
+        self.verticalSpacer = QSpacerItem(
+            20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding
+        )
 
         self.verticalLayout.addItem(self.verticalSpacer)
 
         self.label = QLabel(self.centralwidget)
-        self.label.setObjectName(u"label")
+        self.label.setObjectName("label")
         font = QFont()
         font.setPointSize(28)
         self.label.setFont(font)
-        self.label.setStyleSheet(u"")
+        self.label.setStyleSheet("")
         self.label.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.verticalLayout.addWidget(self.label)
 
         self.label_5 = QLabel(self.centralwidget)
-        self.label_5.setObjectName(u"label_5")
+        self.label_5.setObjectName("label_5")
         self.label_5.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.verticalLayout.addWidget(self.label_5)
 
         self.verticalLayout_3 = QVBoxLayout()
-        self.verticalLayout_3.setObjectName(u"verticalLayout_3")
+        self.verticalLayout_3.setObjectName("verticalLayout_3")
         self.verticalLayout_3.setContentsMargins(-1, 50, -1, -1)
         self.horizontalLayout_3 = QHBoxLayout()
-        self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
-        self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+        self.horizontalLayout_3.setObjectName("horizontalLayout_3")
+        self.horizontalSpacer = QSpacerItem(
+            40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum
+        )
 
         self.horizontalLayout_3.addItem(self.horizontalSpacer)
 
         self.label_3 = QLabel(self.centralwidget)
-        self.label_3.setObjectName(u"label_3")
+        self.label_3.setObjectName("label_3")
         self.label_3.setMinimumSize(QSize(80, 0))
         self.label_3.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.horizontalLayout_3.addWidget(self.label_3)
 
         self.email = QLineEdit(self.centralwidget)
-        self.email.setObjectName(u"email")
+        self.email.setObjectName("email")
 
         self.horizontalLayout_3.addWidget(self.email)
 
-        self.horizontalSpacer_3 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+        self.horizontalSpacer_3 = QSpacerItem(
+            40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum
+        )
 
         self.horizontalLayout_3.addItem(self.horizontalSpacer_3)
 
-
         self.verticalLayout_3.addLayout(self.horizontalLayout_3)
-
 
         self.verticalLayout.addLayout(self.verticalLayout_3)
 
         self.horizontalLayout_6 = QHBoxLayout()
-        self.horizontalLayout_6.setObjectName(u"horizontalLayout_6")
-        self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+        self.horizontalLayout_6.setObjectName("horizontalLayout_6")
+        self.horizontalSpacer_2 = QSpacerItem(
+            40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum
+        )
 
         self.horizontalLayout_6.addItem(self.horizontalSpacer_2)
 
         self.label_2 = QLabel(self.centralwidget)
-        self.label_2.setObjectName(u"label_2")
+        self.label_2.setObjectName("label_2")
         self.label_2.setMinimumSize(QSize(80, 0))
         self.label_2.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.horizontalLayout_6.addWidget(self.label_2)
 
         self.password = QLineEdit(self.centralwidget)
-        self.password.setObjectName(u"password")
+        self.password.setObjectName("password")
         self.password.setEchoMode(QLineEdit.EchoMode.Password)
 
         self.horizontalLayout_6.addWidget(self.password)
 
-        self.horizontalSpacer_4 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+        self.horizontalSpacer_4 = QSpacerItem(
+            40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum
+        )
 
         self.horizontalLayout_6.addItem(self.horizontalSpacer_4)
-
 
         self.verticalLayout.addLayout(self.horizontalLayout_6)
 
         self.horizontalLayout_2 = QHBoxLayout()
-        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
-        self.horizontalSpaceru = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+        self.horizontalLayout_2.setObjectName("horizontalLayout_2")
+        self.horizontalSpaceru = QSpacerItem(
+            40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum
+        )
 
         self.horizontalLayout_2.addItem(self.horizontalSpaceru)
 
         self.label_3u = QLabel(self.centralwidget)
-        self.label_3u.setObjectName(u"label_3u")
+        self.label_3u.setObjectName("label_3u")
         self.label_3u.setMinimumSize(QSize(80, 0))
         self.label_3u.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.horizontalLayout_2.addWidget(self.label_3u)
 
         self.totp = QLineEdit(self.centralwidget)
-        self.totp.setObjectName(u"totp")
+        self.totp.setObjectName("totp")
 
         self.horizontalLayout_2.addWidget(self.totp)
 
-        self.horizontalSpacer_3u = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+        self.horizontalSpacer_3u = QSpacerItem(
+            40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum
+        )
 
         self.horizontalLayout_2.addItem(self.horizontalSpacer_3u)
-
 
         self.verticalLayout.addLayout(self.horizontalLayout_2)
 
         self.horizontalLayout_4 = QHBoxLayout()
-        self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
+        self.horizontalLayout_4.setObjectName("horizontalLayout_4")
         self.horizontalLayout_4.setContentsMargins(-1, 10, -1, -1)
-        self.horizontalSpacer_5 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+        self.horizontalSpacer_5 = QSpacerItem(
+            40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum
+        )
 
         self.horizontalLayout_4.addItem(self.horizontalSpacer_5)
 
         self.pushButton = QPushButton(self.centralwidget)
-        self.pushButton.setObjectName(u"pushButton")
+        self.pushButton.setObjectName("pushButton")
 
         self.horizontalLayout_4.addWidget(self.pushButton)
 
-        self.horizontalSpacer_6 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+        self.horizontalSpacer_6 = QSpacerItem(
+            40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum
+        )
 
         self.horizontalLayout_4.addItem(self.horizontalSpacer_6)
 
-
         self.verticalLayout.addLayout(self.horizontalLayout_4)
 
-        self.verticalSpacer_2 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+        self.verticalSpacer_2 = QSpacerItem(
+            20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding
+        )
 
         self.verticalLayout.addItem(self.verticalSpacer_2)
 
         self.label_4 = QLabel(self.centralwidget)
-        self.label_4.setObjectName(u"label_4")
+        self.label_4.setObjectName("label_4")
         self.label_4.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.verticalLayout.addWidget(self.label_4)
 
         self.info_frame = QFrame(self.centralwidget)
-        self.info_frame.setObjectName(u"info_frame")
+        self.info_frame.setObjectName("info_frame")
         self.info_frame.setFrameShape(QFrame.Shape.NoFrame)
         self.info_frame.setLineWidth(0)
         self.verticalLayout_2 = QVBoxLayout(self.info_frame)
-        self.verticalLayout_2.setObjectName(u"verticalLayout_2")
+        self.verticalLayout_2.setObjectName("verticalLayout_2")
         self.verticalLayout_4 = QVBoxLayout()
-        self.verticalLayout_4.setObjectName(u"verticalLayout_4")
+        self.verticalLayout_4.setObjectName("verticalLayout_4")
         self.info = QLabel(self.info_frame)
-        self.info.setObjectName(u"info")
+        self.info.setObjectName("info")
         self.info.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.verticalLayout_4.addWidget(self.info)
 
-
         self.verticalLayout_2.addLayout(self.verticalLayout_4)
-
 
         self.verticalLayout.addWidget(self.info_frame)
 
-        self.verticalSpacer_3 = QSpacerItem(20, 20, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Fixed)
+        self.verticalSpacer_3 = QSpacerItem(
+            20, 20, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Fixed
+        )
 
         self.verticalLayout.addItem(self.verticalSpacer_3)
 
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
-        self.menubar.setObjectName(u"menubar")
+        self.menubar.setObjectName("menubar")
         self.menubar.setGeometry(QRect(0, 0, 840, 30))
         MainWindow.setMenuBar(self.menubar)
 
         self.retranslateUi(MainWindow)
 
         QMetaObject.connectSlotsByName(MainWindow)
+
     # setupUi
 
     def retranslateUi(self, MainWindow):
-        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
-        self.label.setText(QCoreApplication.translate("MainWindow", u"Login to Discord", None))
-        self.label_5.setText(QCoreApplication.translate("MainWindow", u"WARNING: I'm not responsible for account bans", None))
-        self.label_3.setText(QCoreApplication.translate("MainWindow", u"Email *", None))
-        self.label_2.setText(QCoreApplication.translate("MainWindow", u"Password *", None))
-        self.label_3u.setText(QCoreApplication.translate("MainWindow", u"TOTP Code", None))
-        self.pushButton.setText(QCoreApplication.translate("MainWindow", u"Login", None))
-        self.label_4.setText(QCoreApplication.translate("MainWindow", u"Fields marked with * are required.", None))
-        self.info.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:12pt; font-weight:700; color:#ff0004;\">Error! Invalid credentials. Check your email,</span></p><p><span style=\" font-size:12pt; font-weight:700; color:#ff0004;\">password, and TOTP code (if you use it)!</span></p><p><span style=\" font-size:12pt; font-weight:700; color:#ff0004;\">You could also be rate-limited.</span></p></body></html>", None))
-    # retranslateUi
+        MainWindow.setWindowTitle(
+            QCoreApplication.translate("MainWindow", "MainWindow", None)
+        )
+        self.label.setText(
+            QCoreApplication.translate("MainWindow", "Login to Discord", None)
+        )
+        self.label_5.setText(
+            QCoreApplication.translate(
+                "MainWindow", "WARNING: I'm not responsible for account bans", None
+            )
+        )
+        self.label_3.setText(QCoreApplication.translate("MainWindow", "Email *", None))
+        self.label_2.setText(
+            QCoreApplication.translate("MainWindow", "Password *", None)
+        )
+        self.label_3u.setText(
+            QCoreApplication.translate("MainWindow", "TOTP Code", None)
+        )
+        self.pushButton.setText(QCoreApplication.translate("MainWindow", "Login", None))
+        self.label_4.setText(
+            QCoreApplication.translate(
+                "MainWindow", "Fields marked with * are required.", None
+            )
+        )
+        self.info.setText(
+            QCoreApplication.translate(
+                "MainWindow",
+                '<html><head/><body><p><span style=" font-size:12pt; font-weight:700; color:#ff0004;">Error! Invalid credentials. Check your email,</span></p><p><span style=" font-size:12pt; font-weight:700; color:#ff0004;">password, and TOTP code (if you use it)!</span></p><p><span style=" font-size:12pt; font-weight:700; color:#ff0004;">You could also be rate-limited.</span></p></body></html>',
+                None,
+            )
+        )
 
+    # retranslateUi
