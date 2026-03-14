@@ -18,6 +18,13 @@ dist/
 # Caches and venvs
 __pycache__/
 .env
+.env.*
+*.env
+*.local
+.secrets
+secrets.*
+discordauth.txt
+src/discordauth.txt
 .venv
 env/
 venv/
