@@ -2,7 +2,6 @@
 import time
 import os
 import sys
-import re
 import webbrowser
 import requests
 import platformdirs
@@ -118,7 +117,13 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
 
     def _update_text(self, messages: dict) -> None:
         if messages.get("ratelimit", False):
-            print("Ratelimited!")
+            print("Ratelimited!", messages["ratelimit"])
+            
+            print(f"Cooling down for {messages['ratelimit']}s")
+            self.timer.stop()
+            time.sleep(messages["ratelimit"])
+            self.timer.start()
+            print("Starting get_messages timer again!")
             return
         
         if not self.channel_id:
@@ -158,7 +163,7 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
 
         self.ui.lineEdit.setFocus()
 
-        # Set timer to run every few ms to update the chat (8 seconds as we don't want banning)
+        # Set timer to run every few ms to update the chat (8? seconds as we don't want banning)
         self.timer = QTimer()
         self.timer.setInterval(self.refresh_message_interval)
         self.timer.timeout.connect(self.update_messages)

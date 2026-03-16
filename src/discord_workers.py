@@ -49,6 +49,7 @@ class UpdateMessagesWorker(QObject, QRunnable):
                 self.update.emit(messages)
                 break
             except RateLimitError as e:
+                print("RATELIMIT in get_messages!")
                 self.update.emit({"ratelimit": e.retry_after})
                 break
 
