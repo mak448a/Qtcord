@@ -53,8 +53,7 @@ pip install -r requirements.txt
 ```
 3. **Run**:
 ```bash
-cd src
-python3 main.py
+python3 src/main.py
 ```
 
 ## Development
