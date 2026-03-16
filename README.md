@@ -16,6 +16,9 @@ Qtcord aims to provide a native, high-performance experience for Discord without
 > [!CAUTION]
 > **Use at your own risk.** This is a fun side project. Using unofficial clients is technically against Discord's Terms of Service and *can* lead to your account being banned. I do not endorse or take responsibility for any account actions.
 
+
+> [!NOTE]
+> Make sure you're getting Qtcord from the right source! The official source is [mak448a/Qtcord](https://github.com/mak448a/Qtcord)!
 ---
 
 ![Screenshot of Qtcord](demos/demo4.png)
@@ -27,44 +30,32 @@ Qtcord aims to provide a native, high-performance experience for Discord without
 - **Privacy Focused**: Runs without telemetry, tracking, or bloat.
 
 ## Installation
-
-### For Users
 The easiest way to get Qtcord is through the official builds:
 
 - **Linux**: Get it on [Flathub](https://flathub.org/apps/io.github.mak448a.QTCord) or download the binary from [Releases](https://github.com/mak448a/Qtcord/releases/latest).
 - **Windows & macOS**: Download the latest installer/bundle from [GitHub Releases](https://github.com/mak448a/Qtcord/releases/latest).
 
-### For Developers
-If you want to run the source code or contribute:
-
-1. **Requirements**: Python 3.12 or higher.
-2. **Setup**:
-```bash
-# Clone the repo
-git clone https://github.com/mak448a/Qtcord.git
-cd Qtcord
-
-# Create a virtual environment
-python3 -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-
-# Install dependencies (uv is recommended for speed!)
-pip install -r requirements.txt
-```
-3. **Run**:
-```bash
-python3 src/main.py
-```
 
 ## Development
 Check out [CONTRIBUTING.md](CONTRIBUTING.md) for our coding guidelines and release instructions. 
+Check out [CONTRIBUTING.md](https://github.com/mak448a/Qtcord/blob/main/CONTRIBUTING.md)!
+> [!NOTE]
+> You need Python 3.12 or higher!
+> Also, I recommend using uv if you have it installed. It's faster than pip. (`uv pip install -r requirements.txt`)
+
+Do the standard Python procedure:
+```bash
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+```
+
+Afterwards, just run main.py. If you're on Windows, substitute `python3` for `python`.
+```shell
+python3 src/main.py
+```
 
 ## Credits & Documentation
 - [Official Discord API Documentation](https://discord.com/developers/docs/)
 - [Unofficial Discord Documentation](https://luna.gitlab.io/discord-unofficial-docs/)
 - Special thanks to the community for tutorials and feedback.
-
----
-<div align="center">
-  (Make sure you're getting Qtcord from the right source! The official source is <a href="https://github.com/mak448a/Qtcord">github.com/mak448a/Qtcord</a>)
-</div>
