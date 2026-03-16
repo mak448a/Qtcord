@@ -56,7 +56,6 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
         # Got "suspicious activity on your account" with this rate, let's try a different rate
         # self.refresh_message_interval = 600
         self.refresh_message_interval = 1000
-        self.refresh_message_interval = 400
         icon_path = os.path.join(current_dir, "assets", "icon.svg")
         self.setWindowIcon(QIcon(icon_path))
 
