@@ -11,7 +11,7 @@
 
 ---
 
-Qtcord aims to provide a native, high-performance experience for Discord without the overhead of a full web browser shell. 
+Qtcord aims to provide a native, high-performance experience for Discord without Electron. 
 
 > [!CAUTION]
 > **Use at your own risk.** This is a fun side project. Using unofficial clients is technically against Discord's Terms of Service and *can* lead to your account being banned. I do not endorse or take responsibility for any account actions.
