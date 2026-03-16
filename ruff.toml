@@ -4,23 +4,17 @@
 line-length = 120
 
 [lint]
-# Only catch real issues, not style nitpicks
+# Check whitespace and Pyflakes
 select = ["F", "W"]
+# Ignore line length formatting
 ignore = ["E501"]
 
-# Auto-generated UI files from Qt Designer should not be linted
+# Exclude auto-generated UI files
 exclude = [
-    "src/ui/main_ui.py",
-    "src/ui/login_ui.py",
-    "src/ui/licenses_ui.py",
-    "src/ui/no_internet.py",
+    "src/ui/**"
 ]
 
 [format]
-# Exclude auto-generated files from formatting checks too
 exclude = [
-    "src/ui/main_ui.py",
-    "src/ui/login_ui.py",
-    "src/ui/licenses_ui.py",
-    "src/ui/no_internet.py",
+    "src/ui/**"
 ]
