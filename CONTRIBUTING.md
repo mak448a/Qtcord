@@ -16,7 +16,7 @@ You can use following resources for API docs.
 - https://www.youtube.com/channel/UC8PPJFudLUM1eJlM4BiJ40A
 
 ## Coding Guidelines
-If you use AI, review the code it outputs for mistakes. Clean the code if needed, and remove the unnecessary comments.
+I prefer no LLM-generated code, but if you use AI, review the code it outputs for mistakes. Clean the code if needed, and remove the unnecessary comments.
 
 Try to follow PEP-8 (the squiggly underlines in Pycharm) standards. If you can't, that's perfectly fine.
 
@@ -27,7 +27,11 @@ Don't forget to add the appropriate license to the licenses folder and UI!
 
 To edit the user interface, use Qt designer and put the UI files under `src/ui`. To apply the UI, run `src/regenerate.py`.
 
+GitHub actions will build and release automatically when a tag is created.
+
 ## Packaging
-If you want to package for Linux, take a look at https://github.com/flathub/io.github.mak448a.QTCord.
-If you want to package for Windows, run package_windows.py.
-If you want to package for macOS, run package_macos.py.
+Build scripts are in `helper_scripts/` and `.github/`.
+
+- If you want to package for Linux, take a look at `linux.spec`, `ci.yml`, and [Qtcord's Flathub manifest](https://github.com/flathub/io.github.mak448a.QTCord).
+- If you want to package for Windows, run package_windows.py.
+- If you want to package for macOS, run package_macos.py.
