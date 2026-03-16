@@ -8,8 +8,7 @@ on:
     branches: [ main ]
 
 # This workflow builds and lints the application.
-# It DOES NOT require a Discord token or any other external secrets.
-# It uses the built-in GITHUB_TOKEN for releases.
+# It uses the built-in GITHUB_TOKEN to release and DOES NOT require any external secrets.
 
 jobs:
   lint:
