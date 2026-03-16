@@ -39,30 +39,26 @@ If you want to run the source code or contribute:
 
 1. **Requirements**: Python 3.12 or higher.
 2. **Setup**:
-   ```bash
-   # Clone the repo
-   git clone https://github.com/mak448a/Qtcord.git
-   cd Qtcord
+```bash
+# Clone the repo
+git clone https://github.com/mak448a/Qtcord.git
+cd Qtcord
 
-   # Create a virtual environment
-   python3 -m venv venv
-   source venv/bin/activate  # On Windows: venv\Scripts\activate
+# Create a virtual environment
+python3 -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
 
-   # Install dependencies (uv is recommended for speed!)
-   pip install -r requirements.txt
-   ```
+# Install dependencies (uv is recommended for speed!)
+pip install -r requirements.txt
+```
 3. **Run**:
-   ```bash
-   cd src
-   python3 main.py
-   ```
+```bash
+cd src
+python3 main.py
+```
 
 ## Development
 Check out [CONTRIBUTING.md](CONTRIBUTING.md) for our coding guidelines and release instructions. 
-
-- We use **Ruff** for linting and formatting. 
-- Build scripts for all platforms are located in `helper_scripts/`.
-- Automated CI/CD handles builds and releases on every tag.
 
 ## Credits & Documentation
 - [Official Discord API Documentation](https://discord.com/developers/docs/)
