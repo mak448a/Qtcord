@@ -21,18 +21,18 @@ Qtcord aims to provide a native, high-performance experience for Discord without
 ![Screenshot of Qtcord](demos/demo4.png)
 
 ## Features
-- **Native & Lightweight**: Built with PySide6 (Qt) for a snappy interface.
+- **Lightweight & Native**: Built with PySide6 (Qt) for a snappy interface.
 - **Secure by Design**: Uses your system's secure credential store (GNOME Keyring, KWallet, or macOS Keychain) to store tokens.
 - **Cross-Platform**: Works on Windows, macOS, and Linux.
-- **Privacy Focused**: No tracking, no telemetry, no bloat.
+- **Privacy Focused**: Runs without telemetry, tracking, or bloat.
 
-## Getting Started
+## Installation
 
 ### For Users
-The easiest way to get Qtcord is through our official builds:
+The easiest way to get Qtcord is through the official builds:
 
 - **Linux**: Get it on [Flathub](https://flathub.org/apps/io.github.mak448a.QTCord) or download the binary from [Releases](https://github.com/mak448a/Qtcord/releases/latest).
-- **Windows & macOS**: Download the latest installer/bundle from our [GitHub Releases](https://github.com/mak448a/Qtcord/releases/latest).
+- **Windows & macOS**: Download the latest installer/bundle from [GitHub Releases](https://github.com/mak448a/Qtcord/releases/latest).
 
 ### For Developers
 If you want to run the source code or contribute:
