@@ -25,7 +25,6 @@ Qtcord aims to provide a native, high-performance experience for Discord without
 
 ## Features
 - **Lightweight & Native**: Built with PySide6 (Qt) for a snappy interface.
-- **Secure by Design**: Uses your system's secure credential store (GNOME Keyring, KWallet, or macOS Keychain) to store tokens.
 - **Cross-Platform**: Works on Windows, macOS, and Linux.
 - **Privacy Focused**: Runs without telemetry, tracking, or bloat.
 
