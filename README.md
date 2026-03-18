@@ -1,18 +1,14 @@
 # Qtcord
-<h3>A lightweight, native Discord client built with Python and Qt</h3>
+### A lightweight, native Discord client built with Python and Qt
+Qtcord aims to provide a lightweight experience for Discord without the overhead of a webview.
 
 [![Flathub](https://img.shields.io/endpoint?url=https://flathub-stats-backend.vercel.app/badges/io.github.mak448a.QTCord/shields.io.json)](https://flathub.org/apps/io.github.mak448a.QTCord)
 [![Discord Invite](https://img.shields.io/badge/Discord-Join%20Server-7289da?logo=discord&logoColor=white)](https://discord.gg/gV8SjzZAXj)
 [![CI Build & Release](https://github.com/mak448a/Qtcord/actions/workflows/ci.yml/badge.svg)](https://github.com/mak448a/Qtcord/actions/workflows/ci.yml)
 
----
-
-Qtcord aims to provide a native, high-performance experience for Discord without Electron. 
 
 > [!CAUTION]
 > **Use at your own risk.** This is a fun side project. Using unofficial clients is technically against Discord's Terms of Service and *can* lead to your account being banned. I do not endorse or take responsibility for any account actions.
-
----
 
 <a href='https://flathub.org/apps/io.github.mak448a.QTCord'>
   <img width='150' alt='Download on Flathub' src='https://dl.flathub.org/assets/badges/flathub-badge-en.png'/>
