@@ -1,13 +1,11 @@
 # Qtcord
 
-<div align="center">
-  <img src="src/assets/icon.svg" width="128" height="128" alt="Qtcord Logo">
-  <h3>A lightweight, native Discord client built with Python and Qt</h3>
+<img src="src/assets/icon.svg" width="64" height="64" alt="Qtcord Logo">
+<h3>A lightweight, native Discord client built with Python and Qt</h3>
 
-  [![Flathub](https://img.shields.io/endpoint?url=https://flathub-stats-backend.vercel.app/badges/io.github.mak448a.QTCord/shields.io.json)](https://flathub.org/apps/io.github.mak448a.QTCord)
-  [![Discord Invite](https://img.shields.io/badge/Discord-Join%20Server-7289da?logo=discord&logoColor=white)](https://discord.gg/gV8SjzZAXj)
-  [![CI Build & Release](https://github.com/mak448a/Qtcord/actions/workflows/ci.yml/badge.svg)](https://github.com/mak448a/Qtcord/actions/workflows/ci.yml)
-</div>
+[![Flathub](https://img.shields.io/endpoint?url=https://flathub-stats-backend.vercel.app/badges/io.github.mak448a.QTCord/shields.io.json)](https://flathub.org/apps/io.github.mak448a.QTCord)
+[![Discord Invite](https://img.shields.io/badge/Discord-Join%20Server-7289da?logo=discord&logoColor=white)](https://discord.gg/gV8SjzZAXj)
+[![CI Build & Release](https://github.com/mak448a/Qtcord/actions/workflows/ci.yml/badge.svg)](https://github.com/mak448a/Qtcord/actions/workflows/ci.yml)
 
 ---
 
@@ -16,9 +14,8 @@ Qtcord aims to provide a native, high-performance experience for Discord without
 > [!CAUTION]
 > **Use at your own risk.** This is a fun side project. Using unofficial clients is technically against Discord's Terms of Service and *can* lead to your account being banned. I do not endorse or take responsibility for any account actions.
 
+(Make sure you're getting Qtcord from the right source! The official source is [mak448a/Qtcord](https://github.com/mak448a/Qtcord)!)
 
-> [!NOTE]
-> Make sure you're getting Qtcord from the right source! The official source is [mak448a/Qtcord](https://github.com/mak448a/Qtcord)!
 ---
 
 ![Screenshot of Qtcord](demos/demo4.png)
@@ -27,6 +24,7 @@ Qtcord aims to provide a native, high-performance experience for Discord without
 - **Lightweight & Native**: Built with PySide6 (Qt) for a snappy interface.
 - **Cross-Platform**: Works on Windows, macOS, and Linux.
 - **Privacy Focused**: Runs without telemetry, tracking, or bloat.
+- **Work in progress**: Supports servers, direct messages, channels, profile pictures, and server icons.
 
 ## Installation
 The easiest way to get Qtcord is through the official builds:
