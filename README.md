@@ -31,7 +31,7 @@ The easiest way to get Qtcord is through the official builds:
 (Make sure you're getting Qtcord from the right source! The official source is [mak448a/Qtcord](https://github.com/mak448a/Qtcord)!)
 
 - **Linux**: Get it on [Flathub](https://flathub.org/apps/io.github.mak448a.QTCord) or download the binary from [Releases](https://github.com/mak448a/Qtcord/releases/latest).
-- **Windows & macOS**: Download the latest installer/bundle from [GitHub Releases](https://github.com/mak448a/Qtcord/releases/latest).
+- **Windows & macOS**: Download the latest binaries from [GitHub Releases](https://github.com/mak448a/Qtcord/releases/latest).
 
 
 ## Development
@@ -40,14 +40,15 @@ Check out [CONTRIBUTING.md](CONTRIBUTING.md) for coding guidelines and release i
 > You need Python 3.12 or higher!
 > Also, I recommend using uv if you have it installed. It's faster than pip. (`uv pip install -r requirements.txt`)
 
-Do the standard Python procedure:
+
+If you're on Windows, substitute `python3` for `python`. Do the standard Python procedure:
 ```bash
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-Afterwards, just run main.py. If you're on Windows, substitute `python3` for `python`.
+Afterwards, run main.py.
 ```shell
 python3 src/main.py
 ```
