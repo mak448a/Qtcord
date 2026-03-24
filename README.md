@@ -35,8 +35,7 @@ The easiest way to get Qtcord is through the official builds:
 
 
 ## Development
-Check out [CONTRIBUTING.md](CONTRIBUTING.md) for our coding guidelines and release instructions. 
-Check out [CONTRIBUTING.md](https://github.com/mak448a/Qtcord/blob/main/CONTRIBUTING.md)!
+Check out [CONTRIBUTING.md](CONTRIBUTING.md) for coding guidelines and release instructions.
 > [!NOTE]
 > You need Python 3.12 or higher!
 > Also, I recommend using uv if you have it installed. It's faster than pip. (`uv pip install -r requirements.txt`)
