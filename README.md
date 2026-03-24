@@ -30,7 +30,7 @@ Qtcord aims to provide a lightweight experience for Discord without the overhead
 The easiest way to get Qtcord is through the official builds:
 (Make sure you're getting Qtcord from the right source! The official source is [mak448a/Qtcord](https://github.com/mak448a/Qtcord)!)
 
-- **Linux**: Get it on [Flathub](https://flathub.org/apps/io.github.mak448a.QTCord) or download the binary from [Releases](https://github.com/mak448a/Qtcord/releases/latest).
+- **Linux**: Get it on [Flathub](https://flathub.org/apps/io.github.mak448a.QTCord) or download the binary from [GitHub Releases](https://github.com/mak448a/Qtcord/releases/latest).
 - **Windows & macOS**: Download the latest binaries from [GitHub Releases](https://github.com/mak448a/Qtcord/releases/latest).
 
 
