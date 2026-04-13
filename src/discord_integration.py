@@ -45,7 +45,7 @@ def load_token() -> None:
             print("Keyring is available.")
             keyring_available = True
         else:
-            print("Keyring is not available! Install a keyring for your OS!")
+            print("Keyring is not available! Falling back to plaintext storage!")
             keyring_available = False
     else:
         # Since the keyring was available if auth exists
