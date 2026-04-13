@@ -177,7 +177,7 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
             auth2 = False
 
             # TODO: Add get_authorization_status() function in discord_integration to validate without relying on this
-            if keyring.get_password("Qtcord", "token"):
+            if keyring.get_password("Qtcord", "token") and discord_integration.keyring_available:
                 discord_integration.load_token()
                 auth2 = True
             elif os.path.isfile(
@@ -338,7 +338,7 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
 
     def logout_account(self):
         keyring.delete_password("Qtcord", "token")
-        # Remove Discord token from discordauth.txt (just to be safe; probably is redundant)
+        # Remove Discord token from discordauth.txt
         token_path = platformdirs.user_config_dir("Qtcord") + "/discordauth.txt"
         if os.path.exists(token_path):
             os.remove(token_path)
@@ -354,7 +354,7 @@ def handle_no_internet() -> None:
         app = QApplication(sys.argv)
         app.setDesktopFileName("io.github.mak448a.QTCord")
         NoInternetUI().exec()
-        sys.exit()
+        sys.exit(0)
 
 
 if __name__ == "__main__":
@@ -376,12 +376,10 @@ if __name__ == "__main__":
     # Add widget to switch between pages of UI
     switcher = QtWidgets.QStackedWidget()
 
-    
-
-
     auth = False
-
-    if keyring.get_password("Qtcord", "token"):
+    
+    # Check keyring_available just in case. Probably redundant.
+    if keyring.get_password("Qtcord", "token") and discord_integration.keyring_available:
         auth = True
     elif os.path.isfile(platformdirs.user_config_dir("Qtcord") + "/discordauth.txt"):
         print("Falling back to checking discordauth.txt")
