@@ -5,17 +5,20 @@
     <name>Qtcord</name>
     <summary>Lightweight Discord client</summary>
     <launchable type="desktop-id">io.github.mak448a.QTCord.desktop</launchable>
-    <developer_name>mak448a</developer_name>
+    <developer id="io.github.mak448a">
+        <name>mak448a</name>
+    </developer>
     <description>
         <p>Qtcord is a Discord client built with Qt aiming to bring a lightweight, native experience. It takes less RAM than the offical client and the browser version of Discord!</p>
         <p>Please report bugs and account bans at https://github.com/mak448a/Qtcord/issues.</p>
-        <p>DISCLAIMER: I am not responsible for account bans! This app is against the Discord TOS. Your Discord token is stored in plaintext. Use at your own risk!</p>
+        <p>**DISCLAIMER: I am not responsible for account bans! This app is against the Discord TOS. Use at your own risk!**</p>
     </description>
     <branding>
       <color type="primary" scheme_preference="light">#76f1d8</color>
       <color type="primary" scheme_preference="dark">#30a18b</color>
     </branding>
     <url type="homepage">https://github.com/mak448a/Qtcord</url>
+    <url type="bugtracker">https://github.com/mak448a/Qtcord/issues</url>
     <url type="vcs-browser">https://github.com/mak448a/Qtcord</url>
     <metadata_license>MIT</metadata_license>
     <project_license>MIT</project_license>

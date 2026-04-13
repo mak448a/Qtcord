@@ -16,10 +16,14 @@ You can use following resources for API docs.
 - https://www.youtube.com/channel/UC8PPJFudLUM1eJlM4BiJ40A
 
 ## Coding Guidelines
-Try to follow PEP-8 (the squiggly underlines in Pycharm) standards. If you can't, that's perfectly fine.
-You can use a code formatter called Ruff if needed.
+If you use AI, review the code it outputs for mistakes. Clean the code if needed, and remove the unnecessary comments.
 
-If you add a dependency, make sure to add the appropriate license to the licenses folder.
+Try to follow PEP-8 (the squiggly underlines in Pycharm) standards. If you can't, that's perfectly fine.
+
+If possible, use Ruff to format your code.
+
+If you add a dependency, make sure to add it to `requirements.txt` and `no_pyside_requirements.txt`.
+Don't forget to add the appropriate license to the licenses folder and UI!
 
 To edit the user interface, use Qt designer and put the UI files under `src/ui`. To apply the UI, run `src/regenerate.py`.
 
