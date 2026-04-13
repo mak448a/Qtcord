@@ -11,7 +11,7 @@
     <description>
         <p>Qtcord is a Discord client built with Qt aiming to bring a lightweight, native experience. It takes less RAM than the offical client and the browser version of Discord!</p>
         <p>Please report bugs and account bans at https://github.com/mak448a/Qtcord/issues.</p>
-        <p>**DISCLAIMER: I am not responsible for account bans! This app is against the Discord TOS. Use at your own risk!**</p>
+        <p>**DISCLAIMER: I am not responsible for account bans! This app is against the Discord TOS. Your Discord token is stored in plaintext. Use at your own risk!**</p>
     </description>
     <branding>
       <color type="primary" scheme_preference="light">#76f1d8</color>

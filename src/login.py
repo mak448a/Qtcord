@@ -1,6 +1,7 @@
 from PySide6.QtWidgets import QMainWindow
 from ui import login_ui
-from discord_integration import login, load_token
+from discord_integration import login, load_token, keyring_available
+import platformdirs
 import keyring
 
 
@@ -44,7 +45,11 @@ class LoginUI(QMainWindow, login_ui.Ui_MainWindow):
 
             if _token:
                 # Save the token
-                keyring.set_password("Qtcord", "token", _token)
+                if keyring_available:
+                    keyring.set_password("Qtcord", "token", _token)
+                else:
+                    with open(platformdirs.user_config_dir("Qtcord") + "/discordauth.txt", "w") as f:
+                        f.write(_token)
 
                 load_token()
 
