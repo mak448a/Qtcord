@@ -19,20 +19,23 @@ headers = {
     "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) discord/0.0.63 Chrome/124.0.6367.243 Electron/30.2.0 Safari/537.36"
 }
 
+# Will be set in load_token
+keyring_available: bool = False
+
 
 def load_token() -> None:
     """
     Loads the token from system keyring, otherwise falls back to checking discordauth.txt.
     """
 
-    global headers
+    global headers, keyring_available
 
     try:
         auth = keyring.get_password("Qtcord", "token")
     except keyring.errors.NoKeyringError:
-        print("Keyring is not available! Install a keyring for your OS!")
-        import sys
-        sys.exit(1)
+        print("WARNING: Keyring is not available! Falling back to plaintext storage!")
+        keyring_available = False
+        auth = ""
 
     # Check if keyring is writable if keyring doesn't have token
     if not auth:
@@ -40,29 +43,38 @@ def load_token() -> None:
         keyring.set_password("Qtcord", "token", "test")
         if keyring.get_password("Qtcord", "token"):
             print("Keyring is available.")
+            keyring_available = True
         else:
             print("Keyring is not available! Install a keyring for your OS!")
-            import sys
-            sys.exit(1)
-    
-
-    if os.path.isfile(platformdirs.user_config_dir("Qtcord") + "/discordauth.txt"):
-        print("Found discordauth.txt! Loading from discordauth.txt instead of system keychain!")
-        with open(platformdirs.user_config_dir("Qtcord") + "/discordauth.txt") as f:
-            auth = f.read().strip()
-        
-        print("Copying token to keyring!")
-        keyring.set_password("Qtcord", "token", auth)
-
-        token_path = os.path.join(platformdirs.user_config_dir("Qtcord"), "discordauth.txt")
-        if os.path.exists(token_path):
-            print("Deleting token from discordauth.txt!")
-            os.remove(token_path)
-
-    if auth:
-        headers["authorization"] = auth
+            keyring_available = False
     else:
-        print("Nothing is stored in keyring. ")
+        # Since the keyring was available if auth exists
+        keyring_available = True
+        
+    
+    if keyring_available:
+        if os.path.isfile(platformdirs.user_config_dir("Qtcord") + "/discordauth.txt"):
+            print("Found discordauth.txt! Loading from discordauth.txt instead of system keychain!")
+            with open(platformdirs.user_config_dir("Qtcord") + "/discordauth.txt") as f:
+                auth = f.read().strip()
+            
+            print("Copying token to keyring!")
+            keyring.set_password("Qtcord", "token", auth)
+
+            token_path = os.path.join(platformdirs.user_config_dir("Qtcord"), "discordauth.txt")
+            if os.path.exists(token_path):
+                print("Deleting token from discordauth.txt!")
+                os.remove(token_path)
+
+        if auth:
+            headers["authorization"] = auth
+        else:
+            print("Nothing is stored in keyring. ")
+    else:
+        if os.path.isfile(platformdirs.user_config_dir("Qtcord") + "/discordauth.txt"):
+            with open(platformdirs.user_config_dir("Qtcord") + "/discordauth.txt") as f:
+                auth = f.read()
+            headers["authorization"] = auth.strip()
 
 
 
@@ -99,7 +111,11 @@ load_token()
 if not validate_token():
     # If there is a token and it's invalid
     print("TOKEN INVALID")
+
+    # This will either run without erroring, so we don't need to check if it exists first.
     keyring.delete_password("Qtcord", "token")
+
+    # Delete plaintext auth if it exists
     if os.path.exists(platformdirs.user_config_dir("Qtcord") + "/discordauth.txt"):
         os.remove(platformdirs.user_config_dir("Qtcord") + "/discordauth.txt")
     
