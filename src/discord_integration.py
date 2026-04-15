@@ -3,6 +3,7 @@ import platformdirs
 import keyring, keyring.errors
 import os
 import sys
+import time
 
 from datetime import datetime
 from discord_objects import (
@@ -126,7 +127,7 @@ if not validate_token():
 def _check_ratelimit(response) -> None:
     if response.status_code == 429:
         if response.json()["global"]:
-            print("Discord is ratelimiting us globally! We haven't handled this, so exitting!")
+            print("Discord is ratelimiting us globally! We haven't handled this, so exiting!")
             sys.exit(0)
         
         print(f"We are being ratelimited! Retry after {response.json()["retry_after"]}")
@@ -188,12 +189,18 @@ def send_message(msg, channel) -> None:
     Returns:
         None
     """
-
-    requests.post(
+    
+    r = requests.post(
         f"{api_base}/channels/{channel}/messages",
         headers=headers,
         json={"content": msg},
     )
+    try:
+        _check_ratelimit(r)
+    except RateLimitError as e:
+        print("We were ratelimited for sending the message! Cool off.")
+        time.sleep(e.retry_after)
+
 
 
 def get_friends() -> list[DiscordFriend]:
