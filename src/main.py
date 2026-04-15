@@ -1,7 +1,7 @@
 #! /usr/bin/env python3
+import time
 import os
 import sys
-import re
 import webbrowser
 import requests
 import platformdirs
@@ -22,7 +22,7 @@ from discord_workers import (
     UpdateMessagesWorker,
 )
 import discord_integration
-from discord_exceptions import ChannelAccessError, InvalidResponseError
+from discord_exceptions import ChannelAccessError, InvalidResponseError, RateLimitError
 
 # UI imports
 from ui.main_ui import Ui_MainWindow
@@ -117,6 +117,16 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
         self.threadpool.start(worker)
 
     def _update_text(self, messages: dict) -> None:
+        if messages.get("ratelimit", False):
+            print("Ratelimited!", messages["ratelimit"])
+            
+            print(f"Cooling down for {messages['ratelimit']}s")
+            self.timer.stop()
+            time.sleep(messages["ratelimit"])
+            self.timer.start()
+            print("Starting get_messages timer again!")
+            return
+        
         if not self.channel_id:
             return
 
@@ -126,20 +136,7 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
 
         for message in messages.get(self.channel_id, []):
             # Each message is a DiscordMessage object.
-
-            # Here we're replacing <@user_id> with @username.
-            # TODO: ALLOW SENDING @ MENTIONS
             message.content = process_message_content(message.content)
-            if "<@" in message.content:
-                matches = re.findall(r"<@(\d+)>", message.content)
-
-                for id_mentioned in matches:
-                    user = discord_integration.get_user_from_id(id_mentioned)
-                    message.content = re.sub(
-                        f"<@{id_mentioned}>",
-                        f"<em>@{user.get_user_name()}</em>",
-                        message.content,
-                    )
 
             tags = """<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-weight:700;">"""
 
@@ -167,7 +164,7 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
 
         self.ui.lineEdit.setFocus()
 
-        # Set timer to run every few ms to update the chat (8 seconds as we don't want banning)
+        # Set timer to run every few ms to update the chat (8? seconds as we don't want banning)
         self.timer = QTimer()
         self.timer.setInterval(self.refresh_message_interval)
         self.timer.timeout.connect(self.update_messages)
@@ -231,18 +228,28 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
 
             self.ui.friends_scrollArea_contents.layout().addWidget(button)
 
-            try:
-                channel = discord_integration.get_channel_from_id(user.id)
-                
-                # Oh my headache do not touch this code.
-                # But if you do: https://stackoverflow.com/questions/19837486/lambda-in-a-loop
-                button.clicked.connect(
-                    (lambda channel: lambda: self.switch_channel(channel))(channel)
-                )
-            except (ChannelAccessError, InvalidResponseError) as e:
-                print(f"Warning: Could not get channel for user {user.get_user_name()} (ID: {user.id}): {e}")
-                # Friend button will still be added, but clicking it won't work
-                button.setEnabled(False)
+            while True:
+                # Loop until we return without any ratelimit errors.
+                try:
+                    channel = discord_integration.get_channel_from_id(user.id)
+
+                    # Oh my headache do not touch this code.
+                    # But if you do: https://stackoverflow.com/questions/19837486/lambda-in-a-loop
+                    button.clicked.connect(
+                        (lambda channel: lambda: self.switch_channel(channel))(channel)
+                    )
+                    break
+                except RateLimitError as e:
+                    # Discord API rate limits us if we make too many requests.
+                    # TODO: Add popup to notify user
+                    print(f"We were ratelimited. Sleeping and retrying after {e.retry_after} seconds.")
+                    time.sleep(e.retry_after)
+                    continue
+                except (ChannelAccessError, InvalidResponseError) as e:
+                    print(f"Warning: Could not get channel for user {user.get_user_name()} (ID: {user.id}): {e}")
+                    # Friend button will still be added, but clicking it won't work
+                    button.setEnabled(False)
+                    break
 
     def switch_channel(self, channel, guild_name=None):
         if channel.id != self.channel_id:
