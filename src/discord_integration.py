@@ -200,6 +200,14 @@ def send_message(msg, channel) -> None:
     except RateLimitError as e:
         print("We were ratelimited for sending the message! Cool off.")
         time.sleep(e.retry_after)
+        print("Sending message again.")
+        r = requests.post(
+            f"{api_base}/channels/{channel}/messages",
+            headers=headers,
+            json={"content": msg},
+        )
+        # The error shouldn't happen at this point. If it does, it probably deserves to crash the program.
+        _check_ratelimit(r)
 
 
 
