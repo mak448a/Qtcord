@@ -82,7 +82,7 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
         self.ui.lineEdit.returnPressed.connect(self.handle_input)
 
     def open_issues(self):
-        webbrowser.open("https://github.com/mak448a/Qtcord")
+        webbrowser.open("https://github.com/mak448a/Qtcord/issues")
 
     def about(self):
         QMessageBox.about(
