@@ -9,15 +9,18 @@ EMOJI_FILE = os.path.join(os.path.dirname(__file__), "emoji.json")
 with open(EMOJI_FILE, "r", encoding="utf-8") as file:
     EMOJI_MAP = json.load(file)
 
+
 def convert_discord_emojis(content):
     """
     Converts Discord emoji shortcodes like :smile: into Unicode emojis.
     """
+
     def replace_match(match):
         emoji_name = match.group(1)
         return EMOJI_MAP.get(emoji_name, match.group(0))  # Replace if found, else keep original text
 
     return re.sub(r":([a-zA-Z0-9_+-]+):", replace_match, content)
+
 
 def process_message_content(content):
     """
@@ -42,4 +45,3 @@ def process_message_content(content):
     content = convert_discord_emojis(content)
 
     return content
-

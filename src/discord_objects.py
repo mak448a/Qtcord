@@ -161,7 +161,7 @@ class DiscordChannel:
 
         Returns:
             Self: A DiscordChannel instance.
-        
+
         Raises:
             KeyError: If required fields ('id' or 'type') are missing from the channel dictionary.
         """
@@ -170,14 +170,12 @@ class DiscordChannel:
             raise KeyError(f"Missing required field 'id' in channel data: {channel}")
         if "type" not in channel:
             raise KeyError(f"Missing required field 'type' in channel data: {channel}")
-        
+
         return cls(
             id=channel["id"],
             type=channel["type"],
             name=channel.get("name"),
-            recipients=[
-                DiscordUser.from_dict(user) for user in channel.get("recipients", [])
-            ],
+            recipients=[DiscordUser.from_dict(user) for user in channel.get("recipients", [])],
         )
 
     def get_channel_name(self) -> str | None:
@@ -221,9 +219,7 @@ class DiscordGuild:
         """
         icon_url = ""
         if self.icon:
-            icon_url = (
-                f"https://cdn.discordapp.com/icons/{self.id}/{self.icon}?size={size}"
-            )
+            icon_url = f"https://cdn.discordapp.com/icons/{self.id}/{self.icon}?size={size}"
         return icon_url
 
 

@@ -1,0 +1,20 @@
+# Ruff configuration for Qtcord
+# https://docs.astral.sh/ruff/configuration/
+
+line-length = 120
+
+[lint]
+# Check whitespace and Pyflakes
+select = ["F", "W"]
+# Ignore line length formatting
+ignore = ["E501"]
+
+# Exclude auto-generated UI files
+exclude = [
+    "src/ui/**"
+]
+
+[format]
+exclude = [
+    "src/ui/**"
+]

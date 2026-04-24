@@ -119,14 +119,14 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
     def _update_text(self, messages: dict) -> None:
         if messages.get("ratelimit", False):
             print("Ratelimited!", messages["ratelimit"])
-            
+
             print(f"Cooling down for {messages['ratelimit']}s")
             self.timer.stop()
             time.sleep(messages["ratelimit"])
             self.timer.start()
             print("Starting get_messages timer again!")
             return
-        
+
         if not self.channel_id:
             return
 
@@ -155,9 +155,7 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
             self.ui.textBrowser.setText(self.messages)
 
             # Scroll to bottom
-            self.ui.textBrowser.verticalScrollBar().setValue(
-                self.ui.textBrowser.verticalScrollBar().maximum()
-            )
+            self.ui.textBrowser.verticalScrollBar().setValue(self.ui.textBrowser.verticalScrollBar().maximum())
 
     def setup(self):
         self.connect_signal_slots()
@@ -177,12 +175,8 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
             if keyring.get_password("Qtcord", "token") and discord_integration.keyring_available:
                 discord_integration.load_token()
                 auth2 = True
-            elif os.path.isfile(
-                platformdirs.user_config_dir("Qtcord") + "/discordauth.txt"
-            ):
-                with open(
-                    platformdirs.user_config_dir("Qtcord") + "/discordauth.txt"
-                ) as f:
+            elif os.path.isfile(platformdirs.user_config_dir("Qtcord") + "/discordauth.txt"):
+                with open(platformdirs.user_config_dir("Qtcord") + "/discordauth.txt") as f:
                     if f.read():
                         print("There is a discordauth.txt, loading token")
                         auth2 = True
@@ -218,9 +212,7 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
 
             if avatar_url := user.get_avatar_url():
                 worker = FileRequestWorker(avatar_url, "users")
-                worker.finished.connect(
-                    (lambda button: lambda data: set_button_icon(button, data))(button)
-                )
+                worker.finished.connect((lambda button: lambda data: set_button_icon(button, data))(button))
                 self.threadpool.start(worker)
 
             default_avatar = os.path.join(current_dir, "assets", "user.png")
@@ -235,9 +227,7 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
 
                     # Oh my headache do not touch this code.
                     # But if you do: https://stackoverflow.com/questions/19837486/lambda-in-a-loop
-                    button.clicked.connect(
-                        (lambda channel: lambda: self.switch_channel(channel))(channel)
-                    )
+                    button.clicked.connect((lambda channel: lambda: self.switch_channel(channel))(channel))
                     break
                 except RateLimitError as e:
                     # Discord API rate limits us if we make too many requests.
@@ -282,9 +272,7 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
 
             if icon_url := guild.get_icon_url():
                 worker = FileRequestWorker(icon_url, "servers")
-                worker.finished.connect(
-                    (lambda button: lambda data: set_button_icon(button, data))(button)
-                )
+                worker.finished.connect((lambda button: lambda data: set_button_icon(button, data))(button))
                 self.threadpool.start(worker)
 
             default_icon = os.path.join(current_dir, "assets", "server.png")
@@ -294,9 +282,7 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
 
             # Oh my headache do not touch this code.
             # But if you do: https://stackoverflow.com/questions/19837486/lambda-in-a-loop
-            button.clicked.connect(
-                (lambda server: lambda: self.get_channels_in_guild(server))(guild)
-            )
+            button.clicked.connect((lambda server: lambda: self.get_channels_in_guild(server))(guild))
 
     def get_channels_in_guild(self, guild):
         # We want to change the tab to channels
@@ -325,11 +311,7 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
             # Oh my headache do not touch this code.
             # But if you do: https://stackoverflow.com/questions/19837486/lambda-in-a-loop
             button.clicked.connect(
-                (
-                    lambda channel: lambda: self.switch_channel(
-                        channel, guild_name=guild.name
-                    )
-                )(channel)
+                (lambda channel: lambda: self.switch_channel(channel, guild_name=guild.name))(channel)
             )
 
             self.channel_buttons.append(button)
@@ -349,7 +331,7 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
         token_path = platformdirs.user_config_dir("Qtcord") + "/discordauth.txt"
         if os.path.exists(token_path):
             os.remove(token_path)
-        
+
         # Exit the app
         sys.exit(0)
 
@@ -384,7 +366,7 @@ if __name__ == "__main__":
     switcher = QtWidgets.QStackedWidget()
 
     auth = False
-    
+
     # Check keyring_available just in case. Probably redundant.
     if keyring.get_password("Qtcord", "token") and discord_integration.keyring_available:
         auth = True
