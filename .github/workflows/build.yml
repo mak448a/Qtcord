@@ -6,7 +6,7 @@ name: Build and Release
 on:
   push:
     tags: [ 'v*' ]
-    branches: [ main ]
+    # branches: [ main ]
   pull_request:
     branches: [ '**' ]
 
