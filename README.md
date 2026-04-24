@@ -1,6 +1,7 @@
 # Qtcord
 ### A lightweight, native Discord client built with Python and Qt
 Qtcord aims to provide a lightweight experience for Discord without the overhead of a webview.
+
 ![FlatHub Installs](https://img.shields.io/flathub/downloads/io.github.mak448a.QTCord?label=FlatHub%20Installs)
 ![GitHub Download count](https://img.shields.io/github/downloads/mak448a/Qtcord/total?color=blue&label=GitHub%20Downloads&logoColor=blue)
 [![Discord Invite](https://dcbadge.limes.pink/api/server/https://discord.gg/gV8SjzZAXj?style=flat)](https://discord.gg/gV8SjzZAXj)
