@@ -16,11 +16,14 @@ You can use following resources for API docs.
 - https://www.youtube.com/channel/UC8PPJFudLUM1eJlM4BiJ40A
 
 ## Coding Guidelines
-If you use AI, review the code it outputs for mistakes. Clean the code if needed, and remove the unnecessary comments.
+When creating a pull request, try to keep them small. If you need to, you can split it into multiple pull requests.
 
-Try to follow PEP-8 (the squiggly underlines in Pycharm) standards. If you can't, that's perfectly fine.
+If you use AI, review the code it outputs for mistakes. Clean the code and remove the unnecessary comments.
+
+Try to follow PEP-8 (the squiggly underlines in Pycharm) guidelines. If you can't, that's perfectly fine.
 
 If possible, use Ruff to format your code.
+
 
 If you add a dependency, make sure to add it to `requirements.txt` and `no_pyside_requirements.txt`.
 Don't forget to add the appropriate license to the licenses folder and UI!
