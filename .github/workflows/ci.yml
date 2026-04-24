@@ -7,9 +7,6 @@ on:
   pull_request:
     branches: [ main ]
 
-# This workflow builds and lints the application.
-# It uses the built-in GITHUB_TOKEN to release and DOES NOT require any external secrets.
-
 jobs:
   lint:
     name: Lint

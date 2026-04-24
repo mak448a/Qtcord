@@ -1,16 +1,16 @@
 name: Build and Release
 
+# This workflow builds and lints the application.
+# It uses the built-in GITHUB_TOKEN to release and DOES NOT require any external secrets.
+
 on:
   push:
     tags: [ 'v*' ]
-    branches: [ main ]
+    # branches: [ main ]
   pull_request:
     branches: [ '**' ]
 
 jobs:
-  call-other:
-    uses: ./github/workflows/ci.yml
-
   build-windows:
     name: Build (Windows)
     runs-on: windows-latest
