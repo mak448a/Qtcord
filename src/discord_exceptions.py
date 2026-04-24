@@ -23,6 +23,7 @@ class InvalidResponseError(DiscordAPIError):
 
 class RateLimitError(DiscordAPIError):
     """Raised when Discord API ratelimits."""
+
     def __init__(self, message, retry_after) -> None:
         super().__init__(message)
         self.retry_after = retry_after

@@ -119,14 +119,14 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
     def _update_text(self, messages: dict) -> None:
         if messages.get("ratelimit", False):
             print("Ratelimited!", messages["ratelimit"])
-            
+
             print(f"Cooling down for {messages['ratelimit']}s")
             self.timer.stop()
             time.sleep(messages["ratelimit"])
             self.timer.start()
             print("Starting get_messages timer again!")
             return
-        
+
         if not self.channel_id:
             return
 
@@ -227,9 +227,7 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
 
                     # Oh my headache do not touch this code.
                     # But if you do: https://stackoverflow.com/questions/19837486/lambda-in-a-loop
-                    button.clicked.connect(
-                        (lambda channel: lambda: self.switch_channel(channel))(channel)
-                    )
+                    button.clicked.connect((lambda channel: lambda: self.switch_channel(channel))(channel))
                     break
                 except RateLimitError as e:
                     # Discord API rate limits us if we make too many requests.
@@ -368,7 +366,7 @@ if __name__ == "__main__":
     switcher = QtWidgets.QStackedWidget()
 
     auth = False
-    
+
     # Check keyring_available just in case. Probably redundant.
     if keyring.get_password("Qtcord", "token") and discord_integration.keyring_available:
         auth = True
