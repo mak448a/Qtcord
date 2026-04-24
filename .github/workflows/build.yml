@@ -11,7 +11,6 @@ jobs:
   call-other:
     uses: ./github/workflows/ci.yml
 
-jobs:
   build-windows:
     name: Build (Windows)
     runs-on: windows-latest
