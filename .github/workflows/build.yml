@@ -84,14 +84,12 @@ jobs:
       - name: Build
         run: |
           pyinstaller helper_scripts/linux.spec
-          mkdir Qtcord-Linux
-          mv dist/Qtcord-Linux/ Qtcord-Linux/
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v6
         with:
           name: Qtcord-Linux
-          path: dist/Qtcord-Linux
+          path: src/dist/Qtcord-Linux
           if-no-files-found: error
 
   release:
