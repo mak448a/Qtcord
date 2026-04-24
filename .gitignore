@@ -24,6 +24,8 @@ secrets.*
 env/
 venv/
 
+.DS_Store
+
 # Rope project settings (not sure what this even does but it's there)
 .ropeproject
 

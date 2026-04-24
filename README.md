@@ -1,15 +1,15 @@
 # Qtcord
 ### A lightweight, native Discord client built with Python and Qt
 Qtcord aims to provide a lightweight experience for Discord without the overhead of a webview.
-
-[![Flathub](https://img.shields.io/endpoint?url=https://flathub-stats-backend.vercel.app/badges/io.github.mak448a.QTCord/shields.io.json)](https://flathub.org/apps/io.github.mak448a.QTCord)
-[![Discord Invite](https://img.shields.io/badge/Discord-Join%20Server-7289da?logo=discord&logoColor=white)](https://discord.gg/gV8SjzZAXj)
+![FlatHub Installs](https://img.shields.io/flathub/downloads/io.github.mak448a.QTCord?label=FlatHub%20Installs)
+![GitHub Download count](https://img.shields.io/github/downloads/mak448a/Qtcord/total?color=blue&label=GitHub%20Downloads&logoColor=blue)
+[![Discord Invite](https://dcbadge.limes.pink/api/server/https://discord.gg/gV8SjzZAXj?style=flat)](https://discord.gg/gV8SjzZAXj)
 [![CI Build & Release](https://github.com/mak448a/Qtcord/actions/workflows/ci.yml/badge.svg)](https://github.com/mak448a/Qtcord/actions/workflows/ci.yml)
 
 ---
 
 > [!CAUTION]
-> **Use at your own risk.** This is a fun side project. Using unofficial clients is technically against Discord's Terms of Service and *can* lead to your account being banned. I do not endorse or take responsibility for any account actions.
+> **Use at your own risk.** This is a fun side project. Using unofficial clients is against Discord's Terms of Service and *can* lead to your account being banned. I do not endorse or take responsibility for any account actions. Your Discord token is stored in plaintext if you use the Flatpak version!
 
 <a href='https://flathub.org/apps/io.github.mak448a.QTCord'>
   <img width='150' alt='Download on Flathub' src='https://dl.flathub.org/assets/badges/flathub-badge-en.png'/>
