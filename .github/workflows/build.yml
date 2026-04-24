@@ -89,7 +89,7 @@ jobs:
         uses: actions/upload-artifact@v6
         with:
           name: Qtcord-Linux
-          path: src/dist/Qtcord-Linux
+          path: dist/Qtcord-Linux
           if-no-files-found: error
 
   release:
