@@ -1,7 +1,25 @@
 import requests
 import platformdirs
-import keyring
-import keyring.errors
+try:
+    import keyring
+    import keyring.errors
+except ImportError:
+    # Create dummy classes so the code can run without the keyring dependency
+    class DummyErrors:
+        def __init__(self) -> None:
+            self.NoKeyringError = Exception("No keyring")
+    class DummyKeyring:
+        def __init__(self) -> None:
+            self.errors = DummyErrors()
+        def get_password(self, *args) -> None:
+            return None
+        def delete_password(self, *args) -> None:
+            pass
+        def set_password(self, *args) -> None:
+            return None
+
+    keyring = DummyKeyring()
+
 import os
 import sys
 import time

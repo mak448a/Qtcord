@@ -2,7 +2,12 @@ from PySide6.QtWidgets import QMainWindow
 from ui import login_ui
 from discord_integration import login, load_token, keyring_available
 import platformdirs
-import keyring
+try:
+    import keyring
+except ImportError:
+    from discord_integration import DummyKeyring
+    keyring = DummyKeyring
+    print("Failed to import keyring. Will fall back to plaintext storage")
 
 
 class LoginUI(QMainWindow, login_ui.Ui_MainWindow):
