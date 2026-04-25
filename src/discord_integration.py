@@ -1,5 +1,6 @@
 import requests
 import platformdirs
+
 try:
     import keyring
     import keyring.errors
@@ -8,13 +9,17 @@ except ImportError:
     class DummyErrors:
         def __init__(self) -> None:
             self.NoKeyringError = Exception("No keyring")
+
     class DummyKeyring:
         def __init__(self) -> None:
             self.errors = DummyErrors()
+
         def get_password(self, *args) -> None:
             return None
+
         def delete_password(self, *args) -> None:
             pass
+
         def set_password(self, *args) -> None:
             return None
 

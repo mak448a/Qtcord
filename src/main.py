@@ -5,11 +5,13 @@ import sys
 import webbrowser
 import requests
 import platformdirs
+
 try:
     import keyring
 except ImportError:
     print("Failed to import keyring. Will fall back to plaintext storage")
     from discord_integration import DummyKeyring
+
     keyring = DummyKeyring()
 
 # PySide imports
