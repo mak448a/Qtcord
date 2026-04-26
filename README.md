@@ -16,7 +16,7 @@ Qtcord aims to provide a lightweight experience for Discord without the overhead
   <img width='150' alt='Download on Flathub' src='https://dl.flathub.org/assets/badges/flathub-badge-en.png'/>
 </a>
 
-[Download for Windows & macOS](https://github.com/mak448a/Qtcord/releases/latest)
+[Download for Windows, macOS, and Linux (portable zip)](https://github.com/mak448a/Qtcord/releases/latest)
 <br>
 
 ![Screenshot of Qtcord](demos/demo4.png)
