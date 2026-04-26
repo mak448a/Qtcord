@@ -58,7 +58,7 @@ python3 src/main.py
 - [Official Discord API Documentation](https://discord.com/developers/docs/)
 - [Unofficial Discord Documentation](https://luna.gitlab.io/discord-unofficial-docs/)
 - Special thanks to
-  - [nousername-a](https://github.com/randomusername-a) for vastly improving the project's performance and cleaning the code
+  - [nousername-a](https://github.com/randomusername-a) for vastly improving the project's architecture
   - The rest of the contributors
   - The community of developers online
   - Everyone who helped provide feedback
