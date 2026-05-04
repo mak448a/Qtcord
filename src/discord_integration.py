@@ -325,7 +325,7 @@ def login(email: str, password: str, totp_code: str = "", token: str = "") -> st
 
     if token:
         return token.strip()
-    
+
     payload = {
         "login": email,
         "password": password,

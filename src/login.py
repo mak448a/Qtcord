@@ -42,7 +42,6 @@ class LoginUI(QMainWindow, login_ui.Ui_MainWindow):
             self.ui.password.setText("")
             self.ui.info_frame.hide()
 
-
             # Get the token from the Discord API using our credentials.
             if totp:
                 # The user has 2fa
