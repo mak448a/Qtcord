@@ -325,8 +325,6 @@ def login(email: str, password: str, totp_code: str = "") -> str | None:
         "login": email,
         "password": password,
         "undelete": False,
-        "login_source": None,
-        "gift_code_sku_id": None,
     }
 
     r = requests.post(f"{api_base}/auth/login", json=payload)
