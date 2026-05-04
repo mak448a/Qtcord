@@ -34,7 +34,7 @@ class LoginUI(QMainWindow, login_ui.Ui_MainWindow):
         totp = self.ui.totp.text()
 
         # Check on our end before validating with Discord
-        valid = email and password
+        valid = True if self.ui.token.text() else email and password
 
         if valid:
             # Reset UI elements
@@ -42,10 +42,14 @@ class LoginUI(QMainWindow, login_ui.Ui_MainWindow):
             self.ui.password.setText("")
             self.ui.info_frame.hide()
 
+
             # Get the token from the Discord API using our credentials.
             if totp:
                 # The user has 2fa
                 _token = login(email, password, totp_code=totp)
+            elif self.ui.token.text():
+                print("We have a token")
+                _token = login("", "", token=self.ui.token.text())
             else:
                 # No 2fa
                 _token = login(email, password)
