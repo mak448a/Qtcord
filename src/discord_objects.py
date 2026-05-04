@@ -129,10 +129,7 @@ class DiscordMessage:
             if message.get("call"):
                 content = "[(call)]"
             elif message.get("attachments"):
-                has_image = any(
-                    att.get("content_type", "").startswith("image/")
-                    for att in message["attachments"]
-                )
+                has_image = any(att.get("content_type", "").startswith("image/") for att in message["attachments"])
                 content = "[(image)]" if has_image else "[(file)]"
             elif message.get("sticker_items"):
                 content = "[(sticker)]"
