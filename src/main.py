@@ -386,6 +386,9 @@ if __name__ == "__main__":
     win = ChatInterface()
     win.menuBar().setNativeMenuBar(False)
     login = LoginUI(switcher)
+    login.ui.howtologin.clicked.connect(
+        lambda: webbrowser.open("https://github.com/mak448a/Qtcord/wiki/Logging-in-with-a-token")
+    )
 
     switcher.addWidget(login)
     switcher.addWidget(win)
