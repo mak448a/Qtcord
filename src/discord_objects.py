@@ -125,9 +125,16 @@ class DiscordMessage:
         # content = message["content"]
         # if content: ...
 
-        # TODO: WORK ON THIS. Make a difference between images and other stuff.
         if not (content := message["content"]):
-            content = "[(call/image/other)]"
+            if message.get("call"):
+                content = "[(call)]"
+            elif message.get("attachments"):
+                has_image = any(att.get("content_type", "").startswith("image/") for att in message["attachments"])
+                content = "[(image)]" if has_image else "[(file)]"
+            elif message.get("sticker_items"):
+                content = "[(sticker)]"
+            else:
+                content = "[(other)]"
 
         # For some reason, messages can use two, slightly different, timestamp formats.
         time_str = message["timestamp"]
