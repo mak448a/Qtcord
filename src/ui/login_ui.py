@@ -11,10 +11,11 @@
 from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
     QMetaObject, QObject, QPoint, QRect,
     QSize, QTime, QUrl, Qt)
-from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
-    QFont, QFontDatabase, QGradient, QIcon,
-    QImage, QKeySequence, QLinearGradient, QPainter,
-    QPalette, QPixmap, QRadialGradient, QTransform)
+from PySide6.QtGui import (QAction, QBrush, QColor, QConicalGradient,
+    QCursor, QFont, QFontDatabase, QGradient,
+    QIcon, QImage, QKeySequence, QLinearGradient,
+    QPainter, QPalette, QPixmap, QRadialGradient,
+    QTransform)
 from PySide6.QtWidgets import (QApplication, QFrame, QHBoxLayout, QLabel,
     QLineEdit, QMainWindow, QMenuBar, QPushButton,
     QSizePolicy, QSpacerItem, QVBoxLayout, QWidget)
@@ -23,7 +24,9 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(840, 500)
+        MainWindow.resize(840, 568)
+        self.actionHow_to_login_with_token = QAction(MainWindow)
+        self.actionHow_to_login_with_token.setObjectName(u"actionHow_to_login_with_token")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.verticalLayout = QVBoxLayout(self.centralwidget)
@@ -130,6 +133,31 @@ class Ui_MainWindow(object):
 
         self.verticalLayout.addLayout(self.horizontalLayout_2)
 
+        self.horizontalLayout_token = QHBoxLayout()
+        self.horizontalLayout_token.setObjectName(u"horizontalLayout_token")
+        self.horizontalSpacerToken = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.horizontalLayout_token.addItem(self.horizontalSpacerToken)
+
+        self.label_token = QLabel(self.centralwidget)
+        self.label_token.setObjectName(u"label_token")
+        self.label_token.setMinimumSize(QSize(80, 0))
+        self.label_token.setAlignment(Qt.AlignmentFlag.AlignCenter)
+
+        self.horizontalLayout_token.addWidget(self.label_token)
+
+        self.token = QLineEdit(self.centralwidget)
+        self.token.setObjectName(u"token")
+
+        self.horizontalLayout_token.addWidget(self.token)
+
+        self.horizontalSpacer_token = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.horizontalLayout_token.addItem(self.horizontalSpacer_token)
+
+
+        self.verticalLayout.addLayout(self.horizontalLayout_token)
+
         self.horizontalLayout_4 = QHBoxLayout()
         self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
         self.horizontalLayout_4.setContentsMargins(-1, 10, -1, -1)
@@ -159,6 +187,14 @@ class Ui_MainWindow(object):
 
         self.verticalLayout.addWidget(self.label_4)
 
+        self.howtologin = QPushButton(self.centralwidget)
+        self.howtologin.setObjectName(u"howtologin")
+        self.howtologin.setMaximumSize(QSize(16777215, 16777215))
+        self.howtologin.setAutoDefault(False)
+        self.howtologin.setFlat(False)
+
+        self.verticalLayout.addWidget(self.howtologin)
+
         self.info_frame = QFrame(self.centralwidget)
         self.info_frame.setObjectName(u"info_frame")
         self.info_frame.setFrameShape(QFrame.Shape.NoFrame)
@@ -186,23 +222,29 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
-        self.menubar.setGeometry(QRect(0, 0, 840, 30))
+        self.menubar.setGeometry(QRect(0, 0, 840, 33))
         MainWindow.setMenuBar(self.menubar)
 
         self.retranslateUi(MainWindow)
+
+        self.howtologin.setDefault(False)
+
 
         QMetaObject.connectSlotsByName(MainWindow)
     # setupUi
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
+        self.actionHow_to_login_with_token.setText(QCoreApplication.translate("MainWindow", u"How to login with token", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"Login to Discord", None))
         self.label_5.setText(QCoreApplication.translate("MainWindow", u"WARNING: I'm not responsible for account bans", None))
         self.label_3.setText(QCoreApplication.translate("MainWindow", u"Email *", None))
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"Password *", None))
         self.label_3u.setText(QCoreApplication.translate("MainWindow", u"TOTP Code", None))
+        self.label_token.setText(QCoreApplication.translate("MainWindow", u"Discord Token", None))
         self.pushButton.setText(QCoreApplication.translate("MainWindow", u"Login", None))
-        self.label_4.setText(QCoreApplication.translate("MainWindow", u"Fields marked with * are required.", None))
+        self.label_4.setText(QCoreApplication.translate("MainWindow", u"Fields marked with * are required unless using a Discord token.", None))
+        self.howtologin.setText(QCoreApplication.translate("MainWindow", u"How to log in with a Discord token (recommended)?", None))
         self.info.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:12pt; font-weight:700; color:#ff0004;\">Error! Invalid credentials. Check your email,</span></p><p><span style=\" font-size:12pt; font-weight:700; color:#ff0004;\">password, and TOTP code (if you use it)!</span></p><p><span style=\" font-size:12pt; font-weight:700; color:#ff0004;\">You could also be rate-limited.</span></p></body></html>", None))
     # retranslateUi
 

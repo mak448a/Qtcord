@@ -309,17 +309,22 @@ def get_guild_channels(guild_id: int) -> list[DiscordChannel]:
     return [DiscordChannel.from_dict(channel) for channel in r.json()]
 
 
-def login(email: str, password: str, totp_code: str = "") -> str | None:
+def login(email: str, password: str, totp_code: str = "", token: str = "") -> str | None:
     """
     Takes in an email and a password, logs in, and spits out a token.
 
     Args:
         email (str): The email address for an account.
         password (str): The password for the account.
+        totp (str): The totp_code (optional)
+        token (str): The login token (optional)
 
     Returns:
         str | None: A user token if login was successful, None otherwise.
     """
+
+    if token:
+        return token.strip()
 
     payload = {
         "login": email,

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>840</width>
-    <height>500</height>
+    <height>568</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -215,6 +215,55 @@
      </layout>
     </item>
     <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_token">
+      <item>
+       <spacer name="horizontalSpacerToken">
+        <property name="orientation">
+         <enum>Qt::Orientation::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_token">
+        <property name="minimumSize">
+         <size>
+          <width>80</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>Discord Token</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignmentFlag::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="token"/>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_token">
+        <property name="orientation">
+         <enum>Qt::Orientation::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
+    </item>
+    <item>
      <layout class="QHBoxLayout" name="horizontalLayout_4">
       <property name="topMargin">
        <number>10</number>
@@ -270,10 +319,32 @@
     <item>
      <widget class="QLabel" name="label_4">
       <property name="text">
-       <string>Fields marked with * are required.</string>
+       <string>Fields marked with * are required unless using a Discord token.</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignmentFlag::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="howtologin">
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>How to log in with a Discord token (recommended)?</string>
+      </property>
+      <property name="autoDefault">
+       <bool>false</bool>
+      </property>
+      <property name="default">
+       <bool>false</bool>
+      </property>
+      <property name="flat">
+       <bool>false</bool>
       </property>
      </widget>
     </item>
@@ -327,10 +398,15 @@
      <x>0</x>
      <y>0</y>
      <width>840</width>
-     <height>30</height>
+     <height>33</height>
     </rect>
    </property>
   </widget>
+  <action name="actionHow_to_login_with_token">
+   <property name="text">
+    <string>How to login with token</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>
