@@ -5,6 +5,8 @@ try:
     import keyring
     import keyring.errors
 except ImportError:
+    print("Failed to import keyring. Will fall back to plaintext storage")
+
     # Create dummy classes so the code can run without the keyring dependency
     class DummyErrors:
         def __init__(self) -> None:
