@@ -52,6 +52,14 @@
       <content_attribute id="social-chat">intense</content_attribute>
     </content_rating>
     <releases>
+      <release version="v0.0.25" date="2026-5-10" type="stable">
+        <description>
+          <p>Add login with token</p>
+          <p>Differentiate call/images/file/sticker messages</p>
+          <p>Clean code</p>
+        </description>
+        <url>https://github.com/mak448a/Qtcord/releases/v0.0.25</url>
+      </release>
       <release version="v0.0.24" date="2026-4-24" type="stable">
         <description>
           <p>Handle ratelimits properly</p>
