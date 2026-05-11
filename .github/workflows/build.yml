@@ -110,9 +110,7 @@ jobs:
           cd artifacts
           zip -r ../Qtcord-Windows.zip Qtcord-Windows/
           zip -r ../Qtcord-macOS.zip Qtcord-macOS/
-          cd ..
-          cp artifacts/Qtcord-Linux/Qtcord-Linux .
-          chmod +x Qtcord-Linux
+          zip -r ../Qtcord-Linux.zip Qtcord-Linux/
 
       - name: Create Release
         uses: softprops/action-gh-release@v3
@@ -120,7 +118,7 @@ jobs:
           files: |
             Qtcord-Windows.zip
             Qtcord-macOS.zip
-            Qtcord-Linux
+            Qtcord-Linux.zip
           generate_release_notes: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
