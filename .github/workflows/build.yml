@@ -30,7 +30,7 @@ jobs:
         run: python helper_scripts/package_windows.py
 
       - name: Upload Artifact
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: Qtcord-Windows
           path: src/dist/Qtcord-Windows
@@ -60,7 +60,7 @@ jobs:
           mv src/dist/Qtcord-macOS.app src/dist/Qtcord-macOS/
 
       - name: Upload Artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: Qtcord-macOS
           path: src/dist/Qtcord-macOS
@@ -86,7 +86,7 @@ jobs:
           pyinstaller helper_scripts/linux.spec
 
       - name: Upload Artifact
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: Qtcord-Linux
           path: dist/Qtcord-Linux
@@ -101,7 +101,7 @@ jobs:
       contents: write
     steps:
       - name: Download all artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v6
         with:
           path: artifacts
 
