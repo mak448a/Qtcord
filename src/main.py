@@ -15,7 +15,6 @@ from PySide6 import QtWidgets
 
 # UI imports
 from login import LoginUI
-from no_internet import NoInternetUI
 from chat_interface import ChatInterface
 from version import get_version
 
@@ -29,6 +28,8 @@ def handle_no_internet() -> None:
     try:
         requests.get("https://discord.com")
     except requests.exceptions.ConnectionError:
+        from no_internet import NoInternetUI
+
         app = QApplication(sys.argv)
         app.setDesktopFileName("io.github.mak448a.QTCord")
         NoInternetUI().exec()

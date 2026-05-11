@@ -5,15 +5,14 @@ import sys
 import webbrowser
 import platformdirs
 
-from discord_integration import keyring
-
 # PySide imports
 from PySide6.QtWidgets import QMainWindow, QMessageBox, QPushButton
 from PySide6.QtGui import QShortcut, QKeySequence, QIcon, QPixmap
 from PySide6.QtCore import QTimer, QThreadPool
 from emoji import process_message_content
 
-
+# Discord imports
+from discord_integration import keyring
 from discord_workers import (
     FileRequestWorker,
     SendMessageWorker,
@@ -25,7 +24,6 @@ from discord_exceptions import ChannelAccessError, InvalidResponseError, RateLim
 
 # UI imports
 from ui.main_ui import Ui_MainWindow
-
 from licensesui import LicensesUI
 from version import get_version
 
@@ -200,7 +198,7 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
         for friend in self.friends:
             user = friend.user
 
-            button = QPushButton(text=friend.get_user_name())
+            button = QPushButton(friend.get_user_name())
 
             def set_button_icon(button, data):
                 pixmap = QPixmap()
@@ -215,7 +213,7 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
             default_avatar = os.path.join(self.current_dir, "assets", "user.png")
             button.setIcon(QIcon(default_avatar))
 
-            self.ui.friends_scrollArea_contents.layout().addWidget(button)
+            self.ui.friends_scrollArea_contents.layout().addWidget(button)  # type: ignore[union-attr]
 
             while True:
                 # Loop until we return without any ratelimit errors.
@@ -246,9 +244,12 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
             # TODO! Make this better for getting finding group DMs and finding the group name
             if 0 < len(channel.recipients) < 2:
                 # This must be a one friend DM so get the user's nickname
-                username = discord_integration.get_user_from_id(
-                    channel.recipients[0].user.id, friend=True
-                ).get_user_name()
+                try:
+                    user = discord_integration.get_user_from_id(channel.recipients[0].user.id, friend=True)
+                    assert user is not None
+                    username = user.get_user_name()
+                except AssertionError:
+                    username = "[ERROR: Invalid Username]"
 
             # Set the channel indicator label to the user's nickname or username depending
             self.ui.channel_label.setText(
@@ -260,7 +261,7 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
         self.guilds = discord_integration.get_guilds()
 
         for guild in self.guilds:
-            button = QPushButton(text=guild.name)
+            button = QPushButton(guild.name)
 
             def set_button_icon(button, data):
                 pixmap = QPixmap()
@@ -275,7 +276,7 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
             default_icon = os.path.join(self.current_dir, "assets", "server.png")
             button.setIcon(QIcon(default_icon))
 
-            self.ui.servers_scrollArea_contents.layout().addWidget(button)
+            self.ui.servers_scrollArea_contents.layout().addWidget(button)  # type: ignore[union-attr]
 
             # Oh my headache do not touch this code.
             # But if you do: https://stackoverflow.com/questions/19837486/lambda-in-a-loop
@@ -299,11 +300,11 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
 
             channel_name = channel.get_channel_name()
             if channel_name:
-                button = QPushButton(text=channel_name)
+                button = QPushButton(channel_name)
             else:
-                button = QPushButton(text="unamed-channel")
+                button = QPushButton("unamed-channel")
 
-            self.ui.channels_scrollArea_contents.layout().addWidget(button)
+            self.ui.channels_scrollArea_contents.layout().addWidget(button)  # type: ignore[union-attr]
 
             # Oh my headache do not touch this code.
             # But if you do: https://stackoverflow.com/questions/19837486/lambda-in-a-loop
