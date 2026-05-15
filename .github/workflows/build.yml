@@ -44,7 +44,7 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v7
         with:
-          name: Qtcord-Windows
+          name: Qtcord-${{ needs.get-version.outputs.artifact_name }}-Windows
           path: src/dist/Qtcord-${{ needs.get-version.outputs.artifact_name }}-Windows
           if-no-files-found: error
 
@@ -75,7 +75,7 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v7
         with:
-          name: Qtcord-macOS
+          name: Qtcord-${{ needs.get-version.outputs.artifact_name }}-macOS
           path: src/dist/Qtcord-${{ needs.get-version.outputs.artifact_name }}-macOS
           if-no-files-found: error
 
@@ -103,7 +103,7 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v7
         with:
-          name: Qtcord-Linux
+          name: Qtcord-${{ needs.get-version.outputs.artifact_name }}-Linux
           path: dist/Qtcord-${{ needs.get-version.outputs.artifact_name }}-Linux
           if-no-files-found: error
 
