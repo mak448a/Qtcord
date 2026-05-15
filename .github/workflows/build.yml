@@ -17,9 +17,10 @@ jobs:
     outputs:
       version: ${{ steps.set_name.outputs.version }}
     steps:
+      - uses: actions/checkout@v6
       - name: Set artifact name
         id: set_name
-        run: echo "version=$(python3 src/version.py)" >> $GITHUB_OUTPUT
+        run: echo "version=$(python3 ../src/version.py)" >> $GITHUB_OUTPUT
   build-windows:
     name: Build (Windows)
     runs-on: windows-latest
