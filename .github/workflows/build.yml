@@ -40,7 +40,7 @@ jobs:
       - name: Build
         run: |
           python helper_scripts/package_windows.py
-          mv src/dist/Qtcord-Windows src/dist/Qtcord/Qtcord-${{ needs.get-version.outputs.version }}-Windows
+          mv src/dist/Qtcord-Windows src/dist/Qtcord-${{ needs.get-version.outputs.version }}-Windows
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v7
