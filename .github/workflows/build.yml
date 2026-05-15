@@ -6,14 +6,24 @@ name: Build and Release
 on:
   push:
     tags: [ 'v*' ]
-    # branches: [ main ]
+    branches: [ main ]
   pull_request:
     branches: [ '**' ]
 
 jobs:
+  get-version:
+    name: Get version
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.set_name.outputs.version }}
+    steps:
+      - name: Set artifact name
+        id: set_name
+        run: echo "version=$(python3 src/version.py)" >> $GITHUB_OUTPUT
   build-windows:
     name: Build (Windows)
     runs-on: windows-latest
+    needs: get-version
     steps:
       - uses: actions/checkout@v6
 
@@ -27,13 +37,15 @@ jobs:
         run: pip install -r requirements.txt pyinstaller
 
       - name: Build
-        run: python helper_scripts/package_windows.py
+        run: |
+          python helper_scripts/package_windows.py
+          mv src/dist/Qtcord-Windows src/dist/Qtcord/Qtcord-${{ needs.get-version.outputs.artifact_name }}-Windows
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v7
         with:
           name: Qtcord-Windows
-          path: src/dist/Qtcord-Windows
+          path: src/dist/Qtcord-${{ needs.get-version.outputs.artifact_name }}-Windows
           if-no-files-found: error
 
   build-macos:
@@ -56,14 +68,14 @@ jobs:
 
       - name: Prepare artifact
         run: |
-          mkdir -p src/dist/Qtcord-macOS
-          mv src/dist/Qtcord-macOS.app src/dist/Qtcord-macOS/
+          mkdir -p src/dist/Qtcord-${{ needs.get-version.outputs.artifact_name }}-macOS
+          mv src/dist/Qtcord-macOS.app src/dist/Qtcord-${{ needs.get-version.outputs.artifact_name }}-macOS/
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v7
         with:
           name: Qtcord-macOS
-          path: src/dist/Qtcord-macOS
+          path: src/dist/Qtcord-${{ needs.get-version.outputs.artifact_name }}-macOS
           if-no-files-found: error
 
   build-linux:
@@ -84,12 +96,13 @@ jobs:
       - name: Build
         run: |
           pyinstaller helper_scripts/linux.spec
+          mv dist/Qtcord-Linux dist/Qtcord-${{ needs.get-version.outputs.artifact_name }}-Linux
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v7
         with:
           name: Qtcord-Linux
-          path: dist/Qtcord-Linux
+          path: dist/Qtcord-${{ needs.get-version.outputs.artifact_name }}-Linux
           if-no-files-found: error
 
   release:
@@ -108,17 +121,17 @@ jobs:
       - name: Package release assets
         run: |
           cd artifacts
-          zip -r ../Qtcord-Windows.zip Qtcord-Windows/
-          zip -r ../Qtcord-macOS.zip Qtcord-macOS/
-          zip -r ../Qtcord-Linux.zip Qtcord-Linux/
+          zip -r ../Qtcord-${{ needs.get-version.outputs.artifact_name }}-Windows.zip Qtcord-${{ needs.get-version.outputs.artifact_name }}-Windows/
+          zip -r ../Qtcord-${{ needs.get-version.outputs.artifact_name }}-macOS.zip Qtcord-macOS/
+          zip -r ../Qtcord-${{ needs.get-version.outputs.artifact_name }}-Linux.zip Qtcord-${{ needs.get-version.outputs.artifact_name }}-Linux/
 
       - name: Create Release
         uses: softprops/action-gh-release@v3
         with:
           files: |
-            Qtcord-Windows.zip
-            Qtcord-macOS.zip
-            Qtcord-Linux.zip
+            Qtcord-${{ needs.get-version.outputs.artifact_name }}-Windows.zip
+            Qtcord-${{ needs.get-version.outputs.artifact_name }}-macOS.zip
+            Qtcord-${{ needs.get-version.outputs.artifact_name }}-Linux.zip
           generate_release_notes: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
