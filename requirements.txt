@@ -1,5 +1,5 @@
 # Essentials
-platformdirs~=v4.9.6
+platformdirs~=4.9.6
 requests~=2.34.2
 xxhash~=3.7.0
 # Only essential if you don't have it installed in your system package manager.
