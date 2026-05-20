@@ -7,7 +7,7 @@ line-length = 120
 # Check whitespace and Pyflakes
 select = ["F", "W"]
 # Ignore line length formatting
-ignore = ["E501"]
+#ignore = ["E501"]
 
 # Exclude auto-generated UI files
 exclude = [
