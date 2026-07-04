@@ -218,11 +218,27 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
             while True:
                 # Loop until we return without any ratelimit errors.
                 try:
-                    channel = discord_integration.get_channel_from_id(user.id)
+                    uid = user.id
 
                     # Oh my headache do not touch this code.
                     # But if you do: https://stackoverflow.com/questions/19837486/lambda-in-a-loop
-                    button.clicked.connect((lambda channel: lambda: self.switch_channel(channel))(channel))
+                    button.clicked.connect((lambda uid: lambda: self.switch_dms(uid))(uid))
+                    break
+                except Exception as e:
+                    print(e)
+                    # Friend button will still be added, but clicking it won't work
+                    button.setEnabled(False)
+                    break
+
+    def switch_dms(self, user_id: str) -> None:
+            while True:
+                # Loop until we return without any ratelimit errors.
+                try:
+                    channel = discord_integration.get_channel_from_id(user_id)
+
+                    # Oh my headache do not touch this code.
+                    # But if you do: https://stackoverflow.com/questions/19837486/lambda-in-a-loop
+                    self.switch_channel(channel)
                     break
                 except RateLimitError as e:
                     # Discord API rate limits us if we make too many requests.
@@ -231,10 +247,11 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
                     time.sleep(e.retry_after)
                     continue
                 except (ChannelAccessError, InvalidResponseError) as e:
-                    print(f"Warning: Could not get channel for user {user.get_user_name()} (ID: {user.id}): {e}")
-                    # Friend button will still be added, but clicking it won't work
-                    button.setEnabled(False)
+                    raise Exception (
+                            f"Warning: Could not get channel for user {user.get_user_name()} (ID: {user.id}): {e}"
+                    )
                     break
+
 
     def switch_channel(self, channel, guild_name=None):
         if channel.id != self.channel_id:
