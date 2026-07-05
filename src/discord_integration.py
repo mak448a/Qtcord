@@ -308,7 +308,9 @@ def get_guild_channels(guild_id: int) -> list[DiscordChannel]:
     r = requests.get(f"{api_base}/guilds/{guild_id}/channels", headers=headers)
     _check_ratelimit(r)
 
-    return [DiscordChannel.from_dict(channel) for channel in r.json()]
+    response_data = sorted(r.json(), key=lambda channel: channel["position"])
+
+    return [DiscordChannel.from_dict(channel) for channel in response_data]
 
 
 def login(email: str, password: str, totp_code: str = "", token: str = "") -> str | None:
