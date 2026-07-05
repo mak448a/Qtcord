@@ -309,7 +309,6 @@ def get_guild_channels(guild_id: int) -> list[DiscordChannel]:
     _check_ratelimit(r)
 
     response_data = sorted(r.json(), key=lambda channel: channel["position"])
-    print(response_data)
 
     return [DiscordChannel.from_dict(channel) for channel in response_data]
 
