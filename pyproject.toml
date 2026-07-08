@@ -9,5 +9,5 @@ dependencies = [
     "platformdirs~=4.10",
     "pyside6~=6.11",
     "requests~=2.34",
-    "xxhash~=3.7",
+    "xxhash~=3.8",
 ]

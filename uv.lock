@@ -338,7 +338,7 @@ dependencies = [
 [package.metadata]
 requires-dist = [
     { name = "keyring", specifier = "~=25.7" },
-    { name = "platformdirs", specifier = "~=4.9" },
+    { name = "platformdirs", specifier = "~=4.10" },
     { name = "pyside6", specifier = "~=6.11" },
     { name = "requests", specifier = "~=2.34" },
     { name = "xxhash", specifier = "~=3.7" },
