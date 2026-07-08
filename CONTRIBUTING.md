@@ -28,6 +28,12 @@ If possible, use Ruff to format your code.
 If you add a dependency, make sure to add it to `requirements.txt` and `no_pyside_requirements.txt`.
 Don't forget to add the appropriate license to the licenses folder and UI!
 
+If you need to update dependencies:
+```shell
+uv lock --upgrade
+uv sync
+```
+
 To edit the user interface, use Qt designer and put the UI files under `src/ui`. To apply the UI, run `src/regenerate.py`.
 
 GitHub actions will build and release automatically when a tag is created.
