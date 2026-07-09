@@ -367,6 +367,18 @@ def login(email: str, password: str, totp_code: str = "", token: str = "") -> st
             return None
 
 
+def logout() -> None:
+    """
+    Invalidates the current token on Discord's servers (best-effort).
+    """
+
+    try:
+        requests.post(f"{api_base}/auth/logout", headers=headers, timeout=5)
+    except requests.exceptions.RequestException:
+        # Network error or Discord unreachable; proceed with local cleanup.
+        print("Could not reach Discord to invalidate token. Proceeding with local logout.")
+
+
 def send_typing(channel: int) -> None:
     """
     Sends a typing indicator to a channel.
