@@ -231,27 +231,24 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
                     break
 
     def switch_dms(self, user_id: str) -> None:
-            while True:
-                # Loop until we return without any ratelimit errors.
-                try:
-                    channel = discord_integration.get_channel_from_id(user_id)
+        while True:
+            # Loop until we return without any ratelimit errors.
+            try:
+                channel = discord_integration.get_channel_from_id(user_id)
 
-                    # Oh my headache do not touch this code.
-                    # But if you do: https://stackoverflow.com/questions/19837486/lambda-in-a-loop
-                    self.switch_channel(channel)
-                    break
-                except RateLimitError as e:
-                    # Discord API rate limits us if we make too many requests.
-                    # TODO: Add popup to notify user
-                    print(f"We were ratelimited. Sleeping and retrying after {e.retry_after} seconds.")
-                    time.sleep(e.retry_after)
-                    continue
-                except (ChannelAccessError, InvalidResponseError) as e:
-                    raise Exception (
-                            f"Warning: Could not get channel for userID: {user_id}: {e}"
-                    )
-                    break
-
+                # Oh my headache do not touch this code.
+                # But if you do: https://stackoverflow.com/questions/19837486/lambda-in-a-loop
+                self.switch_channel(channel)
+                break
+            except RateLimitError as e:
+                # Discord API rate limits us if we make too many requests.
+                # TODO: Add popup to notify user
+                print(f"We were ratelimited. Sleeping and retrying after {e.retry_after} seconds.")
+                time.sleep(e.retry_after)
+                continue
+            except (ChannelAccessError, InvalidResponseError) as e:
+                raise Exception(f"Warning: Could not get channel for userID: {user_id}: {e}")
+                break
 
     def switch_channel(self, channel, guild_name=None):
         if channel.id != self.channel_id:
