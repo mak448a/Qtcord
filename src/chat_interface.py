@@ -248,7 +248,7 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
                     continue
                 except (ChannelAccessError, InvalidResponseError) as e:
                     raise Exception (
-                            f"Warning: Could not get channel for userID: {user.id}: {e}"
+                            f"Warning: Could not get channel for userID: {user_id}: {e}"
                     )
                     break
 
