@@ -18,7 +18,7 @@ You can use following resources for API docs.
 ## Coding Guidelines
 When creating a pull request, try to keep them small. If you need to, you can split it into multiple pull requests.
 
-I prefer no LLM-generated code but if you use it, review the code it outputs for mistakes. Clean the code and remove any unnecessary comments.
+Please do not use AI/LLMS to submit pull requests.
 
 Try to follow PEP-8 (the squiggly underlines in Pycharm) guidelines. If you can't, that's perfectly fine.
 
@@ -27,6 +27,12 @@ If possible, use Ruff to format your code.
 
 If you add a dependency, make sure to add it to `requirements.txt` and `no_pyside_requirements.txt`.
 Don't forget to add the appropriate license to the licenses folder and UI!
+
+If you need to update dependencies:
+```shell
+uv lock --upgrade
+uv sync
+```
 
 To edit the user interface, use Qt designer and put the UI files under `src/ui`. To apply the UI, run `src/regenerate.py`.
 

@@ -5,9 +5,9 @@ description = "PySide Discord client"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
-    "keyring~=25.7.0",
-    "platformdirs~=4.9.6",
-    "pyside6~=6.11.1",
-    "requests~=2.34.2",
-    "xxhash~=3.7.0",
+    "keyring~=25.7",
+    "platformdirs~=4.10",
+    "pyside6~=6.11",
+    "requests~=2.34",
+    "xxhash~=3.8",
 ]

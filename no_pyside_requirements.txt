@@ -3,7 +3,7 @@
 # You'll have to make a venv with --system-site-packages.
 
 
-platformdirs~=4.5.1
-requests~=2.32.5
-xxhash~=3.6.0
-keyring~=25.7.0
+platformdirs~=4.5
+requests~=2.32
+xxhash~=3.6
+keyring~=25.7
