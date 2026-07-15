@@ -235,9 +235,6 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
             # Loop until we return without any ratelimit errors.
             try:
                 channel = discord_integration.get_channel_from_id(user_id)
-
-                # Oh my headache do not touch this code.
-                # But if you do: https://stackoverflow.com/questions/19837486/lambda-in-a-loop
                 self.switch_channel(channel)
                 break
             except RateLimitError as e:
