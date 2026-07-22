@@ -1,17 +1,7 @@
 # Essentials
-platformdirs~=4.9
+keyring~=25.7
+platformdirs~=4.11
 requests~=2.34
-xxhash~=3.7
+xxhash~=3.8
 # Only essential if you don't have it installed in your system package manager.
 PySide6~=6.11
-keyring~=25.7
-
-
-# Depedencies of dependencies. You need not install these manually, but here for good measure.
-#certifi~=2026.1.4
-#charset-normalizer~=3.4.4
-#idna~=3.11
-#PySide6_Addons~=6.10.1
-#PySide6_Essentials~=6.10.1
-#shiboken6~=6.10.1
-#urllib3~=2.6.3

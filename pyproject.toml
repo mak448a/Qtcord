@@ -1,12 +1,12 @@
 [project]
 name = "Qtcord"
-version = "0.1.0"
+version = "0.0.26"
 description = "PySide Discord client"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
     "keyring~=25.7",
-    "platformdirs~=4.10",
+    "platformdirs~=4.11",
     "pyside6~=6.11",
     "requests~=2.34",
     "xxhash~=3.8",

@@ -34,6 +34,11 @@ uv lock --upgrade
 uv sync
 ```
 
+For requirements.txt:
+```shell
+pip freeze
+```
+
 To edit the user interface, use Qt designer and put the UI files under `src/ui`. To apply the UI, run `src/regenerate.py`.
 
 GitHub actions will build and release automatically when a tag is created.

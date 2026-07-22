@@ -1,9 +1,8 @@
 # You should use requirements.txt.
-# This is only for if you have PySide6 installed system-wide.
-# You'll have to make a venv with --system-site-packages.
+# This is only for if you have PySide6 installed system-wide (e.g., Linux).
+# You'll have to make a venv with --system-site-packages for this to work.
 
-
-platformdirs~=4.5
-requests~=2.32
-xxhash~=3.6
 keyring~=25.7
+platformdirs~=4.11
+requests~=2.34
+xxhash~=3.8
