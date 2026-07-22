@@ -18,7 +18,7 @@ You can use following resources for API docs.
 ## Coding Guidelines
 When creating a pull request, try to keep them small. If you need to, you can split it into multiple pull requests.
 
-Please do not use AI/LLMS to submit pull requests.
+Please do not use AI/LLMS to submit pull requests. Flathub does not allow AI generated code anymore, so we need to keep the repo as clean as possible.
 
 Try to follow PEP-8 (the squiggly underlines in Pycharm) guidelines. If you can't, that's perfectly fine.
 
