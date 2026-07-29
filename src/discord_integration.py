@@ -336,7 +336,7 @@ def login(email: str, password: str, totp_code: str = "", token: str = "") -> st
         "undelete": False,
     }
 
-    r = requests.post(f"{api_base}/auth/login", json=payload)
+    r = requests.post(f"{api_base}/auth/login", json=payload, headers=headers)
 
     # Check for errors
     if r.json().get("errors", False):
@@ -366,6 +366,19 @@ def login(email: str, password: str, totp_code: str = "", token: str = "") -> st
             )
             return None
 
+
+def logout() -> None:
+    """
+    Asks the Discord API to delete the token.
+
+    Args:
+        None
+    Returns:
+        None
+    """
+
+    requests.post(f"{api_base}/auth/logout", headers=headers)
+    
 
 def send_typing(channel: int) -> None:
     """

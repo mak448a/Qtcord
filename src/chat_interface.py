@@ -335,6 +335,7 @@ class ChatInterface(QMainWindow, Ui_MainWindow):
             self.threadpool.start(worker)
 
     def logout_account(self):
+        discord_integration.logout()
         keyring.delete_password("Qtcord", "token")
         # Remove Discord token from discordauth.txt
         token_path = platformdirs.user_config_dir("Qtcord") + "/discordauth.txt"
