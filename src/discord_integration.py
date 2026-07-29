@@ -45,7 +45,7 @@ from discord_exceptions import ChannelAccessError, InvalidResponseError, RateLim
 
 api_base = "https://discord.com/api/v10"
 headers = {
-    "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) discord/0.0.63 Chrome/124.0.6367.243 Electron/30.2.0 Safari/537.36"
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36"
 }
 
 # Will be set in load_token
@@ -336,7 +336,7 @@ def login(email: str, password: str, totp_code: str = "", token: str = "") -> st
         "undelete": False,
     }
 
-    r = requests.post(f"{api_base}/auth/login", json=payload)
+    r = requests.post(f"{api_base}/auth/login", json=payload, headers=headers)
 
     # Check for errors
     if r.json().get("errors", False):
@@ -365,6 +365,19 @@ def login(email: str, password: str, totp_code: str = "", token: str = "") -> st
                 + "Ask for it at https://github.com/mak448a/Qtcord/issues"
             )
             return None
+
+
+def logout() -> None:
+    """
+    Asks the Discord API to delete the token.
+
+    Args:
+        None
+    Returns:
+        None
+    """
+
+    requests.post(f"{api_base}/auth/logout", headers=headers)
 
 
 def send_typing(channel: int) -> None:
