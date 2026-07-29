@@ -22,7 +22,12 @@ Please do not use AI/LLMS to submit pull requests. Flathub does not allow AI gen
 
 Try to follow PEP-8 (the squiggly underlines in Pycharm) guidelines. If you can't, that's perfectly fine.
 
-If possible, use Ruff to format your code.
+Format and lint your code with Ruff before submitting the PR!
+
+```shell
+ruff format
+ruff check
+```
 
 
 If you add a dependency, make sure to add it to `requirements.txt` and `no_pyside_requirements.txt`.
