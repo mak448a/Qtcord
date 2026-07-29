@@ -378,7 +378,7 @@ def logout() -> None:
     """
 
     requests.post(f"{api_base}/auth/logout", headers=headers)
-    
+
 
 def send_typing(channel: int) -> None:
     """
